@@ -1,0 +1,9 @@
+{
+  "identities": [
+    {
+      "name": "medicos-dev",
+      "credentials": [{ "accessKey": "medicos", "secretKey": "medicos-dev-secret" }],
+      "actions": ["Admin", "Read", "Write", "List", "Tagging"]
+    }
+  ]
+}

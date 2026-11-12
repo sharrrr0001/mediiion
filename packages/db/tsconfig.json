@@ -1,0 +1,13 @@
+{
+  "extends": "@medicos/config/tsconfig.lib.json",
+  "include": [
+    "src"
+  ],
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "exclude": [
+    "src/**/*.test.ts"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "name": "medicos",
+  "private": true,
+  "packageManager": "pnpm@10.15.0",
+  "engines": { "node": ">=20.18" },
+  "scripts": {
+    "dev": "turbo run dev --parallel --filter=@medicos/api --filter=@medicos/web --filter=@medicos/shared",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test --concurrency=1",
+    "e2e": "pnpm --filter @medicos/web e2e",
+    "format": "prettier --write .",
+    "infra:up": "docker compose up -d --wait",
+    "infra:down": "docker compose down",
+    "db:generate": "pnpm --filter @medicos/db generate",
+    "db:migrate": "pnpm --filter @medicos/db migrate",
+    "db:deploy": "pnpm --filter @medicos/db deploy",
+    "db:seed": "pnpm --filter @medicos/db seed",
+    "db:reset": "pnpm --filter @medicos/db reset"
+  },
+  "devDependencies": {
+    "prettier": "3.6.2",
+    "turbo": "2.5.6",
+    "typescript": "5.9.2"
+  }
+}
