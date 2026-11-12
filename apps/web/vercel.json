@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://pending-tunnel.trycloudflare.com/:path*"
+      "destination": "https://consumers-assume-britain-dave.trycloudflare.com/:path*"
     }
   ]
 }
