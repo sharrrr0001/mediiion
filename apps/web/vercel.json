@@ -1,0 +1,12 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "cd ../.. && pnpm turbo run build --filter=@medicos/web",
+  "rewrites": [
+    {
+      "source": "/api/:path*",
+      "destination": "https://pending-tunnel.trycloudflare.com/:path*"
+    }
+  ]
+}

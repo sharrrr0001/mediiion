@@ -13,6 +13,9 @@ const testEnv = {
   REFRESH_COOKIE_PATH: '/auth',
   WEB_ORIGINS: 'http://localhost:3001',
   LOG_LEVEL: 'info',
+  // Tests never call real AI providers, whatever keys are in .env.
+  LLM_PROVIDER: 'mock',
+  STT_PROVIDER: 'mock',
 };
 // Global setup runs in this process, workers inherit it.
 Object.assign(process.env, testEnv);

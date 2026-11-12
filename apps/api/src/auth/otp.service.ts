@@ -1,4 +1,4 @@
-import { HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { HttpStatus, Inject, Injectable, Logger } from '@nestjs/common';
 import { randomInt } from 'node:crypto';
 import { BIDX, ENC, type User } from '@medicos/db';
 import {
@@ -21,6 +21,7 @@ const INVALID = () =>
 
 @Injectable()
 export class OtpService {
+  private readonly logger = new Logger('OTP');
   constructor(
     private readonly prisma: PrismaService,
     @Inject(CRYPTO) private readonly crypto: FieldCrypto,
@@ -49,6 +50,9 @@ export class OtpService {
 
   /** Never reveals whether an account exists for this phone/email. */
   async request(input: OtpRequest, ip: string) {
+    if (input.channel === 'sms' && !this.env.PHONE_LOGIN) {
+      throw new AppError(HttpStatus.BAD_REQUEST, 'CHANNEL_UNAVAILABLE', 'Phone login is not available yet. Please use email.');
+    }
     const id = this.identifier(input);
     const ipHash = this.crypto.blindIndex(ip, BIDX.ip);
     const since = new Date(Date.now() - WINDOW_MS);
@@ -88,7 +92,13 @@ export class OtpService {
       data: { codeHash: this.codeHash(challenge.id, code) },
     });
 
-    await (input.channel === 'sms' ? this.sms : this.email).sendOtp(id.value, code);
+    try {
+      await (input.channel === 'sms' ? this.sms : this.email).sendOtp(id.value, code);
+    } catch (err) {
+      // Never log the recipient or the code: only that delivery failed.
+      this.logger.error(`OTP delivery failed (${input.channel}): ${err instanceof Error ? err.message.replace(/\S+@\S+/g, '[email]').slice(0, 120) : 'unknown'}`);
+      throw new AppError(HttpStatus.BAD_GATEWAY, 'OTP_SEND_FAILED', 'We could not send the code. Please try again in a minute.');
+    }
 
     return { challengeId: challenge.id, expiresInSeconds: OTP_TTL_SECONDS, resendInSeconds: OTP_RESEND_SECONDS };
   }

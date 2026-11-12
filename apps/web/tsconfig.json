@@ -30,7 +30,8 @@
     "global.d.ts",
     "next-env.d.ts",
     "playwright.config.ts",
-    "src"
+    "src",
+    ".next-build/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

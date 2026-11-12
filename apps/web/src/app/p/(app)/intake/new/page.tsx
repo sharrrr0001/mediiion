@@ -9,6 +9,7 @@ import type { DoctorListItem, IntakeView } from '@medicos/shared/client';
 import { Button, Field, Select, Skeleton, cn } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
 import { api, ApiError, post } from '@/lib/api';
+import { usePublicConfig } from '@/lib/use-config';
 import { usePatientGate } from '@/lib/use-me';
 
 type Kind = 'general-medicine' | 'dermatology' | 'paediatrics' | 'gynaecology';
@@ -23,15 +24,25 @@ export default function NewIntakePage() {
   const [kind, setKind] = useState<Kind>('general-medicine');
   const [doctorId, setDoctorId] = useState('');
   const [mode, setMode] = useState<Mode>('chat');
-  const doctors = useQuery({ queryKey: ['doctors'], queryFn: () => api<DoctorListItem[]>('/doctors'), enabled: !!me });
+  const voiceOn = usePublicConfig().voice;
+  const doctors = useQuery({
+    queryKey: ['doctors'],
+    queryFn: () => api<DoctorListItem[]>('/doctors'),
+    enabled: !!me,
+  });
   const open = useQuery({
     queryKey: ['intake-open'],
     queryFn: () => api<Array<{ id: string; status: string }>>('/intake/sessions'),
     enabled: !!me,
   });
   const start = useMutation({
-    mutationFn: () => post<IntakeView>('/intake/sessions', { profileId: me!.profiles[0]!.id, templateKey: kind, ...(doctorId ? { doctorId } : {}) }),
-    onSuccess: (v) => router.push(`/p/intake/${v.id}${mode === 'voice' ? '?mode=voice' : ''}`),
+    mutationFn: () =>
+      post<IntakeView>('/intake/sessions', {
+        profileId: me!.profiles[0]!.id,
+        templateKey: kind,
+        ...(doctorId ? { doctorId } : {}),
+      }),
+    onSuccess: (v) => router.push(`/p/intake/${v.id}${mode === 'voice' && voiceOn ? '?mode=voice' : ''}`),
   });
 
   if (!me) {
@@ -73,17 +84,44 @@ export default function NewIntakePage() {
             title={t('kindSkin')}
             hint={t('kindSkinHint')}
           />
-          <Choice checked={kind === 'paediatrics'} onSelect={() => setKind('paediatrics')} icon={<Baby aria-hidden />} title={t('kinds.kids')} hint={t('kinds.kidsHint')} />
-          <Choice checked={kind === 'gynaecology'} onSelect={() => setKind('gynaecology')} icon={<Flower2 aria-hidden />} title={t('kinds.women')} hint={t('kinds.womenHint')} />
+          <Choice
+            checked={kind === 'paediatrics'}
+            onSelect={() => setKind('paediatrics')}
+            icon={<Baby aria-hidden />}
+            title={t('kinds.kids')}
+            hint={t('kinds.kidsHint')}
+          />
+          <Choice
+            checked={kind === 'gynaecology'}
+            onSelect={() => setKind('gynaecology')}
+            icon={<Flower2 aria-hidden />}
+            title={t('kinds.women')}
+            hint={t('kinds.womenHint')}
+          />
         </fieldset>
-
-        <fieldset className="mt-8">
-          <legend className="font-semibold">{t('voice.modeLabel')}</legend>
-          <div className="mt-3 grid gap-3 md:grid-cols-2">
-            <Choice name="mode" checked={mode === 'chat'} onSelect={() => setMode('chat')} icon={<Keyboard aria-hidden />} title={t('voice.modeChat')} hint={t('placeholder')} />
-            <Choice name="mode" checked={mode === 'voice'} onSelect={() => setMode('voice')} icon={<Mic aria-hidden />} title={t('voice.modeVoice')} hint={t('voice.modeVoiceHint')} />
-          </div>
-        </fieldset>
+        {voiceOn ? (
+          <fieldset className="mt-8">
+            <legend className="font-semibold">{t('voice.modeLabel')}</legend>
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
+              <Choice
+                name="mode"
+                checked={mode === 'chat'}
+                onSelect={() => setMode('chat')}
+                icon={<Keyboard aria-hidden />}
+                title={t('voice.modeChat')}
+                hint={t('placeholder')}
+              />
+              <Choice
+                name="mode"
+                checked={mode === 'voice'}
+                onSelect={() => setMode('voice')}
+                icon={<Mic aria-hidden />}
+                title={t('voice.modeVoice')}
+                hint={t('voice.modeVoiceHint')}
+              />
+            </div>
+          </fieldset>
+        ) : null}
 
         <Field label={td('label')} htmlFor="doctor" hint={td('hint')} className="mt-6">
           <Select id="doctor" value={doctorId} onChange={(e) => setDoctorId(e.target.value)}>
@@ -97,13 +135,18 @@ export default function NewIntakePage() {
           </Select>
         </Field>
 
-
         {start.isError ? (
           <p role="alert" className="mt-4 font-medium text-danger">
             {start.error instanceof ApiError ? start.error.message : tc('errorGeneric')}
           </p>
         ) : null}
-        <Button size="lg" block="phone" className="mt-6 md:min-w-48" loading={start.isPending} onClick={() => start.mutate()}>
+        <Button
+          size="lg"
+          block="phone"
+          className="mt-6 md:min-w-48"
+          loading={start.isPending}
+          onClick={() => start.mutate()}
+        >
           {t('start')}
         </Button>
       </div>
@@ -111,7 +154,14 @@ export default function NewIntakePage() {
   );
 }
 
-function Choice(props: { checked: boolean; onSelect: () => void; icon: ReactNode; title: string; hint: string; name?: string }) {
+function Choice(props: {
+  checked: boolean;
+  onSelect: () => void;
+  icon: ReactNode;
+  title: string;
+  hint: string;
+  name?: string;
+}) {
   return (
     <label
       className={cn(
@@ -119,8 +169,16 @@ function Choice(props: { checked: boolean; onSelect: () => void; icon: ReactNode
         props.checked && 'border-brand bg-brand-tint ring-1 ring-brand',
       )}
     >
-      <input type="radio" name={props.name ?? 'kind'} checked={props.checked} onChange={props.onSelect} className="sr-only" />
-      <span className="grid size-12 shrink-0 place-items-center rounded-full bg-brand-soft text-brand [&_svg]:size-6 [&_svg]:stroke-[1.75]">{props.icon}</span>
+      <input
+        type="radio"
+        name={props.name ?? 'kind'}
+        checked={props.checked}
+        onChange={props.onSelect}
+        className="sr-only"
+      />
+      <span className="grid size-12 shrink-0 place-items-center rounded-full bg-brand-soft text-brand [&_svg]:size-6 [&_svg]:stroke-[1.75]">
+        {props.icon}
+      </span>
       <span className="flex flex-col">
         <span className="font-semibold">{props.title}</span>
         <span className="text-[0.9375rem] text-muted">{props.hint}</span>

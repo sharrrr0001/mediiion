@@ -8,6 +8,7 @@ import type { MeResponse } from '@medicos/shared';
 import { Email, IndianPhone, OTP_RESEND_SECONDS } from '@medicos/shared';
 import { Button, Card, Field, Input, OtpInput, Tabs } from '@medicos/ui';
 import { api, ApiError, post } from '@/lib/api';
+import { usePublicConfig } from '@/lib/use-config';
 import { ME_KEY, onboardingTarget } from '@/lib/use-me';
 
 type Channel = 'sms' | 'email';
@@ -31,6 +32,12 @@ export default function LoginPage() {
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [now, setNow] = useState(() => Date.now());
+  const phoneOn = usePublicConfig().channels.includes('sms');
+
+  // No SMS provider on this server: email is the only way in.
+  useEffect(() => {
+    if (!phoneOn) setChannel('email');
+  }, [phoneOn]);
 
   useEffect(() => {
     if (!challenge) return;
@@ -54,7 +61,8 @@ export default function LoginPage() {
 
   const describe = (e: unknown) => {
     if (e instanceof ApiError) {
-      if (e.code === 'OTP_INVALID' && typeof e.extra.attemptsLeft === 'number') return t('wrongCode', { attemptsLeft: e.extra.attemptsLeft });
+      if (e.code === 'OTP_INVALID' && typeof e.extra.attemptsLeft === 'number')
+        return t('wrongCode', { attemptsLeft: e.extra.attemptsLeft });
       if (e.code === 'TWO_FACTOR_REQUIRED') return t('staffNotice');
       return e.message;
     }
@@ -113,19 +121,25 @@ export default function LoginPage() {
               <h1 className="font-display text-3xl font-bold tracking-tight">{t('title')}</h1>
               <p className="mt-2 text-muted">{t('subtitle')}</p>
             </div>
-            <Tabs
-              label={t('title')}
-              value={channel}
-              onChange={(v) => {
-                setChannel(v);
-                setContact('');
-                setError(null);
-              }}
-              items={[
-                { value: 'sms', label: tx('tabMobile') },
-                { value: 'email', label: tx('tabEmail') },
-              ]}
-            />
+            {phoneOn ? (
+              <Tabs
+                label={t('title')}
+                value={channel}
+                onChange={(v) => {
+                  setChannel(v);
+                  setContact('');
+                  setError(null);
+                }}
+                items={[
+                  { value: 'sms', label: tx('tabMobile') },
+                  { value: 'email', label: tx('tabEmail') },
+                ]}
+              />
+            ) : (
+              <p className="rounded-[var(--radius-control)] bg-surface-2 px-3 py-2 text-sm text-muted">
+                {tc('phoneSoon')}
+              </p>
+            )}
             <Field
               label={channel === 'sms' ? t('phoneLabel') : t('emailLabel')}
               htmlFor="contact"
@@ -134,7 +148,9 @@ export default function LoginPage() {
             >
               <div className="flex gap-2">
                 {channel === 'sms' ? (
-                  <span className="inline-flex min-h-12 items-center rounded-[var(--radius-control)] border border-line bg-surface-2 px-3 font-semibold text-ink">+91</span>
+                  <span className="inline-flex min-h-12 items-center rounded-[var(--radius-control)] border border-line bg-surface-2 px-3 font-semibold text-ink">
+                    +91
+                  </span>
                 ) : null}
                 <Input
                   id="contact"
@@ -170,7 +186,12 @@ export default function LoginPage() {
               {t('verify')}
             </Button>
             <div className="flex items-center justify-between text-sm">
-              <button type="button" className="min-h-11 font-semibold text-brand disabled:font-medium disabled:text-muted" disabled={secondsLeft > 0 || busy} onClick={() => sendCode()}>
+              <button
+                type="button"
+                className="min-h-11 font-semibold text-brand disabled:font-medium disabled:text-muted"
+                disabled={secondsLeft > 0 || busy}
+                onClick={() => sendCode()}
+              >
                 {secondsLeft > 0 ? t('resendIn', { seconds: secondsLeft }) : t('resend')}
               </button>
               <button

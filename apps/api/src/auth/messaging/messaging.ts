@@ -43,6 +43,13 @@ export class DevOutbox {
 const otpText = (code: string) =>
   `${code} is your ${APP_NAME} login code. It expires in 5 minutes. Do not share it with anyone.`;
 
+const otpHtml = (code: string) =>
+  `<div style="font-family:Arial,sans-serif;max-width:420px;margin:auto;padding:24px;border:1px solid #d9e7e1;border-radius:12px">` +
+  `<p style="color:#0B6B50;font-weight:700;font-size:18px;margin:0 0 12px">${APP_NAME}</p>` +
+  `<p style="margin:0 0 8px;color:#1f2a27">Your login code is</p>` +
+  `<p style="font-size:32px;letter-spacing:6px;font-weight:700;margin:0 0 12px;color:#0B6B50">${code}</p>` +
+  `<p style="margin:0;color:#5b6b66;font-size:13px">It expires in 5 minutes. Do not share it with anyone, not even ${APP_NAME} staff.</p></div>`;
+
 @Injectable()
 export class ConsoleSmsSender implements OtpSender {
   private readonly logger = new Logger('DevSMS');
@@ -65,7 +72,14 @@ export class SmtpEmailSender implements OtpSender {
     private readonly outbox: DevOutbox,
     @Inject(ENV) private readonly env: Env,
   ) {
-    this.transport = createTransport({ host: env.SMTP_HOST, port: env.SMTP_PORT, secure: false });
+    this.transport = createTransport({
+      host: env.SMTP_HOST,
+      port: env.SMTP_PORT,
+      secure: env.SMTP_SECURE,
+      // Gmail: SMTP_USER = the address, SMTP_PASS = a 16-character App Password.
+      ...(env.SMTP_USER && env.SMTP_PASS ? { auth: { user: env.SMTP_USER, pass: env.SMTP_PASS } } : {}),
+      requireTLS: env.NODE_ENV === 'production',
+    });
   }
 
   async sendOtp(to: string, code: string) {
@@ -74,8 +88,9 @@ export class SmtpEmailSender implements OtpSender {
     await this.transport.sendMail({
       from: this.env.EMAIL_FROM,
       to,
-      subject: `${APP_NAME} login code`,
+      subject: `${code} is your ${APP_NAME} login code`,
       text: otpText(code),
+      html: otpHtml(code),
     });
   }
 }

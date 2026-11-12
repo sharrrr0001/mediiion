@@ -3,22 +3,32 @@ import { ShieldCheck } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useState, type FormEvent } from 'react';
-import { IndianPhone } from '@medicos/shared';
+import { useEffect, useState, type FormEvent } from 'react';
+import { Email, IndianPhone } from '@medicos/shared';
 import type { TwoFactorChallengeResponse } from '@medicos/shared/client';
-import { Button, Card, Field, Input, OtpInput, QrCode } from '@medicos/ui';
+import { Button, Card, Field, Input, OtpInput, QrCode, Tabs } from '@medicos/ui';
 import { ApiError, post } from '@/lib/api';
+import { usePublicConfig } from '@/lib/use-config';
 
-type Step = { kind: 'phone' } | { kind: 'otp'; challengeId: string; phone: string } | { kind: 'twofa'; challenge: TwoFactorChallengeResponse };
+type Step =
+  | { kind: 'phone' }
+  | { kind: 'otp'; challengeId: string; destination: string }
+  | { kind: 'twofa'; challenge: TwoFactorChallengeResponse };
 
-/** Doctor sign-in: mobile OTP, then TOTP 2FA (enrol on first login). */
+/** Doctor sign-in: mobile or email OTP, then TOTP 2FA (enrol on first login). */
 export default function DoctorLoginPage() {
   const t = useTranslations('doctorAuth');
   const tl = useTranslations('login');
   const tc = useTranslations('common');
+  const tx = useTranslations('extra');
   const router = useRouter();
   const [step, setStep] = useState<Step>({ kind: 'phone' });
   const [phone, setPhone] = useState('');
+  const [channel, setChannel] = useState<'sms' | 'email'>('sms');
+  const phoneOn = usePublicConfig().channels.includes('sms');
+  useEffect(() => {
+    if (!phoneOn) setChannel('email');
+  }, [phoneOn]);
   const [code, setCode] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -37,11 +47,17 @@ export default function DoctorLoginPage() {
 
   const sendOtp = (e: FormEvent) => {
     e.preventDefault();
-    const parsed = IndianPhone.safeParse(phone);
-    if (!parsed.success) return setError(tl('invalidPhone'));
+    const parsed = channel === 'sms' ? IndianPhone.safeParse(phone) : Email.safeParse(phone);
+    if (!parsed.success) return setError(channel === 'sms' ? tl('invalidPhone') : tl('invalidEmail'));
+    const value = parsed.data;
     void run(async () => {
-      const r = await post<{ challengeId: string }>('/auth/otp/request', { channel: 'sms', phone: parsed.data });
-      setStep({ kind: 'otp', challengeId: r.challengeId, phone: parsed.data });
+      const body = channel === 'sms' ? { channel, phone: value } : { channel, email: value };
+      const r = await post<{ challengeId: string }>('/auth/otp/request', body);
+      setStep({
+        kind: 'otp',
+        challengeId: r.challengeId,
+        destination: channel === 'sms' ? `+91 ${value.slice(3)}` : value,
+      });
       setCode('');
     });
   };
@@ -50,7 +66,10 @@ export default function DoctorLoginPage() {
     e.preventDefault();
     if (step.kind !== 'otp' || code.length !== 6) return;
     void run(async () => {
-      const r = await post<TwoFactorChallengeResponse | { ok: true }>('/auth/otp/verify', { challengeId: step.challengeId, code });
+      const r = await post<TwoFactorChallengeResponse | { ok: true }>('/auth/otp/verify', {
+        challengeId: step.challengeId,
+        code,
+      });
       if (!('twoFactor' in r)) {
         await post('/auth/logout').catch(() => undefined);
         setError(t('notDoctor'));
@@ -79,16 +98,60 @@ export default function DoctorLoginPage() {
             <h1 className="font-display text-3xl font-bold tracking-tight">{t('title')}</h1>
             <p className="mt-2 text-muted">{t('subtitle')}</p>
           </div>
-          <Field label={tl('phoneLabel')} htmlFor="phone" hint={tl('phoneHint')} error={error ?? undefined}>
-            <div className="flex gap-2">
-              <span className="inline-flex min-h-12 items-center rounded-[var(--radius-control)] border border-line bg-surface-2 px-3 font-semibold">+91</span>
-              <Input id="phone" type="tel" inputMode="numeric" autoComplete="tel-national" value={phone} onChange={(e) => setPhone(e.target.value)} aria-invalid={!!error} autoFocus />
-            </div>
-          </Field>
+          {phoneOn ? (
+            <Tabs
+              label={t('title')}
+              value={channel}
+              onChange={(v) => {
+                setChannel(v);
+                setPhone('');
+                setError(null);
+              }}
+              items={[
+                { value: 'sms', label: tx('tabMobile') },
+                { value: 'email', label: tx('tabEmail') },
+              ]}
+            />
+          ) : null}
+          {channel === 'sms' ? (
+            <Field label={tl('phoneLabel')} htmlFor="phone" hint={tl('phoneHint')} error={error ?? undefined}>
+              <div className="flex gap-2">
+                <span className="inline-flex min-h-12 items-center rounded-[var(--radius-control)] border border-line bg-surface-2 px-3 font-semibold">
+                  +91
+                </span>
+                <Input
+                  id="phone"
+                  type="tel"
+                  inputMode="numeric"
+                  autoComplete="tel-national"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  aria-invalid={!!error}
+                  autoFocus
+                />
+              </div>
+            </Field>
+          ) : (
+            <Field label={tl('emailLabel')} htmlFor="email" error={error ?? undefined}>
+              <Input
+                id="email"
+                type="email"
+                inputMode="email"
+                autoComplete="email"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                aria-invalid={!!error}
+                autoFocus
+              />
+            </Field>
+          )}
           <Button type="submit" size="lg" block loading={busy}>
             {tl('sendOtp')}
           </Button>
-          <Link href="/p/login" className="text-center text-sm font-semibold text-brand hover:text-brand-hover">
+          <Link
+            href="/p/login"
+            className="text-center text-sm font-semibold text-brand hover:text-brand-hover"
+          >
             {t('patientLink')}
           </Link>
         </form>
@@ -96,10 +159,14 @@ export default function DoctorLoginPage() {
         <form onSubmit={verifyOtp} noValidate className="flex flex-col gap-6">
           <div>
             <h1 className="font-display text-3xl font-bold tracking-tight">{tl('otpTitle')}</h1>
-            <p className="mt-2 text-muted">{tl('otpSentTo', { destination: `+91 ${step.phone.slice(3)}` })}</p>
+            <p className="mt-2 text-muted">{tl('otpSentTo', { destination: step.destination })}</p>
           </div>
           <OtpInput value={code} onChange={setCode} label={tl('otpLabel')} invalid={!!error} autoFocus />
-          {error ? <p role="alert" className="font-medium text-danger">{error}</p> : null}
+          {error ? (
+            <p role="alert" className="font-medium text-danger">
+              {error}
+            </p>
+          ) : null}
           <Button type="submit" size="lg" block loading={busy} disabled={code.length !== 6}>
             {tl('verify')}
           </Button>
@@ -111,20 +178,35 @@ export default function DoctorLoginPage() {
               <ShieldCheck aria-hidden className="size-4" />
               2FA
             </p>
-            <h1 className="mt-3 font-display text-3xl font-bold tracking-tight">{step.challenge.twoFactor === 'setup' ? t('setupTitle') : t('verifyTitle')}</h1>
-            <p className="mt-2 text-muted">{step.challenge.twoFactor === 'setup' ? t('setupBody') : t('verifyBody')}</p>
+            <h1 className="mt-3 font-display text-3xl font-bold tracking-tight">
+              {step.challenge.twoFactor === 'setup' ? t('setupTitle') : t('verifyTitle')}
+            </h1>
+            <p className="mt-2 text-muted">
+              {step.challenge.twoFactor === 'setup' ? t('setupBody') : t('verifyBody')}
+            </p>
           </div>
           {step.challenge.twoFactor === 'setup' ? (
             <div className="flex flex-col items-center gap-3">
-              <QrCode value={step.challenge.otpauthUrl} label={t('setupTitle')} className="max-w-[220px] rounded-card border border-line" />
+              <QrCode
+                value={step.challenge.otpauthUrl}
+                label={t('setupTitle')}
+                className="max-w-[220px] rounded-card border border-line"
+              />
               <p className="text-sm text-muted">{t('manualKey')}</p>
-              <code data-testid="totp-secret" className="break-all rounded-lg bg-surface-2 px-3 py-2 font-mono text-sm font-semibold tracking-wider">
+              <code
+                data-testid="totp-secret"
+                className="break-all rounded-lg bg-surface-2 px-3 py-2 font-mono text-sm font-semibold tracking-wider"
+              >
                 {step.challenge.secret}
               </code>
             </div>
           ) : null}
           <OtpInput value={code} onChange={setCode} label={t('codeLabel')} invalid={!!error} autoFocus />
-          {error ? <p role="alert" className="font-medium text-danger">{error}</p> : null}
+          {error ? (
+            <p role="alert" className="font-medium text-danger">
+              {error}
+            </p>
+          ) : null}
           <Button type="submit" size="lg" block loading={busy} disabled={code.length !== 6}>
             {t('confirm')}
           </Button>

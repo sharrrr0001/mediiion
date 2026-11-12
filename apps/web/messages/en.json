@@ -10,7 +10,9 @@
     "errorGeneric": "Something went wrong. Please try again.",
     "menu": "Menu",
     "notifications": "Notifications",
-    "logout": "Log out"
+    "logout": "Log out",
+    "demoBanner": "Demo version: use made-up details only. Do not enter real health information.",
+    "phoneSoon": "Phone login is coming soon. Please use your email."
   },
   "login": {
     "title": "Welcome to Medicos",

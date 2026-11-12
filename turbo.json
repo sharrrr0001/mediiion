@@ -1,13 +1,64 @@
 {
   "$schema": "https://turborepo.com/schema.json",
-  "globalEnv": ["NODE_ENV"],
-  "globalPassThroughEnv": ["DATABASE_URL", "TEST_DATABASE_URL", "FIELD_ENCRYPTION_KEY", "BLIND_INDEX_KEY", "JWT_SECRET", "API_URL", "WEB_ORIGINS", "SMTP_HOST", "SMTP_PORT", "DEV_OUTBOX", "CI"],
+  "globalEnv": [
+    "NODE_ENV"
+  ],
+  "globalPassThroughEnv": [
+    "DATABASE_URL",
+    "TEST_DATABASE_URL",
+    "FIELD_ENCRYPTION_KEY",
+    "BLIND_INDEX_KEY",
+    "JWT_SECRET",
+    "API_URL",
+    "WEB_ORIGINS",
+    "SMTP_HOST",
+    "SMTP_PORT",
+    "DEV_OUTBOX",
+    "CI",
+    "VERCEL",
+    "VERCEL_ENV"
+  ],
   "tasks": {
-    "generate": { "cache": false },
-    "build": { "dependsOn": ["^build", "generate"], "outputs": ["dist/**", ".next/**", "!.next/cache/**"] },
-    "dev": { "dependsOn": ["^build", "generate"], "cache": false, "persistent": true },
-    "lint": { "dependsOn": ["^build", "generate"] },
-    "typecheck": { "dependsOn": ["^build", "generate"] },
-    "test": { "dependsOn": ["^build", "generate"], "cache": false }
+    "generate": {
+      "cache": false
+    },
+    "build": {
+      "dependsOn": [
+        "^build",
+        "generate"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**",
+        "!.next/cache/**"
+      ]
+    },
+    "dev": {
+      "dependsOn": [
+        "^build",
+        "generate"
+      ],
+      "cache": false,
+      "persistent": true
+    },
+    "lint": {
+      "dependsOn": [
+        "^build",
+        "generate"
+      ]
+    },
+    "typecheck": {
+      "dependsOn": [
+        "^build",
+        "generate"
+      ]
+    },
+    "test": {
+      "dependsOn": [
+        "^build",
+        "generate"
+      ],
+      "cache": false
+    }
   }
 }

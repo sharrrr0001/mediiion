@@ -9,6 +9,7 @@ import type { AuthUser } from '../auth/decorators';
 import { can } from '../auth/policy';
 import { AppError } from '../common/errors';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
+import { ENV, type Env } from '../config/env';
 import { AiService } from './ai.service';
 import { StorageService, scanForMalware } from './storage.service';
 
@@ -25,9 +26,11 @@ export class VoiceService {
     private readonly storage: StorageService,
     private readonly audit: AuditService,
     @Inject(CRYPTO) private readonly crypto: FieldCrypto,
+    @Inject(ENV) private readonly env: Env,
   ) {}
 
   async transcribe(user: AuthUser, sessionId: string, audio: Buffer, durationMs: number, req: Request): Promise<VoiceDraft> {
+    if (!this.env.VOICE_ENABLED) throw new AppError(HttpStatus.SERVICE_UNAVAILABLE, 'VOICE_OFF', 'Voice answers are not available right now. Please type your answer.');
     const session = await this.prisma.intakeSession.findUnique({ where: { id: sessionId }, include: { patientProfile: true } });
     if (!session || !can({ userId: user.id, role: user.role }, 'patient_record.read', { kind: 'patient_profile', ownerUserId: session.patientProfile.ownerUserId, grants: [] })) {
       throw new AppError(HttpStatus.NOT_FOUND, 'NOT_FOUND', 'Interview not found.');

@@ -18,7 +18,7 @@ export class AiService {
       env.LLM_PROVIDER === 'gemini' ? env.GEMINI_API_KEY : env.LLM_PROVIDER === 'anthropic' ? env.ANTHROPIC_API_KEY : env.LLM_API_KEY;
     this.provider = createLlmProvider({ provider: env.LLM_PROVIDER, model: env.LLM_MODEL, baseUrl: env.LLM_BASE_URL, apiKey });
     this.stt = createSttProvider({ provider: env.STT_PROVIDER, apiKey: env.STT_API_KEY, model: env.STT_MODEL });
-    this.logger.log(`LLM provider: ${this.provider.name} / ${this.provider.model} · STT: ${this.stt.name} / ${this.stt.model}`);
+    this.logger.log(`LLM provider: ${this.provider.name} / ${this.provider.model} · STT: ${this.stt.name} / ${this.stt.model} · ${env.DEMO_MODE ? 'DEMO mode (fictional data only)' : 'pilot mode'}`);
   }
 
   /** Audio seconds and cost only — never the transcript. */

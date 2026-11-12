@@ -23,8 +23,9 @@ const config: NextConfig = {
   experimental: { inlineCss: true },
   transpilePackages: ['@medicos/ui'],
   // Same-origin API: httpOnly cookies work without CORS (docs/decisions.md).
+  // On Vercel the /api rewrite lives in vercel.json (points at the API tunnel; scripts/start-tunnel.ps1).
   async rewrites() {
-    return [{ source: '/api/:path*', destination: `${API_URL}/:path*` }];
+    return process.env.VERCEL ? [] : [{ source: '/api/:path*', destination: `${API_URL}/:path*` }];
   },
   async headers() {
     return [

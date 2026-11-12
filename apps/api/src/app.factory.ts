@@ -13,8 +13,8 @@ export async function createApp(opts: AppOptions = {}): Promise<NestExpressAppli
   const env = loadEnv();
   const app = await NestFactory.create<NestExpressApplication>(AppModule.register(opts), { bufferLogs: true });
   app.useLogger(app.get(Logger));
-  // Behind the Next.js proxy / load balancer: trust the first hop for req.ip.
-  app.set('trust proxy', 1);
+  // Behind proxies: 1 = Next dev rewrite; 2 = Vercel + Cloudflare tunnel (TRUST_PROXY_HOPS).
+  app.set('trust proxy', env.TRUST_PROXY_HOPS);
   app.disable('x-powered-by');
   app.use(helmet({ hsts: env.NODE_ENV === 'production', contentSecurityPolicy: env.NODE_ENV === 'production' }));
   app.use(cookieParser());

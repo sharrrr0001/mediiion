@@ -12,7 +12,7 @@ import { CoreModule } from './config/core.module';
 import { IntakeModule } from './intake/intake.module';
 import { DoctorModule } from './doctor/records';
 import { loadEnv } from './config/env';
-import { DevController, HealthController } from './health/health.controller';
+import { DevController, HealthController, PublicConfigController } from './health/health.controller';
 import { pinoRedact, serializers } from './logging/redaction';
 import { PatientsController } from './patients/patients.controller';
 import { PatientsService } from './patients/patients.service';
@@ -49,7 +49,7 @@ export class AppModule {
         IntakeModule,
         DoctorModule,
       ],
-      controllers: [HealthController, DevController, PatientsController],
+      controllers: [HealthController, PublicConfigController, DevController, PatientsController],
       providers: [
         PatientsService,
         { provide: APP_GUARD, useClass: DeviceThrottlerGuard },

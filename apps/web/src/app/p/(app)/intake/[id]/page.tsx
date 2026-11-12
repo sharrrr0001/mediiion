@@ -10,6 +10,7 @@ import { ChatBubble, ProgressSteps, QuickReplies, SafetyCard, TypingDots } from 
 import { container } from '@/components/shell/layout';
 import { MicButton, VoiceConfirm } from '@/components/intake/voice';
 import { ApiError } from '@/lib/api';
+import { usePublicConfig } from '@/lib/use-config';
 // Offline queue is loaded only when needed (keeps the chat route under its JS budget).
 const queue = () => import('@/lib/offline-queue');
 import { useIntake, useIntakeActions } from '@/lib/use-intake';
@@ -37,7 +38,9 @@ export default function IntakeChatPage() {
   const router = useRouter();
   const { data: view, isError, refetch } = useIntake(id);
   const tv = useTranslations('intake');
-  const voiceMode = useSearchParams().get('mode') === 'voice';
+  const voiceOn = usePublicConfig().voice;
+  const params = useSearchParams();
+  const voiceMode = voiceOn && params.get('mode') === 'voice';
   const { send, cont, retry, pause, language, upload, voice } = useIntakeActions(id);
   const [text, setText] = useState('');
   // Voice: a draft transcript the patient must confirm; if they edit it, the clip id stays linked.

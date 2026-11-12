@@ -10,7 +10,9 @@
     "errorGeneric": "Kuch gadbad ho gayi. Phir se try karein.",
     "menu": "Menu",
     "notifications": "Notifications",
-    "logout": "Log out"
+    "logout": "Log out",
+    "demoBanner": "Demo version: sirf nakli details daalein. Asli health jaankari na daalein.",
+    "phoneSoon": "Phone login jald aa raha hai. Abhi email se login karein."
   },
   "login": {
     "title": "Medicos mein aapka swagat hai",
