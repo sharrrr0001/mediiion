@@ -97,7 +97,7 @@ export class OtpService {
     } catch (err) {
       // Never log the recipient or the code: only that delivery failed.
       this.logger.error(`OTP delivery failed (${input.channel}): ${err instanceof Error ? err.message.replace(/\S+@\S+/g, '[email]').slice(0, 120) : 'unknown'}`);
-      throw new AppError(HttpStatus.BAD_GATEWAY, 'OTP_SEND_FAILED', 'We could not send the code. Please try again in a minute.');
+      throw new AppError(HttpStatus.SERVICE_UNAVAILABLE, 'OTP_SEND_FAILED', 'We could not send the code. Please try again in a minute.');
     }
 
     return { challengeId: challenge.id, expiresInSeconds: OTP_TTL_SECONDS, resendInSeconds: OTP_RESEND_SECONDS };

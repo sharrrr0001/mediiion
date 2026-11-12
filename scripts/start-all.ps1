@@ -56,7 +56,7 @@ $p = Start-Process 'pnpm.cmd' -ArgumentList @('--filter', '@medicos/api', 'start
 Set-Content $apiPid $p.Id
 Write-Host "  started API (pid $($p.Id))"
 Wait-Until {
-  try { (Invoke-WebRequest -UseBasicParsing -TimeoutSec 3 'http://localhost:4100/health').StatusCode -eq 200 } catch { $false }
+  try { (Invoke-WebRequest -ErrorAction Stop -UseBasicParsing -TimeoutSec 3 'http://localhost:4100/health').StatusCode -eq 200 } catch { $false }
 } 90 'The API'
 $cfg = Invoke-RestMethod 'http://localhost:4100/config'
 Write-Host "  API ready. AI: $($cfg.ai)  demo: $($cfg.demo)  login: $($cfg.channels -join ', ')  voice: $($cfg.voice)"
@@ -66,5 +66,5 @@ Write-Host "  API ready. AI: $($cfg.ai)  demo: $($cfg.demo)  login: $($cfg.chann
 
 Write-Host ''
 Write-Host 'All running.'
-Write-Host '  Live site: https://medicos-sharrrr0001s-projects.vercel.app (1-2 minutes after a push)'
+Write-Host '  Live site: https://medicos-zeta.vercel.app (1-2 minutes after a push)'
 Write-Host "  Logs:      $state"

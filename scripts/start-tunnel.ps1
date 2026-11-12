@@ -9,7 +9,8 @@
 # each restart. Only Medicos's own tunnel is stopped (by PID), never other cloudflared tunnels.
 param([switch]$Push, [switch]$Restart)
 
-$ErrorActionPreference = 'Stop'
+# Continue, not Stop: Windows PowerShell 5.1 turns git's progress output (stderr) into an error.
+$ErrorActionPreference = 'Continue'
 $root = Split-Path -Parent $PSScriptRoot
 $vercelJson = Join-Path $root 'apps\web\vercel.json'
 $state = Join-Path $env:TEMP 'medicos-live'
@@ -17,7 +18,7 @@ $log = Join-Path $state 'tunnel.log'
 $pidFile = Join-Path $state 'tunnel.pid'
 New-Item -ItemType Directory -Force $state | Out-Null
 
-try { $null = Invoke-WebRequest -UseBasicParsing -TimeoutSec 5 'http://localhost:4100/health' }
+try { $null = Invoke-WebRequest -ErrorAction Stop -UseBasicParsing -TimeoutSec 5 'http://localhost:4100/health' }
 catch { throw 'The live API is not running on :4100. Run .\scripts\start-all.ps1 instead.' }
 
 function Get-TunnelProcess {
@@ -29,7 +30,7 @@ function Get-TunnelProcess {
 $current = [regex]::Match((Get-Content $vercelJson -Raw), 'https://[a-z0-9-]+\.trycloudflare\.com').Value
 if (-not $Restart -and $current -and (Get-TunnelProcess)) {
   try {
-    $null = Invoke-WebRequest -UseBasicParsing -TimeoutSec 10 "$current/health"
+    $null = Invoke-WebRequest -ErrorAction Stop -UseBasicParsing -TimeoutSec 10 "$current/health"
     Write-Host "Tunnel: $current (still working, kept)"
     return
   } catch {

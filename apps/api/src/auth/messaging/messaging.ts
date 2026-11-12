@@ -79,6 +79,10 @@ export class SmtpEmailSender implements OtpSender {
       // Gmail: SMTP_USER = the address, SMTP_PASS = a 16-character App Password.
       ...(env.SMTP_USER && env.SMTP_PASS ? { auth: { user: env.SMTP_USER, pass: env.SMTP_PASS } } : {}),
       requireTLS: env.NODE_ENV === 'production',
+      // Fail fast: the patient is waiting on the login screen (and proxies time out long requests).
+      connectionTimeout: 10_000,
+      greetingTimeout: 10_000,
+      socketTimeout: 15_000,
     });
   }
 
