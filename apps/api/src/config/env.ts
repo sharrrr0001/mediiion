@@ -27,7 +27,25 @@ const EnvSchema = z
       .enum(['true', 'false'])
       .default('false')
       .transform((v) => v === 'true'),
+    /** OTP requests allowed per IP per 10 minutes (many patients can share a clinic's IP). */
+    OTP_MAX_PER_IP: z.coerce.number().int().positive().default(10),
     LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent']).default('info'),
+    // AI (docs/ai-models.md)
+    LLM_PROVIDER: z.enum(['mock', 'gemini', 'openai-compatible', 'anthropic']).default('mock'),
+    LLM_MODEL: z.string().default(''),
+    LLM_BASE_URL: z.string().optional(),
+    LLM_API_KEY: z.string().optional(),
+    GEMINI_API_KEY: z.string().optional(),
+    ANTHROPIC_API_KEY: z.string().optional(),
+    /** Must be set to "no-training" to send real patient data to a provider in production. */
+    LLM_DATA_TERMS: z.enum(['no-training', 'unknown']).default('unknown'),
+    USD_INR: z.coerce.number().positive().default(88),
+    // Object storage
+    S3_ENDPOINT: z.string().optional(),
+    S3_REGION: z.string().default('ap-south-1'),
+    S3_BUCKET: z.string().default('medicos-dev'),
+    S3_ACCESS_KEY: z.string().optional(),
+    S3_SECRET_KEY: z.string().optional(),
   })
   .superRefine((env, ctx) => {
     if (env.NODE_ENV !== 'production') return;
@@ -37,6 +55,11 @@ const EnvSchema = z
       ctx.addIssue({ code: 'custom', path: ['SMS_PROVIDER'], message: 'console SMS is not allowed in production' });
     if (env.EMAIL_PROVIDER === 'console')
       ctx.addIssue({ code: 'custom', path: ['EMAIL_PROVIDER'], message: 'console email is not allowed in production' });
+    // Golden rule 11: real patients only with providers whose terms forbid training on inputs.
+    if (env.LLM_PROVIDER === 'mock' || env.LLM_PROVIDER === 'gemini')
+      ctx.addIssue({ code: 'custom', path: ['LLM_PROVIDER'], message: 'mock/free-tier providers are not allowed in production' });
+    if (env.LLM_DATA_TERMS !== 'no-training')
+      ctx.addIssue({ code: 'custom', path: ['LLM_DATA_TERMS'], message: 'must be "no-training" in production' });
   });
 
 export type Env = z.infer<typeof EnvSchema>;

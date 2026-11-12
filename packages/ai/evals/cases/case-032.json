@@ -1,0 +1,22 @@
+{
+  "id": "case-032",
+  "template": "general-medicine",
+  "specialty": "gynaecology",
+  "language": "hi",
+  "profile": {
+    "gender": "female",
+    "age": 45
+  },
+  "answeredBy": "self",
+  "answers": [
+    "बहुत ज़्यादा ब्लीडिंग हो रही है, बहुत खून",
+    "तीन दिन"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "specialty:gynae",
+    "safety:bleeding"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "case-020",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi",
+  "profile": {
+    "gender": "female",
+    "age": 65
+  },
+  "answeredBy": "family",
+  "answers": [
+    "मैं उनका बेटा हूँ, माँ को कमज़ोरी है",
+    "एक हफ़्ता",
+    "उनके मुंह टेढ़ा हो गया है और बोलने में दिक्कत है"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "tricky:family",
+    "safety:stroke"
+  ]
+}

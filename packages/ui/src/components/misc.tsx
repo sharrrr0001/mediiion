@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { APP_NAME } from '@medicos/shared';
+import { APP_NAME } from '@medicos/shared/client';
 import { cn } from '../cn';
 
 /** One logo component so the working name can be changed in one place. */

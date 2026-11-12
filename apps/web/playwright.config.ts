@@ -11,6 +11,8 @@ export default defineConfig({
   timeout: 60_000,
   expect: { timeout: 10_000 },
   fullyParallel: false,
+  // One worker: the dev server compiles routes on demand and the flows share one API.
+  workers: 1,
   retries: process.env.CI ? 1 : 0,
   reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : 'list',
   use: { baseURL: BASE_URL, trace: 'retain-on-failure' },
@@ -18,10 +20,19 @@ export default defineConfig({
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
     { name: 'desktop', use: { ...devices['Desktop Chrome'] } },
   ],
-  webServer: {
-    command: 'pnpm --dir ../.. dev',
-    url: `${BASE_URL}/p/login`,
-    reuseExistingServer: true,
-    timeout: 180_000,
-  },
+  webServer: [
+    {
+      command: 'pnpm --dir ../.. dev',
+      url: `${BASE_URL}/p/login`,
+      reuseExistingServer: true,
+      timeout: 180_000,
+    },
+    {
+      // Also wait for the API (it can finish compiling after the web app).
+      command: 'node -e "setInterval(() => {}, 1 << 30)"',
+      url: `${process.env.E2E_API_URL ?? 'http://localhost:4000'}/health`,
+      reuseExistingServer: true,
+      timeout: 180_000,
+    },
+  ],
 });

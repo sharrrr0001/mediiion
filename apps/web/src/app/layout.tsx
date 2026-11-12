@@ -3,7 +3,7 @@ import { Bricolage_Grotesque, Inter, JetBrains_Mono, Noto_Sans_Devanagari } from
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale } from 'next-intl/server';
 import type { ReactNode } from 'react';
-import { APP_NAME } from '@medicos/shared';
+import { APP_NAME } from '@medicos/shared/client';
 import { Providers } from '@/components/providers';
 import './globals.css';
 

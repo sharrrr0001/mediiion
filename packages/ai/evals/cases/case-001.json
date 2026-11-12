@@ -1,0 +1,35 @@
+{
+  "id": "case-001",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "male",
+    "age": 28
+  },
+  "answeredBy": "self",
+  "answers": [
+    "2 din se bukhar hai, 101 tak gaya",
+    "2 din",
+    "beech ka, aata jaata hai",
+    "raat ko zyada",
+    "gale mein kharash, khansi nahi",
+    "nahi",
+    "nahi",
+    "nahi",
+    "koi nahi",
+    "nahi",
+    "kuch nahi",
+    "kal 101 tha",
+    "ek purana parcha hai",
+    "kahin typhoid toh nahi",
+    "kitne din mein theek hoga?"
+  ],
+  "expect": {
+    "safety": false,
+    "medicalQuestion": true
+  },
+  "tags": [
+    "seed:rahul"
+  ]
+}

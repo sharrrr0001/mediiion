@@ -1,0 +1,21 @@
+{
+  "id": "case-026",
+  "template": "general-medicine",
+  "specialty": "paediatrics",
+  "language": "en",
+  "profile": {
+    "gender": "male",
+    "age": 1
+  },
+  "answeredBy": "family",
+  "answers": [
+    "I am the father. My baby is not responding properly and very sleepy"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "specialty:paeds",
+    "safety:child"
+  ]
+}

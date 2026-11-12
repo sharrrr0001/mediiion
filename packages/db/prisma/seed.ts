@@ -4,6 +4,7 @@
  */
 import { PrismaClient, type Role } from '@prisma/client';
 import { CONSENT_VERSION, medicosIdFromBody } from '@medicos/shared';
+import { BUILTIN_TEMPLATES } from '@medicos/ai';
 import { BIDX, ENC, createFieldCrypto } from '../src/field-crypto';
 
 const prisma = new PrismaClient();
@@ -152,7 +153,19 @@ async function seedTeamAndPlans() {
   });
 }
 
+/** Specialty templates are data (spec §6.2): seed v1 as published. */
+async function seedTemplates() {
+  for (const t of BUILTIN_TEMPLATES) {
+    await prisma.template.upsert({
+      where: { key_version: { key: t.key, version: t.version } },
+      update: {},
+      create: { key: t.key, specialty: t.specialty, version: t.version, json: t as object, status: 'published' },
+    });
+  }
+}
+
 async function main() {
+  await seedTemplates();
   await seedPatients();
   await seedDoctors();
   await seedTeamAndPlans();
@@ -162,6 +175,7 @@ async function main() {
     doctors: await prisma.doctor.count(),
     clinics: await prisma.clinic.count(),
     plans: await prisma.plan.count(),
+    templates: await prisma.template.count(),
   };
   console.log('Seeded (fictional data):', counts);
 }

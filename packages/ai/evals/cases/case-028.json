@@ -1,0 +1,22 @@
+{
+  "id": "case-028",
+  "template": "general-medicine",
+  "specialty": "paediatrics",
+  "language": "en",
+  "profile": {
+    "gender": "male",
+    "age": 8
+  },
+  "answeredBy": "family",
+  "answers": [
+    "I am his mother. He has ear pain",
+    "two days",
+    "worse at night"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "specialty:paeds"
+  ]
+}

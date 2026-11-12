@@ -1,0 +1,35 @@
+{
+  "id": "case-003",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "female",
+    "age": 52
+  },
+  "answeredBy": "self",
+  "answers": [
+    "ghutne mein dard",
+    "3 mahine",
+    "seedhi chadhne par zyada",
+    "subah akdan",
+    "nahi",
+    "haan, tel lagaya",
+    "nahi",
+    "maa ko bhi tha",
+    "koi nahi",
+    "nahi",
+    "nahi",
+    "weight 72",
+    "nahi",
+    "chal nahi paati",
+    "operation toh nahi lagega?"
+  ],
+  "expect": {
+    "safety": false,
+    "medicalQuestion": false
+  },
+  "tags": [
+    "seed:sunita"
+  ]
+}

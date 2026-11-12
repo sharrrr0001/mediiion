@@ -2,7 +2,7 @@
 import { useLocale, useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useTransition } from 'react';
-import { LANGUAGES, type Language } from '@medicos/shared';
+import { LANGUAGES, type Language } from '@medicos/shared/client';
 import { cn } from '@medicos/ui';
 
 const LABELS: Record<Language, string> = { hi: 'हिंदी', en: 'English', 'hi-Latn': 'Hinglish' };

@@ -1,0 +1,24 @@
+{
+  "id": "case-008",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "female",
+    "age": 70
+  },
+  "answeredBy": "family",
+  "answers": [
+    "main unki beti hoon, mummy ko chakkar aate hain",
+    "1 hafta",
+    "subah",
+    "kal behosh ho gayi thi bathroom mein"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "tricky:family",
+    "safety:fainting"
+  ]
+}

@@ -31,7 +31,7 @@ packages/shared zod schemas + types shared by web and api (PreVisitSummary, Medi
 packages/db     Prisma schema, migrations, seed
 packages/ui     design tokens (CSS vars) + shared React components
 packages/config tsconfig bases, eslint config
-packages/ai     (Phase 1) LLM/STT providers, intake engine, safety rule, output filter
+packages/ai     LLM providers, intake engine (planner + turn), safety rule, output filter, de-identifier, templates, evals/
 docs/           spec, plans/, decisions.md, ideas.md, safety.md, privacy.md, TASKS.md, design/
 ```
 
@@ -41,7 +41,8 @@ docs/           spec, plans/, decisions.md, ideas.md, safety.md, privacy.md, TAS
 - DB: `pnpm db:migrate` · `pnpm db:seed` · `pnpm --filter @medicos/db check-drift` (uses medicos_shadow, never the test DB)
 - Dev: `pnpm dev` (web http://localhost:3001, api http://localhost:4000, Swagger /docs)
 - Build: `pnpm build` · Lint: `pnpm lint` · Types: `pnpm typecheck`
-- Test: `pnpm test` (unit + API; API tests need infra up) · E2E: `pnpm e2e`
+- Test: `pnpm test` (unit + API; API tests need infra up) · E2E: `pnpm e2e` · AI evals: `pnpm eval` (mock, CI) / `pnpm eval:live`
+- Windows + dev server running: `prisma generate` hits EPERM (DLL locked) → use `pnpm turbo run lint typecheck test --only`
 
 ## Conventions
 - TS strict; no `any` without a comment. Files < 250 lines. kebab-case files, PascalCase components/classes.
@@ -54,7 +55,8 @@ docs/           spec, plans/, decisions.md, ideas.md, safety.md, privacy.md, TAS
 - Commit after each green slice (`feat:`, `fix:`, `docs:`, `test:`, `chore:`).
 
 ## Current Status
-- Last session: 2026-11-12 — Phase 0 (foundation) built. See `docs/TASKS.md`.
-- In progress: —
+- Last session: 2026-11-12 — Phase 0 + Phase 1 (AI intake on web chat) built and green. See `docs/TASKS.md`.
+- AI: `LLM_PROVIDER=mock` locally; model plan in `docs/ai-models.md` (demo Gemini/Groq on fake data, pilot Claude Haiku 5.5).
+- Safety keyword list is a **draft** until a doctor reviews it (Pranov's decision) — blocks the pilot via `docs/release-checklist.md`.
 - Known issues: see `docs/TASKS.md` → Known issues.
-- Next step: Phase 1 plan `docs/plans/phase-1.md` → build AI intake on web chat.
+- Next step: Phase 2 — `docs/plans/phase-2.md` (open clinical-safety question inside: medicine names in the summary).

@@ -11,11 +11,11 @@ import {
 } from '@medicos/shared';
 import { AppError } from '../common/errors';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
+import { ENV, type Env } from '../config/env';
 import { EMAIL_SENDER, SMS_SENDER, type OtpSender } from './messaging/messaging';
 
 const WINDOW_MS = 10 * 60 * 1000;
 const MAX_PER_IDENTIFIER = 3; // per 10 minutes
-const MAX_PER_IP = 10; // per 10 minutes
 
 const INVALID = () =>
   new AppError(HttpStatus.BAD_REQUEST, 'OTP_INVALID', 'Code galat hai ya expire ho gaya. / Code is wrong or expired.');
@@ -27,6 +27,7 @@ export class OtpService {
     @Inject(CRYPTO) private readonly crypto: FieldCrypto,
     @Inject(SMS_SENDER) private readonly sms: OtpSender,
     @Inject(EMAIL_SENDER) private readonly email: OtpSender,
+    @Inject(ENV) private readonly env: Env,
   ) {}
 
   private identifier(input: OtpRequest) {
@@ -68,7 +69,7 @@ export class OtpService {
       }
     }
     const ipCount = await this.prisma.otpChallenge.count({ where: { ipHash, createdAt: { gte: since } } });
-    if (recent.length >= MAX_PER_IDENTIFIER || ipCount >= MAX_PER_IP) {
+    if (recent.length >= MAX_PER_IDENTIFIER || ipCount >= this.env.OTP_MAX_PER_IP) {
       throw new AppError(HttpStatus.TOO_MANY_REQUESTS, 'OTP_RATE_LIMITED', 'Too many codes requested. Try again in 10 minutes.');
     }
 

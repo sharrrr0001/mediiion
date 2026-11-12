@@ -1,0 +1,24 @@
+{
+  "id": "case-004",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "male",
+    "age": 60
+  },
+  "answeredBy": "self",
+  "answers": [
+    "saans phoolti hai",
+    "1 hafta",
+    "chalne par",
+    "aur ab saans nahi aa rahi theek se",
+    "nahi"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "safety:breathing"
+  ]
+}

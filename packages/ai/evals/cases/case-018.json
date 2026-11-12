@@ -1,0 +1,20 @@
+{
+  "id": "case-018",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "en",
+  "profile": {
+    "gender": "female",
+    "age": 38
+  },
+  "answeredBy": "self",
+  "answers": [
+    "back pain",
+    "a month",
+    "bad in the morning"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": []
+}

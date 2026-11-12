@@ -1,0 +1,25 @@
+{
+  "id": "case-039",
+  "template": "dermatology",
+  "specialty": "dermatology",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "male",
+    "age": 5
+  },
+  "answeredBy": "family",
+  "answers": [
+    "main iska papa hoon, haath par chhale",
+    "dono haath",
+    "4 din",
+    "phail raha hai",
+    "khujli nahi, dard hai"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "specialty:paeds",
+    "tricky:family"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "case-022",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi",
+  "profile": {
+    "gender": "male",
+    "age": 58
+  },
+  "answeredBy": "self",
+  "answers": [
+    "सीने में दर्द हो रहा है",
+    "आज सुबह से"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "safety:chest_pain"
+  ]
+}

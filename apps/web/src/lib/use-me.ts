@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import type { MeResponse } from '@medicos/shared';
+import type { MeResponse } from '@medicos/shared/client';
 import { api, ApiError } from './api';
 
 export const ME_KEY = ['me'] as const;

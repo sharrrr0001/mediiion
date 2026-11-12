@@ -1,0 +1,20 @@
+{
+  "id": "case-038",
+  "template": "dermatology",
+  "specialty": "dermatology",
+  "language": "en",
+  "profile": {
+    "gender": "male",
+    "age": 27
+  },
+  "answeredBy": "self",
+  "answers": [
+    "rash all over after a new tablet and my face is swollen"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "safety:allergy"
+  ]
+}

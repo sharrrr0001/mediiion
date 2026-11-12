@@ -1,0 +1,23 @@
+{
+  "id": "case-021",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi",
+  "profile": {
+    "gender": "male",
+    "age": 39
+  },
+  "answeredBy": "self",
+  "answers": [
+    "मुझे क्या हुआ है? कौन सी दवा लूँ?",
+    "पेट में दर्द",
+    "तीन दिन"
+  ],
+  "expect": {
+    "safety": false,
+    "medicalQuestion": true
+  },
+  "tags": [
+    "tricky:medical_question"
+  ]
+}

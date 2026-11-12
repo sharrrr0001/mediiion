@@ -1,0 +1,23 @@
+{
+  "id": "case-037",
+  "template": "dermatology",
+  "specialty": "dermatology",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "female",
+    "age": 35
+  },
+  "answeredBy": "self",
+  "answers": [
+    "kya yeh daad hai? kaunsi cream lagau?",
+    "pair par",
+    "2 hafte"
+  ],
+  "expect": {
+    "safety": false,
+    "medicalQuestion": true
+  },
+  "tags": [
+    "tricky:medical_question"
+  ]
+}

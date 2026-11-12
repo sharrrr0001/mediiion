@@ -34,7 +34,15 @@ export interface ButtonProps
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, block, asChild, loading, disabled, children, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button';
+    if (asChild) {
+      // Radix Slot needs exactly one child element — no spinner slot alongside it.
+      return (
+        <Slot ref={ref} className={cn(buttonVariants({ variant, size, block }), className)} {...props}>
+          {children}
+        </Slot>
+      );
+    }
+    const Comp = 'button';
     return (
       <Comp
         ref={ref}

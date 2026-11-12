@@ -1,0 +1,21 @@
+{
+  "id": "case-035",
+  "template": "dermatology",
+  "specialty": "dermatology",
+  "language": "hi",
+  "profile": {
+    "gender": "female",
+    "age": 19
+  },
+  "answeredBy": "self",
+  "answers": [
+    "चेहरे पर दाने",
+    "गाल और माथा",
+    "छह महीने",
+    "वैसा ही"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": []
+}

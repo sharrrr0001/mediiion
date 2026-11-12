@@ -1,0 +1,22 @@
+{
+  "id": "case-041",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "male",
+    "age": 36
+  },
+  "answeredBy": "self",
+  "answers": [
+    "haan toh doctor sahab ko batana hai ki mujhe na pichhle teen chaar din se na bukhar aa raha hai aur sar mein bhi dard hai",
+    "haan teen chaar din",
+    "shaam ko zyada"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "tricky:voice_style"
+  ]
+}

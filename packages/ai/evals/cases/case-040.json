@@ -1,0 +1,21 @@
+{
+  "id": "case-040",
+  "template": "dermatology",
+  "specialty": "dermatology",
+  "language": "en",
+  "profile": {
+    "gender": "female",
+    "age": 52
+  },
+  "answeredBy": "self",
+  "answers": [
+    "dark patch on cheek",
+    "left cheek",
+    "1 year",
+    "slowly bigger"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": []
+}

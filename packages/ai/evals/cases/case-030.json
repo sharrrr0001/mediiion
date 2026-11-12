@@ -1,0 +1,23 @@
+{
+  "id": "case-030",
+  "template": "general-medicine",
+  "specialty": "gynaecology",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "female",
+    "age": 30
+  },
+  "answeredBy": "self",
+  "answers": [
+    "pet ke neeche dard",
+    "1 din",
+    "pregnancy mein khoon aa raha hai"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "specialty:gynae",
+    "safety:pregnancy_bleeding"
+  ]
+}

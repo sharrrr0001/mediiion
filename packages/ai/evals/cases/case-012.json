@@ -1,0 +1,23 @@
+{
+  "id": "case-012",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "en",
+  "profile": {
+    "gender": "male",
+    "age": 35
+  },
+  "answeredBy": "self",
+  "answers": [
+    "What do I have? Which medicine should I take?",
+    "stomach ache",
+    "since yesterday"
+  ],
+  "expect": {
+    "safety": false,
+    "medicalQuestion": true
+  },
+  "tags": [
+    "tricky:medical_question"
+  ]
+}

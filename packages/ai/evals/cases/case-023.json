@@ -1,0 +1,20 @@
+{
+  "id": "case-023",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi",
+  "profile": {
+    "gender": "female",
+    "age": 42
+  },
+  "answeredBy": "self",
+  "answers": [
+    "जोड़ों में दर्द",
+    "दो महीने",
+    "सुबह अकड़न"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": []
+}

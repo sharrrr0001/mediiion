@@ -1,0 +1,21 @@
+{
+  "id": "case-036",
+  "template": "dermatology",
+  "specialty": "dermatology",
+  "language": "en",
+  "profile": {
+    "gender": "male",
+    "age": 40
+  },
+  "answeredBy": "self",
+  "answers": [
+    "hair fall",
+    "scalp",
+    "3 months",
+    "getting worse"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": []
+}

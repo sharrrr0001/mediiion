@@ -1,0 +1,23 @@
+{
+  "id": "case-015",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "en",
+  "profile": {
+    "gender": "female",
+    "age": 29
+  },
+  "answeredBy": "self",
+  "answers": [
+    "stomach cramps",
+    "2 days",
+    "I am pregnant and there is some bleeding"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "specialty:gynae",
+    "safety:pregnancy_bleeding"
+  ]
+}

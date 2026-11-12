@@ -1,0 +1,22 @@
+{
+  "id": "case-031",
+  "template": "general-medicine",
+  "specialty": "gynaecology",
+  "language": "en",
+  "profile": {
+    "gender": "female",
+    "age": 33
+  },
+  "answeredBy": "self",
+  "answers": [
+    "white discharge",
+    "2 weeks",
+    "some itching"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "specialty:gynae"
+  ]
+}

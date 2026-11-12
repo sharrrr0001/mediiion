@@ -32,7 +32,9 @@ export class AuthController {
   }
 
   @Public()
-  @Throttle({ default: { limit: 5, ttl: 60_000 } })
+  // Flood guard only. Real limits (per phone number, per IP) live in OtpService; a low per-IP limit
+  // here would lock out patients sharing one clinic Wi-Fi before they have a device cookie.
+  @Throttle({ default: { limit: 30, ttl: 60_000 } })
   @Post('otp/request')
   @ZodBody(OtpRequest)
   async requestOtp(@Body(new ZodPipe(OtpRequest)) body: OtpRequest, @Req() req: Request) {

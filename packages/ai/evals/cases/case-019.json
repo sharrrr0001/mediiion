@@ -1,0 +1,32 @@
+{
+  "id": "case-019",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi",
+  "profile": {
+    "gender": "male",
+    "age": 48
+  },
+  "answeredBy": "self",
+  "answers": [
+    "मुझे दो दिन से बुखार है",
+    "दो दिन",
+    "रात को ज़्यादा",
+    "नहीं",
+    "खांसी नहीं है",
+    "नहीं",
+    "नहीं",
+    "नहीं",
+    "कोई नहीं",
+    "नहीं",
+    "नहीं",
+    "कल 100 था",
+    "नहीं",
+    "कमज़ोरी",
+    "कुछ नहीं"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": []
+}

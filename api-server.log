@@ -6,3 +6,742 @@
 
 [[90m11:52:10 AM[0m] Found 0 errors. Watching for file changes.
 
+[[90m12:03:48 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:03:57 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:03:58 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:04:02 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:04:17 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:04:20 PM[0m] Found 0 errors. Watching for file changes.
+
+[12:04:22.899] INFO (33392): Starting Nest application... {"context":"NestFactory"}
+[12:04:22.900] INFO (33392): CoreModule dependencies initialized {"context":"InstanceLoader"}
+[12:04:22.900] INFO (33392): ThrottlerModule dependencies initialized {"context":"InstanceLoader"}
+[12:04:22.900] INFO (33392): AuditModule dependencies initialized {"context":"InstanceLoader"}
+[12:04:22.900] INFO (33392): JwtModule dependencies initialized {"context":"InstanceLoader"}
+[12:04:22.900] INFO (33392): LoggerModule dependencies initialized {"context":"InstanceLoader"}
+[12:04:22.900] INFO (33392): AppModule dependencies initialized {"context":"InstanceLoader"}
+[12:04:22.900] INFO (33392): AuthModule dependencies initialized {"context":"InstanceLoader"}
+[12:04:22.900] INFO (33392): HealthController {/health}: {"context":"RoutesResolver"}
+[12:04:22.900] INFO (33392): Mapped {/health, GET} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): DevController {/dev}: {"context":"RoutesResolver"}
+[12:04:22.900] INFO (33392): Mapped {/dev/outbox, GET} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): PatientsController {/}: {"context":"RoutesResolver"}
+[12:04:22.900] INFO (33392): Mapped {/me, GET} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): Mapped {/consents, POST} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): Mapped {/patients/profiles, POST} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): Mapped {/patients/profiles/:id, GET} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): AuthController {/auth}: {"context":"RoutesResolver"}
+[12:04:22.900] INFO (33392): Mapped {/auth/otp/request, POST} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): Mapped {/auth/otp/verify, POST} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): Mapped {/auth/refresh, POST} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): Mapped {/auth/logout, POST} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): Mapped {/auth/logout-all, POST} route {"context":"RouterExplorer"}
+[12:04:22.900] INFO (33392): Nest application successfully started {"context":"NestApplication"}
+[[90m12:05:03 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:05:10 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:05:10 PM[0m] File change detected. Starting incremental compilation...
+
+[96msrc/intake/ai.service.ts[0m:[93m2[0m:[93m74[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m2[0m import { costInr, createLlmProvider, type LlmProvider, type Usage } from '@medicos/ai';
+[7m [0m [91m                                                                         ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m1[0m:[93m102[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/client-s3' or its corresponding type declarations.
+
+[7m1[0m import { CreateBucketCommand, GetObjectCommand, HeadBucketCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+[7m [0m [91m                                                                                                     ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/s3-request-presigner' or its corresponding type declarations.
+
+[7m2[0m import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[[90m12:05:11 PM[0m] Found 3 errors. Watching for file changes.
+
+[[90m12:05:40 PM[0m] File change detected. Starting incremental compilation...
+
+[96msrc/intake/ai.service.ts[0m:[93m2[0m:[93m74[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m2[0m import { costInr, createLlmProvider, type LlmProvider, type Usage } from '@medicos/ai';
+[7m [0m [91m                                                                         ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m1[0m:[93m102[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/client-s3' or its corresponding type declarations.
+
+[7m1[0m import { CreateBucketCommand, GetObjectCommand, HeadBucketCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+[7m [0m [91m                                                                                                     ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/s3-request-presigner' or its corresponding type declarations.
+
+[7m2[0m import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[[90m12:05:49 PM[0m] Found 3 errors. Watching for file changes.
+
+[[90m12:07:04 PM[0m] File change detected. Starting incremental compilation...
+
+[96msrc/intake/ai.service.ts[0m:[93m2[0m:[93m74[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m2[0m import { costInr, createLlmProvider, type LlmProvider, type Usage } from '@medicos/ai';
+[7m [0m [91m                                                                         ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m1[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m1[0m import type { IntakeTemplate } from '@medicos/ai';
+[7m [0m [91m                                    ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m51[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m51[0m   return template.questions.find((q) => q.id === qid)?.upload ?? null;
+[7m  [0m [91m                                  ~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m72[0m:[93m42[0m - [91merror[0m[90m TS7006: [0mParameter 'x' implicitly has an 'any' type.
+
+[7m72[0m       const q = template.questions.find((x) => x.id === m.questionId);
+[7m  [0m [91m                                         ~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m1[0m:[93m102[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/client-s3' or its corresponding type declarations.
+
+[7m1[0m import { CreateBucketCommand, GetObjectCommand, HeadBucketCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+[7m [0m [91m                                                                                                     ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/s3-request-presigner' or its corresponding type declarations.
+
+[7m2[0m import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[[90m12:07:04 PM[0m] Found 6 errors. Watching for file changes.
+
+[[90m12:07:05 PM[0m] File change detected. Starting incremental compilation...
+
+[96msrc/intake/ai.service.ts[0m:[93m2[0m:[93m74[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m2[0m import { costInr, createLlmProvider, type LlmProvider, type Usage } from '@medicos/ai';
+[7m [0m [91m                                                                         ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m1[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m1[0m import type { IntakeTemplate } from '@medicos/ai';
+[7m [0m [91m                                    ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m51[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m51[0m   return template.questions.find((q) => q.id === qid)?.upload ?? null;
+[7m  [0m [91m                                  ~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m72[0m:[93m42[0m - [91merror[0m[90m TS7006: [0mParameter 'x' implicitly has an 'any' type.
+
+[7m72[0m       const q = template.questions.find((x) => x.id === m.questionId);
+[7m  [0m [91m                                         ~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m13[0m } from '@medicos/ai';
+[7m  [0m [91m       ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m22[0m:[93m36[0m - [91merror[0m[90m TS2307: [0mCannot find module './attachments.service' or its corresponding type declarations.
+
+[7m22[0m import { AttachmentsService } from './attachments.service';
+[7m  [0m [91m                                   ~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m160[0m:[93m76[0m - [91merror[0m[90m TS7006: [0mParameter 'p' implicitly has an 'any' type.
+
+[7m160[0m     const safety = matchSafety(text, ctx.template.extraSafetyPatterns.map((p) => new RegExp(p, 'u')));
+[7m   [0m [91m                                                                           ~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m230[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m230[0m     const previous = template.questions.find((q) => q.id === prevId) ?? null;
+[7m   [0m [91m                                              ~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m251[0m:[93m43[0m - [91merror[0m[90m TS7006: [0mParameter 'rules' implicitly has an 'any' type.
+
+[7m251[0m     const blockRows = out.blocks.flatMap((rules) => rules.map((rule) => ({ sessionId: id, stage: 'chat', rule })));
+[7m   [0m [91m                                          ~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m251[0m:[93m64[0m - [91merror[0m[90m TS7006: [0mParameter 'rule' implicitly has an 'any' type.
+
+[7m251[0m     const blockRows = out.blocks.flatMap((rules) => rules.map((rule) => ({ sessionId: id, stage: 'chat', rule })));
+[7m   [0m [91m                                                               ~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m298[0m:[93m72[0m - [91merror[0m[90m TS7006: [0mParameter 'p' implicitly has an 'any' type.
+
+[7m298[0m     const safety = matchSafety(text, template.extraSafetyPatterns.map((p) => new RegExp(p, 'u')));
+[7m   [0m [91m                                                                       ~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m1[0m:[93m102[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/client-s3' or its corresponding type declarations.
+
+[7m1[0m import { CreateBucketCommand, GetObjectCommand, HeadBucketCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+[7m [0m [91m                                                                                                     ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/s3-request-presigner' or its corresponding type declarations.
+
+[7m2[0m import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[[90m12:07:06 PM[0m] Found 13 errors. Watching for file changes.
+
+[[90m12:07:45 PM[0m] File change detected. Starting incremental compilation...
+
+[96msrc/intake/ai.service.ts[0m:[93m2[0m:[93m74[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m2[0m import { costInr, createLlmProvider, type LlmProvider, type Usage } from '@medicos/ai';
+[7m [0m [91m                                                                         ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m1[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m1[0m import type { IntakeTemplate } from '@medicos/ai';
+[7m [0m [91m                                    ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m51[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m51[0m   return template.questions.find((q) => q.id === qid)?.upload ?? null;
+[7m  [0m [91m                                  ~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m72[0m:[93m42[0m - [91merror[0m[90m TS7006: [0mParameter 'x' implicitly has an 'any' type.
+
+[7m72[0m       const q = template.questions.find((x) => x.id === m.questionId);
+[7m  [0m [91m                                         ~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m13[0m } from '@medicos/ai';
+[7m  [0m [91m       ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m160[0m:[93m76[0m - [91merror[0m[90m TS7006: [0mParameter 'p' implicitly has an 'any' type.
+
+[7m160[0m     const safety = matchSafety(text, ctx.template.extraSafetyPatterns.map((p) => new RegExp(p, 'u')));
+[7m   [0m [91m                                                                           ~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m230[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m230[0m     const previous = template.questions.find((q) => q.id === prevId) ?? null;
+[7m   [0m [91m                                              ~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m251[0m:[93m43[0m - [91merror[0m[90m TS7006: [0mParameter 'rules' implicitly has an 'any' type.
+
+[7m251[0m     const blockRows = out.blocks.flatMap((rules) => rules.map((rule) => ({ sessionId: id, stage: 'chat', rule })));
+[7m   [0m [91m                                          ~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m251[0m:[93m64[0m - [91merror[0m[90m TS7006: [0mParameter 'rule' implicitly has an 'any' type.
+
+[7m251[0m     const blockRows = out.blocks.flatMap((rules) => rules.map((rule) => ({ sessionId: id, stage: 'chat', rule })));
+[7m   [0m [91m                                                               ~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m298[0m:[93m72[0m - [91merror[0m[90m TS7006: [0mParameter 'p' implicitly has an 'any' type.
+
+[7m298[0m     const safety = matchSafety(text, template.extraSafetyPatterns.map((p) => new RegExp(p, 'u')));
+[7m   [0m [91m                                                                       ~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m1[0m:[93m102[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/client-s3' or its corresponding type declarations.
+
+[7m1[0m import { CreateBucketCommand, GetObjectCommand, HeadBucketCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+[7m [0m [91m                                                                                                     ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/s3-request-presigner' or its corresponding type declarations.
+
+[7m2[0m import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[[90m12:07:46 PM[0m] Found 12 errors. Watching for file changes.
+
+[[90m12:07:47 PM[0m] File change detected. Starting incremental compilation...
+
+[96msrc/intake/ai.service.ts[0m:[93m2[0m:[93m74[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m2[0m import { costInr, createLlmProvider, type LlmProvider, type Usage } from '@medicos/ai';
+[7m [0m [91m                                                                         ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m1[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m1[0m import type { IntakeTemplate } from '@medicos/ai';
+[7m [0m [91m                                    ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m51[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m51[0m   return template.questions.find((q) => q.id === qid)?.upload ?? null;
+[7m  [0m [91m                                  ~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m72[0m:[93m42[0m - [91merror[0m[90m TS7006: [0mParameter 'x' implicitly has an 'any' type.
+
+[7m72[0m       const q = template.questions.find((x) => x.id === m.questionId);
+[7m  [0m [91m                                         ~[0m
+
+[96msrc/intake/intake.controller.ts[0m:[93m133[0m:[93m35[0m - [91merror[0m[90m TS2694: [0mNamespace 'global.Express' has no exported member 'Multer'.
+
+[7m133[0m     @UploadedFile() file: Express.Multer.File | undefined,
+[7m   [0m [91m                                  ~~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m13[0m } from '@medicos/ai';
+[7m  [0m [91m       ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m160[0m:[93m76[0m - [91merror[0m[90m TS7006: [0mParameter 'p' implicitly has an 'any' type.
+
+[7m160[0m     const safety = matchSafety(text, ctx.template.extraSafetyPatterns.map((p) => new RegExp(p, 'u')));
+[7m   [0m [91m                                                                           ~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m230[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m230[0m     const previous = template.questions.find((q) => q.id === prevId) ?? null;
+[7m   [0m [91m                                              ~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m251[0m:[93m43[0m - [91merror[0m[90m TS7006: [0mParameter 'rules' implicitly has an 'any' type.
+
+[7m251[0m     const blockRows = out.blocks.flatMap((rules) => rules.map((rule) => ({ sessionId: id, stage: 'chat', rule })));
+[7m   [0m [91m                                          ~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m251[0m:[93m64[0m - [91merror[0m[90m TS7006: [0mParameter 'rule' implicitly has an 'any' type.
+
+[7m251[0m     const blockRows = out.blocks.flatMap((rules) => rules.map((rule) => ({ sessionId: id, stage: 'chat', rule })));
+[7m   [0m [91m                                                               ~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m298[0m:[93m72[0m - [91merror[0m[90m TS7006: [0mParameter 'p' implicitly has an 'any' type.
+
+[7m298[0m     const safety = matchSafety(text, template.extraSafetyPatterns.map((p) => new RegExp(p, 'u')));
+[7m   [0m [91m                                                                       ~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m1[0m:[93m102[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/client-s3' or its corresponding type declarations.
+
+[7m1[0m import { CreateBucketCommand, GetObjectCommand, HeadBucketCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+[7m [0m [91m                                                                                                     ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/s3-request-presigner' or its corresponding type declarations.
+
+[7m2[0m import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[[90m12:07:51 PM[0m] Found 13 errors. Watching for file changes.
+
+[[90m12:07:51 PM[0m] File change detected. Starting incremental compilation...
+
+[96msrc/intake/ai.service.ts[0m:[93m2[0m:[93m74[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m2[0m import { costInr, createLlmProvider, type LlmProvider, type Usage } from '@medicos/ai';
+[7m [0m [91m                                                                         ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m1[0m:[93m37[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m1[0m import type { IntakeTemplate } from '@medicos/ai';
+[7m [0m [91m                                    ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m51[0m:[93m35[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m51[0m   return template.questions.find((q) => q.id === qid)?.upload ?? null;
+[7m  [0m [91m                                  ~[0m
+
+[96msrc/intake/intake-views.ts[0m:[93m72[0m:[93m42[0m - [91merror[0m[90m TS7006: [0mParameter 'x' implicitly has an 'any' type.
+
+[7m72[0m       const q = template.questions.find((x) => x.id === m.questionId);
+[7m  [0m [91m                                         ~[0m
+
+[96msrc/intake/intake.controller.ts[0m:[93m133[0m:[93m35[0m - [91merror[0m[90m TS2694: [0mNamespace 'global.Express' has no exported member 'Multer'.
+
+[7m133[0m     @UploadedFile() file: Express.Multer.File | undefined,
+[7m   [0m [91m                                  ~~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m13[0m:[93m8[0m - [91merror[0m[90m TS2307: [0mCannot find module '@medicos/ai' or its corresponding type declarations.
+
+[7m13[0m } from '@medicos/ai';
+[7m  [0m [91m       ~~~~~~~~~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m160[0m:[93m76[0m - [91merror[0m[90m TS7006: [0mParameter 'p' implicitly has an 'any' type.
+
+[7m160[0m     const safety = matchSafety(text, ctx.template.extraSafetyPatterns.map((p) => new RegExp(p, 'u')));
+[7m   [0m [91m                                                                           ~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m230[0m:[93m47[0m - [91merror[0m[90m TS7006: [0mParameter 'q' implicitly has an 'any' type.
+
+[7m230[0m     const previous = template.questions.find((q) => q.id === prevId) ?? null;
+[7m   [0m [91m                                              ~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m251[0m:[93m43[0m - [91merror[0m[90m TS7006: [0mParameter 'rules' implicitly has an 'any' type.
+
+[7m251[0m     const blockRows = out.blocks.flatMap((rules) => rules.map((rule) => ({ sessionId: id, stage: 'chat', rule })));
+[7m   [0m [91m                                          ~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m251[0m:[93m64[0m - [91merror[0m[90m TS7006: [0mParameter 'rule' implicitly has an 'any' type.
+
+[7m251[0m     const blockRows = out.blocks.flatMap((rules) => rules.map((rule) => ({ sessionId: id, stage: 'chat', rule })));
+[7m   [0m [91m                                                               ~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m298[0m:[93m72[0m - [91merror[0m[90m TS7006: [0mParameter 'p' implicitly has an 'any' type.
+
+[7m298[0m     const safety = matchSafety(text, template.extraSafetyPatterns.map((p) => new RegExp(p, 'u')));
+[7m   [0m [91m                                                                       ~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m1[0m:[93m102[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/client-s3' or its corresponding type declarations.
+
+[7m1[0m import { CreateBucketCommand, GetObjectCommand, HeadBucketCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+[7m [0m [91m                                                                                                     ~~~~~~~~~~~~~~~~~~~~[0m
+
+[96msrc/intake/storage.service.ts[0m:[93m2[0m:[93m30[0m - [91merror[0m[90m TS2307: [0mCannot find module '@aws-sdk/s3-request-presigner' or its corresponding type declarations.
+
+[7m2[0m import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+[7m [0m [91m                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[[90m12:07:53 PM[0m] Found 13 errors. Watching for file changes.
+
+[[90m12:08:07 PM[0m] File change detected. Starting incremental compilation...
+
+[96msrc/intake/intake.controller.ts[0m:[93m133[0m:[93m35[0m - [91merror[0m[90m TS2694: [0mNamespace 'global.Express' has no exported member 'Multer'.
+
+[7m133[0m     @UploadedFile() file: Express.Multer.File | undefined,
+[7m   [0m [91m                                  ~~~~~~[0m
+
+[96msrc/intake/intake.service.ts[0m:[93m123[0m:[93m7[0m - [91merror[0m[90m TS2322: [0mType 'readonly ["Yes, it’s me", "I’m answering for them"] | readonly ["हाँ, मैं ही हूँ", "मैं उनकी ओर से बता रहा/रही हूँ"] | readonly ["Haan, main hi hoon", "Main unki taraf se bata raha/rahi hoon"]' is not assignable to type 'string[] | undefined'.
+  The type 'readonly ["Yes, it’s me", "I’m answering for them"]' is 'readonly' and cannot be assigned to the mutable type 'string[]'.
+
+[7m123[0m       quickReplies: FIXED.identityReplies[language],
+[7m   [0m [91m      ~~~~~~~~~~~~[0m
+
+  [96msrc/intake/intake.service.ts[0m:[93m82[0m:[93m109[0m
+    [7m82[0m     m: { role: 'ai' | 'patient' | 'system'; kind: string; text: string; questionId?: string; step?: number; quickReplies?: string[]; filtered?: boolean },
+    [7m  [0m [96m                                                                                                            ~~~~~~~~~~~~[0m
+    The expected type comes from property 'quickReplies' which is declared here on type '{ role: "patient" | "ai" | "system"; kind: string; text: string; questionId?: string | undefined; step?: number | undefined; quickReplies?: string[] | undefined; filtered?: boolean | undefined; }'
+
+[96msrc/intake/intake.service.ts[0m:[93m205[0m:[93m95[0m - [91merror[0m[90m TS2322: [0mType 'readonly ["Yes, start"] | readonly ["हाँ, शुरू करें"] | readonly ["Haan, shuru karein"]' is not assignable to type 'string[] | undefined'.
+  The type 'readonly ["Yes, start"]' is 'readonly' and cannot be assigned to the mutable type 'string[]'.
+
+[7m205[0m       await this.addMessage(id, { role: 'ai', kind: 'consent', text: FIXED.consent[language], quickReplies: FIXED.consentReplies[language] });
+[7m   [0m [91m                                                                                              ~~~~~~~~~~~~[0m
+
+  [96msrc/intake/intake.service.ts[0m:[93m82[0m:[93m109[0m
+    [7m82[0m     m: { role: 'ai' | 'patient' | 'system'; kind: string; text: string; questionId?: string; step?: number; quickReplies?: string[]; filtered?: boolean },
+    [7m  [0m [96m                                                                                                            ~~~~~~~~~~~~[0m
+    The expected type comes from property 'quickReplies' which is declared here on type '{ role: "patient" | "ai" | "system"; kind: string; text: string; questionId?: string | undefined; step?: number | undefined; quickReplies?: string[] | undefined; filtered?: boolean | undefined; }'
+
+[96msrc/intake/intake.service.ts[0m:[93m252[0m:[93m44[0m - [91merror[0m[90m TS2345: [0mArgument of type '{ sessionId: string; stage: string; rule: string; }' is not assignable to parameter of type '{ sessionId: string; stage: string; rule: FilterRule; }'.
+  Types of property 'rule' are incompatible.
+    Type 'string' is not assignable to type 'FilterRule'.
+
+[7m252[0m     if (out.invalidOutputs) blockRows.push(...Array.from({ length: out.invalidOutputs }, () => ({ sessionId: id, stage: 'chat', rule: 'invalid_output' })));
+[7m   [0m [91m                                           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[0m
+
+[[90m12:08:18 PM[0m] Found 4 errors. Watching for file changes.
+
+[[90m12:08:30 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:08:37 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:08:46 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:08:47 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:08:51 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:08:54 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:10:21 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:10:22 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:11:41 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:11:45 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:11:45 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:11:46 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:14:05 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:14:06 PM[0m] Found 0 errors. Watching for file changes.
+
+[12:14:06.782] INFO (33112): Starting Nest application... {"context":"NestFactory"}
+[12:14:06.783] INFO (33112): LLM provider: mock / mock-v1 {"context":"AI"}
+[12:14:06.783] INFO (33112): CoreModule dependencies initialized {"context":"InstanceLoader"}
+[12:14:06.783] INFO (33112): ThrottlerModule dependencies initialized {"context":"InstanceLoader"}
+[12:14:06.783] INFO (33112): AuditModule dependencies initialized {"context":"InstanceLoader"}
+[12:14:06.783] INFO (33112): JwtModule dependencies initialized {"context":"InstanceLoader"}
+[12:14:06.789] INFO (33112): LoggerModule dependencies initialized {"context":"InstanceLoader"}
+[12:14:06.789] INFO (33112): AppModule dependencies initialized {"context":"InstanceLoader"}
+[12:14:06.789] INFO (33112): AuthModule dependencies initialized {"context":"InstanceLoader"}
+[12:14:06.789] INFO (33112): IntakeModule dependencies initialized {"context":"InstanceLoader"}
+[12:14:06.789] INFO (33112): HealthController {/health}: {"context":"RoutesResolver"}
+[12:14:06.789] INFO (33112): Mapped {/health, GET} route {"context":"RouterExplorer"}
+[12:14:06.789] INFO (33112): DevController {/dev}: {"context":"RoutesResolver"}
+[12:14:06.789] INFO (33112): Mapped {/dev/outbox, GET} route {"context":"RouterExplorer"}
+[12:14:06.789] INFO (33112): PatientsController {/}: {"context":"RoutesResolver"}
+[12:14:06.789] INFO (33112): Mapped {/me, GET} route {"context":"RouterExplorer"}
+[12:14:06.789] INFO (33112): Mapped {/consents, POST} route {"context":"RouterExplorer"}
+[12:14:06.789] INFO (33112): Mapped {/patients/profiles, POST} route {"context":"RouterExplorer"}
+[12:14:06.789] INFO (33112): Mapped {/patients/profiles/:id, GET} route {"context":"RouterExplorer"}
+[12:14:06.789] INFO (33112): AuthController {/auth}: {"context":"RoutesResolver"}
+[12:14:06.789] INFO (33112): Mapped {/auth/otp/request, POST} route {"context":"RouterExplorer"}
+[12:14:06.789] INFO (33112): Mapped {/auth/otp/verify, POST} route {"context":"RouterExplorer"}
+[12:14:06.789] INFO (33112): Mapped {/auth/refresh, POST} route {"context":"RouterExplorer"}
+[12:14:06.789] INFO (33112): Mapped {/auth/logout, POST} route {"context":"RouterExplorer"}
+[12:14:06.789] INFO (33112): Mapped {/auth/logout-all, POST} route {"context":"RouterExplorer"}
+[12:14:06.790] INFO (33112): IntakeController {/intake/sessions}: {"context":"RoutesResolver"}
+[12:14:06.790] INFO (33112): Mapped {/intake/sessions, POST} route {"context":"RouterExplorer"}
+[12:14:06.790] INFO (33112): Mapped {/intake/sessions, GET} route {"context":"RouterExplorer"}
+[12:14:06.790] INFO (33112): Mapped {/intake/sessions/:id, GET} route {"context":"RouterExplorer"}
+[12:14:06.790] INFO (33112): Mapped {/intake/sessions/:id/messages, POST} route {"context":"RouterExplorer"}
+[12:14:06.790] INFO (33112): Mapped {/intake/sessions/:id/continue, POST} route {"context":"RouterExplorer"}
+[12:14:06.790] INFO (33112): Mapped {/intake/sessions/:id/next, POST} route {"context":"RouterExplorer"}
+[12:14:06.790] INFO (33112): Mapped {/intake/sessions/:id/pause, POST} route {"context":"RouterExplorer"}
+[12:14:06.797] INFO (33112): Mapped {/intake/sessions/:id/language, PATCH} route {"context":"RouterExplorer"}
+[12:14:06.797] INFO (33112): Mapped {/intake/sessions/:id/review, GET} route {"context":"RouterExplorer"}
+[12:14:06.797] INFO (33112): Mapped {/intake/sessions/:id/answers/:messageId, PATCH} route {"context":"RouterExplorer"}
+[12:14:06.797] INFO (33112): Mapped {/intake/sessions/:id/submit, POST} route {"context":"RouterExplorer"}
+[12:14:06.797] INFO (33112): Mapped {/intake/sessions/:id/attachments, POST} route {"context":"RouterExplorer"}
+[12:14:06.797] INFO (33112): Nest application successfully started {"context":"NestApplication"}
+[[90m12:14:14 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:14:18 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:14:33 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:14:33 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:16:14 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:16:18 PM[0m] Found 0 errors. Watching for file changes.
+
+[[90m12:16:24 PM[0m] File change detected. Starting incremental compilation...
+
+[[90m12:16:25 PM[0m] Found 0 errors. Watching for file changes.
+
+[12:17:19.882] INFO (33112): request completed {"req":{"id":"600c9b76-5d33-4248-9c8d-e4c6bc3e1494","method":"GET","path":"/health"},"res":{"statusCode":200},"responseTime":269}
+D:\mediop\medicos\apps\api:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @medicos/api@0.0.0 dev: `dotenv -e ../../.env -- nest start --watch --preserveWatchOutput`
+Exit status 4294967295
+[12:18:46.950] WARN (33112): SMS to +91 ••••• •4404: 819877 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"d4439725-2675-4a38-9456-e406979ea396","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:18:46.953] INFO (33112): request completed {"req":{"id":"d4439725-2675-4a38-9456-e406979ea396","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":460}
+[12:18:47.541] INFO (33112): request completed {"req":{"id":"f6a4a59d-d083-444a-85b1-f1e20053b900","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":2}
+[12:18:47.860] INFO (33112): request completed {"req":{"id":"5e002007-57f4-4b75-91c6-20bfd85ccf6f","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":221}
+[12:18:47.931] INFO (33112): request completed {"req":{"id":"cbadd6c0-884d-4f1a-9907-52846b81132d","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":51}
+[12:18:50.337] INFO (33112): request completed {"req":{"id":"ff00c34d-6c76-4a48-952c-dbb0b6484296","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":32}
+[12:18:50.373] INFO (33112): request completed {"req":{"id":"63770b28-49ab-4193-b58f-2b66907081ac","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":16}
+[12:18:55.190] INFO (33112): request completed {"req":{"id":"89c616c7-5354-4ce4-b59c-36a56dc16dd6","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":53}
+[12:18:55.240] INFO (33112): request completed {"req":{"id":"af1898d7-ebf0-4e37-b8c8-765d4fc7849c","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":32}
+[12:19:01.858] INFO (33112): request completed {"req":{"id":"8f595422-3398-4a53-9c0e-9ddc4a16eeb6","method":"GET","path":"/intake/sessions"},"res":{"statusCode":200},"responseTime":46}
+[12:19:02.286] INFO (33112): request completed {"req":{"id":"6b6fbfce-ba10-457c-a3ce-3d5d89eb0924","method":"POST","path":"/intake/sessions"},"res":{"statusCode":201},"responseTime":154}
+[12:19:07.685] INFO (33112): request completed {"req":{"id":"cbbc347c-8c15-472d-9ae3-d9a657cae8a5","method":"GET","path":"/intake/sessions/43c7d529-b0d3-4b4b-880f-3b351f001bac"},"res":{"statusCode":200},"responseTime":106}
+[12:19:07.955] INFO (33112): request completed {"req":{"id":"e39fe883-7216-4497-b206-313de8c99f4e","method":"POST","path":"/intake/sessions/43c7d529-b0d3-4b4b-880f-3b351f001bac/messages"},"res":{"statusCode":200},"responseTime":102}
+[12:19:08.727] INFO (33112): request completed {"req":{"id":"c6fdbee7-3af3-4fb2-bba6-4f5c2baf4907","method":"POST","path":"/intake/sessions/43c7d529-b0d3-4b4b-880f-3b351f001bac/messages"},"res":{"statusCode":200},"responseTime":120}
+[12:19:10.288] INFO (33112): request completed {"req":{"id":"4ebd411e-0f9e-4c81-8e46-a9b0988bce91","method":"POST","path":"/intake/sessions/43c7d529-b0d3-4b4b-880f-3b351f001bac/messages"},"res":{"statusCode":200},"responseTime":233}
+[12:19:11.094] INFO (33112): request completed {"req":{"id":"06339ada-7646-495d-9f4c-b8866e90ae6c","method":"POST","path":"/intake/sessions/43c7d529-b0d3-4b4b-880f-3b351f001bac/messages"},"res":{"statusCode":200},"responseTime":71}
+[12:19:11.881] INFO (33112): request completed {"req":{"id":"18f5f9fb-2fd7-49fa-b675-e85cf77f951c","method":"POST","path":"/intake/sessions/43c7d529-b0d3-4b4b-880f-3b351f001bac/messages"},"res":{"statusCode":200},"responseTime":92}
+[12:19:13.150] INFO (33112): safety_line_shown {"req":{"id":"ab327cbf-33be-4144-a450-3510407b7dad","method":"POST","path":"/intake/sessions/43c7d529-b0d3-4b4b-880f-3b351f001bac/messages"},"context":"Intake","sessionId":"43c7d529-b0d3-4b4b-880f-3b351f001bac","ruleIds":["chest_pain"]}
+[12:19:13.171] INFO (33112): request completed {"req":{"id":"ab327cbf-33be-4144-a450-3510407b7dad","method":"POST","path":"/intake/sessions/43c7d529-b0d3-4b4b-880f-3b351f001bac/messages"},"res":{"statusCode":200},"responseTime":130}
+[12:19:40.733] WARN (33112): SMS to +91 ••••• •9021: 496151 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"555bc73c-d281-46ce-89a1-5c88ec77588a","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:19:40.736] INFO (33112): request completed {"req":{"id":"555bc73c-d281-46ce-89a1-5c88ec77588a","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":25}
+[12:19:40.796] INFO (33112): request completed {"req":{"id":"236fea04-4ec5-4587-bfe8-a1ce4f21ec61","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":1}
+[12:19:40.901] INFO (33112): request completed {"req":{"id":"b0ced6a7-70ce-4c6c-9e95-52c941038343","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":44}
+[12:19:40.925] INFO (33112): request completed {"req":{"id":"3cdd5290-98ea-4b1d-95a4-a048ef677d85","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":17}
+[12:19:41.615] INFO (33112): request completed {"req":{"id":"fdec3e61-9486-454c-8521-7f81fb9a7b8a","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":24}
+[12:19:41.642] INFO (33112): request completed {"req":{"id":"1eb04630-be14-45c8-b07e-92060ceb9578","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":11}
+[12:19:42.385] INFO (33112): request completed {"req":{"id":"be4823bf-2c3e-4c9f-8a2b-2abad5edacb0","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":24}
+[12:19:42.417] INFO (33112): request completed {"req":{"id":"555d7931-918e-49c2-a329-40fc7a6b8242","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":18}
+[12:19:43.643] INFO (33112): request completed {"req":{"id":"d1d833d5-38fd-427d-856f-431b878dbed7","method":"GET","path":"/intake/sessions"},"res":{"statusCode":200},"responseTime":13}
+[12:19:43.750] INFO (33112): request completed {"req":{"id":"b6d31063-57ab-4d9d-91ee-cafa19e0a504","method":"POST","path":"/intake/sessions"},"res":{"statusCode":201},"responseTime":75}
+[12:19:44.371] INFO (33112): request completed {"req":{"id":"095c68fb-ed30-4253-9e37-c6a8bb5f2605","method":"GET","path":"/intake/sessions/28cba8d4-510b-4883-af27-6fc2aacc1d7e"},"res":{"statusCode":200},"responseTime":49}
+[12:19:44.904] INFO (33112): request completed {"req":{"id":"25274b7e-fab5-4da0-a5e0-ea9bf1b3349d","method":"POST","path":"/intake/sessions/28cba8d4-510b-4883-af27-6fc2aacc1d7e/messages"},"res":{"statusCode":200},"responseTime":201}
+[12:19:45.866] INFO (33112): request completed {"req":{"id":"e7967950-1d13-452a-87c9-25c71a0bc19a","method":"POST","path":"/intake/sessions/28cba8d4-510b-4883-af27-6fc2aacc1d7e/messages"},"res":{"statusCode":200},"responseTime":282}
+[12:19:46.459] INFO (33112): request completed {"req":{"id":"75a5a97e-07a5-4268-aad4-3d794e1be9e2","method":"POST","path":"/intake/sessions/28cba8d4-510b-4883-af27-6fc2aacc1d7e/messages"},"res":{"statusCode":200},"responseTime":74}
+[12:19:47.634] INFO (33112): request completed {"req":{"id":"bedb946b-ec1a-4f19-9b8e-f13df78383c7","method":"POST","path":"/intake/sessions/28cba8d4-510b-4883-af27-6fc2aacc1d7e/messages"},"res":{"statusCode":200},"responseTime":287}
+[12:19:49.917] INFO (33112): request completed {"req":{"id":"4472aa5f-165e-496f-80ed-ebf7512b4b44","method":"POST","path":"/intake/sessions/28cba8d4-510b-4883-af27-6fc2aacc1d7e/messages"},"res":{"statusCode":200},"responseTime":1017}
+[12:19:50.364] INFO (33112): safety_line_shown {"req":{"id":"bd565173-e98c-487b-ba6a-f7da6c83c64e","method":"POST","path":"/intake/sessions/28cba8d4-510b-4883-af27-6fc2aacc1d7e/messages"},"context":"Intake","sessionId":"28cba8d4-510b-4883-af27-6fc2aacc1d7e","ruleIds":["chest_pain"]}
+[12:19:50.380] INFO (33112): request completed {"req":{"id":"bd565173-e98c-487b-ba6a-f7da6c83c64e","method":"POST","path":"/intake/sessions/28cba8d4-510b-4883-af27-6fc2aacc1d7e/messages"},"res":{"statusCode":200},"responseTime":65}
+[12:20:01.426] WARN (33112): SMS to +91 ••••• •0322: 470936 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"afc35384-ac1f-4d5f-b284-0bace5556cae","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:20:01.428] INFO (33112): request completed {"req":{"id":"afc35384-ac1f-4d5f-b284-0bace5556cae","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":20}
+[12:20:01.488] INFO (33112): request completed {"req":{"id":"add69d57-2a09-40fc-b34b-66bf44bf4c65","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":1}
+[12:20:01.602] INFO (33112): request completed {"req":{"id":"a17fc53c-a405-45d6-925f-71a719c42a86","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":50}
+[12:20:01.629] INFO (33112): request completed {"req":{"id":"303cdcbe-872e-42c1-9e72-1281e91e59d6","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":14}
+[12:20:02.007] INFO (33112): request completed {"req":{"id":"ca2f4d11-ec3c-4afe-824b-64fd9588dadf","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":20}
+[12:20:02.035] INFO (33112): request completed {"req":{"id":"a351aba4-7877-4235-8371-a445cb1cb3c0","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":16}
+[12:20:02.566] INFO (33112): request completed {"req":{"id":"355f09bd-80f4-4f07-8716-e2502006275e","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":24}
+[12:20:02.596] INFO (33112): request completed {"req":{"id":"13e7a1a8-d13d-40a7-897f-a2cb73f858a8","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":18}
+[12:20:03.572] INFO (33112): request completed {"req":{"id":"72c21634-ef20-4d8c-8e5a-1163efb37fb7","method":"GET","path":"/intake/sessions"},"res":{"statusCode":200},"responseTime":12}
+[12:20:03.687] INFO (33112): request completed {"req":{"id":"5e3580e4-1c23-4bf3-b681-f61c79a13392","method":"POST","path":"/intake/sessions"},"res":{"statusCode":201},"responseTime":65}
+[12:20:06.279] INFO (33112): request completed {"req":{"id":"4b0221ad-a94c-4ae8-ba59-48983edb86c1","method":"GET","path":"/intake/sessions/13c78794-af21-4013-9c22-00b9fb70c6df"},"res":{"statusCode":200},"responseTime":28}
+[12:20:06.537] INFO (33112): request completed {"req":{"id":"aba6dc05-cb0e-4493-9e29-305e03f39352","method":"POST","path":"/intake/sessions/13c78794-af21-4013-9c22-00b9fb70c6df/messages"},"res":{"statusCode":200},"responseTime":87}
+[12:20:07.298] INFO (33112): request completed {"req":{"id":"604f3a6d-e10e-4072-b75b-80a70431cc7a","method":"POST","path":"/intake/sessions/13c78794-af21-4013-9c22-00b9fb70c6df/messages"},"res":{"statusCode":200},"responseTime":68}
+[12:20:08.119] INFO (33112): request completed {"req":{"id":"0cf1181b-db31-4449-870b-d973ad24448e","method":"POST","path":"/intake/sessions/13c78794-af21-4013-9c22-00b9fb70c6df/messages"},"res":{"statusCode":200},"responseTime":74}
+[12:20:09.075] INFO (33112): request completed {"req":{"id":"616b427e-af90-4d50-accd-de9f97bfebd6","method":"POST","path":"/intake/sessions/13c78794-af21-4013-9c22-00b9fb70c6df/messages"},"res":{"statusCode":200},"responseTime":69}
+[12:20:09.875] INFO (33112): request completed {"req":{"id":"41d9f510-0139-4776-a0f4-37c457607641","method":"POST","path":"/intake/sessions/13c78794-af21-4013-9c22-00b9fb70c6df/messages"},"res":{"statusCode":200},"responseTime":105}
+[12:20:11.111] INFO (33112): safety_line_shown {"req":{"id":"bf95898e-d775-464f-943f-f6d7045b728d","method":"POST","path":"/intake/sessions/13c78794-af21-4013-9c22-00b9fb70c6df/messages"},"context":"Intake","sessionId":"13c78794-af21-4013-9c22-00b9fb70c6df","ruleIds":["chest_pain"]}
+[12:20:11.127] INFO (33112): request completed {"req":{"id":"bf95898e-d775-464f-943f-f6d7045b728d","method":"POST","path":"/intake/sessions/13c78794-af21-4013-9c22-00b9fb70c6df/messages"},"res":{"statusCode":200},"responseTime":72}
+[12:20:34.231] WARN (33112): SMS to +91 ••••• •9433: 501686 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"44e88912-dbe5-47eb-a64a-88cbf76f92c9","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:20:34.232] INFO (33112): request completed {"req":{"id":"44e88912-dbe5-47eb-a64a-88cbf76f92c9","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":23}
+[12:20:34.390] INFO (33112): request completed {"req":{"id":"9a2e83a9-dde2-40bb-a254-da114cc58b68","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":0}
+[12:20:34.539] INFO (33112): request completed {"req":{"id":"f34041b3-8cfd-458e-aef5-9976ee3e8073","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":55}
+[12:20:34.575] INFO (33112): request completed {"req":{"id":"e17eef12-9f76-412f-95c1-b79bdd35e706","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":17}
+[12:20:35.373] INFO (33112): request completed {"req":{"id":"efe19a3c-6da0-4049-b9f0-49f0754a335a","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":99}
+[12:20:35.417] INFO (33112): request completed {"req":{"id":"88c36655-e35f-4133-9013-c8ef85379bd4","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":18}
+[12:20:36.651] INFO (33112): request completed {"req":{"id":"03570caf-dff1-4f29-a718-dcbe133e7fc7","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":31}
+[12:20:36.777] INFO (33112): request completed {"req":{"id":"e145a836-98b8-4284-92a6-9334b34efa8b","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":107}
+[12:20:38.005] INFO (33112): request completed {"req":{"id":"66f6c394-cf89-4758-8211-fe5c62b53ccb","method":"GET","path":"/intake/sessions"},"res":{"statusCode":200},"responseTime":10}
+[12:20:38.114] INFO (33112): request completed {"req":{"id":"ba150205-f1e3-4f6d-a9b2-36177c05f963","method":"POST","path":"/intake/sessions"},"res":{"statusCode":201},"responseTime":61}
+[12:20:38.906] INFO (33112): request completed {"req":{"id":"bc3ef802-a99b-4b11-84e5-75695e59855a","method":"GET","path":"/intake/sessions/2e027867-5fc6-462b-8ccf-376698ac6195"},"res":{"statusCode":200},"responseTime":43}
+[12:20:39.647] INFO (33112): request completed {"req":{"id":"a74e4ad4-353d-46fd-b314-0977a85ff653","method":"POST","path":"/intake/sessions/2e027867-5fc6-462b-8ccf-376698ac6195/messages"},"res":{"statusCode":200},"responseTime":133}
+[12:20:40.341] INFO (33112): request completed {"req":{"id":"e2729cae-1357-49de-a7fa-f0781cc30e13","method":"POST","path":"/intake/sessions/2e027867-5fc6-462b-8ccf-376698ac6195/messages"},"res":{"statusCode":200},"responseTime":62}
+[12:20:41.126] INFO (33112): request completed {"req":{"id":"d9b8a02f-1fc3-408a-bd69-326be7c54362","method":"POST","path":"/intake/sessions/2e027867-5fc6-462b-8ccf-376698ac6195/messages"},"res":{"statusCode":200},"responseTime":63}
+[12:20:42.110] INFO (33112): request completed {"req":{"id":"f81db59a-37d6-4501-a4bd-14bbfc698d4f","method":"POST","path":"/intake/sessions/2e027867-5fc6-462b-8ccf-376698ac6195/messages"},"res":{"statusCode":200},"responseTime":84}
+[12:20:42.883] INFO (33112): request completed {"req":{"id":"aa423882-d1a1-4bd7-af71-f85ea6eb52cb","method":"POST","path":"/intake/sessions/2e027867-5fc6-462b-8ccf-376698ac6195/messages"},"res":{"statusCode":200},"responseTime":76}
+[12:20:44.082] INFO (33112): safety_line_shown {"req":{"id":"7c9ce3db-bcdb-4c17-b828-e635fa7d5f6c","method":"POST","path":"/intake/sessions/2e027867-5fc6-462b-8ccf-376698ac6195/messages"},"context":"Intake","sessionId":"2e027867-5fc6-462b-8ccf-376698ac6195","ruleIds":["chest_pain"]}
+[12:20:44.098] INFO (33112): request completed {"req":{"id":"7c9ce3db-bcdb-4c17-b828-e635fa7d5f6c","method":"POST","path":"/intake/sessions/2e027867-5fc6-462b-8ccf-376698ac6195/messages"},"res":{"statusCode":200},"responseTime":57}
+[12:21:36.416] WARN (33112): SMS to +91 ••••• •4674: 043617 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"e2b7712f-7467-40c8-9366-28f76f4f4458","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:21:36.416] INFO (33112): request completed {"req":{"id":"e2b7712f-7467-40c8-9366-28f76f4f4458","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":25}
+[12:21:36.510] INFO (33112): request completed {"req":{"id":"1a916ccd-8931-4df5-8d89-9ac7cd77c095","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":0}
+[12:21:36.681] INFO (33112): request completed {"req":{"id":"a1eea90a-80c2-4d59-8540-3cb66042f385","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":56}
+[12:21:36.714] INFO (33112): request completed {"req":{"id":"9801e891-e9f0-49b2-a98a-6b405b3dc9af","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":18}
+[12:21:37.624] INFO (33112): request completed {"req":{"id":"837e08ee-65cf-4f17-a351-5bab2cf2094e","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":24}
+[12:21:37.681] INFO (33112): request completed {"req":{"id":"f373f42f-73c6-4116-b299-35672e865423","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":20}
+[12:21:39.567] INFO (33112): request completed {"req":{"id":"7b2bce48-c266-4992-80cc-3eda81f763c5","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":36}
+[12:21:39.624] INFO (33112): request completed {"req":{"id":"275b5f7d-b228-4be0-987e-e66b46893a92","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":25}
+[12:21:42.975] INFO (33112): request completed {"req":{"id":"5ca1c570-bc30-4d30-a025-a759a87da728","method":"GET","path":"/intake/sessions"},"res":{"statusCode":200},"responseTime":9}
+[12:21:44.431] INFO (33112): request completed {"req":{"id":"7035556a-3083-4527-a3fb-f5a3f8a01580","method":"POST","path":"/intake/sessions"},"res":{"statusCode":201},"responseTime":108}
+[12:21:45.411] INFO (33112): request completed {"req":{"id":"6a360cd2-fc1e-4f63-b86d-d05647c7955b","method":"GET","path":"/intake/sessions/deeb9adb-e1a1-4fe8-93fb-732d8360fc1c"},"res":{"statusCode":200},"responseTime":28}
+[12:21:46.198] INFO (33112): request completed {"req":{"id":"1e9cc28a-96e8-4ba5-a092-e617a317fa3f","method":"POST","path":"/intake/sessions/deeb9adb-e1a1-4fe8-93fb-732d8360fc1c/messages"},"res":{"statusCode":200},"responseTime":156}
+[12:21:46.410] INFO (33112): request completed {"req":{"id":"c09dd926-f26b-41d3-9e7a-690b9ee31a3c","method":"POST","path":"/intake/sessions/deeb9adb-e1a1-4fe8-93fb-732d8360fc1c/messages"},"res":{"statusCode":200},"responseTime":111}
+[12:21:46.734] INFO (33112): safety_line_shown {"req":{"id":"15585820-21a7-4af4-b0a1-d26674e42983","method":"POST","path":"/intake/sessions/deeb9adb-e1a1-4fe8-93fb-732d8360fc1c/messages"},"context":"Intake","sessionId":"deeb9adb-e1a1-4fe8-93fb-732d8360fc1c","ruleIds":["chest_pain"]}
+[12:21:46.842] INFO (33112): request completed {"req":{"id":"15585820-21a7-4af4-b0a1-d26674e42983","method":"POST","path":"/intake/sessions/deeb9adb-e1a1-4fe8-93fb-732d8360fc1c/messages"},"res":{"statusCode":200},"responseTime":170}
+[12:21:47.890] INFO (33112): request completed {"req":{"id":"47f4f7a1-d715-4982-91b3-f8b7473db96d","method":"POST","path":"/intake/sessions/deeb9adb-e1a1-4fe8-93fb-732d8360fc1c/continue"},"res":{"statusCode":200},"responseTime":134}
+[12:21:50.747] WARN (33112): SMS to +91 ••••• •8271: 833120 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"5a0cb226-a812-45bc-8a0a-718678a4167b","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:21:50.749] INFO (33112): request completed {"req":{"id":"5a0cb226-a812-45bc-8a0a-718678a4167b","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":80}
+[12:21:50.765] INFO (33112): request completed {"req":{"id":"77461e80-ae12-4211-a308-2e31b920744d","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":0}
+[12:21:51.076] INFO (33112): request completed {"req":{"id":"548b4eaf-78b1-4590-b60b-2fb9afa0cdfd","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":201}
+[12:21:51.098] INFO (33112): request completed {"req":{"id":"5208a831-9b30-4317-9212-f5f46f029d92","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":12}
+[12:21:52.610] INFO (33112): request completed {"req":{"id":"da9d5cd9-c532-496f-8b50-f676e76bf4e9","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":28}
+[12:21:52.651] INFO (33112): request completed {"req":{"id":"91cb069e-60af-4c3b-879d-7482a7cda16e","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":18}
+[12:21:54.582] INFO (33112): request completed {"req":{"id":"3f5e39cf-7bce-4985-afaf-5a6a0efacae3","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":28}
+[12:21:54.645] INFO (33112): request completed {"req":{"id":"0b309069-be78-4596-8100-3d915719a8df","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":26}
+[12:21:57.103] INFO (33112): request completed {"req":{"id":"5f3c3a50-8e23-4eb8-8635-d75a7433f479","method":"GET","path":"/intake/sessions"},"res":{"statusCode":200},"responseTime":17}
+[12:21:58.683] INFO (33112): request completed {"req":{"id":"a7f1f68b-0466-445f-99ff-d40cf525a5d4","method":"POST","path":"/intake/sessions"},"res":{"statusCode":201},"responseTime":65}
+[12:22:00.554] INFO (33112): request completed {"req":{"id":"aed1dfae-ef75-49cb-8629-4110a38d6b9b","method":"GET","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35"},"res":{"statusCode":200},"responseTime":21}
+[12:22:01.798] INFO (33112): request completed {"req":{"id":"6c25ee8f-36a0-46c2-b65b-872de6d9f07e","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":811}
+[12:22:02.513] INFO (33112): request completed {"req":{"id":"0365c5f3-cd07-4563-95f2-5fcda86eac4c","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":152}
+[12:22:03.356] INFO (33112): request completed {"req":{"id":"bb0f4579-cf29-44a2-8a01-01361e2ee04c","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":129}
+[12:22:03.850] INFO (33112): request completed {"req":{"id":"4bd7c82c-0de6-4942-b867-04814e7308ae","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":158}
+[12:22:04.181] INFO (33112): request completed {"req":{"id":"1ff8894a-3314-425c-9726-4b8dfb2c5a17","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":225}
+[12:22:04.597] INFO (33112): request completed {"req":{"id":"40f78c6f-2066-4a96-8edb-2f13c0525366","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":172}
+[12:22:04.972] INFO (33112): request completed {"req":{"id":"4d050b62-c8dd-4075-ae93-c43bed9f1943","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":121}
+[12:22:05.528] INFO (33112): request completed {"req":{"id":"f1867697-063f-49ef-8234-56eef41ef13c","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":149}
+[12:22:06.080] INFO (33112): request completed {"req":{"id":"71855bdf-8633-43ab-be84-2be51033594b","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":138}
+[12:22:06.685] INFO (33112): request completed {"req":{"id":"9785462d-8e48-4f59-ab7d-768406e914c7","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":145}
+[12:22:07.202] INFO (33112): request completed {"req":{"id":"0194a65f-ee59-4971-b617-13de011acbfa","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":117}
+[12:22:07.813] INFO (33112): request completed {"req":{"id":"7eecc2e3-8d8b-4fa3-a44e-f49c1fb5ff45","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":151}
+[12:22:08.467] INFO (33112): request completed {"req":{"id":"fde33abd-4ba2-4aed-a0e9-450c72448eab","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":172}
+[12:22:08.850] INFO (33112): request completed {"req":{"id":"7d123f9e-788b-4a65-93eb-2546322b1f4c","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":122}
+[12:22:09.364] INFO (33112): request completed {"req":{"id":"79793586-eebb-4d8d-b196-3824e9287a35","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":98}
+[12:22:09.772] INFO (33112): request completed {"req":{"id":"7c80a6b7-38a2-4344-abf5-dbfd40165830","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":162}
+[12:22:10.609] INFO (33112): request completed {"req":{"id":"6f3867f2-4396-4b01-8c0b-1f5ba79f1148","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/messages"},"res":{"statusCode":200},"responseTime":191}
+[12:22:20.778] INFO (33112): request completed {"req":{"id":"49c530de-c59b-4b97-8ba8-c2f34ed6f5b1","method":"GET","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/review"},"res":{"statusCode":200},"responseTime":49}
+[12:22:22.245] INFO (33112): request completed {"req":{"id":"fba7c591-7145-47e0-9b38-cff3bac083eb","method":"PATCH","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/answers/851ac4e7-a12f-46e4-8d4c-c41c22076f3c"},"res":{"statusCode":200},"responseTime":145}
+[12:22:22.410] INFO (33112): request completed {"req":{"id":"91754947-4919-4bf4-a989-c886ee789f1a","method":"POST","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/submit"},"res":{"statusCode":200},"responseTime":197}
+[12:22:22.488] INFO (33112): request completed {"req":{"id":"ee4317ee-0b74-43d4-a758-fe6378a48eec","method":"GET","path":"/intake/sessions/e2ca1a43-64b8-4094-9e14-cb847366ec35/review"},"res":{"statusCode":200},"responseTime":48}
+[12:30:47.820] INFO (33112): request completed {"req":{"id":"82787f07-c118-4862-8daa-c5469b333a4b","method":"GET","path":"/me"},"res":{"statusCode":401},"responseTime":100}
+[12:30:47.837] INFO (33112): request completed {"req":{"id":"e90dba41-8b5e-4e88-a641-c020129238e4","method":"GET","path":"/me"},"res":{"statusCode":401},"responseTime":3}
+[12:30:47.920] INFO (33112): request completed {"req":{"id":"e6185386-13a3-485a-8372-d8cb7ad6e433","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":5}
+[12:30:47.922] INFO (33112): request completed {"req":{"id":"d6c3d073-03da-4456-b148-26cccec1a4c9","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":1}
+[12:30:47.934] INFO (33112): request completed {"req":{"id":"d95bbfc4-948d-47fe-be95-b97ee4e75dd0","method":"POST","path":"/auth/refresh"},"res":{"statusCode":401},"responseTime":6}
+[12:30:47.942] INFO (33112): request completed {"req":{"id":"cbb7c9d6-9995-4bd4-84ea-1b805a092cee","method":"POST","path":"/auth/refresh"},"res":{"statusCode":401},"responseTime":7}
+[12:30:48.263] INFO (33112): request completed {"req":{"id":"cae51ba6-ae90-4863-945a-7a461d1f2b8e","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":2}
+[12:30:48.274] INFO (33112): request completed {"req":{"id":"468763ac-42f2-4eba-b8ee-819d2b99c295","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":5}
+[12:30:48.574] INFO (33112): request completed {"req":{"id":"072c1e41-b49c-4da5-980d-7c78fe5d9268","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":1}
+[12:30:48.603] INFO (33112): request completed {"req":{"id":"7ef331a4-3f55-4c58-8e0f-a0eecaafc503","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":5}
+[12:30:48.786] WARN (33112): SMS to +91 ••••• •5467: 107702 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"9e59fba3-77ff-41a7-8be8-623c3926b093","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:30:48.788] INFO (33112): request completed {"req":{"id":"9e59fba3-77ff-41a7-8be8-623c3926b093","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":876}
+[12:30:48.806] WARN (33112): SMS to +91 ••••• •5468: 254308 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"58e807fa-f010-412e-9cc2-03662c55ffe1","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:30:48.809] INFO (33112): request completed {"req":{"id":"58e807fa-f010-412e-9cc2-03662c55ffe1","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":968}
+[12:30:49.116] INFO (33112): request completed {"req":{"id":"13f30810-8a12-4a3b-9eca-be7cfbead5f6","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":2}
+[12:30:49.139] INFO (33112): request completed {"req":{"id":"d2f51d3a-e793-427d-aa44-8ad9214222f8","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":2}
+[12:30:49.526] INFO (33112): request completed {"req":{"id":"8ea14e42-d8a8-4ed9-81bb-292655e64e8d","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":240}
+[12:30:49.527] INFO (33112): request completed {"req":{"id":"7b8f45e8-5edd-498b-b849-c542f0c5c975","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":267}
+[12:30:49.606] INFO (33112): request completed {"req":{"id":"d7c8b85c-32f7-4094-a64f-a13e658085c5","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":58}
+[12:30:49.607] INFO (33112): request completed {"req":{"id":"e7ec24e3-a539-45d1-9b76-92c73e1157bb","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":56}
+[12:30:50.819] WARN (33112): SMS to +91 ••••• •5469: 201488 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"5c05dbc7-a041-4175-b470-ccfa459fc4a9","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:30:50.821] INFO (33112): request completed {"req":{"id":"5c05dbc7-a041-4175-b470-ccfa459fc4a9","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":32}
+[12:30:50.828] WARN (33112): SMS to +91 ••••• •5468: 320935 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"bac766b7-a5f0-4b1d-9be2-e24d0856d300","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:30:50.828] INFO (33112): request completed {"req":{"id":"bac766b7-a5f0-4b1d-9be2-e24d0856d300","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":36}
+[12:30:51.500] INFO (33112): request completed {"req":{"id":"689dd85a-1922-4ee0-814c-2267fdc9d1b6","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":2}
+[12:30:51.510] INFO (33112): request completed {"req":{"id":"a416b095-f71d-4dde-b2e7-c7cadf00741e","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":2}
+[12:30:51.850] INFO (33112): request completed {"req":{"id":"b2493ff1-557f-4e02-b67d-92ff7c600723","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":68}
+[12:30:51.924] INFO (33112): request completed {"req":{"id":"4a48883b-8435-4e69-ae1a-0a56d08bb454","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":88}
+[12:30:51.928] INFO (33112): request completed {"req":{"id":"701ca3b4-d32d-48db-a0aa-8ecd007c7f47","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":26}
+[12:30:52.182] INFO (33112): request completed {"req":{"id":"b58b4eb6-c1c3-42e6-905e-25bb018c71b6","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":19}
+[12:30:53.872] INFO (33112): request completed {"req":{"id":"fff5bbb4-0a07-4f28-be5d-7c29eff7fa60","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":101}
+[12:30:53.881] INFO (33112): request completed {"req":{"id":"f927a2e0-3b7b-4b8e-ad66-8df5bbcafbf1","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":87}
+[12:30:53.926] INFO (33112): request completed {"req":{"id":"111e093b-3848-4898-a2c9-5833c09ce648","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":18}
+[12:30:53.932] INFO (33112): request completed {"req":{"id":"e8390594-74a9-4129-8ff4-d2d4496f2e72","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":19}
+[12:30:54.641] INFO (33112): request completed {"req":{"id":"a13fa057-9790-41e8-98f5-d13604319643","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":48}
+[12:30:54.824] INFO (33112): request completed {"req":{"id":"285acccd-e8aa-4208-b1c4-8740ceb906ec","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":147}
+[12:30:55.052] INFO (33112): request completed {"req":{"id":"b09c4161-b68a-459e-b50b-875546c99442","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":72}
+[12:30:55.140] INFO (33112): request completed {"req":{"id":"8bc04af8-5eac-470d-98e6-c383efffc1db","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":22}
+[12:31:00.783] INFO (33112): request completed {"req":{"id":"7796d41f-0128-40f6-80d5-e526640f425b","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":243}
+[12:31:00.833] INFO (33112): request completed {"req":{"id":"512abe49-d4ae-4a80-8ee9-7a74b522f8b2","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":36}
+[12:31:01.049] INFO (33112): request completed {"req":{"id":"a884d527-d506-42ba-a6fd-91ca90444447","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":45}
+[12:31:01.124] INFO (33112): request completed {"req":{"id":"c55f5fb2-7ade-467b-a4b2-0dd54976ac7e","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":28}
+[12:31:01.677] INFO (33112): request completed {"req":{"id":"551e2fc9-8572-4a49-9f91-37ac3823dc45","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":93}
+[12:31:01.682] INFO (33112): request completed {"req":{"id":"ee38f118-3ad1-4d6e-aad0-4a1cc49a94f2","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":89}
+[12:31:01.939] INFO (33112): request completed {"req":{"id":"24e5b408-9ddf-46d7-b62c-05134fed218a","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":52}
+[12:31:01.948] INFO (33112): request completed {"req":{"id":"476e006e-e998-4f1e-bcfc-423ccb3fe66b","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":36}
+[12:31:06.637] INFO (33112): request completed {"req":{"id":"b2dccb0a-ea12-4f62-a8d6-0e7c9645c5ff","method":"GET","path":"/intake/sessions"},"res":{"statusCode":200},"responseTime":267}
+[12:31:06.641] INFO (33112): request completed {"req":{"id":"bad03fcc-9129-465f-b043-4e6e7e591ebb","method":"GET","path":"/intake/sessions"},"res":{"statusCode":200},"responseTime":217}
+[12:31:08.120] INFO (33112): request completed {"req":{"id":"b59d1bce-98f2-40bd-ae33-d5115c693de7","method":"POST","path":"/intake/sessions"},"res":{"statusCode":201},"responseTime":201}
+[12:31:08.120] INFO (33112): request completed {"req":{"id":"485135d2-0b4a-4c93-8d54-84e4ef32e46d","method":"POST","path":"/intake/sessions"},"res":{"statusCode":201},"responseTime":203}
+[12:31:17.372] INFO (33112): request completed {"req":{"id":"1d47c34f-5659-47ad-985b-672921296ac6","method":"GET","path":"/intake/sessions/aaa22816-8dec-44db-aefc-8e6ad39d9ce8"},"res":{"statusCode":200},"responseTime":55}
+[12:31:17.398] INFO (33112): request completed {"req":{"id":"c7776e17-ad6c-44f6-b800-fc405280af9e","method":"GET","path":"/me"},"res":{"statusCode":304},"responseTime":39}
+[12:31:17.502] INFO (33112): request completed {"req":{"id":"e52b6cd6-16e9-40fa-8a93-5a019dd81ad1","method":"GET","path":"/intake/sessions/891aa406-a45e-4cb0-983d-ba98ccc5417c"},"res":{"statusCode":200},"responseTime":182}
+[12:31:17.865] INFO (33112): request completed {"req":{"id":"c7f06483-7db7-4ecd-aaf0-58d6f30e3c18","method":"POST","path":"/intake/sessions/891aa406-a45e-4cb0-983d-ba98ccc5417c/messages"},"res":{"statusCode":200},"responseTime":187}
+[12:31:18.208] INFO (33112): request completed {"req":{"id":"d6272070-1f29-4893-adf2-bc36f686ea82","method":"POST","path":"/intake/sessions/891aa406-a45e-4cb0-983d-ba98ccc5417c/messages"},"res":{"statusCode":200},"responseTime":166}
+[12:31:18.633] INFO (33112): safety_line_shown {"req":{"id":"a4638561-5e23-44c4-b6dc-da69b5d6c5f9","method":"POST","path":"/intake/sessions/891aa406-a45e-4cb0-983d-ba98ccc5417c/messages"},"context":"Intake","sessionId":"891aa406-a45e-4cb0-983d-ba98ccc5417c","ruleIds":["chest_pain"]}
+[12:31:18.653] INFO (33112): request completed {"req":{"id":"a4638561-5e23-44c4-b6dc-da69b5d6c5f9","method":"POST","path":"/intake/sessions/891aa406-a45e-4cb0-983d-ba98ccc5417c/messages"},"res":{"statusCode":200},"responseTime":219}
+[12:31:19.752] INFO (33112): request completed {"req":{"id":"45817ce1-0a9e-432a-8d8b-062e177ad1e4","method":"POST","path":"/intake/sessions/891aa406-a45e-4cb0-983d-ba98ccc5417c/continue"},"res":{"statusCode":200},"responseTime":98}
+[12:31:21.623] INFO (33112): request completed {"req":{"id":"41512a44-ff41-4798-9daf-820cc0899838","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":1}
+[12:31:21.635] WARN (33112): SMS to +91 ••••• •0029: 813619 is your Medicos login code. It expires in 5 minutes. Do not share it with anyone. {"req":{"id":"0aa2e056-c4e9-44ed-89db-f2c4c613e868","method":"POST","path":"/auth/otp/request"},"context":"DevSMS"}
+[12:31:21.636] INFO (33112): request completed {"req":{"id":"0aa2e056-c4e9-44ed-89db-f2c4c613e868","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":201},"responseTime":41}
+[12:31:21.790] INFO (33112): request completed {"req":{"id":"8f98e6e6-f165-4eff-ac20-1bfb08c18628","method":"GET","path":"/dev/outbox"},"res":{"statusCode":200},"responseTime":1}
+[12:31:21.982] INFO (33112): request completed {"req":{"id":"6c0a2143-deba-405c-8d63-2e7c9a66ccb1","method":"POST","path":"/auth/otp/verify"},"res":{"statusCode":200},"responseTime":86}
+[12:31:22.048] INFO (33112): request completed {"req":{"id":"11f774ec-c294-4e29-b69e-ac2a38d37d9b","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":28}
+[12:31:22.857] INFO (33112): request completed {"req":{"id":"ab39507e-4453-41a3-82a6-e260576e2390","method":"POST","path":"/consents"},"res":{"statusCode":201},"responseTime":25}
+[12:31:22.889] INFO (33112): request completed {"req":{"id":"ac2a90fe-ec4c-4868-8a13-073a74b97386","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":18}
+[12:31:24.134] INFO (33112): request completed {"req":{"id":"e1737d2b-59d7-4ad7-ab8c-7b766b32dee8","method":"POST","path":"/patients/profiles"},"res":{"statusCode":201},"responseTime":264}
+[12:31:24.169] INFO (33112): request completed {"req":{"id":"a82d3d3c-cd69-4756-952f-74ab3c05d5b4","method":"GET","path":"/me"},"res":{"statusCode":200},"responseTime":23}
+[12:31:25.302] INFO (33112): request completed {"req":{"id":"da391e30-2a1d-4997-9e01-0396c7b09c22","method":"GET","path":"/intake/sessions"},"res":{"statusCode":200},"responseTime":70}
+[12:31:26.253] INFO (33112): request completed {"req":{"id":"3392a680-ca84-4958-8f32-70f7c7a0dd41","method":"POST","path":"/auth/otp/request"},"res":{"statusCode":429},"responseTime":1}
+[12:31:26.450] INFO (33112): request completed {"req":{"id":"fca34b37-03a0-435c-813f-9813aef55fb4","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":1}
+[12:31:26.473] INFO (33112): request completed {"req":{"id":"7d762b6e-a2b6-4606-a427-99aa1066b1a5","method":"POST","path":"/intake/sessions"},"res":{"statusCode":201},"responseTime":131}
+[12:31:26.583] INFO (33112): request completed {"req":{"id":"7d7a3837-1fd2-49c8-9162-3284999f8d59","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":1}
+[12:31:26.693] INFO (33112): request completed {"req":{"id":"57f63658-3b43-42ea-ae79-f7f441d2d4b9","method":"GET","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1"},"res":{"statusCode":200},"responseTime":30}
+[12:31:26.853] INFO (33112): request completed {"req":{"id":"e8722b91-79e4-4815-8c50-998494761357","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":0}
+[12:31:26.866] INFO (33112): request completed {"req":{"id":"e5692360-7450-429e-b826-0404b00921f7","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":78}
+[12:31:27.046] INFO (33112): request completed {"req":{"id":"7192bffb-7a47-46c2-b008-07dc7abb9917","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":107}
+[12:31:27.372] INFO (33112): request completed {"req":{"id":"a06b70ed-b004-4f7e-b57e-3cac05facfe6","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":0}
+[12:31:27.560] INFO (33112): request completed {"req":{"id":"53197371-40f9-4b8b-b32e-46f6848cc1ca","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":75}
+[12:31:27.757] INFO (33112): request completed {"req":{"id":"9fb6111c-f0e2-4cd2-aa25-6901c8abcafa","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":81}
+[12:31:27.956] INFO (33112): request completed {"req":{"id":"fc1a89f4-8c4b-4762-8d78-00d66f5e02ee","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":160}
+[12:31:28.241] INFO (33112): request completed {"req":{"id":"b1b97b79-b690-4e1d-a219-4f7619ad42ec","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":87}
+[12:31:28.408] INFO (33112): request completed {"req":{"id":"c274ad48-8934-47c5-b5ab-915476061424","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":1}
+[12:31:28.482] INFO (33112): request completed {"req":{"id":"fbde563c-ca52-4f07-b605-d0e72a33d44d","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":85}
+[12:31:28.696] INFO (33112): request completed {"req":{"id":"b5b25522-e2b6-419e-96ed-0ad0983d2c5c","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":81}
+[12:31:28.884] INFO (33112): request completed {"req":{"id":"175e5ee6-56b6-4157-8660-b035672a3b57","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":66}
+[12:31:29.119] INFO (33112): request completed {"req":{"id":"9a61250c-8b02-4fa0-a664-fd957c4be68a","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":74}
+[12:31:29.340] INFO (33112): request completed {"req":{"id":"7e37032c-ac81-4730-adf5-0283a2d633bd","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":66}
+[12:31:29.424] INFO (33112): request completed {"req":{"id":"60739083-0b5f-4a9e-add4-ce76ebd71aaa","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":0}
+[12:31:29.555] INFO (33112): request completed {"req":{"id":"d03b27fe-62cb-48d0-b739-1459509a2582","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":69}
+[12:31:29.787] INFO (33112): request completed {"req":{"id":"0897c1c1-eacd-48a1-9eb1-430c9dac8bbf","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":72}
+[12:31:29.985] INFO (33112): request completed {"req":{"id":"bca4a0c8-a000-483e-a076-6f835e4832e5","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":67}
+[12:31:30.212] INFO (33112): request completed {"req":{"id":"0047cb4b-7021-4248-9665-1a7372fa4269","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":73}
+[12:31:30.424] INFO (33112): request completed {"req":{"id":"387a80d7-086f-404b-be28-d6bf3b6d5d20","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":72}
+[12:31:30.444] INFO (33112): request completed {"req":{"id":"7d302507-0fe1-4400-97c9-f429b141bc8a","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":2}
+[12:31:30.628] INFO (33112): request completed {"req":{"id":"1bb816c7-ccb2-4fe5-9615-88ebb172313f","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/messages"},"res":{"statusCode":200},"responseTime":59}
+[12:31:31.502] INFO (33112): request completed {"req":{"id":"877dc2f6-4c86-40e9-84ce-955243225f20","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":1}
+[12:31:32.522] INFO (33112): request completed {"req":{"id":"23b57d92-69c8-4b8d-9ec7-fc9bffb069c4","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":1}
+[12:31:33.542] INFO (33112): request completed {"req":{"id":"58716517-051d-41c7-9ce7-fe5acd953a4c","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":1}
+[12:31:33.995] INFO (33112): request completed {"req":{"id":"2f0ce92a-0d67-4ced-89fc-2dcc6a199d82","method":"GET","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/review"},"res":{"statusCode":200},"responseTime":24}
+[12:31:34.557] INFO (33112): request completed {"req":{"id":"a10f813d-76c4-40e3-ad3b-d1c51a5034d8","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":1}
+[12:31:35.003] INFO (33112): request completed {"req":{"id":"a1f2cbcb-df88-4c1c-8e7c-c8da30d6f4c1","method":"PATCH","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/answers/2cac9d51-ff55-4e61-8644-314a0be7d29d"},"res":{"statusCode":200},"responseTime":72}
+[12:31:35.077] INFO (33112): request completed {"req":{"id":"0cedd3a2-e21c-417a-8236-b876c97c45e1","method":"POST","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/submit"},"res":{"statusCode":200},"responseTime":59}
+[12:31:35.130] INFO (33112): request completed {"req":{"id":"e2e6391e-4d87-4804-be69-6a2363a1877c","method":"GET","path":"/intake/sessions/7e0defeb-bf4d-41c2-a7d3-9b7aa7cf9ab1/review"},"res":{"statusCode":200},"responseTime":37}
+[12:31:35.573] INFO (33112): request completed {"req":{"id":"660f883c-86d0-4382-86f5-ce37866f23d0","method":"GET","path":"/dev/outbox"},"res":{"statusCode":404},"responseTime":0}

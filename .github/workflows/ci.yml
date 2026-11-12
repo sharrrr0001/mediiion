@@ -60,6 +60,8 @@ jobs:
       - run: pnpm typecheck
       - name: Tests (safety & privacy tests are never skipped)
         run: pnpm test
+      - name: AI eval harness (fails on any safety check)
+        run: pnpm --filter @medicos/shared build && pnpm eval
       - run: pnpm build
       - name: Dependency audit
         run: pnpm audit --audit-level high --prod

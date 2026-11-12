@@ -1,0 +1,20 @@
+{
+  "id": "case-016",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "en",
+  "profile": {
+    "gender": "male",
+    "age": 45
+  },
+  "answeredBy": "self",
+  "answers": [
+    "my lips are swollen after eating prawns and my throat is swelling"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "safety:allergy"
+  ]
+}

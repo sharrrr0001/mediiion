@@ -1,6 +1,7 @@
 import { DynamicModule, Module } from '@nestjs/common';
 import { APP_FILTER, APP_GUARD } from '@nestjs/core';
-import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerModule } from '@nestjs/throttler';
+import { DeviceThrottlerGuard } from './common/throttler.guard';
 import { LoggerModule } from 'nestjs-pino';
 import type { DestinationStream } from 'pino';
 import { randomUUID } from 'node:crypto';
@@ -8,6 +9,7 @@ import { AuditModule } from './audit/audit.service';
 import { AuthModule } from './auth/auth.module';
 import { AllExceptionsFilter } from './common/errors';
 import { CoreModule } from './config/core.module';
+import { IntakeModule } from './intake/intake.module';
 import { loadEnv } from './config/env';
 import { DevController, HealthController } from './health/health.controller';
 import { pinoRedact, serializers } from './logging/redaction';
@@ -43,11 +45,12 @@ export class AppModule {
         }),
         ThrottlerModule.forRoot([{ ttl: 60_000, limit: 120 }]),
         AuthModule,
+        IntakeModule,
       ],
       controllers: [HealthController, DevController, PatientsController],
       providers: [
         PatientsService,
-        { provide: APP_GUARD, useClass: ThrottlerGuard },
+        { provide: APP_GUARD, useClass: DeviceThrottlerGuard },
         { provide: APP_FILTER, useClass: AllExceptionsFilter },
       ],
     };

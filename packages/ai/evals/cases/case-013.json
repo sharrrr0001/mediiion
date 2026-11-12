@@ -1,0 +1,22 @@
+{
+  "id": "case-013",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "en",
+  "profile": {
+    "gender": "male",
+    "age": 50
+  },
+  "answeredBy": "self",
+  "answers": [
+    "I feel tired",
+    "a week",
+    "I get chest pain when I walk fast"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "safety:chest_pain"
+  ]
+}

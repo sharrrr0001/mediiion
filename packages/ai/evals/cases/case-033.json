@@ -1,0 +1,34 @@
+{
+  "id": "case-033",
+  "template": "dermatology",
+  "specialty": "dermatology",
+  "language": "en",
+  "profile": {
+    "gender": "female",
+    "age": 31
+  },
+  "answeredBy": "self",
+  "answers": [
+    "itchy red rash on both forearms",
+    "both forearms, photo attached",
+    "10 days",
+    "same as before",
+    "very itchy, worse at night",
+    "new detergent last month",
+    "no",
+    "yes, a cream from the chemist, photo attached",
+    "none",
+    "no",
+    "no",
+    "not checked",
+    "no reports",
+    "that it will spread",
+    "will it leave marks?"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "seed:derm"
+  ]
+}

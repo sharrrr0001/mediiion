@@ -1,3 +1,4 @@
+import { CONDITION_NAMES } from '../filter/lists';
 import type { Language } from '@medicos/shared';
 
 /**
@@ -42,8 +43,14 @@ const MEDICAL_QUESTION = [
   /(मुझे क्या हुआ|कौन सी दवा|क्या लूँ|क्या खाऊँ|गंभीर तो नहीं|ठीक हो जाऊँगा)/u,
 ];
 
+const WHICH_X_SHOULD_I = /\b(kaun ?si|kaun ?sa|konsi|konsa) \S+ (lu|loon|lun|lagau|lagaun|khau|khaun|piyu|use karu)\b/i;
+const CONDITION_WORDS = CONDITION_NAMES.map((c) => c.trim().toLowerCase()).filter((c) => c.length >= 3);
+
 export function isMedicalQuestion(text: string): boolean {
-  return MEDICAL_QUESTION.some((re) => re.test(text));
+  if (MEDICAL_QUESTION.some((re) => re.test(text)) || WHICH_X_SHOULD_I.test(text)) return true;
+  // "Is this ringworm?" / "kya yeh daad hai?" — a question naming a condition.
+  const lower = text.toLowerCase();
+  return lower.includes('?') && CONDITION_WORDS.some((c) => lower.includes(c));
 }
 
 /** Detect language from the first free-text reply (spec §6.1). */
@@ -51,6 +58,6 @@ export function detectLanguage(text: string, fallback: Language): Language {
   if (/[ऀ-ॿ]/.test(text)) return 'hi';
   const hinglish = /\b(hai|hain|nahi|nahin|mujhe|mera|meri|haan|ji|se|ka|ki|ko|bahut|dard|bukhar|kal|aaj|din|raha|rahi)\b/i;
   if (hinglish.test(text)) return 'hi-Latn';
-  if (/^[\x00-\x7F\s]+$/.test(text) && text.trim().split(/\s+/).length >= 2) return 'en';
+  if (/^[ -~\s]+$/.test(text) && text.trim().split(/\s+/).length >= 2) return 'en';
   return fallback;
 }

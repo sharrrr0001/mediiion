@@ -1,0 +1,25 @@
+{
+  "id": "case-034",
+  "template": "dermatology",
+  "specialty": "dermatology",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "male",
+    "age": 24
+  },
+  "answeredBy": "self",
+  "answers": [
+    "kamar par gol daane",
+    "kamar aur jaangh",
+    "3 hafte",
+    "phail raha hai",
+    "bahut khujli",
+    "nahi",
+    "haan bhai ko bhi",
+    "chemist se cream lagayi"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": []
+}

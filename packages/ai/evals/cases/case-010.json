@@ -1,0 +1,26 @@
+{
+  "id": "case-010",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "male",
+    "age": 29
+  },
+  "answeredBy": "self",
+  "answers": [
+    "main Vikram Testlal hoon, number 9123456780, flat 12 Shanti Nagar. Bukhar hai",
+    "1 din"
+  ],
+  "identifiers": [
+    "Vikram",
+    "Testlal",
+    "9123456780"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "tricky:pii"
+  ]
+}

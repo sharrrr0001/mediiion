@@ -1,0 +1,23 @@
+{
+  "id": "case-005",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "male",
+    "age": 55
+  },
+  "answeredBy": "self",
+  "answers": [
+    "thakan",
+    "5 din",
+    "chalne par seene mein dard hota hai",
+    "nahi"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "safety:chest_mid_chat"
+  ]
+}

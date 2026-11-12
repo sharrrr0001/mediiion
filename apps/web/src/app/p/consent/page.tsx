@@ -2,7 +2,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { CONSENT_VERSION } from '@medicos/shared';
+import { CONSENT_VERSION } from '@medicos/shared/client';
 import { Button, Logo, Skeleton } from '@medicos/ui';
 import { LanguagePicker } from '@/components/language-picker';
 import { post } from '@/lib/api';

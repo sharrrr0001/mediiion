@@ -80,7 +80,8 @@
     "recordsHint": "Doctor ke notes, parche aur reports",
     "myId": "Meri Medicos ID",
     "myIdHint": "Clinic par yeh QR dikhaiye",
-    "forWhom": "Kiske liye: {name}"
+    "forWhom": "Kiske liye: {name}",
+    "startPrevisitCta": "Shuru karein"
   },
   "medicosId": {
     "title": "Meri Medicos ID",
@@ -95,5 +96,56 @@
   "staff": {
     "placeholderTitle": "Doctor dashboard",
     "placeholderBody": "Doctor dashboard ban raha hai. Doctor login 2-step verification ke saath khulega."
+  },
+  "intake": {
+    "chooseTitle": "Visit se pehle AI se baat karein",
+    "chooseSubtitle": "Kuch sawaalon ke jawaab apne shabdon mein dijiye. Lagbhag 5–8 minute lagenge. Beech mein rok kar baad mein continue kar sakte hain.",
+    "kindGeneral": "General health problem",
+    "kindGeneralHint": "Bukhar, dard, khansi, pet, BP, sugar aur bahut kuch",
+    "kindSkin": "Skin, baal ya naakhun",
+    "kindSkinHint": "Daane, khujli, dhabbe, baal jhadna",
+    "chat": "Chat",
+    "voiceSoon": "Bol kar jawaab dene ki suvidha jaldi aa rahi hai",
+    "start": "Shuru karein",
+    "resume": "Apna pichhla interview continue karein",
+    "steps": [
+      "Lakshan aur history",
+      "Dawaiyan",
+      "Reports"
+    ],
+    "stepLabel": "Step {n} / 3: {name}",
+    "placeholder": "Apna jawaab likhiye…",
+    "send": "Bhejein",
+    "attach": "Photo ya report jodein",
+    "uploading": "Upload ho raha hai…",
+    "uploadFailed": "Upload nahi hua. Phir se try karein.",
+    "uploadHint": "Aap yahan photo jod sakte hain",
+    "thinking": "Agla sawaal likha ja raha hai…",
+    "notDiagnosis": "Yeh diagnosis nahi hai. Yeh aapke doctor ke liye aapki jaankari ikattha karta hai.",
+    "saveExit": "Save karke bahar jaayein",
+    "retry": "Phir se try karein",
+    "aiError": "Agla sawaal load nahi hua. Aapke jawaab save hain.",
+    "safetyTitle": "Kripya ise padhiye",
+    "call112": "112 par call karein",
+    "continueAnswering": "Main samajh gaya/gayi, aage badhein",
+    "reviewCta": "Dekhiye aapne kya bataya",
+    "chatLanguage": "Interview ki bhasha",
+    "attachments": "Aapki photo aur reports"
+  },
+  "review": {
+    "title": "Aapne humein kya bataya",
+    "subtitle": "Apne jawaab check kar lijiye. Bhejne se pehle kuch bhi badal sakte hain.",
+    "notDiagnosis": "Yeh diagnosis nahi hai. Aapke doctor aapko check karenge.",
+    "change": "Badlein",
+    "save": "Save karein",
+    "cancel": "Cancel",
+    "confirm": "Sahi hai, aage badhein",
+    "sent": "Bhej diya. Aapke doctor visit se pehle ise dekhenge.",
+    "backHome": "Home par jaayein",
+    "sections": {
+      "1": "Aapki takleef",
+      "2": "Dawaiyan aur purani sehat",
+      "3": "Readings, reports aur sawaal"
+    }
   }
 }

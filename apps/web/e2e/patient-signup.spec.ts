@@ -1,29 +1,5 @@
-import AxeBuilder from '@axe-core/playwright';
-import { expect, test, type Page } from '@playwright/test';
-
-/** Fictional test number in the 9 1xx range; dev SMS goes to the in-memory outbox only. */
-function testPhone(): string {
-  return `91${String(Date.now()).slice(-8)}`;
-}
-
-async function readOtp(page: Page, phone: string): Promise<string> {
-  let code = '';
-  await expect
-    .poll(async () => {
-      const res = await page.request.get(`/api/dev/outbox?to=${encodeURIComponent(`+91${phone}`)}`);
-      if (!res.ok()) return '';
-      code = ((await res.json()) as { code: string }).code;
-      return code;
-    })
-    .toMatch(/^\d{6}$/);
-  return code;
-}
-
-async function expectNoSeriousA11yViolations(page: Page) {
-  const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
-  const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
-  expect(serious, serious.map((v) => `${v.id}: ${v.help}`).join('\n')).toEqual([]);
-}
+import { expect, test } from '@playwright/test';
+import { expectNoSeriousA11yViolations, readOtp, testPhone } from './helpers';
 
 test('patient signs up with OTP, consents, creates a profile and sees their Medicos ID QR', async ({ page }) => {
   const phone = testPhone();

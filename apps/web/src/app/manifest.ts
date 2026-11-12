@@ -1,5 +1,5 @@
 import type { MetadataRoute } from 'next';
-import { APP_NAME } from '@medicos/shared';
+import { APP_NAME } from '@medicos/shared/client';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {

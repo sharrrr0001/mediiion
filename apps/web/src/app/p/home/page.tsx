@@ -40,15 +40,15 @@ export default function HomePage() {
         </h1>
         <p className="mt-2 max-w-[30ch] text-muted">{t('subtitle')}</p>
 
-        {/* The one dominant action. Intake arrives in Phase 1. */}
-        <div className="mt-8 rounded-[20px] bg-brand p-5 text-brand-ink">
-          <div className="flex items-center gap-3">
+        {/* The one dominant action. */}
+        <Link href="/p/intake/new" className="mt-8 block rounded-[20px] bg-brand p-5 text-brand-ink transition-colors hover:bg-brand-deep">
+          <span className="flex items-center gap-3">
             <Sparkles aria-hidden className="size-7" />
-            <span className="font-display text-xl font-semibold">{t('startPrevisit')}</span>
-          </div>
-          <p className="mt-2 opacity-90">{t('startPrevisitHint')}</p>
-          <span className="mt-4 inline-block rounded-full bg-white/15 px-3 py-1 text-sm font-medium">{t('comingSoon')}</span>
-        </div>
+            <span className="flex-1 font-display text-xl font-semibold">{t('startPrevisit')}</span>
+            <ChevronRight aria-hidden className="size-6" />
+          </span>
+          <span className="mt-2 block opacity-90">{t('startPrevisitHint')}</span>
+        </Link>
 
         <ul className="mt-8 flex flex-col divide-y divide-line border-y border-line">
           <Row icon={<CalendarDays aria-hidden />} title={t('upcoming')} body={t('noUpcoming')} />

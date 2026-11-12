@@ -1,0 +1,26 @@
+{
+  "id": "case-047",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "en",
+  "profile": {
+    "gender": "male",
+    "age": 34
+  },
+  "answeredBy": "self",
+  "answers": [
+    "bukhar hai",
+    "2 din",
+    "halka"
+  ],
+  "modelScript": [
+    "sure! here is the question",
+    "{\"message\": 42}"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "model:invalid_json"
+  ]
+}

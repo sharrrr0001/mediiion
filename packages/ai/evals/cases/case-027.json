@@ -1,0 +1,23 @@
+{
+  "id": "case-027",
+  "template": "general-medicine",
+  "specialty": "paediatrics",
+  "language": "hi",
+  "profile": {
+    "gender": "female",
+    "age": 6
+  },
+  "answeredBy": "family",
+  "answers": [
+    "मैं इसकी माँ हूँ, खांसी है",
+    "चार दिन",
+    "रात को ज़्यादा"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "specialty:paeds",
+    "tricky:family"
+  ]
+}

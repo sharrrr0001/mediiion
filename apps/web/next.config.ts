@@ -14,6 +14,8 @@ const securityHeaders = [
 
 const config: NextConfig = {
   reactStrictMode: true,
+  // Lets a production build run next to `next dev` without clobbering .next/.
+  distDir: process.env.NEXT_DIST_DIR ?? '.next',
   poweredByHeader: false,
   transpilePackages: ['@medicos/ui'],
   // Same-origin API: httpOnly cookies work without CORS (docs/decisions.md).

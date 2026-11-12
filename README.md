@@ -4,7 +4,7 @@
 
 > *Doctor ka time bachao. Patient ki baat poori suno.*
 
-**Status:** Phase 0 (foundation) is done. Next up is Phase 1 (AI intake chat). See [docs/TASKS.md](docs/TASKS.md).
+**Status:** Phase 0 (foundation) and Phase 1 (AI intake chat) are done. Next up is Phase 2 (Pre-Visit Summary and the doctor view). See [docs/TASKS.md](docs/TASKS.md).
 
 ## Requirements
 Node 20.18+ (tested on 24), pnpm 10 (`npm i -g pnpm@10.15.0`), Docker Desktop.
@@ -53,7 +53,18 @@ Open http://localhost:3001 and sign up with any 10-digit number that starts with
 | `LLM_PROVIDER`, `LLM_MODEL`, `STT_PROVIDER` | AI providers (Phase 1+) | `mock` |
 
 ## Switching AI providers / running evals
-These arrive in Phase 1 (`packages/ai`). Set `LLM_PROVIDER` and `LLM_MODEL` (and `STT_PROVIDER`) per environment, then run `pnpm eval` (mock, in CI) or `pnpm eval:live`.
+Set these in `.env` and restart `pnpm dev` (see [docs/ai-models.md](docs/ai-models.md)):
+
+| Use | Settings |
+|---|---|
+| Offline / tests | `LLM_PROVIDER=mock` |
+| Demo, Gemini Flash (**fake data only**) | `LLM_PROVIDER=gemini` · `LLM_MODEL=gemini-2.5-flash` · `GEMINI_API_KEY=…` |
+| Demo, Llama on Groq (**fake data only**) | `LLM_PROVIDER=openai-compatible` · `LLM_BASE_URL=https://api.groq.com/openai/v1` · `LLM_MODEL=<groq model id>` · `LLM_API_KEY=…` |
+| Pilot / production | `LLM_PROVIDER=anthropic` · `LLM_MODEL=claude-haiku-5-5` · `ANTHROPIC_API_KEY=…` · `LLM_DATA_TERMS=no-training` |
+
+In production the API refuses to start with `mock`/`gemini` or without `LLM_DATA_TERMS=no-training`.
+
+Evals: `pnpm eval` runs 50 fictional cases on the mock provider (CI fails on any safety check). `pnpm eval:live` runs them against the configured provider.
 
 ## Layout
 ```

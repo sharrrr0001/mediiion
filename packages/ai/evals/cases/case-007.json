@@ -1,0 +1,23 @@
+{
+  "id": "case-007",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "male",
+    "age": 40
+  },
+  "answeredBy": "self",
+  "answers": [
+    "pet dard",
+    "2 din",
+    "nahi actually 2 hafte se",
+    "halka, nahi bahut zyada"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "tricky:contradictory"
+  ]
+}

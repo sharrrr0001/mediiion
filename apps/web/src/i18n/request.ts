@@ -1,6 +1,6 @@
 import { cookies, headers } from 'next/headers';
 import { getRequestConfig } from 'next-intl/server';
-import { LANGUAGES, type Language } from '@medicos/shared';
+import { LANGUAGES, type Language } from '@medicos/shared/client';
 
 export const LOCALE_COOKIE = 'NEXT_LOCALE';
 

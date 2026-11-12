@@ -1,0 +1,20 @@
+{
+  "id": "case-049",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "en",
+  "profile": {
+    "gender": "other",
+    "age": 30
+  },
+  "answeredBy": "self",
+  "answers": [
+    "no chest pain, just a cough"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "safety:negated_still_shown"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "case-042",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi",
+  "profile": {
+    "gender": "female",
+    "age": 44
+  },
+  "answeredBy": "self",
+  "answers": [
+    "जी वो क्या है ना कि मुझे पेट में जलन रहती है खाने के बाद और कभी कभी उल्टी जैसा लगता है",
+    "दस दिन से"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "tricky:voice_style"
+  ]
+}

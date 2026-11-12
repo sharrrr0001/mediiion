@@ -80,7 +80,8 @@
     "recordsHint": "Doctor notes, prescriptions and reports",
     "myId": "My Medicos ID",
     "myIdHint": "Show this QR at the clinic",
-    "forWhom": "For: {name}"
+    "forWhom": "For: {name}",
+    "startPrevisitCta": "Start"
   },
   "medicosId": {
     "title": "My Medicos ID",
@@ -95,5 +96,56 @@
   "staff": {
     "placeholderTitle": "Doctor dashboard",
     "placeholderBody": "The doctor dashboard is being built. Doctor sign-in will open with 2-step verification."
+  },
+  "intake": {
+    "chooseTitle": "Talk with AI before your visit",
+    "chooseSubtitle": "Answer a few questions in your own words. It takes about 5–8 minutes. You can stop and continue later.",
+    "kindGeneral": "General health problem",
+    "kindGeneralHint": "Fever, pain, cough, stomach, BP, sugar and more",
+    "kindSkin": "Skin, hair or nails",
+    "kindSkinHint": "Rash, itching, spots, hair fall",
+    "chat": "Chat",
+    "voiceSoon": "Voice answers are coming soon",
+    "start": "Start",
+    "resume": "Continue your last interview",
+    "steps": [
+      "Symptoms & history",
+      "Medicines",
+      "Reports"
+    ],
+    "stepLabel": "Step {n} of 3: {name}",
+    "placeholder": "Type your answer…",
+    "send": "Send",
+    "attach": "Add photo or report",
+    "uploading": "Uploading…",
+    "uploadFailed": "Upload failed. Please try again.",
+    "uploadHint": "You can add a photo here",
+    "thinking": "Writing the next question…",
+    "notDiagnosis": "Not a diagnosis. This collects your information for your doctor.",
+    "saveExit": "Save and exit",
+    "retry": "Try again",
+    "aiError": "The next question did not load. Your answers are saved.",
+    "safetyTitle": "Please read this",
+    "call112": "Call 112",
+    "continueAnswering": "I understand, continue",
+    "reviewCta": "See what you told us",
+    "chatLanguage": "Interview language",
+    "attachments": "Your photos and reports"
+  },
+  "review": {
+    "title": "What you told us",
+    "subtitle": "Check your answers. You can change anything before sending.",
+    "notDiagnosis": "This is not a diagnosis. Your doctor will check you.",
+    "change": "Change",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Looks right, continue",
+    "sent": "Sent. Your doctor will see this before your visit.",
+    "backHome": "Back to home",
+    "sections": {
+      "1": "Your health problem",
+      "2": "Medicines and past health",
+      "3": "Readings, reports and questions"
+    }
   }
 }

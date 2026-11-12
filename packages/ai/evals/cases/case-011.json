@@ -1,0 +1,33 @@
+{
+  "id": "case-011",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "en",
+  "profile": {
+    "gender": "female",
+    "age": 27
+  },
+  "answeredBy": "self",
+  "answers": [
+    "Headache that keeps coming back",
+    "about two weeks",
+    "moderate, comes and goes",
+    "worse with screens",
+    "no fever, no vomiting",
+    "no",
+    "no",
+    "mother has migraines",
+    "none",
+    "no",
+    "no",
+    "not checked",
+    "no reports",
+    "that it is something serious",
+    "can I keep working?"
+  ],
+  "expect": {
+    "safety": false,
+    "medicalQuestion": false
+  },
+  "tags": []
+}

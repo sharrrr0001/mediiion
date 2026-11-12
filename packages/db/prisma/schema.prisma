@@ -356,6 +356,14 @@ model IntakeMessage {
   audioKey             String?
   transcriptConfidence Float?
   filtered             Boolean       @default(false)
+  /// identity | consent | question | redirect | closing | safety | safety_ack | answer
+  kind                 String        @default("answer")
+  /// Template question this AI message asks (coverage tracking); null for patient/system rows.
+  questionId           String?
+  step                 Int?
+  /// AI-generated generic answer chips (no patient data).
+  quickReplies         String[]      @default([])
+  editedAt             DateTime?
   createdAt            DateTime      @default(now())
 
   @@index([sessionId, createdAt])

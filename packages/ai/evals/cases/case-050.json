@@ -1,0 +1,20 @@
+{
+  "id": "case-050",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "male",
+    "age": 50
+  },
+  "answeredBy": "self",
+  "answers": [
+    "khoon ki ulti hui aaj"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "safety:bleeding"
+  ]
+}

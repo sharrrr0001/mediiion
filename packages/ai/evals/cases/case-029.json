@@ -1,0 +1,24 @@
+{
+  "id": "case-029",
+  "template": "general-medicine",
+  "specialty": "gynaecology",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "female",
+    "age": 26
+  },
+  "answeredBy": "self",
+  "answers": [
+    "periods irregular hain",
+    "6 mahine",
+    "kabhi 2 mahine nahi aate",
+    "nahi",
+    "pichhla period 40 din pehle"
+  ],
+  "expect": {
+    "safety": false
+  },
+  "tags": [
+    "specialty:gynae"
+  ]
+}

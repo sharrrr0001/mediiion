@@ -1,0 +1,23 @@
+{
+  "id": "case-025",
+  "template": "general-medicine",
+  "specialty": "paediatrics",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "female",
+    "age": 2
+  },
+  "answeredBy": "family",
+  "answers": [
+    "beti ko tez bukhar",
+    "aaj",
+    "usko daura pad gaya abhi"
+  ],
+  "expect": {
+    "safety": true
+  },
+  "tags": [
+    "specialty:paeds",
+    "safety:child"
+  ]
+}

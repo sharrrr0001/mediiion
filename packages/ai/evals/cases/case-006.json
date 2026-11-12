@@ -1,0 +1,24 @@
+{
+  "id": "case-006",
+  "template": "general-medicine",
+  "specialty": "general_medicine",
+  "language": "hi-Latn",
+  "profile": {
+    "gender": "female",
+    "age": 34
+  },
+  "answeredBy": "self",
+  "answers": [
+    "mujhe kya hua hai? kaunsi dawa lu?",
+    "sir dard",
+    "3 din",
+    "halka"
+  ],
+  "expect": {
+    "safety": false,
+    "medicalQuestion": true
+  },
+  "tags": [
+    "tricky:medical_question"
+  ]
+}
