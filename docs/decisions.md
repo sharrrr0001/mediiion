@@ -20,3 +20,4 @@ One line each: date — decision — why.
 - 2026-11-12 — `packages/shared` and `packages/db` compile to CommonJS `dist/` (consumed by Nest and Next); `packages/ui` ships TS source via Next `transpilePackages` (web-only).
 - 2026-11-12 — i18n without locale in the URL: language stored in `NEXT_LOCALE` cookie — keeps routes `/p/...` stable and short for patients.
 - 2026-11-12 — Local Redis on host port **6380** and S3 via **SeaweedFS** (MinIO images no longer public) — port 6379 busy on dev machine; app only speaks the S3 API so the store is swappable.
+- 2026-11-12 — Upgraded to latest patch/minor in each pinned major (Next 15.5.29, NestJS 11.2, Prisma 6.19, zod 4.6, Playwright 1.65), nodemailer 10.3.1, and pnpm overrides for sharp/postcss/deepmerge-ts — clear all high/critical `pnpm audit` advisories without major framework jumps. Revisit overrides when moving to Next 16 / Prisma 7.

@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+@import '@medicos/ui/tokens.css';
+
+/* Scan shared UI components for class names. */
+@source '../../../../packages/ui/src';
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}

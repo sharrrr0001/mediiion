@@ -1,0 +1,75 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_ENV: test
+  # CI-only throwaway secrets (not used anywhere real).
+  FIELD_ENCRYPTION_KEY: MDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDA=
+  BLIND_INDEX_KEY: MTExMTExMTExMTExMTExMTExMTExMTExMTExMTExMTE=
+  JWT_SECRET: ci-only-jwt-secret-not-used-anywhere-real-0123456789
+  DATABASE_URL: postgresql://medicos:medicos@localhost:5432/medicos?schema=public
+  TEST_DATABASE_URL: postgresql://medicos:medicos@localhost:5432/medicos_test?schema=public
+  SHADOW_DATABASE_URL: postgresql://medicos:medicos@localhost:5432/medicos_shadow?schema=public
+  WEB_ORIGINS: http://localhost:3001
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: medicos
+          POSTGRES_PASSWORD: medicos
+          POSTGRES_DB: medicos
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U medicos" --health-interval 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - name: Create test database
+        run: PGPASSWORD=medicos psql -h localhost -U medicos -d medicos -c "CREATE DATABASE medicos_test;" -c "CREATE DATABASE medicos_shadow;"
+      - run: pnpm db:generate
+      - name: Migrations apply cleanly
+        run: pnpm --filter @medicos/db exec prisma migrate deploy
+      - name: Schema and migrations are in sync (no drift)
+        run: pnpm --filter @medicos/db exec prisma migrate diff --from-migrations prisma/migrations --to-schema-datamodel prisma/schema.prisma --shadow-database-url "$SHADOW_DATABASE_URL" --exit-code
+      - name: Seed works on a fresh DB
+        run: pnpm --filter @medicos/db build && pnpm --filter @medicos/db exec tsx prisma/seed.ts
+      - run: pnpm lint
+      - run: pnpm typecheck
+      - name: Tests (safety & privacy tests are never skipped)
+        run: pnpm test
+      - run: pnpm build
+      - name: Dependency audit
+        run: pnpm audit --audit-level high --prod
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

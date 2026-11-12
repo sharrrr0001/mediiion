@@ -38,7 +38,7 @@ docs/           spec, plans/, decisions.md, ideas.md, safety.md, privacy.md, TAS
 ## Commands (run from repo root)
 - Install: `pnpm install`
 - Infra: `pnpm infra:up` (Postgres :5434, Redis :6380, S3 (SeaweedFS) :9000, Mailpit :8025)
-- DB: `pnpm db:migrate` · `pnpm db:seed` · `pnpm db:reset`
+- DB: `pnpm db:migrate` · `pnpm db:seed` · `pnpm --filter @medicos/db check-drift` (uses medicos_shadow, never the test DB)
 - Dev: `pnpm dev` (web http://localhost:3001, api http://localhost:4000, Swagger /docs)
 - Build: `pnpm build` · Lint: `pnpm lint` · Types: `pnpm typecheck`
 - Test: `pnpm test` (unit + API; API tests need infra up) · E2E: `pnpm e2e`

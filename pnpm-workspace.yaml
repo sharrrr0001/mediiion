@@ -10,3 +10,8 @@ onlyBuiltDependencies:
   - esbuild
   - sharp
   - unrs-resolver
+# Security overrides for transitive deps pinned by Next 15 / Prisma 6 (see docs/decisions.md).
+overrides:
+  sharp: 0.35.5
+  postcss: 8.5.32
+  deepmerge-ts: 8.0.2

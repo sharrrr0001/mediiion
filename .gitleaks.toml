@@ -1,0 +1,7 @@
+# Allow the documented, CI-only throwaway keys in the workflow file.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "CI-only dummy secrets"
+paths = ['''.github/workflows/ci.yml''']
