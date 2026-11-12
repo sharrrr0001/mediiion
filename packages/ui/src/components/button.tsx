@@ -4,68 +4,60 @@ import * as React from 'react';
 import { cn } from '../cn';
 
 const buttonVariants = cva(
-  'inline-flex items-center justify-center gap-2 rounded-xl font-semibold transition-colors duration-150 disabled:opacity-50 disabled:pointer-events-none select-none',
+  'inline-flex select-none items-center justify-center gap-2 rounded-[var(--radius-control)] font-semibold transition-[background-color,border-color,color,box-shadow,transform] duration-150 ease-out active:translate-y-px disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-5 [&_svg]:shrink-0 [&_svg]:stroke-[1.75]',
   {
     variants: {
       variant: {
-        primary: 'bg-brand text-brand-ink hover:bg-brand-deep',
-        secondary: 'bg-surface text-brand border-2 border-brand hover:bg-brand-soft',
+        primary: 'bg-brand text-brand-ink shadow-sm hover:bg-brand-hover',
+        secondary: 'border border-brand bg-surface text-brand hover:bg-brand-tint',
         ghost: 'text-ink hover:bg-surface-2',
-        danger: 'bg-danger text-white hover:opacity-90',
+        danger: 'bg-danger text-white shadow-sm hover:brightness-95',
+        subtle: 'bg-brand-soft text-brand-deep hover:bg-brand-tint',
       },
       size: {
-        // Patient app: min 48px touch targets (spec §8).
-        lg: 'min-h-14 px-6 text-[1.0625rem]',
-        md: 'min-h-12 px-5 text-base',
-        sm: 'min-h-10 px-3 text-sm',
+        sm: 'min-h-9 px-3 text-sm',
+        md: 'min-h-11 px-4 text-base',
+        lg: 'min-h-[52px] px-6 text-base',
+        icon: 'size-11 p-0',
       },
-      block: { true: 'w-full' },
+      block: {
+        true: 'w-full',
+        /** Full width on phone, natural width from md up (patient CTAs). */
+        phone: 'w-full md:w-auto',
+      },
     },
     defaultVariants: { variant: 'primary', size: 'md' },
   },
 );
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {
   asChild?: boolean;
   loading?: boolean;
 }
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, block, asChild, loading, disabled, children, ...props }, ref) => {
+    const classes = cn(buttonVariants({ variant, size, block }), className);
     if (asChild) {
       // Radix Slot needs exactly one child element — no spinner slot alongside it.
       return (
-        <Slot ref={ref} className={cn(buttonVariants({ variant, size, block }), className)} {...props}>
+        <Slot ref={ref} className={classes} {...props}>
           {children}
         </Slot>
       );
     }
-    const Comp = 'button';
     return (
-      <Comp
-        ref={ref}
-        className={cn(buttonVariants({ variant, size, block }), className)}
-        disabled={asChild ? undefined : disabled || loading}
-        aria-busy={loading || undefined}
-        {...props}
-      >
+      <button ref={ref} className={classes} disabled={disabled || loading} aria-busy={loading || undefined} {...props}>
         {loading ? <Spinner /> : null}
         {children}
-      </Comp>
+      </button>
     );
   },
 );
 Button.displayName = 'Button';
 
 export function Spinner({ className }: { className?: string }) {
-  return (
-    <span
-      aria-hidden
-      className={cn('inline-block size-4 animate-spin rounded-full border-2 border-current border-r-transparent', className)}
-    />
-  );
+  return <span aria-hidden className={cn('inline-block size-4 animate-spin rounded-full border-2 border-current border-r-transparent', className)} />;
 }
 
 export { buttonVariants };

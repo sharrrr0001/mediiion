@@ -55,7 +55,7 @@ export function OtpInput({ value, onChange, length = 6, label, invalid, autoFocu
           aria-label={`${label} ${i + 1}`}
           aria-invalid={invalid || undefined}
           className={cn(
-            'h-14 w-full min-w-0 max-w-14 rounded-xl border-2 border-line bg-surface text-center font-mono text-2xl font-semibold text-ink focus:border-brand focus:outline-none',
+            'h-14 w-full min-w-0 max-w-14 rounded-[var(--radius-control)] border border-line bg-surface text-center font-mono text-2xl font-semibold text-ink shadow-sm focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/15',
             invalid && 'border-danger',
           )}
         />

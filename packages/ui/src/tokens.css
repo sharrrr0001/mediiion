@@ -1,85 +1,58 @@
 /*
- * Medicos design tokens (spec §8). Light + dark. Tailwind v4 maps them via @theme inline,
- * so utilities like bg-brand, text-ink, border-line work everywhere.
+ * Medicos design tokens — LIGHT THEME ONLY (white + green).
+ * The site must look identical whatever the OS/browser theme is, so there is no dark mode.
+ * Tailwind v4 maps tokens via @theme inline: bg-brand, text-ink, border-line, shadow-md, …
  */
 :root {
-  --brand: #0b6b50;
-  --brand-deep: #06402f;
-  --brand-soft: #dcefe7;
-  --brand-ink: #ffffff; /* text on brand */
-  --accent: #c9620a;
-  --accent-soft: #fbeadb;
-  --bg: #f6f8f6;
+  color-scheme: light;
+
+  --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #eef3f0;
-  --ink: #14231d;
-  --muted: #556860;
-  --line: #d7e1dc;
-  --danger: #b4322a;
-  --danger-soft: #fbe9e7;
-  --status-ready: #0b6b50;
+  --surface-2: #f4faf7;
+  --brand: #0e7a55;
+  --brand-hover: #0b6646;
+  --brand-deep: #064e37;
+  --brand-soft: #e6f4ee;
+  --brand-tint: #f0f9f5;
+  --brand-ink: #ffffff;
+  --ink: #0f1f18;
+  --muted: #5b6b64;
+  --line: #e3ece7;
+  --accent: #f59e0b;
+  --accent-ink: #92400e; /* AA text on amber tints */
+  --accent-soft: #fef6e7;
+  --danger: #c2410c;
+  --danger-soft: #fff1ea;
+  --status-ready: #0e7a55;
   --status-progress: #2563eb;
   --status-walkin: #7c3aed;
   --status-idle: #6b7280;
-  --focus: #c9620a;
+  --focus: #0e7a55;
+
+  --shadow-sm: 0 1px 2px rgba(16, 40, 30, 0.06);
+  --shadow-md: 0 4px 16px -4px rgba(16, 40, 30, 0.1);
+  --shadow-lg: 0 12px 32px -8px rgba(16, 40, 30, 0.14);
   --radius-card: 12px;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --brand: #3fbf91;
-    --brand-deep: #0e2a21;
-    --brand-soft: #173a2e;
-    --brand-ink: #06231a;
-    --accent: #f0a35c;
-    --accent-soft: #3a2a1b;
-    --bg: #0f1714;
-    --surface: #16211d;
-    --surface-2: #1c2a25;
-    --ink: #e3ece8;
-    --muted: #9db1a8;
-    --line: #2a3b35;
-    --danger: #ff8a80;
-    --danger-soft: #3a1e1c;
-    --status-ready: #3fbf91;
-    --status-progress: #7aa7ff;
-    --status-walkin: #b69cff;
-    --status-idle: #9ca3af;
-    --focus: #f0a35c;
-  }
-}
-
-:root[data-theme='dark'] {
-  --brand: #3fbf91;
-  --brand-deep: #0e2a21;
-  --brand-soft: #173a2e;
-  --brand-ink: #06231a;
-  --accent: #f0a35c;
-  --accent-soft: #3a2a1b;
-  --bg: #0f1714;
-  --surface: #16211d;
-  --surface-2: #1c2a25;
-  --ink: #e3ece8;
-  --muted: #9db1a8;
-  --line: #2a3b35;
-  --danger: #ff8a80;
-  --danger-soft: #3a1e1c;
-  --focus: #f0a35c;
+  --radius-control: 10px;
+  --bottom-bar: 64px;
 }
 
 @theme inline {
-  --color-brand: var(--brand);
-  --color-brand-deep: var(--brand-deep);
-  --color-brand-soft: var(--brand-soft);
-  --color-brand-ink: var(--brand-ink);
-  --color-accent: var(--accent);
-  --color-accent-soft: var(--accent-soft);
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-surface-2: var(--surface-2);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-tint: var(--brand-tint);
+  --color-brand-ink: var(--brand-ink);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-ink: var(--accent-ink);
+  --color-accent-soft: var(--accent-soft);
   --color-danger: var(--danger);
   --color-danger-soft: var(--danger-soft);
   --color-status-ready: var(--status-ready);
@@ -87,20 +60,40 @@
   --color-status-walkin: var(--status-walkin);
   --color-status-idle: var(--status-idle);
   --radius-card: var(--radius-card);
+  --radius-control: var(--radius-control);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
   --font-sans: var(--font-inter), var(--font-devanagari), system-ui, sans-serif;
   --font-display: var(--font-bricolage), var(--font-devanagari), system-ui, sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  /* Type scale 14/16/18/20/24/30/36/48 */
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
 }
 
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
+    background: var(--bg);
   }
   body {
     background: var(--bg);
     color: var(--ink);
-    line-height: 1.55;
-    font-variant-numeric: tabular-nums;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  h1,
+  h2,
+  h3 {
+    line-height: 1.15;
+    letter-spacing: -0.015em;
   }
   :focus-visible {
     outline: 3px solid var(--focus);
@@ -113,6 +106,36 @@
     *::after {
       animation-duration: 0.01ms !important;
       transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  /* Page titles scale between phone and laptop. */
+  .text-page-title {
+    font-size: clamp(1.875rem, 1.4rem + 1.6vw, 2.5rem);
+  }
+  .text-hero {
+    font-size: clamp(2.25rem, 1.6rem + 2.8vw, 3.5rem);
+  }
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .pb-safe-bar {
+    padding-bottom: calc(var(--bottom-bar) + env(safe-area-inset-bottom) + 16px);
+  }
+  .animate-in {
+    animation: fade-up 180ms ease-out both;
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
     }
   }
 }
