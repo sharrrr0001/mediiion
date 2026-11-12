@@ -40,6 +40,9 @@ const EnvSchema = z
     /** Must be set to "no-training" to send real patient data to a provider in production. */
     LLM_DATA_TERMS: z.enum(['no-training', 'unknown']).default('unknown'),
     USD_INR: z.coerce.number().positive().default(88),
+    STT_PROVIDER: z.enum(['mock', 'groq', 'sarvam']).default('mock'),
+    STT_MODEL: z.string().default(''),
+    STT_API_KEY: z.string().optional(),
     // Object storage
     S3_ENDPOINT: z.string().optional(),
     S3_REGION: z.string().default('ap-south-1'),
@@ -58,6 +61,9 @@ const EnvSchema = z
     // Golden rule 11: real patients only with providers whose terms forbid training on inputs.
     if (env.LLM_PROVIDER === 'mock' || env.LLM_PROVIDER === 'gemini')
       ctx.addIssue({ code: 'custom', path: ['LLM_PROVIDER'], message: 'mock/free-tier providers are not allowed in production' });
+    // Voice cannot be de-identified: production STT must be the India-hosted, no-training provider.
+    if (env.STT_PROVIDER !== 'sarvam')
+      ctx.addIssue({ code: 'custom', path: ['STT_PROVIDER'], message: 'production speech-to-text must be sarvam' });
     if (env.LLM_DATA_TERMS !== 'no-training')
       ctx.addIssue({ code: 'custom', path: ['LLM_DATA_TERMS'], message: 'must be "no-training" in production' });
   });

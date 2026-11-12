@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { LANGUAGES } from './constants';
 
-export const TEMPLATE_KEYS = ['general-medicine', 'dermatology'] as const;
+export const TEMPLATE_KEYS = ['general-medicine', 'dermatology', 'paediatrics', 'gynaecology'] as const;
 
 export const StartIntake = z
   .object({
@@ -14,7 +14,23 @@ export const StartIntake = z
   .strict();
 export type StartIntake = z.infer<typeof StartIntake>;
 
-export const PostIntakeMessage = z.object({ text: z.string().trim().min(1).max(2000) }).strict();
+export const PostIntakeMessage = z
+  .object({
+    text: z.string().trim().min(1).max(2000),
+    /** Set when the text is a confirmed voice transcript (links the audio clip). */
+    voiceId: z.uuid().optional(),
+  })
+  .strict();
+
+export const MAX_VOICE_BYTES = 2 * 1024 * 1024;
+export const MAX_VOICE_MS = 60_000;
+
+/** A transcribed voice answer awaiting the patient's confirmation (never posted automatically). */
+export interface VoiceDraft {
+  voiceId: string;
+  transcript: string;
+  confidence: number | null;
+}
 export type PostIntakeMessage = z.infer<typeof PostIntakeMessage>;
 
 export const EditIntakeAnswer = z.object({ text: z.string().trim().min(1).max(2000) }).strict();

@@ -11,3 +11,4 @@ export * from './engine/turn';
 export * from './providers';
 export * from './summary/writer';
 export * from './summary/validate';
+export * from './stt';

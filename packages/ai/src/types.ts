@@ -43,11 +43,6 @@ export interface LlmProvider {
   json<T>(req: JsonRequest<T>): Promise<JsonResponse<T>>;
 }
 
-export interface SttProvider {
-  readonly name: string;
-  transcribe(audio: Buffer, opts: { languageHint?: 'hi' | 'en' | 'hi-en' }): Promise<{ text: string; confidence: number }>;
-}
-
 export class LlmOutputError extends Error {
   constructor(
     message: string,

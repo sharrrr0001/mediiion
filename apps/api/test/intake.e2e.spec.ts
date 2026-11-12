@@ -196,3 +196,53 @@ describe('review edits and uploads', () => {
     expect(ok.body.attachments[0].url).toMatch(/X-Amz-Expires=300/);
   });
 });
+
+describe('voice answers (Phase 3)', () => {
+  // Minimal WebM/EBML header + padding — enough for magic-byte sniffing; the mock STT ignores content.
+  const fakeWebm = Buffer.concat([Buffer.from([0x1a, 0x45, 0xdf, 0xa3]), Buffer.alloc(2048, 1)]);
+
+  async function atFirstQuestion() {
+    const p = await patientWithProfile();
+    let view = (await p.agent.post('/intake/sessions').send({ profileId: p.profile.id })).body as IntakeView;
+    view = await say(p.agent, view.id, 'Haan');
+    view = await say(p.agent, view.id, 'Haan');
+    return { ...p, view };
+  }
+
+  it('returns a draft transcript and posts nothing until the patient confirms', async () => {
+    const { agent, view } = await atFirstQuestion();
+    const before = view.messages.length;
+    const draft = await agent.post(`/intake/sessions/${view.id}/voice`).field('durationMs', '3200').attach('audio', fakeWebm, { filename: 'a.webm', contentType: 'audio/webm' });
+    expect(draft.status, JSON.stringify(draft.body)).toBe(201);
+    expect(draft.body.transcript).toMatch(/bukhar/);
+    expect((await agent.get(`/intake/sessions/${view.id}`)).body.messages).toHaveLength(before);
+
+    const sent = await agent.post(`/intake/sessions/${view.id}/messages`).send({ text: draft.body.transcript, voiceId: draft.body.voiceId });
+    expect(sent.status).toBe(200);
+    const row = await prisma.intakeMessage.findFirstOrThrow({ where: { sessionId: view.id, role: 'patient' }, orderBy: { createdAt: 'desc' } });
+    expect(row.audioKey).toMatch(/^patients\/.+\/voice\//);
+    expect(row.transcriptConfidence).toBeCloseTo(0.95);
+    const clip = await prisma.voiceClip.findUniqueOrThrow({ where: { id: draft.body.voiceId } });
+    expect(clip.transcriptEnc).not.toMatch(/bukhar/);
+
+    // A clip can only be used once.
+    expect((await agent.post(`/intake/sessions/${view.id}/messages`).send({ text: 'again', voiceId: draft.body.voiceId })).status).toBe(400);
+    const usage = await prisma.aiUsage.findFirstOrThrow({ where: { sessionId: view.id, step: 'stt' } });
+    expect(usage.audioSeconds).toBeCloseTo(3.2);
+  });
+
+  it('runs the safety rule on the confirmed (edited) transcript', async () => {
+    const { agent, view } = await atFirstQuestion();
+    const draft = await agent.post(`/intake/sessions/${view.id}/voice`).field('durationMs', '2000').attach('audio', fakeWebm, 'a.webm');
+    const sent = await agent.post(`/intake/sessions/${view.id}/messages`).send({ text: 'chalne par seene mein dard hota hai', voiceId: draft.body.voiceId });
+    expect(sent.body.awaiting).toBe('safety_ack');
+  });
+
+  it('rejects non-audio, too-long recordings and other patients', async () => {
+    const { agent, view } = await atFirstQuestion();
+    expect((await agent.post(`/intake/sessions/${view.id}/voice`).field('durationMs', '2000').attach('audio', Buffer.from('MZ definitely not audio content'), 'a.webm')).status).toBe(415);
+    expect((await agent.post(`/intake/sessions/${view.id}/voice`).field('durationMs', '90000').attach('audio', fakeWebm, 'a.webm')).status).toBe(400);
+    const other = await patientWithProfile();
+    expect((await other.agent.post(`/intake/sessions/${view.id}/voice`).field('durationMs', '2000').attach('audio', fakeWebm, 'a.webm')).status).toBe(404);
+  });
+});

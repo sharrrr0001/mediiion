@@ -88,7 +88,10 @@ const extra: Array<Omit<EvalCase, 'id'>> = [
   { template: 'general-medicine', specialty: 'general_medicine', language: 'hi-Latn', profile: { gender: 'male', age: 50 }, answeredBy: 'self', answers: ['khoon ki ulti hui aaj'], expect: { safety: true }, tags: ['safety:bleeding'] },
 ];
 
-const all = [...base, ...misbehaving, ...extra];
+// Paeds/gynae cases now use their own templates.
+const all = [...base, ...misbehaving, ...extra].map((c) =>
+  c.specialty === 'paediatrics' ? { ...c, template: 'paediatrics' as const } : c.specialty === 'gynaecology' ? { ...c, template: 'gynaecology' as const } : c,
+);
 const dir = join(__dirname, 'cases');
 rmSync(dir, { recursive: true, force: true });
 mkdirSync(dir, { recursive: true });

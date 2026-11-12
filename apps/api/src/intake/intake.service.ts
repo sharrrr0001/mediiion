@@ -21,6 +21,7 @@ import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
 import { AiService } from './ai.service';
 import { AttachmentsService } from './attachments.service';
 import { SummaryService } from './summary.service';
+import { VoiceService } from './voice.service';
 import {
   buildReview,
   currentStep,
@@ -45,6 +46,7 @@ export class IntakeService {
     private readonly ai: AiService,
     private readonly attachments: AttachmentsService,
     private readonly summaries: SummaryService,
+    private readonly voice: VoiceService,
     @Inject(CRYPTO) private readonly crypto: FieldCrypto,
   ) {}
 
@@ -81,7 +83,7 @@ export class IntakeService {
 
   private async addMessage(
     sessionId: string,
-    m: { role: 'ai' | 'patient' | 'system'; kind: string; text: string; questionId?: string; step?: number; quickReplies?: string[]; filtered?: boolean },
+    m: { role: 'ai' | 'patient' | 'system'; kind: string; text: string; questionId?: string; step?: number; quickReplies?: string[]; filtered?: boolean; audioKey?: string; transcriptConfidence?: number | null },
   ) {
     await this.prisma.intakeMessage.create({
       data: {
@@ -93,6 +95,8 @@ export class IntakeService {
         step: m.step ?? null,
         quickReplies: m.quickReplies ?? [],
         filtered: m.filtered ?? false,
+        audioKey: m.audioKey ?? null,
+        transcriptConfidence: m.transcriptConfidence ?? null,
       },
     });
   }
@@ -154,12 +158,14 @@ export class IntakeService {
   }
 
   /** Every patient message runs through the safety rule FIRST (rule 4), then the engine. */
-  async postMessage(user: AuthUser, id: string, text: string, req: Request): Promise<IntakeView> {
+  async postMessage(user: AuthUser, id: string, text: string, req: Request, voiceId?: string): Promise<IntakeView> {
     const ctx = await this.load(user, id);
     const awaiting = deriveAwaiting(ctx.messages, ctx.session.status);
     if (!['identity', 'consent', 'answer'].includes(awaiting)) throw CONFLICT('Please continue the conversation first.');
 
-    await this.addMessage(id, { role: 'patient', kind: 'answer', text });
+    // A confirmed voice answer keeps a link to its audio (the patient may have edited the text).
+    const clip = voiceId ? await this.voice.claim(id, voiceId) : null;
+    await this.addMessage(id, { role: 'patient', kind: 'answer', text, audioKey: clip?.s3Key, transcriptConfidence: clip?.confidence });
     if (ctx.session.status === 'paused') await this.prisma.intakeSession.update({ where: { id }, data: { status: 'started' } });
     await this.audit.record({ actor: user, action: 'intake.message', entity: 'intake_session', entityId: id, patientProfileId: ctx.profile.id, req });
 

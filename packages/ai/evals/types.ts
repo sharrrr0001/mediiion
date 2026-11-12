@@ -2,8 +2,8 @@ import type { Language } from '@medicos/shared';
 
 export interface EvalCase {
   id: string;
-  template: 'general-medicine' | 'dermatology';
-  /** Clinical area this case represents (paeds/gynae use the GM template until Phase 3). */
+  template: 'general-medicine' | 'dermatology' | 'paediatrics' | 'gynaecology';
+  /** Clinical area this case represents. */
   specialty: string;
   language: Language;
   profile: { gender: string; age: number };

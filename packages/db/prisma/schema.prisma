@@ -337,6 +337,7 @@ model IntakeSession {
   safetyEvents  SafetyEvent[]
   filterBlocks  FilterBlockEvent[]
   aiUsage       AiUsage[]
+  voiceClips    VoiceClip[]
 
   @@index([patientProfileId])
   @@index([doctorId])
@@ -369,6 +370,22 @@ model IntakeMessage {
   createdAt            DateTime      @default(now())
 
   @@index([sessionId, createdAt])
+}
+
+/// A voice answer: audio in private storage + its transcript, a DRAFT until the patient confirms it.
+model VoiceClip {
+  id            String        @id @default(uuid()) @db.Uuid
+  sessionId     String        @db.Uuid
+  session       IntakeSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  s3Key         String
+  mime          String
+  durationMs    Int
+  transcriptEnc String // ENC
+  confidence    Float?
+  usedAt        DateTime?
+  createdAt     DateTime      @default(now())
+
+  @@index([sessionId])
 }
 
 enum AttachmentKind {

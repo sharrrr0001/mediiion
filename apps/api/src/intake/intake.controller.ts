@@ -22,6 +22,7 @@ import {
   ATTACHMENT_KINDS,
   EditIntakeAnswer,
   MAX_UPLOAD_BYTES,
+  MAX_VOICE_BYTES,
   PostIntakeMessage,
   SetIntakeLanguage,
   StartIntake,
@@ -33,6 +34,7 @@ import { AppError } from '../common/errors';
 import { ZodBody, ZodPipe } from '../common/zod';
 import { AttachmentsService } from './attachments.service';
 import { IntakeService } from './intake.service';
+import { VoiceService } from './voice.service';
 
 const UploadMeta = z.object({ kind: z.enum(ATTACHMENT_KINDS), label: z.string().max(80).optional() });
 
@@ -44,6 +46,7 @@ export class IntakeController {
     private readonly intake: IntakeService,
     private readonly attachments: AttachmentsService,
     private readonly audit: AuditService,
+    private readonly voice: VoiceService,
   ) {}
 
   @Post()
@@ -70,10 +73,10 @@ export class IntakeController {
   message(
     @CurrentUser() user: AuthUser,
     @Param('id', ParseUUIDPipe) id: string,
-    @Body(new ZodPipe(PostIntakeMessage)) body: { text: string },
+    @Body(new ZodPipe(PostIntakeMessage)) body: { text: string; voiceId?: string },
     @Req() req: Request,
   ) {
-    return this.intake.postMessage(user, id, body.text, req);
+    return this.intake.postMessage(user, id, body.text, req, body.voiceId);
   }
 
   @Post(':id/continue')
@@ -127,6 +130,22 @@ export class IntakeController {
   @HttpCode(HttpStatus.OK)
   submit(@CurrentUser() user: AuthUser, @Param('id', ParseUUIDPipe) id: string, @Req() req: Request) {
     return this.intake.submit(user, id, req);
+  }
+
+  /** Voice answer → draft transcript for the patient to confirm (not posted automatically). */
+  @Throttle({ default: { limit: 30, ttl: 60_000 } })
+  @Post(':id/voice')
+  @ApiConsumes('multipart/form-data')
+  @UseInterceptors(FileInterceptor('audio', { limits: { fileSize: MAX_VOICE_BYTES, files: 1 } }))
+  voiceAnswer(
+    @CurrentUser() user: AuthUser,
+    @Param('id', ParseUUIDPipe) id: string,
+    @UploadedFile() file: Express.Multer.File | undefined,
+    @Body(new ZodPipe(z.object({ durationMs: z.coerce.number().int().min(0).max(120_000) }))) body: { durationMs: number },
+    @Req() req: Request,
+  ) {
+    if (!file) throw new AppError(HttpStatus.BAD_REQUEST, 'NO_AUDIO', 'Please record your answer.');
+    return this.voice.transcribe(user, id, file.buffer, body.durationMs, req);
   }
 
   @Throttle({ default: { limit: 20, ttl: 60_000 } })
