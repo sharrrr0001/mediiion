@@ -90,13 +90,13 @@ describe('OTP auth', () => {
     for (const row of rows) expect(JSON.stringify(row)).not.toContain(phone.slice(3));
   });
 
-  it('blocks doctor/staff/admin sign-in until TOTP 2FA exists', async () => {
+  it('doctor/staff/admin get a TOTP 2FA step instead of a session after OTP', async () => {
     const phone = uniquePhone();
     const crypto = createFieldCrypto(process.env.FIELD_ENCRYPTION_KEY, process.env.BLIND_INDEX_KEY);
-    await prisma.user.create({ data: { phoneHash: crypto.blindIndex(phone, BIDX.phone), role: 'doctor' } });
+    await prisma.user.create({ data: { phoneHash: crypto.blindIndex(phone, BIDX.phone), role: 'admin' } });
     const { verify } = await loginWithPhone(t, phone);
-    expect(verify.status).toBe(403);
-    expect(verify.body.error.code).toBe('TWO_FACTOR_REQUIRED');
+    expect(verify.status).toBe(200);
+    expect(verify.body.twoFactor).toBe('setup');
     expect(verify.headers['set-cookie'] ?? []).not.toEqual(expect.arrayContaining([expect.stringMatching(/^mc_at=/)]));
   });
 });

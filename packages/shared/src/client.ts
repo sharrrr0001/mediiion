@@ -7,3 +7,6 @@ export * from './safety-config';
 export * from './medicos-id';
 export type { IntakeAwaiting, IntakeAttachmentView, IntakeMessageView, IntakeReview, IntakeView, ReviewItem } from './intake';
 export type { MeResponse, ProfileSummary } from './patient';
+export type { DoctorListItem, DoctorMe, DoctorQueueRow, DoctorSummaryView, FinalisedNoteView, QueueStatus, RecordDetailView, RecordEntryView } from './doctor';
+export type { PreVisitSummary, SummaryLine } from './pre-visit-summary';
+export type { TwoFactorChallengeResponse } from './auth';

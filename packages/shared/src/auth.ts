@@ -23,3 +23,16 @@ export const OtpVerify = z
   })
   .strict();
 export type OtpVerify = z.infer<typeof OtpVerify>;
+
+export const TwoFactorVerify = z
+  .object({
+    ticket: z.string().min(20).max(2000),
+    code: z.string().regex(/^\d{6}$/, 'Enter the 6-digit code from your authenticator app'),
+  })
+  .strict();
+export type TwoFactorVerify = z.infer<typeof TwoFactorVerify>;
+
+/** OTP verify response for roles that need 2FA (no session yet). */
+export type TwoFactorChallengeResponse =
+  | { twoFactor: 'verify'; ticket: string }
+  | { twoFactor: 'setup'; ticket: string; secret: string; otpauthUrl: string };

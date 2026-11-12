@@ -10,6 +10,7 @@ import { AuthModule } from './auth/auth.module';
 import { AllExceptionsFilter } from './common/errors';
 import { CoreModule } from './config/core.module';
 import { IntakeModule } from './intake/intake.module';
+import { DoctorModule } from './doctor/records';
 import { loadEnv } from './config/env';
 import { DevController, HealthController } from './health/health.controller';
 import { pinoRedact, serializers } from './logging/redaction';
@@ -46,6 +47,7 @@ export class AppModule {
         ThrottlerModule.forRoot([{ ttl: 60_000, limit: 120 }]),
         AuthModule,
         IntakeModule,
+        DoctorModule,
       ],
       controllers: [HealthController, DevController, PatientsController],
       providers: [

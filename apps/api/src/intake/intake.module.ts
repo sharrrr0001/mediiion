@@ -4,10 +4,11 @@ import { AttachmentsService } from './attachments.service';
 import { IntakeController } from './intake.controller';
 import { IntakeService } from './intake.service';
 import { StorageService } from './storage.service';
+import { SummaryService } from './summary.service';
 
 @Module({
   controllers: [IntakeController],
-  providers: [IntakeService, AiService, AttachmentsService, StorageService],
-  exports: [AiService],
+  providers: [IntakeService, AiService, AttachmentsService, StorageService, SummaryService],
+  exports: [AiService, SummaryService, StorageService],
 })
 export class IntakeModule {}

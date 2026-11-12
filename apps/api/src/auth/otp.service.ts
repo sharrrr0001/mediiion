@@ -5,7 +5,6 @@ import {
   OTP_MAX_ATTEMPTS,
   OTP_RESEND_SECONDS,
   OTP_TTL_SECONDS,
-  ROLES_REQUIRING_2FA,
   type OtpRequest,
   type OtpVerify,
 } from '@medicos/shared';
@@ -124,10 +123,6 @@ export class OtpService {
     const user = await this.prisma.user.findUnique({ where });
     if (user) {
       if (user.status !== 'active') throw new AppError(HttpStatus.FORBIDDEN, 'ACCOUNT_INACTIVE', 'This account is not active.');
-      if (ROLES_REQUIRING_2FA.includes(user.role)) {
-        // Decision log: staff/doctor/admin sign-in is blocked until TOTP 2FA ships (Phase 4).
-        throw new AppError(HttpStatus.FORBIDDEN, 'TWO_FACTOR_REQUIRED', 'This account needs 2-factor sign-in (coming soon).');
-      }
       return user;
     }
     const contact = sms ? { phoneEnc: challenge.identifierEnc } : { emailEnc: challenge.identifierEnc };

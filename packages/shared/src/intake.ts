@@ -7,6 +7,8 @@ export const StartIntake = z
   .object({
     profileId: z.uuid(),
     templateKey: z.enum(TEMPLATE_KEYS).default('general-medicine'),
+    /** Chosen (or clinic-link) doctor. The summary is shared only with this doctor. */
+    doctorId: z.uuid().optional(),
     language: z.enum(LANGUAGES).optional(),
   })
   .strict();

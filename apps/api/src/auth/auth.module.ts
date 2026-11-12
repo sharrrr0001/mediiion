@@ -7,6 +7,7 @@ import { AuthGuard, OriginGuard } from './guards';
 import { ConsoleSmsSender, DevOutbox, EMAIL_SENDER, SMS_SENDER, SmtpEmailSender } from './messaging/messaging';
 import { OtpService } from './otp.service';
 import { SessionService } from './session.service';
+import { TwoFactorService } from './two-factor.service';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { SessionService } from './session.service';
   providers: [
     OtpService,
     SessionService,
+    TwoFactorService,
     DevOutbox,
     { provide: SMS_SENDER, useClass: ConsoleSmsSender },
     { provide: EMAIL_SENDER, useClass: SmtpEmailSender },

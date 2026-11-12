@@ -30,3 +30,4 @@ One line each: date — decision — why.
 - 2026-11-12 — Patient routes split into `app/p/(auth)` (focused split layout: login, consent, profile) and `app/p/(app)` (PatientShell); URLs unchanged.
 - 2026-11-12 — Doctor `/d/today` and `/admin` show **clearly labelled fictional sample data** until Phases 2/5; A/P remain empty "For doctor" editors (rule 5).
 - 2026-11-12 — Fonts: Inter + Bricolage `display: optional` (no late swap repaint on slow networks); Devanagari and mono not preloaded. CSS inlined (`experimental.inlineCss`). Translations sent per area, not all on every page.
+- 2026-11-12 — **Option A (Pranov, clinical-safety decision):** in Pre-Visit Summary lines, a medicine name or dose is allowed only in `subjective.medications` and `subjective.allergies`, and only when that exact name/dose appears in the line's cited patient quote. Everywhere else (other sections, all chat messages) the output filter stays strict.

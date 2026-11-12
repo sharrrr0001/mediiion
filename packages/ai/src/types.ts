@@ -26,6 +26,8 @@ export interface JsonRequest<T> {
   maxTokens: number;
   /** Hint for the mock provider and for evals; real providers ignore it. */
   mockHint?: MockHint;
+  /** Structured input for the mock provider's deterministic outputs (e.g. summaries). */
+  mockData?: unknown;
 }
 
 export interface JsonResponse<T> {

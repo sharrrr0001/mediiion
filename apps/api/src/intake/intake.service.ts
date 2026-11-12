@@ -20,6 +20,7 @@ import { AppError } from '../common/errors';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
 import { AiService } from './ai.service';
 import { AttachmentsService } from './attachments.service';
+import { SummaryService } from './summary.service';
 import {
   buildReview,
   currentStep,
@@ -43,6 +44,7 @@ export class IntakeService {
     private readonly audit: AuditService,
     private readonly ai: AiService,
     private readonly attachments: AttachmentsService,
+    private readonly summaries: SummaryService,
     @Inject(CRYPTO) private readonly crypto: FieldCrypto,
   ) {}
 
@@ -112,8 +114,12 @@ export class IntakeService {
     });
     if (!tpl) throw new AppError(HttpStatus.SERVICE_UNAVAILABLE, 'NO_TEMPLATE', 'This interview is not available yet.');
     const language = (body.language ?? profile.language) as Language;
+    if (body.doctorId) {
+      const doc = await this.prisma.doctor.findUnique({ where: { id: body.doctorId }, select: { verificationStatus: true } });
+      if (doc?.verificationStatus !== 'verified') throw new AppError(HttpStatus.BAD_REQUEST, 'DOCTOR_NOT_AVAILABLE', 'This doctor is not available on Medicos.');
+    }
     const session = await this.prisma.intakeSession.create({
-      data: { patientProfileId: profile.id, templateId: tpl.key, templateVersion: tpl.version, language },
+      data: { patientProfileId: profile.id, templateId: tpl.key, templateVersion: tpl.version, language, doctorId: body.doctorId ?? null },
     });
     const name = this.crypto.decrypt(profile.nameEnc, ENC.name).split(' ')[0] ?? '';
     await this.addMessage(session.id, {
@@ -323,6 +329,7 @@ export class IntakeService {
     if (deriveAwaiting(messages, session.status) !== 'done') throw CONFLICT('Please finish the questions first.');
     await this.prisma.intakeSession.update({ where: { id }, data: { status: 'submitted', submittedAt: new Date() } });
     await this.audit.record({ actor: user, action: 'intake.submit', entity: 'intake_session', entityId: id, patientProfileId: session.patientProfileId, req });
+    await this.summaries.generateAndDeliver(id);
     return this.view(user, id, req, false);
   }
 }

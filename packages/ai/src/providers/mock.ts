@@ -2,6 +2,8 @@ import { z } from 'zod';
 import type { JsonRequest, JsonResponse, LlmProvider } from '../types';
 import { LlmOutputError } from '../types';
 import { emptyUsage, parseJson } from './shared';
+import { buildMockSummary } from '../summary/mock-summary';
+import type { SummaryItem } from '../summary/writer';
 
 /**
  * Deterministic provider for tests, CI and offline dev. Behaves like an ideal model: asks the planned
@@ -39,6 +41,10 @@ export class MockLlmProvider implements LlmProvider {
         question_id: h.plannedQuestionId,
       };
       return { data: (req.schema as z.ZodType<T>).parse(data), usage };
+    }
+    if (req.schemaName === 'pre_visit_summary' && req.mockData) {
+      const d = req.mockData as { items: SummaryItem[]; base: Parameters<typeof buildMockSummary>[1] };
+      return { data: req.schema.parse(buildMockSummary(d.items, d.base)), usage };
     }
     if (this.structuredHandler) return { data: req.schema.parse(this.structuredHandler(req as JsonRequest<unknown>)), usage };
     throw new LlmOutputError(`mock: no handler for ${req.schemaName}`, usage);

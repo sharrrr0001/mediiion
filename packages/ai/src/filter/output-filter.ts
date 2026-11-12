@@ -68,6 +68,17 @@ export function checkOutput(text: string): FilterResult {
   return { ok: rules.size === 0, rules: [...rules] };
 }
 
+/** Medicine names (from the list) present in `text` — used by the summary's Option A check. */
+export function findDrugNames(text: string): string[] {
+  const t = normaliseForMatch(text);
+  return DRUG_NAMES.filter((_, i) => DRUGS[i]!.test(t)).map((d) => d.trim().toLowerCase());
+}
+
+/** Dose expressions ("650 mg", "5ml") present in `text`, normalised without spaces. */
+export function findDosages(text: string): string[] {
+  return [...text.matchAll(new RegExp(DOSAGE.source, 'gi'))].map((m) => m[0].replace(/\s+/g, '').toLowerCase());
+}
+
 /** Check a whole intake turn: the message and every quick reply. */
 export function checkTurn(message: string, quickReplies: string[]): FilterResult {
   const results = [message, ...quickReplies].map(checkOutput);
