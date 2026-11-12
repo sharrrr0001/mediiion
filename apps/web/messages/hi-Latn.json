@@ -147,5 +147,252 @@
       "2": "Dawaiyan aur purani sehat",
       "3": "Readings, reports aur sawaal"
     }
+  },
+  "nav": {
+    "home": "Home",
+    "previsit": "Pre-visit",
+    "visits": "Visits",
+    "records": "Records",
+    "myId": "Meri ID",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out",
+    "forWhom": "Kiske liye: {name}",
+    "menu": "Menu kholein",
+    "closeMenu": "Menu band karein",
+    "account": "Account menu",
+    "notifications": "Notifications",
+    "main": "Main navigation",
+    "howItWorks": "Kaise kaam karta hai",
+    "forDoctors": "Doctors ke liye",
+    "privacy": "Privacy",
+    "login": "Log in",
+    "getStarted": "Shuru karein",
+    "skip": "Content par jaayein"
+  },
+  "footer": {
+    "tagline": "Doctor ka time bachao. Patient ki baat poori suno.",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal",
+    "patients": "Patients ke liye",
+    "doctors": "Doctors ke liye",
+    "pricing": "Pricing",
+    "about": "Hamare baare mein",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy policy",
+    "terms": "Terms of use",
+    "dataIndia": "Aapka data India mein hi rehta hai",
+    "rights": "© {year} Medicos. Visit se pehle jaankari lene ka tool — diagnosis nahi."
+  },
+  "landing": {
+    "eyebrow": "Indian clinics ke liye pre-visit intake",
+    "title": "Doctor ke paas jaane se pehle, sab kuch bata dijiye.",
+    "subtitle": "Ghar se Hindi, English ya Hinglish mein kuch aasaan sawaalon ke jawaab dijiye. Doctor 30 second mein saaf summary padh lete hain.",
+    "ctaPatient": "Patient ke roop mein shuru karein",
+    "ctaDoctor": "Main doctor hoon",
+    "mockTitle": "Pre-Visit Summary",
+    "mockPatient": "MED-7K4P-29XQ · 28 M · Nayi visit",
+    "mockLabel": "AI draft · doctor check karenge",
+    "mockLines": [
+      "2 din se bukhar, sabse zyada 101°F",
+      "Gale mein kharash, khansi nahi",
+      "Koi known allergy nahi",
+      "Poochna chahte hain: kaam par kab laut sakte hain?"
+    ],
+    "mockFor": "Assessment aur plan: doctor likhenge",
+    "howTitle": "Kaise kaam karta hai",
+    "howSubtitle": "Teen steps. Koi app download nahi. Patients ke liye free.",
+    "how": [
+      {
+        "t": "Ghar se AI se baat karein",
+        "d": "Ek baar mein ek chhota sawaal, chat se. Purani report ya dawa ke patte ki photo bhi jodiye."
+      },
+      {
+        "t": "Doctor 30 second mein summary padhte hain",
+        "d": "Aapki history organised pahunchti hai, har line aapke apne shabdon se judi. Faisla doctor hi karte hain."
+      },
+      {
+        "t": "Jaldi aur aaram se visit",
+        "d": "Baar baar dohrana nahi padta. Visit ke baad aapki record book apne aap update hoti hai."
+      }
+    ],
+    "patientsTitle": "Patients ke liye",
+    "patients": [
+      "Ghar se, apni bhasha mein taiyaari",
+      "Kuch bhi chhootta ya bhoolta nahi",
+      "Sirf aapke chune doctor dekhte hain",
+      "Hamesha free — ₹0"
+    ],
+    "doctorsTitle": "Doctors ke liye",
+    "doctors": [
+      "Patient ke aane se pehle saaf history",
+      "SOAP layout; Assessment aur Plan aapke",
+      "Har line par source link",
+      "Har patient par lagbhag 3 minute ki bachat (pilot target)"
+    ],
+    "trust": [
+      "AI kabhi diagnosis nahi karta",
+      "Data India mein rehta hai",
+      "Sirf aapke doctor dekhte hain",
+      "Patients ke liye free"
+    ],
+    "pricingTitle": "Doctors ke liye simple pricing",
+    "pricingNote": "Patients hamesha ₹0 dete hain. Prices mein 18% GST shaamil nahi.",
+    "perMonth": "/mahina",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "price": "₹0",
+        "desc": "Har mahine 30 summaries, 1 template"
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "₹2,999",
+        "desc": "300 summaries, saare templates, waiting-room QR"
+      },
+      "clinic": {
+        "name": "Clinic",
+        "price": "₹6,999",
+        "desc": "3 doctors tak, 1,200 summaries, 5 staff logins"
+      }
+    },
+    "popular": "Sabse popular",
+    "ctaBandTitle": "Shaant OPD ke liye taiyaar?",
+    "ctaBandBody": "Patients ghar se taiyaari karte hain. Aapko consultation se pehle history milti hai — AI diagnosis nahi."
+  },
+  "auth": {
+    "panelTitle": "Doctor ka time bachao. Patient ki baat poori suno.",
+    "points": [
+      "Aapka data private aur encrypted hai",
+      "Sirf aapke chune doctor ise dekh sakte hain",
+      "AI kabhi diagnosis nahi karta, dawa nahi likhta"
+    ]
+  },
+  "visits": {
+    "title": "Visits",
+    "subtitle": "Aapki appointments aur pre-visit interviews.",
+    "emptyTitle": "Abhi koi visit book nahi hai",
+    "emptyBody": "Doctor search aur booking jaldi khulegi. Abhi aap AI pre-visit se taiyaari kar sakte hain.",
+    "cta": "AI pre-visit shuru karein"
+  },
+  "records": {
+    "title": "Medical Record Book",
+    "subtitle": "Doctor ke notes, parche aur reports, ek jagah.",
+    "emptyTitle": "Abhi koi record nahi",
+    "emptyBody": "Doctor ke visit finalise karne ke baad notes aur parche yahan dikhenge."
+  },
+  "doctor": {
+    "preview": "Sample data ke saath preview. Doctor features Phase 2 mein aayenge.",
+    "greeting": "Good morning, {name}",
+    "clinic": "Clinic",
+    "search": "Patient ya Medicos ID search karein (MED-XXXX-XXXX)",
+    "scanQr": "QR scan karein",
+    "queue": "Aaj ki queue",
+    "today": "Aaj ({n})",
+    "upcoming": "Aage ({n})",
+    "addWalkin": "Walk-in jodein",
+    "statusReady": "Summary ready",
+    "statusProgress": "Chal raha hai",
+    "statusWalkin": "Walk-in",
+    "statusIdle": "Shuru nahi hua",
+    "safetyMarker": "Patient ko safety message dikhaya gaya",
+    "backToQueue": "Queue par wapas",
+    "arrived": "{time} pahunche",
+    "visitNew": "Nayi visit",
+    "visitFollow": "Follow-up",
+    "aiDone": "AI pre-visit poora",
+    "thirty": "30-second summary",
+    "summaryTitle": "Pre-Visit Summary",
+    "reviewRequired": "Doctor review zaroori",
+    "subjective": "Subjective",
+    "objective": "Objective (patient ne bataya)",
+    "assessment": "Assessment",
+    "plan": "Plan / Rx",
+    "forDoctor": "Doctor ke liye",
+    "assessmentPlaceholder": "Apna assessment likhiye…",
+    "planPlaceholder": "Plan aur prescription likhiye…",
+    "exam": "Examination: doctor karenge",
+    "editDraft": "Draft badlein",
+    "print": "Print",
+    "finalise": "Review & finalise",
+    "source": "Patient ke shabd",
+    "history": "Patient history",
+    "schedule": "Aage ka schedule",
+    "month": "Is mahine",
+    "reviewed": "Review ki gayi summaries",
+    "saved": "Bachaye gaye minute",
+    "completed": "Poori visits",
+    "quality": "Summary quality",
+    "usage": "Pro plan usage",
+    "managePlan": "Plan manage karein",
+    "empty": "Summary dekhne ke liye patient chuniye",
+    "verified": "Verified Doctor",
+    "collapse": "Sidebar chhota karein",
+    "expand": "Sidebar bada karein",
+    "nav": {
+      "dashboard": "Dashboard",
+      "today": "Aaj",
+      "patients": "Patients",
+      "summaries": "Pre-Visit Summaries",
+      "reports": "Reports",
+      "schedule": "Schedule",
+      "insights": "Insights",
+      "billing": "Plan & billing",
+      "staff": "Staff",
+      "settings": "Settings"
+    }
+  },
+  "admin": {
+    "title": "Admin overview",
+    "subtitle": "Operations, quality aur compliance.",
+    "preview": "Sample data ke saath preview. Admin tools Phase 5 mein aayenge.",
+    "stats": {
+      "interviews": "Aaj ke interviews",
+      "completion": "Completion rate",
+      "safety": "Dikhaye gaye safety messages",
+      "doctors": "Active doctors"
+    },
+    "queueTitle": "Doctor verification queue",
+    "queueBody": "Doctor ko patients milne se pehle documents check karein.",
+    "cols": {
+      "doctor": "Doctor",
+      "council": "Council",
+      "submitted": "Submit kiya",
+      "status": "Status"
+    },
+    "pending": "Pending",
+    "verified": "Verified",
+    "nav": {
+      "overview": "Overview",
+      "verification": "Doctor verification",
+      "templates": "Template Studio",
+      "quality": "Quality review",
+      "safety": "Safety log",
+      "audit": "Consent & audit",
+      "support": "Support",
+      "billing": "Billing"
+    }
+  },
+  "extra": {
+    "tabMobile": "Mobile",
+    "tabEmail": "Email",
+    "startNow": "Abhi shuru karein",
+    "showQr": "QR dikhaiye",
+    "viewAll": "Sab dekhein",
+    "findDoctor": "Visits dekhein",
+    "greetingWave": "Hello, {name} 👋",
+    "noRecordsBody": "Visit ke baad doctor ke notes aur parche yahan dikhenge.",
+    "share": "WhatsApp par bhejein",
+    "howClinicTitle": "Clinic par kaise kaam karta hai",
+    "howClinic": [
+      "Reception ya doctor ko yeh QR dikhaiye",
+      "Aapko request aayegi: “Doctor ko records dekhne dein?”",
+      "Access sirf is visit ke liye rehta hai (24 ghante)"
+    ],
+    "notedTitle": "Ab tak humne kya note kiya",
+    "notedEmpty": "Aapke jawaab yahan dikhte jaayenge.",
+    "back": "Wapas",
+    "agreeContinue": "Main sehmat hoon, aage badhein"
   }
 }

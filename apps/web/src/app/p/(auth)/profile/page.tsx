@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { LANGUAGES, type Language, type ProfileSummary } from '@medicos/shared';
-import { Button, Field, Input, Logo, Select, Skeleton } from '@medicos/ui';
+import { Button, Card, Field, Input, Select, Skeleton } from '@medicos/ui';
 import { setLocaleCookie } from '@/components/language-picker';
 import { ApiError, post } from '@/lib/api';
 import { ME_KEY, usePatientGate } from '@/lib/use-me';
@@ -62,18 +62,16 @@ export default function ProfilePage() {
 
   if (!me) {
     return (
-      <main className="flex flex-col gap-4 px-5 pt-20" aria-busy>
+      <div className="flex flex-col gap-4" aria-busy>
         <Skeleton className="h-9 w-1/2" />
-        <Skeleton className="h-14 w-full" />
-        <Skeleton className="h-14 w-full" />
-      </main>
+        <Skeleton className="h-80 w-full" />
+      </div>
     );
   }
 
   return (
-    <main className="flex min-h-dvh flex-col px-5 pb-8 pt-4">
-      <Logo />
-      <h1 className="mt-10 font-display text-[2rem] font-bold leading-tight tracking-tight">{t('title')}</h1>
+    <Card className="animate-in p-6 shadow-md md:p-8">
+      <h1 className="font-display text-3xl font-bold tracking-tight">{t('title')}</h1>
       <p className="mt-2 text-muted">{t('subtitle')}</p>
 
       <form onSubmit={form.handleSubmit((v) => create.mutate(v))} noValidate className="mt-8 flex flex-col gap-5">
@@ -91,12 +89,12 @@ export default function ProfilePage() {
         </div>
 
         <fieldset className="flex flex-col gap-2">
-          <legend className="mb-1.5 font-medium">{t('gender')}</legend>
+          <legend className="mb-1.5 text-sm font-semibold">{t('gender')}</legend>
           <div className="grid grid-cols-2 gap-2">
             {GENDERS.map((g) => (
               <label
                 key={g}
-                className="flex min-h-14 cursor-pointer items-center gap-3 rounded-xl border-2 border-line bg-surface px-4 has-[:checked]:border-brand has-[:checked]:bg-brand-soft"
+                className="flex min-h-12 cursor-pointer items-center gap-3 rounded-[var(--radius-control)] border border-line bg-surface px-4 shadow-sm transition-colors hover:border-brand has-[:checked]:border-brand has-[:checked]:bg-brand-soft"
               >
                 <input type="radio" value={g} className="size-5 accent-[var(--brand)]" {...form.register('gender')} />
                 <span>{t(GENDER_KEYS[g])}</span>
@@ -130,6 +128,6 @@ export default function ProfilePage() {
           {t('save')}
         </Button>
       </form>
-    </main>
+    </Card>
   );
 }

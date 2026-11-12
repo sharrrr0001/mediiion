@@ -1,18 +1,25 @@
 'use client';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { Clock, Eye, FileText, ShieldCheck, Target } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { CONSENT_VERSION } from '@medicos/shared/client';
-import { Button, Logo, Skeleton } from '@medicos/ui';
-import { LanguagePicker } from '@/components/language-picker';
+import { Button, Card, Skeleton } from '@medicos/ui';
 import { post } from '@/lib/api';
 import { ME_KEY, usePatientGate } from '@/lib/use-me';
 
-const SECTIONS = ['collect', 'why', 'who', 'keep', 'delete'] as const;
+const SECTIONS = [
+  { key: 'collect', icon: FileText },
+  { key: 'why', icon: Target },
+  { key: 'who', icon: Eye },
+  { key: 'keep', icon: Clock },
+  { key: 'delete', icon: ShieldCheck },
+] as const;
 
 export default function ConsentPage() {
   const t = useTranslations('consent');
   const tc = useTranslations('common');
+  const tx = useTranslations('extra');
   const { me } = usePatientGate();
   const qc = useQueryClient();
   const [agreed, setAgreed] = useState(false);
@@ -23,29 +30,38 @@ export default function ConsentPage() {
     onSuccess: () => qc.invalidateQueries({ queryKey: ME_KEY }),
   });
 
-  if (!me) return <PageSkeleton />;
+  if (!me) {
+    return (
+      <div className="flex flex-col gap-4" aria-busy>
+        <Skeleton className="h-9 w-2/3" />
+        <Skeleton className="h-64 w-full" />
+      </div>
+    );
+  }
 
   return (
-    <main className="flex min-h-dvh flex-col px-5 pb-6 pt-4">
-      <div className="flex items-center justify-between">
-        <Logo />
-        <LanguagePicker />
-      </div>
-
-      <h1 className="mt-10 font-display text-[2rem] font-bold leading-tight tracking-tight">{t('title')}</h1>
+    <div className="animate-in">
+      <h1 className="font-display text-3xl font-bold tracking-tight">{t('title')}</h1>
       <p className="mt-2 text-muted">{t('intro')}</p>
 
-      <dl className="mt-6 flex flex-col divide-y divide-line border-y border-line">
-        {SECTIONS.map((key) => (
-          <div key={key} className="py-4">
-            <dt className="font-display text-lg font-semibold">{t(`${key}Title`)}</dt>
-            <dd className="mt-1 text-ink/85">{t(`${key}Body`)}</dd>
-          </div>
-        ))}
-      </dl>
+      <Card className="mt-6 p-0 md:p-0">
+        <dl className="divide-y divide-line">
+          {SECTIONS.map(({ key, icon: Icon }) => (
+            <div key={key} className="p-5">
+              <dt className="flex items-center gap-3 font-semibold text-ink">
+                <span className="grid size-10 shrink-0 place-items-center rounded-full bg-brand-soft text-brand">
+                  <Icon aria-hidden className="size-5 stroke-[1.75]" />
+                </span>
+                {t(`${key}Title`)}
+              </dt>
+              <dd className="mt-1 pl-[52px] text-[15px] leading-relaxed text-muted">{t(`${key}Body`)}</dd>
+            </div>
+          ))}
+        </dl>
+      </Card>
 
-      <div className="sticky bottom-0 -mx-5 mt-6 flex flex-col gap-4 bg-bg/95 px-5 pb-2 pt-4 backdrop-blur">
-        <label className="flex min-h-12 cursor-pointer items-start gap-3">
+      <div className="sticky bottom-0 -mx-4 mt-6 flex flex-col gap-4 border-t border-line bg-surface/95 px-4 pb-4 pt-4 backdrop-blur md:static md:mx-0 md:border-0 md:bg-transparent md:p-0">
+        <label className="flex min-h-11 cursor-pointer items-start gap-3">
           <input
             type="checkbox"
             checked={agreed}
@@ -53,7 +69,7 @@ export default function ConsentPage() {
               setAgreed(e.target.checked);
               setShowError(false);
             }}
-            className="mt-0.5 size-6 shrink-0 accent-[var(--brand)]"
+            className="mt-0.5 size-5 shrink-0 accent-[var(--brand)]"
             aria-describedby={showError ? 'consent-error' : undefined}
           />
           <span className="font-medium">{t('agree')}</span>
@@ -68,25 +84,10 @@ export default function ConsentPage() {
             {tc('errorGeneric')}
           </p>
         ) : null}
-        <Button
-          size="lg"
-          block
-          loading={grant.isPending}
-          onClick={() => (agreed ? grant.mutate() : setShowError(true))}
-        >
-          {t('agreeButton')}
+        <Button size="lg" block loading={grant.isPending} onClick={() => (agreed ? grant.mutate() : setShowError(true))}>
+          {tx('agreeContinue')}
         </Button>
       </div>
-    </main>
-  );
-}
-
-function PageSkeleton() {
-  return (
-    <main className="flex flex-col gap-4 px-5 pt-20" aria-busy>
-      <Skeleton className="h-9 w-2/3" />
-      <Skeleton className="h-5 w-full" />
-      <Skeleton className="h-40 w-full" />
-    </main>
+    </div>
   );
 }

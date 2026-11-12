@@ -8,7 +8,7 @@ import { useState } from 'react';
 import type { IntakeReview, IntakeView, ReviewItem } from '@medicos/shared/client';
 import { Button, Skeleton } from '@medicos/ui';
 import { SafetyCard } from '@/components/intake/chat-parts';
-import { PatientTopBar } from '@/components/patient-top-bar';
+import { container } from '@/components/shell/layout';
 import { api, post } from '@/lib/api';
 
 /** "What you told us" (spec §6.5): plain words, no SOAP letters, editable before submit. */
@@ -26,7 +26,7 @@ export default function ReviewPage() {
 
   if (!review.data) {
     return (
-      <main className="flex flex-col gap-4 px-5 pt-20" aria-busy>
+      <main className={`${container} flex max-w-3xl flex-col gap-4 py-10`} aria-busy>
         <Skeleton className="h-9 w-2/3" />
         <Skeleton className="h-24 w-full" />
         <Skeleton className="h-24 w-full" />
@@ -39,12 +39,11 @@ export default function ReviewPage() {
   const bySection = ([1, 2, 3] as const).map((step) => ({ step, items: data.items.filter((i) => i.step === step) }));
 
   return (
-    <>
-      <PatientTopBar back={`/p/intake/${id}`} />
-      <main className="flex flex-col px-5 pb-10">
-        <h1 className="font-display text-[1.9rem] font-bold leading-tight tracking-tight">{t('title')}</h1>
+    <div className={`${container} animate-in py-6 md:py-10`}>
+      <div className="mx-auto max-w-3xl">
+        <h1 className="text-page-title font-display font-bold tracking-tight">{t('title')}</h1>
         <p className="mt-2 text-muted">{t('subtitle')}</p>
-        <p className="mt-4 rounded-xl bg-accent-soft px-4 py-3 text-[0.9375rem] font-medium">{t('notDiagnosis')}</p>
+        <p className="mt-4 rounded-card border border-[#f3dfb3] bg-accent-soft px-4 py-3 text-[15px] font-medium text-accent-ink">{t('notDiagnosis')}</p>
 
         {safetyLine ? (
           <div className="mt-4">
@@ -56,7 +55,7 @@ export default function ReviewPage() {
           items.length ? (
             <section key={step} className="mt-8">
               <h2 className="font-display text-xl font-semibold">{t(`sections.${step}`)}</h2>
-              <dl className="mt-2 divide-y divide-line border-y border-line">
+              <dl className="mt-3 divide-y divide-line rounded-card border border-line bg-surface px-5 shadow-sm">
                 {items.map((item) => (
                   <ReviewRow key={item.questionId} item={item} sessionId={id} editable={!sent} onSafety={setSafetyLine} />
                 ))}
@@ -81,12 +80,12 @@ export default function ReviewPage() {
         ) : null}
 
         {sent ? (
-          <div className="mt-8 flex flex-col gap-4 rounded-2xl bg-brand-soft p-5">
+          <div className="mt-8 flex flex-col gap-4 rounded-card border border-brand/30 bg-brand-tint p-5 md:flex-row md:items-center md:justify-between">
             <p className="flex items-center gap-2 font-semibold text-brand">
               <CheckCircle2 aria-hidden className="size-6" />
               {t('sent')}
             </p>
-            <Button asChild variant="secondary" block>
+            <Button asChild variant="secondary">
               <Link href="/p/home">{t('backHome')}</Link>
             </Button>
           </div>
@@ -97,13 +96,13 @@ export default function ReviewPage() {
                 {tc('errorGeneric')}
               </p>
             ) : null}
-            <Button size="lg" block className="mt-8" loading={submit.isPending} onClick={() => submit.mutate()}>
+            <Button size="lg" block="phone" className="mt-8" loading={submit.isPending} onClick={() => submit.mutate()}>
               {t('confirm')}
             </Button>
           </>
         )}
-      </main>
-    </>
+      </div>
+    </div>
   );
 }
 
@@ -139,7 +138,7 @@ function ReviewRow({ item, sessionId, editable, onSafety }: { item: ReviewItem; 
             value={value}
             maxLength={2000}
             onChange={(e) => setValue(e.target.value)}
-            className="min-h-24 rounded-xl border-2 border-brand bg-surface p-3"
+            className="min-h-24 rounded-[var(--radius-control)] border border-brand bg-surface p-3 shadow-sm focus:outline-none focus:ring-4 focus:ring-brand/15"
           />
           <div className="flex gap-2">
             <Button size="sm" loading={save.isPending} disabled={!value.trim()} onClick={() => save.mutate()}>

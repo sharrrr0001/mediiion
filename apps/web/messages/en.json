@@ -147,5 +147,252 @@
       "2": "Medicines and past health",
       "3": "Readings, reports and questions"
     }
+  },
+  "nav": {
+    "home": "Home",
+    "previsit": "Pre-visit",
+    "visits": "Visits",
+    "records": "Records",
+    "myId": "My ID",
+    "profile": "Profile",
+    "settings": "Settings",
+    "logout": "Log out",
+    "forWhom": "For: {name}",
+    "menu": "Open menu",
+    "closeMenu": "Close menu",
+    "account": "Account menu",
+    "notifications": "Notifications",
+    "main": "Main navigation",
+    "howItWorks": "How it works",
+    "forDoctors": "For doctors",
+    "privacy": "Privacy",
+    "login": "Log in",
+    "getStarted": "Get started",
+    "skip": "Skip to content"
+  },
+  "footer": {
+    "tagline": "Doctor ka time bachao. Patient ki baat poori suno.",
+    "product": "Product",
+    "company": "Company",
+    "legal": "Legal",
+    "patients": "For patients",
+    "doctors": "For doctors",
+    "pricing": "Pricing",
+    "about": "About us",
+    "contact": "Contact",
+    "privacyPolicy": "Privacy policy",
+    "terms": "Terms of use",
+    "dataIndia": "Your data stays in India",
+    "rights": "© {year} Medicos. A pre-visit intake tool — not a diagnosis."
+  },
+  "landing": {
+    "eyebrow": "Pre-visit intake for Indian clinics",
+    "title": "Tell your doctor everything, before you walk in.",
+    "subtitle": "Answer a few simple questions at home in Hindi, English or Hinglish. Your doctor reads a clean summary in 30 seconds.",
+    "ctaPatient": "Start as patient",
+    "ctaDoctor": "I’m a doctor",
+    "mockTitle": "Pre-Visit Summary",
+    "mockPatient": "MED-7K4P-29XQ · 28 M · New visit",
+    "mockLabel": "AI draft · doctor reviews",
+    "mockLines": [
+      "Fever for 2 days, highest 101°F",
+      "Sore throat, no cough",
+      "No known allergies",
+      "Wants to ask: when can I go back to work?"
+    ],
+    "mockFor": "Assessment and plan: written by the doctor",
+    "howTitle": "How it works",
+    "howSubtitle": "Three steps. No app download. Free for patients.",
+    "how": [
+      {
+        "t": "Talk to AI at home",
+        "d": "Answer one short question at a time, by chat, and add photos of old reports or medicine strips."
+      },
+      {
+        "t": "Doctor reads a 30-second summary",
+        "d": "Your history arrives organised, with every line linked to your own words. The doctor decides everything."
+      },
+      {
+        "t": "A faster, calmer visit",
+        "d": "Less time repeating yourself, more time for what matters. Your record book updates after the visit."
+      }
+    ],
+    "patientsTitle": "For patients",
+    "patients": [
+      "Prepare from home, in your own language",
+      "Nothing is missed or forgotten",
+      "Only the doctor you choose sees it",
+      "Always free — ₹0"
+    ],
+    "doctorsTitle": "For doctors",
+    "doctors": [
+      "A clean history before the patient walks in",
+      "SOAP layout; Assessment and Plan stay yours",
+      "Source link on every line",
+      "About 3 minutes saved per patient (pilot target)"
+    ],
+    "trust": [
+      "AI never diagnoses",
+      "Data stays in India",
+      "Only your doctor sees it",
+      "Free for patients"
+    ],
+    "pricingTitle": "Simple pricing for doctors",
+    "pricingNote": "Patients always pay ₹0. Prices exclude 18% GST.",
+    "perMonth": "/month",
+    "plans": {
+      "free": {
+        "name": "Free",
+        "price": "₹0",
+        "desc": "30 summaries a month, 1 template"
+      },
+      "pro": {
+        "name": "Pro",
+        "price": "₹2,999",
+        "desc": "300 summaries, all templates, waiting-room QR"
+      },
+      "clinic": {
+        "name": "Clinic",
+        "price": "₹6,999",
+        "desc": "Up to 3 doctors, 1,200 summaries, 5 staff logins"
+      }
+    },
+    "popular": "Most popular",
+    "ctaBandTitle": "Ready for a calmer OPD?",
+    "ctaBandBody": "Patients prepare at home. You get the history before the consultation — not an AI diagnosis."
+  },
+  "auth": {
+    "panelTitle": "Doctor ka time bachao. Patient ki baat poori suno.",
+    "points": [
+      "Your data is private and encrypted",
+      "Only the doctor you choose can see it",
+      "The AI never diagnoses or prescribes"
+    ]
+  },
+  "visits": {
+    "title": "Visits",
+    "subtitle": "Your appointments and pre-visit interviews.",
+    "emptyTitle": "No visit booked yet",
+    "emptyBody": "Doctor search and booking open soon. You can already prepare with an AI pre-visit.",
+    "cta": "Start AI pre-visit"
+  },
+  "records": {
+    "title": "Medical Record Book",
+    "subtitle": "Doctor notes, prescriptions and reports, in one place.",
+    "emptyTitle": "No records yet",
+    "emptyBody": "After your doctor finalises your visit, notes and prescriptions appear here."
+  },
+  "doctor": {
+    "preview": "Preview with sample data. Doctor features arrive in Phase 2.",
+    "greeting": "Good morning, {name}",
+    "clinic": "Clinic",
+    "search": "Search patient or Medicos ID (MED-XXXX-XXXX)",
+    "scanQr": "Scan QR",
+    "queue": "Today’s queue",
+    "today": "Today ({n})",
+    "upcoming": "Upcoming ({n})",
+    "addWalkin": "Add walk-in",
+    "statusReady": "Summary ready",
+    "statusProgress": "In progress",
+    "statusWalkin": "Walk-in",
+    "statusIdle": "Not started",
+    "safetyMarker": "Safety message shown to patient",
+    "backToQueue": "Back to queue",
+    "arrived": "Arrived {time}",
+    "visitNew": "New visit",
+    "visitFollow": "Follow-up",
+    "aiDone": "AI pre-visit completed",
+    "thirty": "30-second summary",
+    "summaryTitle": "Pre-Visit Summary",
+    "reviewRequired": "Doctor review required",
+    "subjective": "Subjective",
+    "objective": "Objective (patient-reported)",
+    "assessment": "Assessment",
+    "plan": "Plan / Rx",
+    "forDoctor": "For doctor",
+    "assessmentPlaceholder": "Write your assessment…",
+    "planPlaceholder": "Write the plan and prescription…",
+    "exam": "Examination: to be done by doctor",
+    "editDraft": "Edit draft",
+    "print": "Print",
+    "finalise": "Review & finalise",
+    "source": "Patient’s words",
+    "history": "Patient history",
+    "schedule": "Upcoming schedule",
+    "month": "This month",
+    "reviewed": "Summaries reviewed",
+    "saved": "Minutes saved",
+    "completed": "Completed visits",
+    "quality": "Summary quality",
+    "usage": "Pro plan usage",
+    "managePlan": "Manage plan",
+    "empty": "Select a patient to see their summary",
+    "verified": "Verified Doctor",
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "nav": {
+      "dashboard": "Dashboard",
+      "today": "Today",
+      "patients": "Patients",
+      "summaries": "Pre-Visit Summaries",
+      "reports": "Reports",
+      "schedule": "Schedule",
+      "insights": "Insights",
+      "billing": "Plan & billing",
+      "staff": "Staff",
+      "settings": "Settings"
+    }
+  },
+  "admin": {
+    "title": "Admin overview",
+    "subtitle": "Operations, quality and compliance.",
+    "preview": "Preview with sample data. Admin tools arrive in Phase 5.",
+    "stats": {
+      "interviews": "Interviews today",
+      "completion": "Completion rate",
+      "safety": "Safety messages shown",
+      "doctors": "Active doctors"
+    },
+    "queueTitle": "Doctor verification queue",
+    "queueBody": "Check documents before a doctor can receive patients.",
+    "cols": {
+      "doctor": "Doctor",
+      "council": "Council",
+      "submitted": "Submitted",
+      "status": "Status"
+    },
+    "pending": "Pending",
+    "verified": "Verified",
+    "nav": {
+      "overview": "Overview",
+      "verification": "Doctor verification",
+      "templates": "Template Studio",
+      "quality": "Quality review",
+      "safety": "Safety log",
+      "audit": "Consent & audit",
+      "support": "Support",
+      "billing": "Billing"
+    }
+  },
+  "extra": {
+    "tabMobile": "Mobile",
+    "tabEmail": "Email",
+    "startNow": "Start now",
+    "showQr": "Show QR",
+    "viewAll": "View all",
+    "findDoctor": "See visits",
+    "greetingWave": "Hello, {name} 👋",
+    "noRecordsBody": "Doctor notes and prescriptions appear here after your visit.",
+    "share": "Share on WhatsApp",
+    "howClinicTitle": "How it works at the clinic",
+    "howClinic": [
+      "Show this QR at the reception or to your doctor",
+      "You get a request: “Allow the doctor to see your records?”",
+      "Access lasts for this visit only (24 hours)"
+    ],
+    "notedTitle": "What we’ve noted so far",
+    "notedEmpty": "Your answers will appear here as you go.",
+    "back": "Back",
+    "agreeContinue": "I agree & continue"
   }
 }
