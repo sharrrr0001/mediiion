@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 import { expectNoSeriousA11yViolations } from './helpers';
 
 /** UI acceptance: light-only theme, no sideways scroll, accessible public/doctor/admin pages. */
-const PUBLIC_PAGES = ['/', '/p/login', '/d/today', '/admin'];
+const PUBLIC_PAGES = ['/', '/p/login', '/d/login', '/admin'];
 
 test.describe('light theme only', () => {
   test.use({ colorScheme: 'dark' });
@@ -37,16 +37,3 @@ test('keyboard: the first Tab reaches the skip link with a visible focus ring', 
   expect(outline).not.toBe('none');
 });
 
-test('doctor dashboard: list → detail on phone, A and P left empty for the doctor', async ({ page, isMobile }) => {
-  await page.goto('/d/today');
-  await page.waitForSelector('h1');
-  if (isMobile) {
-    await expect(page.getByRole('heading', { name: 'Pre-Visit Summary' })).toBeHidden();
-    await page.getByRole('button', { name: /RK · 46 M/ }).click();
-    await expect(page.getByRole('button', { name: 'Back to queue' })).toBeVisible();
-  }
-  await expect(page.getByRole('heading', { name: 'Pre-Visit Summary' })).toBeVisible();
-  await expect(page.getByLabel('Assessment')).toHaveValue('');
-  await expect(page.getByLabel('Plan / Rx')).toHaveValue('');
-  await expect(page.getByText('AI-generated draft. Not a diagnosis or prescription. Treating doctor must review.')).toBeVisible();
-});

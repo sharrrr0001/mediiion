@@ -57,8 +57,9 @@ docs/           spec, plans/, decisions.md, ideas.md, safety.md, privacy.md, TAS
 - Commit after each green slice (`feat:`, `fix:`, `docs:`, `test:`, `chore:`).
 
 ## Current Status
-- Last session: 2026-11-12 — Phase 0 + Phase 1 built; then the white + green responsive UI upgrade (`docs/plans/ui-upgrade.md`, screenshots in `docs/screenshots/ui-upgrade/`).
+- Last session: 2026-11-12 — Phases 0–2 built (Phase 2: summary writer with Option A, doctor 2FA, queue/summary/finalise, record book) + white/green UI.
 - AI: `LLM_PROVIDER=mock` locally; model plan in `docs/ai-models.md` (demo Gemini/Groq on fake data, pilot Claude Haiku 5.5).
 - Safety keyword list is a **draft** until a doctor reviews it (Pranov's decision) — blocks the pilot via `docs/release-checklist.md`.
 - Known issues: see `docs/TASKS.md` → Known issues.
-- Next step: Phase 2 — `docs/plans/phase-2.md` (open clinical-safety question inside: medicine names in the summary).
+- Next step: Phase 3 (voice + Hindi/Hinglish polish). Open safety question in TASKS (patient-word lines with blocked terms).
+- Try the doctor side: seed doctor Dr. A. Mehta = +91 9000000101 → /d/login → enrol any authenticator app (TOTP).

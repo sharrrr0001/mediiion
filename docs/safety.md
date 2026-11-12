@@ -23,9 +23,9 @@ This positioning keeps Medicos outside the scope of a medical device under CDSCO
 | 4 | Fixed safety line | Keyword rule (`packages/ai/src/safety`, **draft — doctor review before pilot**), text in `packages/shared/src/safety-config.ts`; `SafetyEvent` row + neutral queue marker | `safety/match.test.ts`, `intake.e2e.spec.ts`, Playwright, evals |
 | 5 | Fixed schema without A/P | `PreVisitSummary` zod schema (`packages/shared`), `.strict()`; test asserts no assessment/plan/diagnosis keys | `packages/shared` tests |
 | 6 | Output filter | `packages/ai/filter` on every AI message + summary; max 2 regenerations then canned question; `FilterBlockEvent` | `output-filter.test.ts`, `engine.test.ts`, evals |
-| 7 | Source-linked lines | `Line.sources.min(1)`; summary writer drops lines whose `messageId` is not in the transcript | summary tests (Phase 2) |
-| 8 | Draft label | `AI_DRAFT_LABEL` constant in `packages/shared`, rendered on every surface | UI/E2E (Phase 2) |
-| 9 | Doctor decides | `PreVisitSummary.status` draft→delivered→reviewed; only `DoctorNote.finalisedAt` creates clinical record-book entries | API tests (Phase 2) |
+| 7 | Source-linked lines | `Line.sources.min(1)`; summary writer drops lines whose `messageId` is not in the transcript | `summary.test.ts`, evals, `doctor.e2e.spec.ts` |
+| 8 | Draft label | `AI_DRAFT_LABEL` constant in `packages/shared`, rendered on every surface | `doctor.spec.ts` (Playwright), record detail |
+| 9 | Doctor decides | `PreVisitSummary.status` draft→delivered→reviewed; only `DoctorNote.finalisedAt` creates clinical record-book entries | `doctor.e2e.spec.ts` (record book only after finalise) |
 | 10 | Consent controls access | `can()` policy (`apps/api/src/auth/policy.ts`): owner, or doctor with unexpired, unrevoked `AccessGrant`; deny by default; audit every read | `policy.spec.ts` (Phase 0) |
 | 11 | No training, de-identify | De-identifier in `packages/ai` before every provider call; providers with no-training terms | `deidentify.test.ts`, `intake.e2e.spec.ts`, evals |
 | 12 | Data in India | Prod infra in ap-south-1 only (Phase 6 Terraform) | infra review |

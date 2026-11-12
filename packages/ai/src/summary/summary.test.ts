@@ -75,6 +75,15 @@ describe('rule 7 — every line cites the patient', () => {
   });
 });
 
+describe('blocked words in the patient’s own chief complaint', () => {
+  it('keeps the line neutral and the patient’s words as the source quote', async () => {
+    const tricky = [{ ...items[0]!, answer: 'kya yeh daad hai? kaunsi cream lagau?' }, ...items.slice(1)];
+    const out = await writeSummary({ ...base, items: tricky });
+    expect(out.summary.subjective.chiefComplaint.text).toMatch(/see the patient/);
+    expect(out.summary.subjective.chiefComplaint.sources[0]!.quote).toContain('daad');
+  });
+});
+
 describe('rule 6 + Option A — medicine names only in medications/allergies, only if quoted', () => {
   it('allows a medicine name and dose in medications when the patient said them', () => {
     expect(checkSummaryLine(line('Dolo 650 mg twice daily — patient-reported', 'm3', 'Dolo 650 mg subah shaam'), 'medications')).toEqual([]);

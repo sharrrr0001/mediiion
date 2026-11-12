@@ -66,7 +66,7 @@ export function DashboardShell({ nav, navLabel, identity, topBar, labels, childr
     <div className="flex min-h-dvh bg-surface-2/60 text-[15px]">
       <aside
         className={cn(
-          'sticky top-0 hidden h-dvh shrink-0 flex-col border-r border-line bg-surface md:flex',
+          'sticky top-0 hidden h-dvh shrink-0 flex-col border-r border-line bg-surface md:flex print:hidden',
           collapsed ? 'w-[76px]' : 'w-[76px] lg:w-[248px]',
         )}
       >
@@ -89,7 +89,7 @@ export function DashboardShell({ nav, navLabel, identity, topBar, labels, childr
       </aside>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 border-b border-line bg-surface/95 backdrop-blur">
+        <header className="sticky top-0 z-20 border-b border-line bg-surface/95 backdrop-blur print:hidden">
           <div className="flex min-h-16 items-center gap-3 px-4 md:px-6">
             <Button variant="ghost" size="icon" className="md:hidden" aria-label={labels.open} onClick={() => setDrawer(true)}>
               <MenuIcon aria-hidden />

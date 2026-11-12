@@ -21,12 +21,14 @@ import { useTranslations } from 'next-intl';
 import type { ReactNode } from 'react';
 import { Avatar, Button, cn } from '@medicos/ui';
 import { DashboardShell, type NavItem } from './dashboard-shell';
+import { useDoctor } from '@/lib/use-doctor';
 
-const DOCTOR = { name: 'Dr. A. Mehta', clinic: 'CityCare Clinic' }; // fictional seed doctor (preview)
 
 export function DoctorShell({ children }: { children: ReactNode }) {
   const t = useTranslations('doctor');
   const tn = useTranslations('nav');
+  const { data: me } = useDoctor();
+  const DOCTOR = { name: me?.name ?? '', clinic: me?.clinic?.name ?? '' };
   const nav: NavItem[] = [
     { label: t('nav.dashboard'), icon: <LayoutDashboard aria-hidden /> },
     { href: '/d/today', label: t('nav.today'), icon: <CalendarDays aria-hidden /> },
@@ -48,12 +50,12 @@ export function DoctorShell({ children }: { children: ReactNode }) {
       labels={{ open: tn('menu'), close: tn('closeMenu'), collapse: t('collapse'), expand: t('expand') }}
       identity={(collapsed) => (
         <div className={cn('flex items-center gap-3', collapsed && 'justify-center')}>
-          <Avatar name={DOCTOR.name.replace('Dr. ', '')} className="size-10" />
+          <Avatar name={DOCTOR.name.replace(/^Dr.?s*/, '')} className="size-10" />
           <div className={cn('min-w-0', collapsed ? 'sr-only' : 'max-lg:md:sr-only')}>
             <p className="truncate font-semibold text-ink">{DOCTOR.name}</p>
             <p className="inline-flex items-center gap-1 text-sm font-medium text-brand-deep">
               <BadgeCheck aria-hidden className="size-4 stroke-[1.75]" />
-              {t('verified')}
+              {me?.verificationStatus === 'verified' ? t('verified') : me?.verificationStatus ?? ''}
             </p>
           </div>
         </div>
@@ -61,14 +63,14 @@ export function DoctorShell({ children }: { children: ReactNode }) {
       topBar={
         <>
           <div className="min-w-0">
-            <p className="truncate font-display text-lg font-semibold md:text-xl">{t('greeting', { name: 'Dr. Mehta' })}</p>
+            <p className="truncate font-display text-lg font-semibold md:text-xl">{me ? t('greeting', { name: me.name }) : ' '}</p>
             <p className="tabular text-sm text-muted">{date}</p>
           </div>
           <label className="ml-auto hidden items-center gap-2 rounded-[var(--radius-control)] border border-line bg-surface px-3 shadow-sm xl:flex">
             <Building2 aria-hidden className="size-5 stroke-[1.75] text-brand" />
             <span className="sr-only">{t('clinic')}</span>
-            <select className="min-h-10 bg-transparent pr-2 text-[15px] font-medium focus:outline-none" defaultValue="citycare">
-              <option value="citycare">{DOCTOR.clinic}</option>
+            <select className="min-h-10 bg-transparent pr-2 text-[15px] font-medium focus:outline-none" value={me?.clinic?.id ?? ''} onChange={() => undefined}>
+              <option value={me?.clinic?.id ?? ''}>{DOCTOR.clinic}</option>
             </select>
           </label>
           <label className="relative ml-auto hidden w-full max-w-sm lg:block xl:ml-0">

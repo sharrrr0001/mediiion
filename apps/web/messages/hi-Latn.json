@@ -341,7 +341,8 @@
       "billing": "Plan & billing",
       "staff": "Staff",
       "settings": "Settings"
-    }
+    },
+    "statusDone": "Poori hui"
   },
   "admin": {
     "title": "Admin overview",
@@ -394,5 +395,82 @@
     "notedEmpty": "Aapke jawaab yahan dikhte jaayenge.",
     "back": "Wapas",
     "agreeContinue": "Main sehmat hoon, aage badhein"
+  },
+  "doctorAuth": {
+    "title": "Doctor login",
+    "subtitle": "Verified doctors ke liye secure access. Hum aapke mobile par 6 ank ka code bhejenge.",
+    "setupTitle": "2-step verification set karein",
+    "setupBody": "Is QR code ko kisi authenticator app (Google Authenticator, Microsoft Authenticator ya Authy) se scan kijiye, phir usmein dikha 6 ank ka code daaliye.",
+    "manualKey": "Ya app mein yeh key likhiye",
+    "verifyTitle": "Authenticator code daaliye",
+    "verifyBody": "Apna authenticator app kholiye aur Medicos ka 6 ank ka code daaliye.",
+    "codeLabel": "Authenticator code",
+    "confirm": "Check karke sign in karein",
+    "notDoctor": "Yeh doctor account nahi hai.",
+    "patientLink": "Kya aap patient hain? Yahan login karein"
+  },
+  "finalise": {
+    "examination": "Examination findings",
+    "testsAdvised": "Tests advised",
+    "followUp": "Follow-up date",
+    "rxTitle": "Prescription",
+    "rxAdd": "Dawa jodein",
+    "rxDrug": "Dawa",
+    "rxDose": "Dose",
+    "rxFrequency": "Kitni baar",
+    "rxDuration": "Kitne din",
+    "rxInstructions": "Instructions",
+    "rxRemove": "Hatayein",
+    "confirmTitle": "Yeh visit finalise karein?",
+    "confirmBody": "Aapka note aur prescription patient ki Medical Record Book mein jud jaayega. Iske baad ise badla nahi ja sakta.",
+    "confirm": "Finalise",
+    "cancel": "Cancel",
+    "done": "Visit finalise ho gayi. Patient ab aapka note dekh sakte hain.",
+    "required": "Assessment aur plan zaroori hain.",
+    "useful": "Kya yeh summary useful thi?",
+    "yes": "Haan",
+    "no": "Nahi",
+    "thanks": "Feedback ke liye shukriya.",
+    "noSummary": "Is visit ki abhi koi pre-visit summary nahi hai.",
+    "empty": "Aaj ki queue mein abhi koi patient nahi. Apna waiting-room QR share kijiye taaki patients pehle se taiyaari kar sakein.",
+    "notVerified": "Aapka verification chal raha hai. Approval ke baad aap patients dekh sakenge (aam taur par 48 ghante mein).",
+    "finalisedBy": "{name} ne {date} ko finalise kiya",
+    "openings": {
+      "hpi": "Abhi ki takleef ki history",
+      "negatives": "Jo lakshan nahi hain",
+      "past": "Purani history",
+      "meds": "Dawaiyan (patient ne batayi)",
+      "allergies": "Allergy",
+      "social": "Parivaar / aadatein",
+      "extras": "Specialty details",
+      "concern": "Patient ki main chinta",
+      "questions": "Patient ke sawaal",
+      "readings": "Ghar ki readings",
+      "gaps": "Doctor ke liye adhoori jaankari",
+      "attachments": "Attachments"
+    }
+  },
+  "chooseDoctor": {
+    "label": "Doctor (optional)",
+    "none": "Main baad mein chununga/chunungi",
+    "hint": "Aapke jawaab sirf yahan chune gaye doctor ke saath share honge."
+  },
+  "recordDetail": {
+    "back": "Records par wapas",
+    "aiLabel": "AI se bana draft. Yeh diagnosis ya prescription nahi hai. Ilaaj karne wale doctor ise check karenge.",
+    "doctorNote": "Doctor ka note",
+    "assessment": "Assessment",
+    "plan": "Plan",
+    "examination": "Examination",
+    "tests": "Tests advised",
+    "followUp": "Follow-up",
+    "prescription": "Prescription",
+    "byDoctor": "{name} dwara",
+    "kinds": {
+      "doctor_note": "Doctor note",
+      "prescription": "Prescription",
+      "pre_visit_summary": "AI pre-visit summary",
+      "uploaded_report": "Report"
+    }
   }
 }

@@ -341,7 +341,8 @@
       "billing": "Plan & billing",
       "staff": "Staff",
       "settings": "Settings"
-    }
+    },
+    "statusDone": "Completed"
   },
   "admin": {
     "title": "Admin overview",
@@ -394,5 +395,82 @@
     "notedEmpty": "Your answers will appear here as you go.",
     "back": "Back",
     "agreeContinue": "I agree & continue"
+  },
+  "doctorAuth": {
+    "title": "Doctor login",
+    "subtitle": "Secure access for verified doctors. We will send a 6-digit code to your mobile.",
+    "setupTitle": "Set up 2-step verification",
+    "setupBody": "Scan this QR code with an authenticator app (Google Authenticator, Microsoft Authenticator or Authy), then enter the 6-digit code it shows.",
+    "manualKey": "Or type this key in the app",
+    "verifyTitle": "Enter your authenticator code",
+    "verifyBody": "Open your authenticator app and enter the 6-digit code for Medicos.",
+    "codeLabel": "Authenticator code",
+    "confirm": "Verify and sign in",
+    "notDoctor": "This account is not a doctor account.",
+    "patientLink": "Are you a patient? Log in here"
+  },
+  "finalise": {
+    "examination": "Examination findings",
+    "testsAdvised": "Tests advised",
+    "followUp": "Follow-up date",
+    "rxTitle": "Prescription",
+    "rxAdd": "Add medicine",
+    "rxDrug": "Medicine",
+    "rxDose": "Dose",
+    "rxFrequency": "Frequency",
+    "rxDuration": "Duration",
+    "rxInstructions": "Instructions",
+    "rxRemove": "Remove",
+    "confirmTitle": "Finalise this visit?",
+    "confirmBody": "Your note and prescription will be added to the patient's Medical Record Book. You cannot edit it afterwards.",
+    "confirm": "Finalise",
+    "cancel": "Cancel",
+    "done": "Visit finalised. The patient can now see your note.",
+    "required": "Assessment and plan are required.",
+    "useful": "Was this summary useful?",
+    "yes": "Yes",
+    "no": "No",
+    "thanks": "Thanks for the feedback.",
+    "noSummary": "No pre-visit summary for this visit yet.",
+    "empty": "No patients in today's queue yet. Share your waiting-room QR so patients can prepare before they come in.",
+    "notVerified": "Your verification is in progress. You can receive patients once it is approved (usually within 48 hours).",
+    "finalisedBy": "Finalised by {name} on {date}",
+    "openings": {
+      "hpi": "History of present illness",
+      "negatives": "Pertinent negatives",
+      "past": "Past history",
+      "meds": "Medications (patient-reported)",
+      "allergies": "Allergies",
+      "social": "Family / social",
+      "extras": "Specialty details",
+      "concern": "Patient's main worry",
+      "questions": "Patient's questions",
+      "readings": "Home readings",
+      "gaps": "History gaps for the doctor",
+      "attachments": "Attachments"
+    }
+  },
+  "chooseDoctor": {
+    "label": "Doctor (optional)",
+    "none": "I'll choose later",
+    "hint": "Your answers are shared only with the doctor you choose here."
+  },
+  "recordDetail": {
+    "back": "Back to records",
+    "aiLabel": "AI-generated draft. Not a diagnosis or prescription. Treating doctor must review.",
+    "doctorNote": "Doctor's note",
+    "assessment": "Assessment",
+    "plan": "Plan",
+    "examination": "Examination",
+    "tests": "Tests advised",
+    "followUp": "Follow-up",
+    "prescription": "Prescription",
+    "byDoctor": "By {name}",
+    "kinds": {
+      "doctor_note": "Doctor note",
+      "prescription": "Prescription",
+      "pre_visit_summary": "AI pre-visit summary",
+      "uploaded_report": "Report"
+    }
   }
 }

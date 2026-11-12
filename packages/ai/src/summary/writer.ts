@@ -4,7 +4,10 @@ import { PreVisitSummary, type Language } from '@medicos/shared';
 import type { FilterRule } from '../filter/output-filter';
 import type { IntakeTemplate } from '../templates/schema';
 import { LlmOutputError, type LlmProvider, type Usage } from '../types';
-import { cleanSummary } from './validate';
+import { checkSummaryLine, cleanSummary } from './validate';
+
+/** Neutral line used when the patient's own words cannot pass the filter as AI-written text. */
+export const NEUTRAL_CHIEF = 'Main problem — see the patient’s own words (source)';
 
 export const SUMMARY_PROMPT_VERSION = 'summary-v1';
 export const MAX_SUMMARY_REGENERATIONS = 2;
@@ -66,7 +69,10 @@ export async function writeSummary(input: WriteSummaryInput): Promise<WriteSumma
   };
   const patientMessages = input.items.map((i) => ({ id: i.messageId, text: i.answer }));
   const chiefItem = input.items.find((i) => i.section === 'chief_complaint') ?? input.items[0]!;
-  const fallbackChief = { text: chiefItem.answer.slice(0, 400), sources: [{ messageId: chiefItem.messageId, quote: chiefItem.answer.slice(0, 300) }] };
+  const verbatimChief = { text: chiefItem.answer.slice(0, 400), sources: [{ messageId: chiefItem.messageId, quote: chiefItem.answer.slice(0, 300) }] };
+  // If the patient's words themselves contain a blocked term, the AI-written text stays neutral and the
+  // patient's words remain available to the doctor as the line's source quote.
+  const fallbackChief = checkSummaryLine(verbatimChief, 'chiefComplaint').length ? { ...verbatimChief, text: NEUTRAL_CHIEF } : verbatimChief;
   const transcript = JSON.stringify(input.items.map((i) => ({ message_id: i.messageId, question: i.question, answer: i.answer })));
 
   const usage: Usage[] = [];

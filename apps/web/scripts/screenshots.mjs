@@ -95,7 +95,7 @@ for (let i = 0; i < 25; i++) {
 await visit(`/p/intake/${session.id}/review`, 'previsit-review');
 
 // Doctor + admin
-await visit('/d/today', 'doctor-today');
+await visit('/d/login', 'doctor-login');
 await visit('/admin', 'admin', 'main');
 
 await browser.close();

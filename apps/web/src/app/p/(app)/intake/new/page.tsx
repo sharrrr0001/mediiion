@@ -5,8 +5,8 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, type ReactNode } from 'react';
-import type { IntakeView } from '@medicos/shared/client';
-import { Button, Skeleton, cn } from '@medicos/ui';
+import type { DoctorListItem, IntakeView } from '@medicos/shared/client';
+import { Button, Field, Select, Skeleton, cn } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
 import { api, ApiError, post } from '@/lib/api';
 import { usePatientGate } from '@/lib/use-me';
@@ -18,14 +18,17 @@ export default function NewIntakePage() {
   const tc = useTranslations('common');
   const router = useRouter();
   const { me } = usePatientGate();
+  const td = useTranslations('chooseDoctor');
   const [kind, setKind] = useState<Kind>('general-medicine');
+  const [doctorId, setDoctorId] = useState('');
+  const doctors = useQuery({ queryKey: ['doctors'], queryFn: () => api<DoctorListItem[]>('/doctors'), enabled: !!me });
   const open = useQuery({
     queryKey: ['intake-open'],
     queryFn: () => api<Array<{ id: string; status: string }>>('/intake/sessions'),
     enabled: !!me,
   });
   const start = useMutation({
-    mutationFn: () => post<IntakeView>('/intake/sessions', { profileId: me!.profiles[0]!.id, templateKey: kind }),
+    mutationFn: () => post<IntakeView>('/intake/sessions', { profileId: me!.profiles[0]!.id, templateKey: kind, ...(doctorId ? { doctorId } : {}) }),
     onSuccess: (v) => router.push(`/p/intake/${v.id}`),
   });
 
@@ -69,6 +72,18 @@ export default function NewIntakePage() {
             hint={t('kindSkinHint')}
           />
         </fieldset>
+
+        <Field label={td('label')} htmlFor="doctor" hint={td('hint')} className="mt-6">
+          <Select id="doctor" value={doctorId} onChange={(e) => setDoctorId(e.target.value)}>
+            <option value="">{td('none')}</option>
+            {(doctors.data ?? []).map((d) => (
+              <option key={d.id} value={d.id}>
+                {d.name} · {d.specialty.replace('_', ' ')}
+                {d.clinic ? ` · ${d.clinic.name}, ${d.clinic.city}` : ''}
+              </option>
+            ))}
+          </Select>
+        </Field>
 
         <p className="mt-6 flex items-center gap-2 text-sm text-muted">
           <Mic aria-hidden className="size-4" />

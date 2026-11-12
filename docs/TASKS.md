@@ -32,10 +32,25 @@
 - [x] Acceptance: dark-OS check, no overflow at 360–1920, axe zero serious on all pages, keyboard skip link + focus ring, 30 E2E passing
 - [ ] Lighthouse mobile Performance ≥ 90 — currently landing 84, home 87–88 (A11y 100, Best practices 100). See Known issues.
 
-## Phase 2 — Pre-Visit Summary + doctor view (next)
-See [plans/phase-2.md](plans/phase-2.md).
+## Phase 2 — Pre-Visit Summary + doctor view ✅ (2026-11-12)
+- [x] Summary writer (schema §6.4): de-identified answers → one structured call → rule 7 (drop unsourced/misquoted), rule 6 + **Option A** (medicine names/doses only in medications/allergies when quoted), ≤2 regenerations, then drop; code-owned attachments/safety/meta; names re-inserted only at render
+- [x] Storage + lifecycle: encrypted `PreVisitSummary`, draft → delivered (chosen doctor) → reviewed (finalised); opened-at tracking
+- [x] Doctor TOTP 2FA (enrol + verify, replay-safe)
+- [x] Patient picks a verified doctor (optional) at pre-visit start → share consent + 72 h grant + today's queue entry
+- [x] Doctor Today queue (IST day, neutral safety marker first) and summary page: S/O with source popovers, A/P empty "For doctor" editors, examination, Rx builder, tests, follow-up, Review & finalise (confirm dialog), 👍/👎 feedback, print
+- [x] Rule 9: record book gets the doctor note + prescription only on finalise; patient Record Book list + detail
+- [x] AI usage/cost recorded per summary; filter blocks stored as rule ids
+- [x] Evals: 50/50 cases now also check summary validity (schema, sources, filter, no A/P)
+- [x] Tests: ai 210, api 56 (incl. full doctor e2e + 2FA), web E2E 30 (incl. browser doctor flow on phone + desktop)
+
+## Phase 3 — Voice + Hindi/Hinglish polish (next)
+Mic recording, STT adapters (Groq Whisper dev, Sarvam prod), transcript confirm, Paediatrics + Gynaecology templates, offline queue.
 
 ## Known issues / follow-ups
+- **Open question (clinical safety):** a summary line whose *patient words* contain a blocked term (e.g. "kya yeh daad hai?" in patient questions) is currently dropped, so the doctor loses that question. Proposal: show such lines verbatim as "Patient said: “…”" (clearly a quote, not AI text). Needs Pranov's decision.
+- Usage metering against the plan (summaries per month) is Phase 5 (billing).
+- Doctor dashboard "Upcoming" tab, patient history and month stats are not wired yet (queue covers today).
+- E2E: one desktop signup run timed out once under full-suite load on the dev server; passes on repeat. Run E2E against a production build in CI.
 - Lighthouse mobile Performance 84 (/) and 87–88 (/p/home), target 90. Remaining cost: ~230 kB web fonts on throttled 4G (incl. an 84 kB Devanagari file triggered by the "हिंदी" picker label on every page) and ~145 kB first-load JS. Next steps: subset/self-host fonts (Devanagari only for hi), lazy-load the language sheet, consider a lighter data layer than React Query on public pages.
 - Doctor/admin pages are previews with sample data; sidebar items without pages are shown disabled.
 - /p/login (241 kB) and /p/profile (276 kB) still load zod for form validation; chat and other patient routes are under 150 kB.
