@@ -1,14 +1,10 @@
+import type { Metadata } from 'next';
 import type { ReactNode } from 'react';
-import { Logo } from '@medicos/ui';
+import { IntlProvider } from '@/components/intl-provider';
+import { DoctorShell } from '@/components/shell/doctor-shell';
 
-/** Doctor/staff dashboard shell (desktop first, 15px base). Full dashboard arrives in Phase 2. */
+export const metadata: Metadata = { title: 'Doctor dashboard' };
+
 export default function DoctorLayout({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex min-h-dvh text-[15px]">
-      <aside className="hidden w-64 shrink-0 bg-brand-deep p-6 text-white md:block">
-        <Logo className="text-white [&_svg_path:last-child]:fill-[var(--brand-deep)]" />
-      </aside>
-      <main className="flex-1 p-8">{children}</main>
-    </div>
-  );
+  return <IntlProvider namespaces={["common","nav","doctor"]}><DoctorShell>{children}</DoctorShell></IntlProvider>;
 }

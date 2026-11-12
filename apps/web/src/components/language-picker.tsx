@@ -33,7 +33,7 @@ export function LanguagePicker({ className }: { className?: string }) {
             start(() => router.refresh());
           }}
           className={cn(
-            'min-h-10 rounded-full px-3.5 text-sm font-medium text-muted transition-colors',
+            'min-h-10 rounded-full px-2.5 text-[13px] font-medium text-muted transition-colors sm:px-3.5 sm:text-sm',
             locale === lang && 'bg-surface text-brand shadow-sm',
           )}
         >

@@ -17,6 +17,9 @@ const config: NextConfig = {
   // Lets a production build run next to `next dev` without clobbering .next/.
   distDir: process.env.NEXT_DIST_DIR ?? '.next',
   poweredByHeader: false,
+  devIndicators: false,
+  // Inline the (small) Tailwind CSS into the HTML: removes a render-blocking request on slow mobile networks.
+  experimental: { inlineCss: true },
   transpilePackages: ['@medicos/ui'],
   // Same-origin API: httpOnly cookies work without CORS (docs/decisions.md).
   async rewrites() {
