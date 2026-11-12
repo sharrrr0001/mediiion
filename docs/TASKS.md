@@ -43,10 +43,21 @@
 - [x] Evals: 50/50 cases now also check summary validity (schema, sources, filter, no A/P)
 - [x] Tests: ai 210, api 56 (incl. full doctor e2e + 2FA), web E2E 30 (incl. browser doctor flow on phone + desktop)
 
-## Phase 3 — Voice + Hindi/Hinglish polish (next)
-Mic recording, STT adapters (Groq Whisper dev, Sarvam prod), transcript confirm, Paediatrics + Gynaecology templates, offline queue.
+## Phase 3 — Voice + Hindi/Hinglish polish ✅ (2026-11-12)
+- [x] Paediatrics (parent-phrased, birth history/feeding by age, vaccination, growth, specialty safety patterns) and Gynaecology (LMP, cycle, pregnancy status, obstetric history) templates; eval cases use them
+- [x] STT adapters: mock (scripted Hinglish), Groq Whisper (demo), Sarvam Saarika (production only); cost per audio minute in `AiUsage`
+- [x] Voice API: ≤ 60 s / 2 MB, magic-byte sniffing, private storage, draft transcript (`VoiceClip`) never auto-posted; confirmed text → safety rule → message linked to audio
+- [x] Voice UI: hold-to-talk (also tap-to-toggle and keyboard), timer + level meter, slide to cancel, "We heard … Is this right?" (send / edit / record again), chat-or-voice choice; all strings in en/hi/hi-Latn
+- [x] Offline: pending answer kept in IndexedDB and sent on reconnect/reload; production service worker for the app shell
+- [x] Tests: ai 309, api 59 (voice draft/confirm/limits/ownership/safety), web E2E 33 incl. **voice-only Hinglish interview on a low-end Android profile → summary** and offline send
+- [ ] Chat route JS is at the 150 kB line (budget: under 150) — see Known issues
+
+## Phase 4 — Doctors, verification, booking, QR access (next)
+Doctor onboarding (7 steps), verification queue, clinics/schedules/fees, doctor search + profile + slot booking, clinic staff, QR scan + Allow/Deny + 24 h grant, family profiles, share link/PDF. Also: link to doctor login from the public site.
 
 ## Known issues / follow-ups
+- Chat route first-load JS is 150 kB (budget < 150). Next trims: lighter data layer than React Query on patient pages, or splitting the shell's account menu.
+- Live STT (Groq/Sarvam) is wired and unit-tested against the request shape, but not exercised against the real services yet (no keys).
 - **Open question (clinical safety):** a summary line whose *patient words* contain a blocked term (e.g. "kya yeh daad hai?" in patient questions) is currently dropped, so the doctor loses that question. Proposal: show such lines verbatim as "Patient said: “…”" (clearly a quote, not AI text). Needs Pranov's decision.
 - Usage metering against the plan (summaries per month) is Phase 5 (billing).
 - Doctor dashboard "Upcoming" tab, patient history and month stats are not wired yet (queue covers today).

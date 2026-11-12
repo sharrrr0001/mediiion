@@ -4,7 +4,7 @@
 
 > *Doctor ka time bachao. Patient ki baat poori suno.*
 
-**Status:** Phase 0 (foundation) and Phase 1 (AI intake chat) are done. Next up is Phase 2 (Pre-Visit Summary and the doctor view). See [docs/TASKS.md](docs/TASKS.md).
+**Status:** Phases 0–3 are done (foundation, AI intake chat, Pre-Visit Summary + doctor view, voice + Hindi/Hinglish). Next up is Phase 4 (doctors, booking, QR access). See [docs/TASKS.md](docs/TASKS.md).
 
 ## Requirements
 Node 20.18+ (tested on 24), pnpm 10 (`npm i -g pnpm@10.15.0`), Docker Desktop.
@@ -50,7 +50,8 @@ Open http://localhost:3001 and sign up with any 10-digit number that starts with
 | `EMAIL_PROVIDER`, `SMTP_HOST`, `SMTP_PORT`, `EMAIL_FROM` | Email OTP via Mailpit locally | `smtp`, `localhost`, `1025` |
 | `DEV_OUTBOX` | Dev-only OTP outbox for E2E. Must be `false` in production (enforced) | `true` |
 | `S3_*` | Object storage (Phase 1 uploads) | SeaweedFS |
-| `LLM_PROVIDER`, `LLM_MODEL`, `STT_PROVIDER` | AI providers (Phase 1+) | `mock` |
+| `LLM_PROVIDER`, `LLM_MODEL`, … | Chat + summary model (see below) | `mock` |
+| `STT_PROVIDER`, `STT_MODEL`, `STT_API_KEY` | Speech-to-text: `mock` / `groq` (demo, fake data only) / `sarvam` (production) | `mock` |
 
 ## Switching AI providers / running evals
 Set these in `.env` and restart `pnpm dev` (see [docs/ai-models.md](docs/ai-models.md)):

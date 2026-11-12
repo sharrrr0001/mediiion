@@ -22,8 +22,6 @@ export const PostIntakeMessage = z
   })
   .strict();
 
-export const MAX_VOICE_BYTES = 2 * 1024 * 1024;
-export const MAX_VOICE_MS = 60_000;
 
 /** A transcribed voice answer awaiting the patient's confirmation (never posted automatically). */
 export interface VoiceDraft {

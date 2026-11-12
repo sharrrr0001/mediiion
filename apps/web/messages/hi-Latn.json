@@ -130,7 +130,38 @@
     "continueAnswering": "Main samajh gaya/gayi, aage badhein",
     "reviewCta": "Dekhiye aapne kya bataya",
     "chatLanguage": "Interview ki bhasha",
-    "attachments": "Aapki photo aur reports"
+    "attachments": "Aapki photo aur reports",
+    "voice": {
+      "hold": "Bolne ke liye daba kar rakhein",
+      "holdHint": "Mic daba kar rakhiye, boliye, phir chhod dijiye. Ya ek baar tap karke shuru karein aur phir tap karke rokein.",
+      "recording": "Record ho raha hai… {seconds}s",
+      "release": "Poora karne ke liye chhodiye",
+      "slideCancel": "Cancel karne ke liye baayein khiskaiye",
+      "cancelled": "Recording cancel hui",
+      "stop": "Recording rokein",
+      "transcribing": "Aapka jawaab sun rahe hain…",
+      "weHeard": "Humne yeh suna:",
+      "isRight": "Sahi hai?",
+      "send": "Haan, bhejein",
+      "edit": "Badlein",
+      "again": "Phir se record karein",
+      "micDenied": "Microphone ki permission band hai. Browser settings mein chalu kijiye, ya apna jawaab likhiye.",
+      "micUnsupported": "Is browser mein voice ki suvidha nahi hai. Kripya jawaab likhiye.",
+      "tooShort": "Bolte samay thodi der aur daba kar rakhiye.",
+      "failed": "Yeh recording samajh nahi aayi. Phir se try karein ya jawaab likhiye.",
+      "modeLabel": "Aap kaise jawaab dena chahte hain?",
+      "modeChat": "Likh kar (chat)",
+      "modeVoice": "Bol kar (voice)",
+      "modeVoiceHint": "Hindi, English ya Hinglish mein boliye — bhejne se pehle aap likha hua check kar lenge",
+      "queued": "Save ho gaya. Internet aate hi bhej denge.",
+      "sending": "Aapka save kiya jawaab bhej rahe hain…"
+    },
+    "kinds": {
+      "kids": "Bachche ki sehat",
+      "kidsHint": "Bachche ya baby ke liye — maata-pita jawaab dein",
+      "women": "Mahilaon ki sehat",
+      "womenHint": "Periods, pregnancy aur judi problems"
+    }
   },
   "review": {
     "title": "Aapne humein kya bataya",

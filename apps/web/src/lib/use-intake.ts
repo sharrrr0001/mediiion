@@ -1,8 +1,7 @@
 'use client';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import type { IntakeView, Language } from '@medicos/shared/client';
+import type { IntakeView, Language, VoiceDraft } from '@medicos/shared/client';
 import { api, ApiError, post } from './api';
-import { compressForUpload } from './compress-image';
 
 export const intakeKey = (id: string) => ['intake', id] as const;
 
@@ -17,7 +16,8 @@ export function useIntakeActions(id: string) {
   const refetchOnError = () => qc.invalidateQueries({ queryKey: intakeKey(id) });
 
   const send = useMutation({
-    mutationFn: (text: string) => post<IntakeView>(`/intake/sessions/${id}/messages`, { text }),
+    mutationFn: ({ text, voiceId }: { text: string; voiceId?: string }) =>
+      post<IntakeView>(`/intake/sessions/${id}/messages`, voiceId ? { text, voiceId } : { text }),
     onSuccess: set,
     onError: refetchOnError,
   });
@@ -30,6 +30,8 @@ export function useIntakeActions(id: string) {
   });
   const upload = useMutation({
     mutationFn: async ({ file, kind }: { file: File; kind: string }) => {
+      // Loaded only when the patient actually uploads.
+      const { compressForUpload } = await import('./compress-image');
       const blob = await compressForUpload(file);
       const form = new FormData();
       form.append('kind', kind);
@@ -41,5 +43,16 @@ export function useIntakeActions(id: string) {
     },
     onSuccess: set,
   });
-  return { send, cont, retry, pause, language, upload };
+  const voice = useMutation({
+    mutationFn: async ({ blob, durationMs }: { blob: Blob; durationMs: number }) => {
+      const form = new FormData();
+      form.append('durationMs', String(Math.round(durationMs)));
+      form.append('audio', blob, 'answer');
+      const res = await fetch(`/api/intake/sessions/${id}/voice`, { method: 'POST', body: form });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new ApiError(res.status, body?.error?.code ?? 'ERROR', body?.error?.message ?? 'Voice failed');
+      return body as VoiceDraft;
+    },
+  });
+  return { send, cont, retry, pause, language, upload, voice };
 }

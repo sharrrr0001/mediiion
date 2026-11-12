@@ -26,3 +26,7 @@ export const ROLES_REQUIRING_2FA: readonly Role[] = ['doctor', 'staff', 'admin',
 
 export const LANGUAGES = ['en', 'hi', 'hi-Latn'] as const;
 export type Language = (typeof LANGUAGES)[number];
+
+/** Voice answers: at most 1 minute / 2 MB per recording. */
+export const MAX_VOICE_BYTES = 2 * 1024 * 1024;
+export const MAX_VOICE_MS = 60_000;

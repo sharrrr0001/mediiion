@@ -9,6 +9,7 @@
 - Encryption: TLS in transit; at rest via RDS/S3 KMS (prod) **and** application-level AES-256-GCM for name, DOB, message text, summaries, notes. Phone/email as HMAC blind index.
 - Access: deny by default; doctor access only via patient share or QR-approved `AccessGrant` (24 h default). Every read of patient data is written to the append-only `AuditLog`.
 - Residency: production data only in AWS ap-south-1 (Mumbai).
+- Voice: audio cannot be de-identified, so production speech-to-text is Sarvam only (India-hosted, DPA, no training). Audio is stored privately; the LLM only ever receives the patient-confirmed, de-identified text.
 - Logs: pino redaction of cookies, auth headers, phone, email, OTP, names; no PHI in logs, URLs or analytics.
 
 ## Patient rights (to build — Phase 4/5)

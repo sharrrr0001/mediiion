@@ -4,7 +4,7 @@ import { Bell, ChevronDown, FolderHeart, Home, LogOut, QrCode, Settings, Sparkle
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import type { ReactNode } from 'react';
+import { useEffect, type ReactNode } from 'react';
 import { Avatar, Button, Logo, Menu, cn, menuItemClass } from '@medicos/ui';
 import { OfflineBanner } from '@/components/offline-banner';
 import { post } from '@/lib/api';
@@ -28,6 +28,13 @@ export function PatientShell({ children }: { children: ReactNode }) {
   const { data: me } = useMe();
   const firstName = me?.profiles[0]?.name.split(' ')[0];
   const hideTabBar = CHAT_ROUTE.test(pathname);
+
+  // Offline app shell (production only, so it never interferes with development).
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js', { scope: '/p/' }).catch(() => undefined);
+    }
+  }, []);
 
   return (
     <div className="flex min-h-dvh flex-col bg-bg">

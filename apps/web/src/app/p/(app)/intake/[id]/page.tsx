@@ -1,14 +1,19 @@
 'use client';
-import { ArrowLeft, ArrowUp, CheckCircle2, Mic, Paperclip } from 'lucide-react';
+import { ArrowLeft, ArrowUp, CheckCircle2, Paperclip } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
-import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
+import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { useCallback, useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { LANGUAGES, type IntakeMessageView, type Language } from '@medicos/shared/client';
 import { Button, Card, EmptyState, Skeleton, cn } from '@medicos/ui';
 import { ChatBubble, ProgressSteps, QuickReplies, SafetyCard, TypingDots } from '@/components/intake/chat-parts';
 import { container } from '@/components/shell/layout';
+import { MicButton, VoiceConfirm } from '@/components/intake/voice';
+import { ApiError } from '@/lib/api';
+// Offline queue is loaded only when needed (keeps the chat route under its JS budget).
+const queue = () => import('@/lib/offline-queue');
 import { useIntake, useIntakeActions } from '@/lib/use-intake';
+import { useRecorder } from '@/lib/use-recorder';
 
 const LANG_LABELS: Record<Language, string> = { hi: 'हिंदी', en: 'English', 'hi-Latn': 'Hinglish' };
 
@@ -31,12 +36,74 @@ export default function IntakeChatPage() {
   const { id } = useParams<{ id: string }>();
   const router = useRouter();
   const { data: view, isError, refetch } = useIntake(id);
-  const { send, cont, retry, pause, language, upload } = useIntakeActions(id);
+  const tv = useTranslations('intake');
+  const voiceMode = useSearchParams().get('mode') === 'voice';
+  const { send, cont, retry, pause, language, upload, voice } = useIntakeActions(id);
   const [text, setText] = useState('');
+  // Voice: a draft transcript the patient must confirm; if they edit it, the clip id stays linked.
+  const [draft, setDraft] = useState<{ voiceId: string | null; transcript: string | null } | null>(null);
+  const [editingVoiceId, setEditingVoiceId] = useState<string | null>(null);
+  const [voiceError, setVoiceError] = useState<string | null>(null);
+  const [pending, setPending] = useState<string | null>(null);
   const fileRef = useRef<HTMLInputElement>(null);
   const endRef = useRef<HTMLDivElement>(null);
   const busy = send.isPending || cont.isPending || retry.isPending;
   const noted = useMemo(() => notedSoFar(view?.messages ?? []), [view?.messages]);
+
+  const onRecorded = useCallback(
+    async (blob: Blob, durationMs: number) => {
+      if (durationMs < 600) return setVoiceError(tv('voice.tooShort'));
+      setVoiceError(null);
+      setDraft({ voiceId: null, transcript: null });
+      try {
+        const d = await voice.mutateAsync({ blob, durationMs });
+        setDraft({ voiceId: d.voiceId, transcript: d.transcript });
+      } catch {
+        setDraft(null);
+        setVoiceError(tv('voice.failed'));
+      }
+    },
+    [voice, tv],
+  );
+  const recorder = useRecorder(onRecorded);
+
+  /** Send now, or keep it on the device until the connection is back (offline queue). */
+  const deliver = useCallback(
+    (value: string, voiceId?: string) => {
+      const keep = () => {
+        void queue().then((q) => q.savePending({ sessionId: id, text: value, voiceId, at: Date.now() }));
+        setPending(value);
+      };
+      if (typeof navigator !== 'undefined' && !navigator.onLine) return keep();
+      send.mutate(
+        { text: value, voiceId },
+        {
+          onSuccess: () => {
+            void queue().then((q) => q.clearPending(id));
+            setPending(null);
+          },
+          onError: (e) => {
+            if (e instanceof ApiError && e.status === 0) keep();
+          },
+        },
+      );
+    },
+    [id, send],
+  );
+
+  // Flush a saved answer when the page loads or the connection comes back.
+  useEffect(() => {
+    const flush = async () => {
+      const p = await (await queue()).getPending(id);
+      if (!p || !navigator.onLine) return;
+      setPending(p.text);
+      deliver(p.text, p.voiceId);
+    };
+    void flush();
+    window.addEventListener('online', flush);
+    return () => window.removeEventListener('online', flush);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- run on mount and reconnect only
+  }, [id]);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
@@ -64,9 +131,11 @@ export default function IntakeChatPage() {
   const chips = canAnswer && last?.role === 'ai' ? last.quickReplies : [];
   const submit = (value: string) => {
     const v = value.trim();
-    if (!v || busy) return;
+    if (!v || busy || pending) return;
     setText('');
-    send.mutate(v);
+    const voiceId = editingVoiceId ?? undefined;
+    setEditingVoiceId(null);
+    deliver(v, voiceId);
   };
 
   return (
@@ -121,6 +190,34 @@ export default function IntakeChatPage() {
               ))}
             </div>
           ) : null}
+          {pending ? (
+            <div className="flex justify-end">
+              <p role="status" className="flex max-w-[85%] items-start gap-2 rounded-2xl rounded-br-md border border-dashed border-brand/50 bg-brand-tint px-4 py-3 text-[17px] text-ink">
+                <span>
+                  {pending}
+                  <span className="mt-1 block text-sm text-muted">{navigator.onLine ? tv('voice.sending') : tv('voice.queued')}</span>
+                </span>
+              </p>
+            </div>
+          ) : null}
+          {draft && canAnswer ? (
+            <VoiceConfirm
+              transcript={draft.transcript}
+              busy={send.isPending}
+              onSend={() => {
+                if (!draft.transcript) return;
+                deliver(draft.transcript, draft.voiceId ?? undefined);
+                setDraft(null);
+              }}
+              onEdit={() => {
+                setText(draft.transcript ?? '');
+                setEditingVoiceId(draft.voiceId);
+                setDraft(null);
+                document.getElementById('answer')?.focus();
+              }}
+              onAgain={() => setDraft(null)}
+            />
+          ) : null}
           {busy ? <TypingDots label={t('thinking')} /> : null}
           {view.awaiting === 'ai_turn' && !busy ? (
             <Card role="alert" className="p-4 md:p-4">
@@ -140,7 +237,17 @@ export default function IntakeChatPage() {
 
         {canAnswer ? (
           <footer className="sticky bottom-0 z-20 border-t border-line bg-surface/95 px-4 pb-[calc(12px+env(safe-area-inset-bottom))] pt-3 backdrop-blur md:rounded-t-card md:border-x">
-            <QuickReplies options={chips} onPick={submit} disabled={busy} />
+            {voiceMode && !draft && !text ? (
+              <div className="mb-3 flex justify-center">
+                <MicButton recorder={recorder} disabled={busy || !!pending} large />
+              </div>
+            ) : null}
+            {recorder.error || voiceError ? (
+              <p role="alert" className="mb-2 text-sm font-medium text-danger">
+                {recorder.error === 'denied' ? tv('voice.micDenied') : recorder.error === 'unsupported' ? tv('voice.micUnsupported') : voiceError}
+              </p>
+            ) : null}
+            <QuickReplies options={chips} onPick={submit} disabled={busy || !!pending} />
             {view.uploadHint ? <p className="mt-2 text-sm font-semibold text-accent-ink">{t('uploadHint')}</p> : null}
             {upload.isError ? (
               <p role="alert" className="mt-2 text-sm font-medium text-danger">
@@ -188,9 +295,7 @@ export default function IntakeChatPage() {
                 placeholder={t('placeholder')}
                 className="max-h-32 min-h-11 flex-1 resize-none rounded-3xl border border-line bg-surface px-4 py-2.5 text-base shadow-sm focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/15"
               />
-              <Button type="button" variant="ghost" size="icon" className="shrink-0 rounded-full text-muted" aria-label={t('voiceSoon')} title={t('voiceSoon')} disabled>
-                <Mic aria-hidden />
-              </Button>
+              {voiceMode ? null : <MicButton recorder={recorder} disabled={busy || !!pending} />}
               <Button type="submit" size="icon" className="shrink-0 rounded-full" aria-label={t('send')} disabled={!text.trim() || busy}>
                 <ArrowUp aria-hidden />
               </Button>

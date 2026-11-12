@@ -1,6 +1,6 @@
 'use client';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { Mic, Shirt, Stethoscope } from 'lucide-react';
+import { Baby, Flower2, Keyboard, Mic, Shirt, Stethoscope } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -11,7 +11,8 @@ import { container } from '@/components/shell/layout';
 import { api, ApiError, post } from '@/lib/api';
 import { usePatientGate } from '@/lib/use-me';
 
-type Kind = 'general-medicine' | 'dermatology';
+type Kind = 'general-medicine' | 'dermatology' | 'paediatrics' | 'gynaecology';
+type Mode = 'chat' | 'voice';
 
 export default function NewIntakePage() {
   const t = useTranslations('intake');
@@ -21,6 +22,7 @@ export default function NewIntakePage() {
   const td = useTranslations('chooseDoctor');
   const [kind, setKind] = useState<Kind>('general-medicine');
   const [doctorId, setDoctorId] = useState('');
+  const [mode, setMode] = useState<Mode>('chat');
   const doctors = useQuery({ queryKey: ['doctors'], queryFn: () => api<DoctorListItem[]>('/doctors'), enabled: !!me });
   const open = useQuery({
     queryKey: ['intake-open'],
@@ -29,7 +31,7 @@ export default function NewIntakePage() {
   });
   const start = useMutation({
     mutationFn: () => post<IntakeView>('/intake/sessions', { profileId: me!.profiles[0]!.id, templateKey: kind, ...(doctorId ? { doctorId } : {}) }),
-    onSuccess: (v) => router.push(`/p/intake/${v.id}`),
+    onSuccess: (v) => router.push(`/p/intake/${v.id}${mode === 'voice' ? '?mode=voice' : ''}`),
   });
 
   if (!me) {
@@ -71,6 +73,16 @@ export default function NewIntakePage() {
             title={t('kindSkin')}
             hint={t('kindSkinHint')}
           />
+          <Choice checked={kind === 'paediatrics'} onSelect={() => setKind('paediatrics')} icon={<Baby aria-hidden />} title={t('kinds.kids')} hint={t('kinds.kidsHint')} />
+          <Choice checked={kind === 'gynaecology'} onSelect={() => setKind('gynaecology')} icon={<Flower2 aria-hidden />} title={t('kinds.women')} hint={t('kinds.womenHint')} />
+        </fieldset>
+
+        <fieldset className="mt-8">
+          <legend className="font-semibold">{t('voice.modeLabel')}</legend>
+          <div className="mt-3 grid gap-3 md:grid-cols-2">
+            <Choice name="mode" checked={mode === 'chat'} onSelect={() => setMode('chat')} icon={<Keyboard aria-hidden />} title={t('voice.modeChat')} hint={t('placeholder')} />
+            <Choice name="mode" checked={mode === 'voice'} onSelect={() => setMode('voice')} icon={<Mic aria-hidden />} title={t('voice.modeVoice')} hint={t('voice.modeVoiceHint')} />
+          </div>
         </fieldset>
 
         <Field label={td('label')} htmlFor="doctor" hint={td('hint')} className="mt-6">
@@ -85,10 +97,6 @@ export default function NewIntakePage() {
           </Select>
         </Field>
 
-        <p className="mt-6 flex items-center gap-2 text-sm text-muted">
-          <Mic aria-hidden className="size-4" />
-          {t('voiceSoon')}
-        </p>
 
         {start.isError ? (
           <p role="alert" className="mt-4 font-medium text-danger">
@@ -103,7 +111,7 @@ export default function NewIntakePage() {
   );
 }
 
-function Choice(props: { checked: boolean; onSelect: () => void; icon: ReactNode; title: string; hint: string }) {
+function Choice(props: { checked: boolean; onSelect: () => void; icon: ReactNode; title: string; hint: string; name?: string }) {
   return (
     <label
       className={cn(
@@ -111,7 +119,7 @@ function Choice(props: { checked: boolean; onSelect: () => void; icon: ReactNode
         props.checked && 'border-brand bg-brand-tint ring-1 ring-brand',
       )}
     >
-      <input type="radio" name="kind" checked={props.checked} onChange={props.onSelect} className="sr-only" />
+      <input type="radio" name={props.name ?? 'kind'} checked={props.checked} onChange={props.onSelect} className="sr-only" />
       <span className="grid size-12 shrink-0 place-items-center rounded-full bg-brand-soft text-brand [&_svg]:size-6 [&_svg]:stroke-[1.75]">{props.icon}</span>
       <span className="flex flex-col">
         <span className="font-semibold">{props.title}</span>

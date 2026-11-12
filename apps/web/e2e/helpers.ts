@@ -14,7 +14,7 @@ export async function readOtp(page: Page, phone: string): Promise<string> {
       if (!res.ok()) return '';
       code = ((await res.json()) as { code: string }).code;
       return code;
-    })
+    }, { timeout: 30_000 })
     .toMatch(/^\d{6}$/);
   return code;
 }

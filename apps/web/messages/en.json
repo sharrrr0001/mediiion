@@ -130,7 +130,38 @@
     "continueAnswering": "I understand, continue",
     "reviewCta": "See what you told us",
     "chatLanguage": "Interview language",
-    "attachments": "Your photos and reports"
+    "attachments": "Your photos and reports",
+    "voice": {
+      "hold": "Hold to speak",
+      "holdHint": "Hold the mic, speak, then let go. Or tap once to start and again to stop.",
+      "recording": "Recording… {seconds}s",
+      "release": "Let go to finish",
+      "slideCancel": "Slide left to cancel",
+      "cancelled": "Recording cancelled",
+      "stop": "Stop recording",
+      "transcribing": "Listening to your answer…",
+      "weHeard": "We heard:",
+      "isRight": "Is this right?",
+      "send": "Yes, send",
+      "edit": "Edit",
+      "again": "Record again",
+      "micDenied": "Microphone access is off. Allow it in your browser settings, or type your answer.",
+      "micUnsupported": "Voice is not supported on this browser. Please type your answer.",
+      "tooShort": "Hold a little longer while you speak.",
+      "failed": "We couldn't process that recording. Please try again or type your answer.",
+      "modeLabel": "How do you want to answer?",
+      "modeChat": "Type (chat)",
+      "modeVoice": "Speak (voice)",
+      "modeVoiceHint": "Answer in Hindi, English or Hinglish — you check the text before it is sent",
+      "queued": "Saved. We'll send this as soon as you're back online.",
+      "sending": "Sending your saved answer…"
+    },
+    "kinds": {
+      "kids": "Child's health",
+      "kidsHint": "For a child or baby — a parent answers",
+      "women": "Women's health",
+      "womenHint": "Periods, pregnancy and related problems"
+    }
   },
   "review": {
     "title": "What you told us",

@@ -10,6 +10,7 @@ const securityHeaders = [
   { key: 'X-Frame-Options', value: 'DENY' },
   // Camera is needed later for QR scanning (doctor app) and photos; mic for voice intake.
   { key: 'Permissions-Policy', value: 'camera=(self), microphone=(self), geolocation=()' },
+
 ];
 
 const config: NextConfig = {
@@ -26,7 +27,10 @@ const config: NextConfig = {
     return [{ source: '/api/:path*', destination: `${API_URL}/:path*` }];
   },
   async headers() {
-    return [{ source: '/:path*', headers: securityHeaders }];
+    return [
+      { source: '/:path*', headers: securityHeaders },
+      { source: '/sw.js', headers: [{ key: 'Service-Worker-Allowed', value: '/p/' }, { key: 'Cache-Control', value: 'no-cache' }] },
+    ];
   },
 };
 
