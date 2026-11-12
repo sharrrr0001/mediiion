@@ -5,7 +5,7 @@ import { expectNoSeriousA11yViolations, signUpPatient } from './helpers';
 test.describe.configure({ timeout: 180_000 });
 
 async function startInterview(page: Page) {
-  await page.getByRole('link', { name: /Start AI pre-visit/ }).click();
+  await page.getByRole('link', { name: /Start now/ }).click();
   await expect(page).toHaveURL(/\/p\/intake\/new$/);
   await expectNoSeriousA11yViolations(page);
   await page.getByRole('button', { name: 'Start', exact: true }).click();

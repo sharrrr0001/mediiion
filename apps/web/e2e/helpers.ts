@@ -22,6 +22,10 @@ export async function readOtp(page: Page, phone: string): Promise<string> {
 export async function expectNoSeriousA11yViolations(page: Page) {
   // Next 15 streams metadata on dynamic pages; wait for <title> before auditing.
   await expect(page).toHaveTitle(/Medicos/);
+  // Measure colours at rest, not mid fade-in (entrance animations blend text with the background).
+  await expect
+    .poll(() => page.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running' && a.effect?.getTiming().iterations !== Infinity).length), { timeout: 5000 })
+    .toBe(0);
   const results = await new AxeBuilder({ page }).withTags(['wcag2a', 'wcag2aa', 'wcag21aa']).analyze();
   const serious = results.violations.filter((v) => v.impact === 'serious' || v.impact === 'critical');
   expect(serious, serious.map((v) => `${v.id}: ${v.help}`).join('\n')).toEqual([]);

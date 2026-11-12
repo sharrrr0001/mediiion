@@ -40,10 +40,10 @@ test('patient signs up with OTP, consents, creates a profile and sees their Medi
   await expect(page.getByRole('heading', { name: 'Hello, Rahul' })).toBeVisible();
   await expectNoSeriousA11yViolations(page);
 
-  const idText = await page.getByText(/^MED-[0-9A-Z]{4}-[0-9A-Z]{4}$/).textContent();
+  const idText = await page.getByText(/^MED-[0-9A-Z]{4}-[0-9A-Z]{4}$/).first().textContent();
   expect(idText).toMatch(/^MED-/);
 
-  await page.getByRole('link', { name: /My Medicos ID/ }).click();
+  await page.getByRole('link', { name: 'Show QR' }).click();
   await expect(page).toHaveURL(/\/p\/id$/);
   await expect(page.getByRole('img', { name: `QR code for Medicos ID ${idText}` })).toBeVisible();
   await expectNoSeriousA11yViolations(page);

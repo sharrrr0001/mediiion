@@ -24,10 +24,20 @@
 - [x] Chat route JS 144 kB (budget 150 kB) via zod-free `@medicos/shared/client` + side-effect-free UI package
 - [x] Tests: ai 199, api 44 (+ intake e2e), web E2E 10 (incl. safety card + full interview, axe on every screen)
 
+## UI upgrade — white + green responsive website ✅ (2026-11-12)
+- [x] Tokens: new palette, shadows, radius, type scale; dark mode removed; light only
+- [x] Components: Button sizes/variants, Card, SectionHeader, Input/Select/Textarea, OtpInput, Badge/StatusTag, Chip, Avatar, Tabs, Menu, Sheet/Dialog (native), Toast, StatCard, UsageBar, EmptyState (line-art), Skeleton, TimelineItem, DoctorCard, SoapSection
+- [x] Shells: PublicShell, AuthSplit, PatientShell (top nav / bottom tab bar), DashboardShell → Doctor/Admin (sidebar → icon rail → drawer)
+- [x] Pages: new landing; split-screen login/consent/profile; patient dashboard grid; My ID two-column; pre-visit start/chat (side panel on laptop)/review; new Visits + Records; doctor 3-pane preview with list → detail on phone; admin overview
+- [x] Acceptance: dark-OS check, no overflow at 360–1920, axe zero serious on all pages, keyboard skip link + focus ring, 30 E2E passing
+- [ ] Lighthouse mobile Performance ≥ 90 — currently landing 84, home 87–88 (A11y 100, Best practices 100). See Known issues.
+
 ## Phase 2 — Pre-Visit Summary + doctor view (next)
 See [plans/phase-2.md](plans/phase-2.md).
 
 ## Known issues / follow-ups
+- Lighthouse mobile Performance 84 (/) and 87–88 (/p/home), target 90. Remaining cost: ~230 kB web fonts on throttled 4G (incl. an 84 kB Devanagari file triggered by the "हिंदी" picker label on every page) and ~145 kB first-load JS. Next steps: subset/self-host fonts (Devanagari only for hi), lazy-load the language sheet, consider a lighter data layer than React Query on public pages.
+- Doctor/admin pages are previews with sample data; sidebar items without pages are shown disabled.
 - /p/login (241 kB) and /p/profile (276 kB) still load zod for form validation; chat and other patient routes are under 150 kB.
 - Live providers (Gemini, Groq, Claude) are wired but untested end to end — no API keys configured yet. Run `pnpm eval:live` once keys are in `.env`.
 - Offline answer queue (IndexedDB) and voice are Phase 3.

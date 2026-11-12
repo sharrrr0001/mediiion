@@ -50,12 +50,14 @@ docs/           spec, plans/, decisions.md, ideas.md, safety.md, privacy.md, TAS
 - Every endpoint: auth by default (`@Public()` to opt out), `can(user, action, resource)` check, audit entry for patient data.
 - PHI (name, DOB, message text, summaries, notes) is field-encrypted (`apps/api/src/crypto`). Phone/email stored as HMAC blind index + encrypted value. Never log PHI; pino redaction is on.
 - Web calls the API through the Next rewrite `/api/*` → API (same origin, httpOnly cookies, SameSite=Strict).
-- All UI strings through next-intl; keys in `apps/web/messages/{en,hi,hi-Latn}.json`.
+- **UI: light theme only, white + green; responsive website (phone + laptop); shells in `apps/web/src/components/shell`; tokens in `packages/ui/src/tokens.css`.** No dark mode. Containers `max-w-6xl` (see `components/shell/layout.ts` — import layout constants from there, never from a `'use client'` file into a server component).
+- All UI strings through next-intl; keys in `apps/web/messages/{en,hi,hi-Latn}.json`. Each area's layout passes only its namespaces via `IntlProvider` — add a new namespace there when a client component needs it.
+- E2E axe checks must wait for animations to settle (helper does this); a full-page screenshot draws sticky/fixed bars mid-page — that's an artifact, not a layout bug.
 - Ambiguity → safest simple option + one line in `docs/decisions.md`. New feature ideas → `docs/ideas.md`.
 - Commit after each green slice (`feat:`, `fix:`, `docs:`, `test:`, `chore:`).
 
 ## Current Status
-- Last session: 2026-11-12 — Phase 0 + Phase 1 (AI intake on web chat) built and green. See `docs/TASKS.md`.
+- Last session: 2026-11-12 — Phase 0 + Phase 1 built; then the white + green responsive UI upgrade (`docs/plans/ui-upgrade.md`, screenshots in `docs/screenshots/ui-upgrade/`).
 - AI: `LLM_PROVIDER=mock` locally; model plan in `docs/ai-models.md` (demo Gemini/Groq on fake data, pilot Claude Haiku 5.5).
 - Safety keyword list is a **draft** until a doctor reviews it (Pranov's decision) — blocks the pilot via `docs/release-checklist.md`.
 - Known issues: see `docs/TASKS.md` → Known issues.

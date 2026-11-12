@@ -25,3 +25,8 @@ One line each: date — decision — why.
 - 2026-11-12 — Providers: `mock`, `gemini`, `openai-compatible` (covers Groq **and** self-hosted vLLM with one adapter), `anthropic`. One interface in `packages/ai`, selected by `LLM_PROVIDER`/`LLM_MODEL`.
 - 2026-11-12 — **Safety keyword list will be clinically reviewed by a doctor before the pilot** (Pranov, clinical-safety decision). Until then the list is marked `reviewStatus: 'draft'` and the release checklist blocks the pilot on it.
 - 2026-11-12 — OTP route throttle raised to 30/min/IP (flood guard); real OTP limits are per phone (3/10 min) and per IP (`OTP_MAX_PER_IP`, default 10/10 min) in OtpService. Authenticated routes throttle per device cookie — patients often share one clinic Wi-Fi or carrier NAT.
+- 2026-11-12 — **Light theme only (white + green)**; dark mode removed, `color-scheme: light` — the site must look the same whatever the OS theme (Pranov's UI brief).
+- 2026-11-12 — Menus, sheets and dialogs use a small in-house menu + native `<dialog>` instead of Radix — accessible (focus trap, Escape, inert background) at a fraction of the bundle; keeps the chat route under 150 kB.
+- 2026-11-12 — Patient routes split into `app/p/(auth)` (focused split layout: login, consent, profile) and `app/p/(app)` (PatientShell); URLs unchanged.
+- 2026-11-12 — Doctor `/d/today` and `/admin` show **clearly labelled fictional sample data** until Phases 2/5; A/P remain empty "For doctor" editors (rule 5).
+- 2026-11-12 — Fonts: Inter + Bricolage `display: optional` (no late swap repaint on slow networks); Devanagari and mono not preloaded. CSS inlined (`experimental.inlineCss`). Translations sent per area, not all on every page.
