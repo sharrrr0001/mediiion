@@ -16,3 +16,4 @@ export type { AppointmentStatusView, AppointmentView, ClinicView, DoctorCard, Do
 export type { AccessGrantView, AccessRequestStatus, DoctorAccessRequestView, DoctorPatientView, PatientAccessRequestView, ShareLinkView, SharedSummaryView } from './access';
 export type { DocKind, OnboardingView, VerificationQueueItem } from './onboarding';
 export { DOC_KINDS, SPECIALTIES } from './onboarding-consts';
+export type { ClinicContext, ClinicQueueRow, StaffMemberView } from './staff';

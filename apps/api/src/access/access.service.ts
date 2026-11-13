@@ -42,15 +42,21 @@ export class AccessService {
 
   async request(user: AuthUser, medicosIdInput: string, req: Request): Promise<DoctorAccessRequestView> {
     const doctor = await this.verifiedDoctor(user);
+    const id = await this.createRequest(doctor.id, medicosIdInput, user, req);
+    return this.doctorView(user, id);
+  }
+
+  /** Shared by the doctor's Scan QR and the clinic staff's walk-in check-in. Returns the request id. */
+  async createRequest(doctorId: string, medicosIdInput: string, actor: AuthUser, req: Request): Promise<string> {
     const medicosId = normalizeMedicosId(medicosIdInput);
     if (!medicosId) throw new AppError(HttpStatus.BAD_REQUEST, 'BAD_MEDICOS_ID', 'That is not a valid Medicos ID (MED-XXXX-XXXX).');
     const profile = await this.prisma.patientProfile.findFirst({ where: { medicosId, deletedAt: null } });
     if (!profile) throw NOT_FOUND('No patient with this Medicos ID.');
     const r = await this.prisma.accessRequest.create({
-      data: { patientProfileId: profile.id, doctorId: doctor.id, expiresAt: new Date(Date.now() + PROMPT_MINUTES * 60_000) },
+      data: { patientProfileId: profile.id, doctorId, expiresAt: new Date(Date.now() + PROMPT_MINUTES * 60_000) },
     });
-    await this.audit.record({ actor: user, action: 'access.request', entity: 'access_request', entityId: r.id, patientProfileId: profile.id, req });
-    return this.doctorView(user, r.id);
+    await this.audit.record({ actor, action: 'access.request', entity: 'access_request', entityId: r.id, patientProfileId: profile.id, req });
+    return r.id;
   }
 
   async doctorView(user: AuthUser, id: string): Promise<DoctorAccessRequestView> {

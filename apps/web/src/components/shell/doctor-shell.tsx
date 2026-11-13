@@ -38,8 +38,8 @@ export function DoctorShell({ children }: { children: ReactNode }) {
     { label: t('nav.schedule'), icon: <CalendarClock aria-hidden /> },
     { label: t('nav.insights'), icon: <TrendingUp aria-hidden /> },
     { label: t('nav.billing'), icon: <CreditCard aria-hidden /> },
-    { label: t('nav.staff'), icon: <UsersRound aria-hidden /> },
-    { label: t('nav.settings'), icon: <Settings aria-hidden /> },
+    { href: '/d/staff', label: t('nav.staff'), icon: <UsersRound aria-hidden /> },
+    { href: '/d/onboarding', label: t('nav.settings'), icon: <Settings aria-hidden /> },
   ];
   const date = new Intl.DateTimeFormat('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' }).format(new Date());
 

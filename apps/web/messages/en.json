@@ -739,5 +739,39 @@
     "active": "Selected",
     "forWhom": "For: {name}",
     "addShort": "Add family member"
+  },
+  "clinicDesk": {
+    "title": "Clinic desk",
+    "subtitle": "Today's visits and walk-in check-in. Staff never see clinical notes.",
+    "queue": "Today",
+    "empty": "No visits today yet.",
+    "summaryReady": "Summary ready",
+    "noSummary": "No pre-visit yet",
+    "walkIn": "Check in a walk-in",
+    "walkInBody": "Type or scan the patient's Medicos ID. The patient taps Allow on their phone.",
+    "doctor": "Doctor",
+    "id": "Medicos ID",
+    "send": "Send to patient",
+    "waiting": "Waiting for the patient to tap Allow…",
+    "allowed": "Checked in. The visit is in the doctor's queue.",
+    "denied": "The patient said no.",
+    "expired": "The request expired. Try again.",
+    "again": "Next walk-in",
+    "standee": "Waiting-room QR",
+    "standeeTitle": "Doctor se pehle 5 minute AI se baat karein",
+    "standeeBody": "Scan with your phone camera. Tell the AI about your problem before you see the doctor. It is free and private.",
+    "print": "Print",
+    "staffTitle": "Clinic staff",
+    "staffBody": "Receptionists can see today's visits and check in walk-ins. They cannot see clinical notes or patient records.",
+    "invite": "Invite staff",
+    "inviteEmail": "Staff email",
+    "remove": "Remove",
+    "noStaff": "No staff yet.",
+    "signIn": "Staff sign in at /d/login with this email and set up 2-step verification.",
+    "types": {
+      "new": "New",
+      "follow_up": "Follow-up",
+      "walk_in": "Walk-in"
+    }
   }
 }

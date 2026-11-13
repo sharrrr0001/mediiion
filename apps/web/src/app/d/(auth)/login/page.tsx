@@ -88,7 +88,7 @@ export default function DoctorLoginPage() {
     if (step.kind !== 'twofa' || code.length !== 6) return;
     void run(async () => {
       const r = await post<{ role: string }>('/auth/2fa', { ticket: step.challenge.ticket, code });
-      router.replace(r.role === 'admin' ? '/admin/verifications' : '/d/today');
+      router.replace(r.role === 'admin' ? '/admin/verifications' : r.role === 'staff' ? '/clinic' : '/d/today');
     });
   };
 

@@ -40,3 +40,14 @@ One line each: date — decision — why.
 - 2026-11-12 — A voice transcript is a draft (`VoiceClip`) until the patient confirms or edits it; it is never posted automatically, and the confirmed text runs through the safety rule like typed text.
 - 2026-11-12 — Offline: one pending answer per interview in IndexedDB (the interview is turn-based); sent automatically on reconnect or reload. Service worker registered in production only, caches static assets + patient page shells, never `/api`.
 - 2026-11-12 — Chat route JS budget: `@medicos/shared/client` may only re-export **types** from modules that import zod; runtime constants live in `constants.ts`. Image compressor and offline queue load on demand.
+
+## 2026-11-13 — Phase 4 + live deployment
+- **Live deployment:** web on Vercel (`medicos`, root `apps/web`), API on this PC behind a Cloudflare quick tunnel (`scripts/start-all.ps1`, `start-tunnel.ps1 -Push`), separate `medicos_live` database and fresh secrets in `.env.live`. See `docs/deploy.md`.
+- **AI provider picked by key** (`LLM_PROVIDER=auto`): `ANTHROPIC_API_KEY` → Claude Haiku 5.5 (pilot grade); only `GEMINI_API_KEY` → Gemini Flash in **demo mode** (banner "made-up details only"); neither → scripted mock (demo). Demo mode exists only in production; dev data is always fictional.
+- **Phone login hidden in production** until a real SMS provider exists; email OTP through Gmail SMTP (App Password). Voice is off in production without a real STT key (mock STT would invent answers).
+- **Double booking** is prevented by a per-doctor Postgres advisory lock inside the booking transaction (a partial unique index would be dropped by Prisma's drift check).
+- **AI-first order:** an interview finished without a doctor stays a draft; booking (or a QR Allow) shares it with that doctor only.
+- **QR access:** doctor scan creates an `AccessRequest` (10 min); only the patient's Allow creates a 24 h `AccessGrant` + `record_access` consent; Allow also puts a walk-in in today's queue and attaches the last unshared interview (7 days).
+- **Clinic staff see visit metadata only** (time, initials, Medicos ID, doctor, status) — no complaint or summary text, no records. Least privilege; staff make no clinical decisions. Walk-ins still need the patient's Allow.
+- **Doctor signup** converts a fresh OTP account (no patient profiles) into a pending doctor and revokes its sessions so 2FA is enrolled at next login. Staff, doctor, admin and patient identities never share an account.
+- **Share links** to non-member doctors: 24-byte random token in the URL only (HMAC stored), 72 h, revocable, every open audited; shows first name + age/sex and the AI-draft label, never the surname.

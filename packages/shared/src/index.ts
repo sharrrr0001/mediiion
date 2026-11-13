@@ -9,3 +9,4 @@ export * from './doctor';
 export * from './booking';
 export * from './access';
 export * from './onboarding';
+export * from './staff';

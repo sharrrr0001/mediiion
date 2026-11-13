@@ -62,5 +62,5 @@ export class PatientAccessController {
   }
 }
 
-@Module({ controllers: [DoctorAccessController, PatientAccessController], providers: [AccessService] })
+@Module({ controllers: [DoctorAccessController, PatientAccessController], providers: [AccessService], exports: [AccessService] })
 export class AccessModule {}
