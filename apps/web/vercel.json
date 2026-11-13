@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://bradley-husband-currency-men.trycloudflare.com/:path*"
+      "destination": "https://english-unlimited-jokes-settings.trycloudflare.com/:path*"
     }
   ]
 }
