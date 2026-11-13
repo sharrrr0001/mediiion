@@ -18,6 +18,7 @@ import { ShareModule } from './share/share';
 import { StaffModule } from './staff/staff';
 import { BillingModule } from './billing/billing.controller';
 import { NotifyModule } from './notify/reminders';
+import { OpsModule } from './ops/ops.controller';
 import { loadEnv } from './config/env';
 import { DevController, HealthController, PublicConfigController } from './health/health.controller';
 import { pinoRedact, serializers } from './logging/redaction';
@@ -62,6 +63,7 @@ export class AppModule {
         StaffModule,
         BillingModule,
         NotifyModule,
+        OpsModule,
       ],
       controllers: [HealthController, PublicConfigController, DevController, PatientsController],
       providers: [
