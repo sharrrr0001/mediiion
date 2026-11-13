@@ -10,3 +10,4 @@ export * from './booking';
 export * from './access';
 export * from './onboarding';
 export * from './staff';
+export * from './billing';

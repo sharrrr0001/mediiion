@@ -5,6 +5,7 @@ import { ACCESS_GRANT_HOURS, CONSENT_VERSION, normalizeMedicosId, type AccessGra
 import { AuditService } from '../audit/audit.service';
 import type { AuthUser } from '../auth/decorators';
 import { AppError } from '../common/errors';
+import { meterDeliveredSummary } from '../billing/usage';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
 import { istDayRange } from '../doctor/doctor.service';
 
@@ -162,7 +163,8 @@ export class AccessService {
     });
     if (session) {
       await this.prisma.intakeSession.update({ where: { id: session.id }, data: { doctorId, appointmentId: appt.id } });
-      await this.prisma.preVisitSummary.updateMany({ where: { sessionId: session.id, status: 'draft' }, data: { status: 'delivered', deliveredAt: new Date() } });
+      const { count } = await this.prisma.preVisitSummary.updateMany({ where: { sessionId: session.id, status: 'draft' }, data: { status: 'delivered', deliveredAt: new Date() } });
+      if (count) await meterDeliveredSummary(this.prisma, doctorId);
     }
   }
 

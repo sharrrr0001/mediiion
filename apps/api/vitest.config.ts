@@ -16,6 +16,8 @@ const testEnv = {
   // Tests never call real AI providers, whatever keys are in .env.
   LLM_PROVIDER: 'mock',
   STT_PROVIDER: 'mock',
+  // Fake secret so webhook signature checks can be tested; never a real key.
+  RAZORPAY_WEBHOOK_SECRET: 'test-webhook-secret',
 };
 // Global setup runs in this process, workers inherit it.
 Object.assign(process.env, testEnv);

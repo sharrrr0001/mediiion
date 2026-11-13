@@ -6,6 +6,7 @@ import { AuditService } from '../audit/audit.service';
 import type { AuthUser } from '../auth/decorators';
 import { can } from '../auth/policy';
 import { AppError } from '../common/errors';
+import { meterDeliveredSummary } from '../billing/usage';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
 import { SummaryService } from '../intake/summary.service';
 import { addDays, isScheduledSlot, istDate, slotsFor, type ScheduleRow } from './slots';
@@ -160,6 +161,7 @@ export class BookingService {
       const latest = await this.prisma.preVisitSummary.findFirst({ where: { sessionId: session.id }, orderBy: { version: 'desc' } });
       if (latest) {
         await this.prisma.preVisitSummary.update({ where: { id: latest.id }, data: { status: 'delivered', deliveredAt: new Date() } });
+        await meterDeliveredSummary(this.prisma, d.id);
         await this.summaries.shareWithDoctor({ id: session.id, patientProfileId: profile.id, appointmentId: appt.id, patientProfile: { ownerUserId: profile.ownerUserId } }, d.id);
       }
     }

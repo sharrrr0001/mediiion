@@ -54,6 +54,15 @@ const EnvSchema = z
     GROQ_API_KEY: z.string().optional(),
     STT_MODEL: z.string().default(''),
     STT_API_KEY: z.string().optional(),
+    // Billing (Razorpay test/live keys; without them online payment is switched off)
+    RAZORPAY_KEY_ID: z.string().optional(),
+    RAZORPAY_KEY_SECRET: z.string().optional(),
+    RAZORPAY_WEBHOOK_SECRET: z.string().optional(),
+    /** JSON map, e.g. {"pro:monthly":"plan_ABC","pro:yearly":"plan_DEF"} (plans created in the Razorpay dashboard). */
+    RAZORPAY_PLAN_IDS: z.string().default('{}'),
+    SELLER_NAME: z.string().default('Medicos'),
+    SELLER_GSTIN: z.string().optional(),
+    SELLER_ADDRESS: z.string().default('India'),
     // Object storage
     S3_ENDPOINT: z.string().optional(),
     S3_REGION: z.string().default('ap-south-1'),

@@ -2,6 +2,7 @@ import { Inject, Injectable, Logger } from '@nestjs/common';
 import { IntakeTemplate, deidentify, writeSummary, type SummaryItem } from '@medicos/ai';
 import { ENC } from '@medicos/db';
 import { CONSENT_VERSION, type Language, type PreVisitSummary } from '@medicos/shared';
+import { meterDeliveredSummary } from '../billing/usage';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
 import { AiService } from './ai.service';
 import { buildReview, type DecryptedMessage } from './intake-views';
@@ -83,7 +84,10 @@ export class SummaryService {
       data: { patientProfileId: session.patientProfileId, kind: 'pre_visit_summary', refId: summary.id, date: new Date(), title: `AI pre-visit summary · ${template.title}` },
     });
 
-    if (session.doctorId) await this.shareWithDoctor(session, session.doctorId);
+    if (session.doctorId) {
+      await this.shareWithDoctor(session, session.doctorId);
+      await meterDeliveredSummary(this.prisma, session.doctorId);
+    }
     this.logger.log({ sessionId, summaryId: summary.id, regenerations: out.regenerations, droppedUnsourced: out.droppedUnsourced }, 'summary_written');
     return summary.id;
   }

@@ -11,7 +11,7 @@ import { loadEnv } from './config/env';
 /** Builds the app with the same middleware for `main.ts` and tests. */
 export async function createApp(opts: AppOptions = {}): Promise<NestExpressApplication> {
   const env = loadEnv();
-  const app = await NestFactory.create<NestExpressApplication>(AppModule.register(opts), { bufferLogs: true });
+  const app = await NestFactory.create<NestExpressApplication>(AppModule.register(opts), { bufferLogs: true, rawBody: true });
   app.useLogger(app.get(Logger));
   // Behind proxies: 1 = Next dev rewrite; 2 = Vercel + Cloudflare tunnel (TRUST_PROXY_HOPS).
   app.set('trust proxy', env.TRUST_PROXY_HOPS);
