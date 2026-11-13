@@ -306,7 +306,7 @@ export class IntakeService {
   async review(user: AuthUser, id: string, req: Request): Promise<IntakeReview> {
     const { session, template, messages } = await this.load(user, id);
     await this.audit.record({ actor: user, action: 'intake.review', entity: 'intake_session', entityId: id, patientProfileId: session.patientProfileId, req });
-    return { id, status: session.status, items: buildReview(messages, template), attachments: await this.attachments.listForSession(id) };
+    return { id, status: session.status, doctorChosen: !!session.doctorId, items: buildReview(messages, template), attachments: await this.attachments.listForSession(id) };
   }
 
   /** Patient corrects an answer on "What you told us". Edits also pass the safety rule. */

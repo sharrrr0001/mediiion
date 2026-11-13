@@ -1,11 +1,12 @@
 'use client';
 import { useQueryClient } from '@tanstack/react-query';
-import { Bell, ChevronDown, FolderHeart, Home, LogOut, QrCode, Settings, Sparkles, CalendarDays, User } from 'lucide-react';
+import { Bell, ChevronDown, FolderHeart, Home, LogOut, QrCode, Settings, ShieldCheck, Sparkles, CalendarDays, User } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, type ReactNode } from 'react';
 import { Avatar, Button, Logo, Menu, cn, menuItemClass } from '@medicos/ui';
+import { AccessPrompt } from '@/components/access-prompt';
 import { OfflineBanner } from '@/components/offline-banner';
 import { post } from '@/lib/api';
 import { useMe } from '@/lib/use-me';
@@ -14,7 +15,7 @@ import { container } from './layout';
 const ITEMS = [
   { href: '/p/home', key: 'home', icon: Home, match: /^\/p\/home/ },
   { href: '/p/intake/new', key: 'previsit', icon: Sparkles, match: /^\/p\/intake/ },
-  { href: '/p/visits', key: 'visits', icon: CalendarDays, match: /^\/p\/visits/ },
+  { href: '/p/visits', key: 'visits', icon: CalendarDays, match: /^\/p\/(visits|doctors)/ },
   { href: '/p/records', key: 'records', icon: FolderHeart, match: /^\/p\/records/ },
   { href: '/p/id', key: 'myId', icon: QrCode, match: /^\/p\/id/ },
 ] as const;
@@ -82,6 +83,7 @@ export function PatientShell({ children }: { children: ReactNode }) {
         </div>
       </header>
 
+      {me ? <AccessPrompt /> : null}
       <main id="main" className={cn('flex-1', hideTabBar ? '' : 'pb-safe-bar md:pb-12')}>
         {children}
       </main>
@@ -122,6 +124,10 @@ function AccountMenu({ name }: { name: string }) {
       <Link role="menuitem" href="/p/id" className={menuItemClass}>
         <User aria-hidden />
         {t('profile')}
+      </Link>
+      <Link role="menuitem" href="/p/access" className={menuItemClass}>
+        <ShieldCheck aria-hidden />
+        {t('access')}
       </Link>
       <Link role="menuitem" href="/p/home" className={menuItemClass}>
         <Settings aria-hidden />

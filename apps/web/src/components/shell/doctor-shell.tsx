@@ -8,7 +8,6 @@ import {
   CreditCard,
   FileText,
   LayoutDashboard,
-  QrCode,
   Search,
   Settings,
   TrendingUp,
@@ -18,6 +17,7 @@ import {
   Building2,
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import { ScanAccess } from '@/components/doctor/scan-access';
 import type { ReactNode } from 'react';
 import { Avatar, Button, cn } from '@medicos/ui';
 import { DashboardShell, type NavItem } from './dashboard-shell';
@@ -78,11 +78,8 @@ export function DoctorShell({ children }: { children: ReactNode }) {
             <Search aria-hidden className="pointer-events-none absolute left-3 top-1/2 size-5 -translate-y-1/2 stroke-[1.75] text-muted" />
             <input type="search" placeholder={t('search')} className="min-h-10 w-full rounded-[var(--radius-control)] border border-line bg-surface pl-10 pr-3 text-sm shadow-sm focus:border-brand focus:outline-none focus:ring-4 focus:ring-brand/15" />
           </label>
-          <Button variant="secondary" className="ml-auto hidden sm:inline-flex lg:ml-0">
-            <QrCode aria-hidden />
-            {t('scanQr')}
-          </Button>
-          <Button variant="ghost" size="icon" className="ml-auto sm:ml-0" aria-label={tn('notifications')}>
+          <ScanAccess className="ml-auto lg:ml-0" />
+          <Button variant="ghost" size="icon" aria-label={tn('notifications')}>
             <Bell aria-hidden />
           </Button>
         </>

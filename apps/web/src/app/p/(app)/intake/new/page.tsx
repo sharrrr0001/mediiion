@@ -3,7 +3,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { Baby, Flower2, Keyboard, Mic, Shirt, Stethoscope } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, type ReactNode } from 'react';
 import type { DoctorListItem, IntakeView } from '@medicos/shared/client';
 import { Button, Field, Select, Skeleton, cn } from '@medicos/ui';
@@ -22,7 +22,8 @@ export default function NewIntakePage() {
   const { me } = usePatientGate();
   const td = useTranslations('chooseDoctor');
   const [kind, setKind] = useState<Kind>('general-medicine');
-  const [doctorId, setDoctorId] = useState('');
+  const preset = useSearchParams().get('doctor') ?? '';
+  const [doctorId, setDoctorId] = useState(preset);
   const [mode, setMode] = useState<Mode>('chat');
   const voiceOn = usePublicConfig().voice;
   const doctors = useQuery({

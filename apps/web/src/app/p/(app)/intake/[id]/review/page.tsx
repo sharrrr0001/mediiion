@@ -15,6 +15,7 @@ import { api, post } from '@/lib/api';
 export default function ReviewPage() {
   const t = useTranslations('review');
   const tc = useTranslations('common');
+  const tb = useTranslations('booking');
   const { id } = useParams<{ id: string }>();
   const qc = useQueryClient();
   const [safetyLine, setSafetyLine] = useState<string | null>(null);
@@ -85,9 +86,16 @@ export default function ReviewPage() {
               <CheckCircle2 aria-hidden className="size-6" />
               {t('sent')}
             </p>
-            <Button asChild variant="secondary">
-              <Link href="/p/home">{t('backHome')}</Link>
-            </Button>
+            {data.doctorChosen ? (
+              <Button asChild variant="secondary">
+                <Link href="/p/home">{t('backHome')}</Link>
+              </Button>
+            ) : (
+              // AI-first order: pick the doctor now; the summary goes only to them (rule 10).
+              <Button asChild>
+                <Link href={`/p/doctors?session=${id}`}>{tb('title')}</Link>
+              </Button>
+            )}
           </div>
         ) : (
           <>

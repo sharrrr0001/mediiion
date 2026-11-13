@@ -90,10 +90,10 @@ const EnvSchema = z
       /** Mock speech-to-text would invent answers: voice is off in production without a real STT key. */
       VOICE_ENABLED: !prod || stt !== 'mock',
       /**
-       * Demo mode: a free-tier / mock AI or non-India speech-to-text is in use. The web app shows a
+       * Demo mode (production only; dev data is always fictional): a free-tier / mock AI or non-India speech-to-text is in use. The web app shows a
        * "fictional data only" banner. Pilot mode needs a no-training LLM and Sarvam (golden rules 11, 12).
        */
-      DEMO_MODE: !noTraining || stt === 'groq',
+      DEMO_MODE: prod && (!noTraining || stt === 'groq'),
     };
   })
   .superRefine((env, ctx) => {

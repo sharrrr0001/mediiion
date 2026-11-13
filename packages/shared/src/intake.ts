@@ -84,6 +84,8 @@ export interface ReviewItem {
 export interface IntakeReview {
   id: string;
   status: IntakeView['status'];
+  /** False in the AI-first order: the patient picks a doctor after sending. */
+  doctorChosen: boolean;
   items: ReviewItem[];
   attachments: IntakeAttachmentView[];
 }

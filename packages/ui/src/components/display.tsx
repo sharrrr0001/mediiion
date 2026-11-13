@@ -88,7 +88,8 @@ export function Chip({ selected, className, ...props }: React.ButtonHTMLAttribut
   return (
     <button
       type="button"
-      aria-pressed={selected}
+      // A chip used as a radio (role="radio" + aria-checked) must not also be a toggle button.
+      aria-pressed={props.role ? undefined : selected}
       className={cn(
         'inline-flex min-h-11 items-center rounded-full border border-line bg-surface px-4 text-[15px] font-medium text-ink shadow-sm transition-colors duration-150 hover:border-brand hover:text-brand-deep disabled:opacity-50',
         selected && 'border-brand bg-brand-soft text-brand-deep',

@@ -23,6 +23,8 @@ export async function createVerifiedDoctor() {
     const clinic = await prisma.clinic.create({ data: { name: `E2E Clinic ${tag}`, address: '1 Test Road', city: 'Indore', ownerDoctorId: doctor.id } });
     await prisma.clinicMember.create({ data: { clinicId: clinic.id, userId: user.id, role: 'doctor' } });
     await prisma.fee.create({ data: { doctorId: doctor.id, clinicId: clinic.id, consult: 500, followUp: 250, modes: ['pay_at_clinic'] } });
+    // Open every day, all day, so a bookable slot always exists whenever the test runs.
+    await prisma.schedule.createMany({ data: [0, 1, 2, 3, 4, 5, 6].map((weekday) => ({ doctorId: doctor.id, clinicId: clinic.id, weekday, start: '00:00', end: '23:45', slotMinutes: 15 })) });
     return { digits, name: doctor.name };
   } finally {
     await prisma.$disconnect();
