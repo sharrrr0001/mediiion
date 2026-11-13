@@ -410,7 +410,9 @@
       "safety": "Safety log",
       "audit": "Consent & audit",
       "support": "Support",
-      "billing": "Billing"
+      "billing": "Billing",
+      "founder": "Founder",
+      "developer": "Developer"
     }
   },
   "extra": {
@@ -772,6 +774,157 @@
       "new": "New",
       "follow_up": "Follow-up",
       "walk_in": "Walk-in"
+    }
+  },
+  "panels": {
+    "loginNeeded": "Sign in at /d/login with an admin, founder or developer account.",
+    "login": "Log in",
+    "refresh": "Refresh",
+    "empty": "Nothing here yet.",
+    "overview": {
+      "title": "Overview",
+      "interviews": "Interviews today",
+      "completion": "Completion (7 days)",
+      "opened": "Summaries opened before visit (7 days)",
+      "safety": "Safety messages today",
+      "doctors": "Active doctors",
+      "pending": "Waiting for verification",
+      "mrr": "MRR",
+      "tickets": "Open support tickets"
+    },
+    "safety": {
+      "title": "Safety log",
+      "body": "Every safety-line trigger (keyword rule). Session ids only, no patient details.",
+      "terms": "Matched words",
+      "shown": "Shown",
+      "template": "Interview",
+      "doctor": "Sent to a doctor",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "audit": {
+      "title": "Consent & audit log",
+      "body": "Append-only. Who did what, when. No patient data.",
+      "filter": "Filter by action (e.g. access.)",
+      "at": "When",
+      "actor": "Actor",
+      "action": "Action",
+      "entity": "Entity"
+    },
+    "quality": {
+      "title": "Quality review",
+      "body": "Summaries doctors marked not useful or flagged. De-identified.",
+      "issues": "Issues",
+      "comment": "Doctor comment",
+      "useful": "Useful"
+    },
+    "templates": {
+      "title": "Template Studio",
+      "body": "Edit a template as JSON, check it, save a new draft version, then publish. Every question must pass the output filter.",
+      "open": "Open",
+      "check": "Check",
+      "save": "Save as new draft",
+      "publish": "Publish",
+      "ok": "All checks passed.",
+      "published": "Published",
+      "draft": "Draft",
+      "version": "v{n}"
+    },
+    "support": {
+      "title": "Support",
+      "close": "Close",
+      "open": "Open",
+      "closed": "Closed"
+    },
+    "founder": {
+      "title": "Founder",
+      "mrr": "MRR",
+      "paying": "Paying clinics",
+      "free": "Free / trial clinics",
+      "active": "Active clinics (30 days)",
+      "weeks": "Summaries and AI cost per summary (8 weeks)",
+      "week": "Weeks ago",
+      "summaries": "Summaries",
+      "cost": "AI ₹/summary"
+    },
+    "developer": {
+      "title": "Developer",
+      "providers": "Providers",
+      "ai": "AI calls (24 h)",
+      "jobs": "Jobs",
+      "flags": "Feature flags",
+      "templates": "Published templates",
+      "runJobs": "Run reminders now",
+      "p50": "p50",
+      "p95": "p95",
+      "cost": "Cost",
+      "blocks": "Filter blocks",
+      "due": "Due reminders",
+      "failed": "Failed notifications (24 h)",
+      "toggle": "Toggle",
+      "addFlag": "New flag key"
+    }
+  },
+  "billing": {
+    "title": "Plan & billing",
+    "plan": "Current plan",
+    "status": {
+      "trialing": "Free trial",
+      "active": "Active",
+      "past_due": "Payment due",
+      "cancelled": "Cancelled"
+    },
+    "until": "until {time}",
+    "usage": "Summaries this month",
+    "of": "{used} of {included}",
+    "unlimited": "{used} (no limit)",
+    "near": "You have used 80% of this month's summaries. Patients are never blocked; consider upgrading.",
+    "over": "You are over this month's included summaries. Patients are never blocked; extra summaries are billed at your plan rate.",
+    "plans": "Plans",
+    "perMonth": "₹{n}/month",
+    "perYear": "₹{n}/year",
+    "contact": "Contact us",
+    "summaries": "{n} summaries/month",
+    "doctors": "{n} doctors",
+    "choose": "Choose {name}",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "current": "Current plan",
+    "gst": "Prices exclude 18% GST.",
+    "coupon": "Pilot or referral code",
+    "apply": "Apply",
+    "paymentsOff": "Online payment is not set up yet. Use your pilot code, or write to us.",
+    "invoices": "Invoices",
+    "noInvoices": "No invoices yet.",
+    "invoice": "Invoice",
+    "amount": "Amount",
+    "gstLine": "GST (18%)",
+    "total": "Total",
+    "print": "Print / PDF",
+    "billedTo": "Billed to",
+    "seller": "From"
+  },
+  "insights": {
+    "title": "Insights",
+    "months": "Summaries per month",
+    "avg": "Average interview time",
+    "min": "{n} min",
+    "completion": "Interview completion",
+    "saved": "Minutes saved (estimate)",
+    "savedNote": "Estimate: about 4 minutes of history-taking saved per summary you read.",
+    "useful": "Summaries rated useful",
+    "ratings": "{n} ratings"
+  },
+  "reminders": {
+    "title": "Reminders",
+    "body": "Medicine and follow-up reminders from your doctor's notes. Messages never include health details.",
+    "none": "No upcoming reminders.",
+    "off": "Turn off",
+    "kinds": {
+      "medicine": "Medicine",
+      "follow_up": "Follow-up",
+      "visit": "Visit",
+      "freshness": "Anything changed?"
     }
   }
 }

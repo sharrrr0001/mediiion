@@ -3,5 +3,5 @@ import { IntlProvider } from '@/components/intl-provider';
 import { PatientShell } from '@/components/shell/patient-shell';
 
 export default function PatientAppLayout({ children }: { children: ReactNode }) {
-  return <IntlProvider namespaces={["common","nav","home","intake","review","medicosId","visits","records","extra","chooseDoctor","recordDetail","booking","access","family"]}><PatientShell>{children}</PatientShell></IntlProvider>;
+  return <IntlProvider namespaces={["common","nav","home","intake","review","medicosId","visits","records","extra","chooseDoctor","recordDetail","booking","access","family","reminders"]}><PatientShell>{children}</PatientShell></IntlProvider>;
 }

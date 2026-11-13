@@ -36,8 +36,8 @@ export function DoctorShell({ children }: { children: ReactNode }) {
     { label: t('nav.summaries'), icon: <ClipboardList aria-hidden /> },
     { label: t('nav.reports'), icon: <FileText aria-hidden /> },
     { label: t('nav.schedule'), icon: <CalendarClock aria-hidden /> },
-    { label: t('nav.insights'), icon: <TrendingUp aria-hidden /> },
-    { label: t('nav.billing'), icon: <CreditCard aria-hidden /> },
+    { href: '/d/insights', label: t('nav.insights'), icon: <TrendingUp aria-hidden /> },
+    { href: '/d/billing', label: t('nav.billing'), icon: <CreditCard aria-hidden /> },
     { href: '/d/staff', label: t('nav.staff'), icon: <UsersRound aria-hidden /> },
     { href: '/d/onboarding', label: t('nav.settings'), icon: <Settings aria-hidden /> },
   ];
@@ -97,12 +97,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const nav: NavItem[] = [
     { href: '/admin', label: t('nav.overview'), icon: <LayoutDashboard aria-hidden /> },
     { href: '/admin/verifications', label: t('nav.verification'), icon: <BadgeCheck aria-hidden /> },
-    { label: t('nav.templates'), icon: <ClipboardList aria-hidden /> },
-    { label: t('nav.quality'), icon: <BarChart3 aria-hidden /> },
-    { label: t('nav.safety'), icon: <Bell aria-hidden /> },
-    { label: t('nav.audit'), icon: <FileText aria-hidden /> },
-    { label: t('nav.support'), icon: <Users aria-hidden /> },
-    { label: t('nav.billing'), icon: <CreditCard aria-hidden /> },
+    { href: '/admin/templates', label: t('nav.templates'), icon: <ClipboardList aria-hidden /> },
+    { href: '/admin/logs', label: `${t('nav.safety')} · ${t('nav.audit')}`, icon: <FileText aria-hidden /> },
+    { href: '/admin/support', label: t('nav.support'), icon: <Users aria-hidden /> },
+    { href: '/admin/founder', label: t('nav.founder'), icon: <BarChart3 aria-hidden /> },
+    { href: '/admin/developer', label: t('nav.developer'), icon: <CreditCard aria-hidden /> },
   ];
   return (
     <DashboardShell

@@ -80,8 +80,10 @@ export function PatientShell({ children }: { children: ReactNode }) {
                 <ChevronDown aria-hidden className="size-4 text-muted" />
               </Link>
             ) : null}
-            <Button variant="ghost" size="icon" aria-label={t('notifications')}>
-              <Bell aria-hidden />
+            <Button asChild variant="ghost" size="icon">
+              <Link href="/p/reminders" aria-label={t('notifications')}>
+                <Bell aria-hidden />
+              </Link>
             </Button>
             <AccountMenu name={me?.profiles[0]?.name ?? ''} />
           </div>

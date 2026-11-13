@@ -6,5 +6,5 @@ import { AdminShell } from '@/components/shell/doctor-shell';
 export const metadata: Metadata = { title: 'Admin' };
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
-  return <IntlProvider namespaces={["common","nav","doctor","admin","verify"]}><AdminShell>{children}</AdminShell></IntlProvider>;
+  return <IntlProvider namespaces={["common","nav","doctor","admin","verify","panels"]}><AdminShell>{children}</AdminShell></IntlProvider>;
 }
