@@ -1,7 +1,7 @@
 import { HttpStatus, Inject, Injectable } from '@nestjs/common';
 import type { Request } from 'express';
 import { ENC } from '@medicos/db';
-import type { DoctorListItem, DoctorMe, DoctorQueueRow, DoctorSummaryView, FinaliseNote, FinalisedNoteView, QueueStatus, SummaryFeedbackInput } from '@medicos/shared';
+import type { DoctorMe, DoctorQueueRow, DoctorSummaryView, FinaliseNote, FinalisedNoteView, QueueStatus, SummaryFeedbackInput } from '@medicos/shared';
 import { AuditService } from '../audit/audit.service';
 import type { AuthUser } from '../auth/decorators';
 import { can } from '../auth/policy';
@@ -41,24 +41,6 @@ export class DoctorService {
 
   private age(birthYear: number | null) {
     return birthYear ? new Date().getFullYear() - birthYear : null;
-  }
-
-  /** Doctor search for patients — verified doctors only, normal filters (no AI matching: rule 3). */
-  async listVerified(): Promise<DoctorListItem[]> {
-    const docs = await this.prisma.doctor.findMany({
-      where: { verificationStatus: 'verified' },
-      include: { fees: { include: { clinic: true }, take: 1 } },
-      orderBy: { name: 'asc' },
-    });
-    return docs.map((d) => ({
-      id: d.id,
-      name: d.name,
-      specialty: d.specialty,
-      degrees: d.degrees,
-      yearsExperience: d.yearsExperience,
-      clinic: d.fees[0] ? { name: d.fees[0].clinic.name, city: d.fees[0].clinic.city, area: d.fees[0].clinic.area } : null,
-      fee: d.fees[0]?.consult ?? null,
-    }));
   }
 
   async me(user: AuthUser): Promise<DoctorMe> {

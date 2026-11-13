@@ -40,16 +40,3 @@ export class DoctorController {
     return this.doctors.feedback(user, id, body);
   }
 }
-
-/** Patients choose from verified doctors (normal list, no AI matching). */
-@ApiTags('doctors')
-@Roles('patient')
-@Controller('doctors')
-export class DoctorsDirectoryController {
-  constructor(private readonly doctors: DoctorService) {}
-
-  @Get()
-  list() {
-    return this.doctors.listVerified();
-  }
-}

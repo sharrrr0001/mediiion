@@ -6,3 +6,5 @@ export * from './auth';
 export * from './patient';
 export * from './intake';
 export * from './doctor';
+export * from './booking';
+export * from './access';

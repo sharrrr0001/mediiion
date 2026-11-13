@@ -89,7 +89,7 @@ export class SummaryService {
   }
 
   /** Rule 10: the patient chose this doctor → share consent, time-boxed grant, today's queue entry. */
-  private async shareWithDoctor(
+  async shareWithDoctor(
     session: { id: string; patientProfileId: string; appointmentId: string | null; patientProfile: { ownerUserId: string } },
     doctorId: string,
   ) {

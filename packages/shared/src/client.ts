@@ -12,3 +12,5 @@ export type { MeResponse, ProfileSummary } from './patient';
 export type { DoctorListItem, DoctorMe, DoctorQueueRow, DoctorSummaryView, FinalisedNoteView, QueueStatus, RecordDetailView, RecordEntryView } from './doctor';
 export type { PreVisitSummary, SummaryLine } from './pre-visit-summary';
 export type { TwoFactorChallengeResponse } from './auth';
+export type { AppointmentStatusView, AppointmentView, ClinicView, DoctorCard, DoctorProfileView, SlotsView } from './booking';
+export type { AccessGrantView, AccessRequestStatus, DoctorAccessRequestView, DoctorPatientView, PatientAccessRequestView } from './access';

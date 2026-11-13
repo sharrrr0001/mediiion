@@ -11,6 +11,7 @@ import { AllExceptionsFilter } from './common/errors';
 import { CoreModule } from './config/core.module';
 import { IntakeModule } from './intake/intake.module';
 import { DoctorModule } from './doctor/records';
+import { BookingModule } from './booking/booking.controller';
 import { loadEnv } from './config/env';
 import { DevController, HealthController, PublicConfigController } from './health/health.controller';
 import { pinoRedact, serializers } from './logging/redaction';
@@ -48,6 +49,7 @@ export class AppModule {
         AuthModule,
         IntakeModule,
         DoctorModule,
+        BookingModule,
       ],
       controllers: [HealthController, PublicConfigController, DevController, PatientsController],
       providers: [

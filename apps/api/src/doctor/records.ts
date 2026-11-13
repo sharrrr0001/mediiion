@@ -9,7 +9,7 @@ import { AppError } from '../common/errors';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
 import { IntakeModule } from '../intake/intake.module';
 import { SummaryService, reidentify } from '../intake/summary.service';
-import { DoctorsDirectoryController, DoctorController } from './doctor.controller';
+import { DoctorController } from './doctor.controller';
 import { DoctorService } from './doctor.service';
 
 /** The patient's Medical Record Book (spec §7.1 #12). Owner-only; every read audited. */
@@ -74,7 +74,7 @@ export class RecordsController {
 
 @Module({
   imports: [IntakeModule],
-  controllers: [DoctorController, DoctorsDirectoryController, RecordsController],
+  controllers: [DoctorController, RecordsController],
   providers: [DoctorService, RecordsService],
 })
 export class DoctorModule {}

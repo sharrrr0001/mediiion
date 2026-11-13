@@ -116,6 +116,8 @@ model PatientProfile {
   attachments     Attachment[]
   recordBook      RecordBookEntry[]
   accessGrants    AccessGrant[]
+  accessRequests  AccessRequest[]
+  shareLinks      ShareLink[]
 
   @@index([ownerUserId])
 }
@@ -179,6 +181,7 @@ model Doctor {
   appointments   Appointment[]
   intakeSessions IntakeSession[]
   accessGrants   AccessGrant[]
+  accessRequests AccessRequest[]
   templateOverride DoctorTemplateOverride?
   feedback       SummaryFeedback[]
 
@@ -508,6 +511,38 @@ enum GrantVia {
   share
   qr_prompt
   otp
+}
+
+/// Doctor scanned/typed a Medicos ID; the patient must Allow before any data is shown (rule 10).
+model AccessRequest {
+  id               String         @id @default(uuid()) @db.Uuid
+  patientProfileId String         @db.Uuid
+  patientProfile   PatientProfile @relation(fields: [patientProfileId], references: [id], onDelete: Cascade)
+  doctorId         String         @db.Uuid
+  doctor           Doctor         @relation(fields: [doctorId], references: [id], onDelete: Cascade)
+  status           String         @default("pending") // pending | allowed | denied
+  createdAt        DateTime       @default(now())
+  expiresAt        DateTime // the prompt itself expires (10 min)
+  decidedAt        DateTime?
+  grantId          String?        @db.Uuid
+
+  @@index([patientProfileId, status])
+  @@index([doctorId, createdAt])
+}
+
+/// Patient shares one summary with a doctor not on Medicos: secret link, expires, can be revoked.
+model ShareLink {
+  id               String         @id @default(uuid()) @db.Uuid
+  tokenHash        String         @unique // BIDX of the secret token; the token itself is never stored
+  patientProfileId String         @db.Uuid
+  patientProfile   PatientProfile @relation(fields: [patientProfileId], references: [id], onDelete: Cascade)
+  summaryId        String         @db.Uuid
+  createdAt        DateTime       @default(now())
+  expiresAt        DateTime
+  revokedAt        DateTime?
+  openCount        Int            @default(0)
+
+  @@index([patientProfileId])
 }
 
 model AccessGrant {
