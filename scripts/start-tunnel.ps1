@@ -14,7 +14,7 @@ $ErrorActionPreference = 'Continue'
 $root = Split-Path -Parent $PSScriptRoot
 $vercelJson = Join-Path $root 'apps\web\vercel.json'
 $state = Join-Path $env:TEMP 'medicos-live'
-$log = Join-Path $state 'tunnel.log'
+$log = Join-Path $state "tunnel-$(Get-Date -Format 'yyyyMMdd-HHmmss').log"  # a fresh file per start: the old one may still be locked
 $pidFile = Join-Path $state 'tunnel.pid'
 New-Item -ItemType Directory -Force $state | Out-Null
 
@@ -40,7 +40,7 @@ if (-not $Restart -and $current -and (Get-TunnelProcess)) {
 
 $old = Get-TunnelProcess
 if ($old) { Write-Host 'Stopping the previous Medicos tunnel...'; Stop-Process -Id $old.Id -Force }
-Remove-Item $log -ErrorAction SilentlyContinue
+Get-ChildItem $state -Filter 'tunnel-*.log' -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -Skip 5 | Remove-Item -ErrorAction SilentlyContinue
 $p = Start-Process cloudflared -ArgumentList @('tunnel', '--no-autoupdate', '--url', 'http://localhost:4100', '--logfile', $log) -WindowStyle Hidden -PassThru
 Set-Content $pidFile $p.Id
 
