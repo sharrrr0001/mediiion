@@ -10,7 +10,25 @@ const securityHeaders = [
   { key: 'X-Frame-Options', value: 'DENY' },
   // Camera is needed later for QR scanning (doctor app) and photos; mic for voice intake.
   { key: 'Permissions-Policy', value: 'camera=(self), microphone=(self), geolocation=()' },
-
+  { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains' },
+  {
+    key: 'Content-Security-Policy',
+    value: [
+      "default-src 'self'",
+      // Next.js App Router injects small inline bootstrap scripts; no third-party scripts are allowed.
+      `script-src 'self' 'unsafe-inline'${process.env.NODE_ENV === 'development' ? " 'unsafe-eval'" : ''}`,
+      "style-src 'self' 'unsafe-inline'",
+      // Uploaded reports are shown through short-lived signed object-storage URLs (S3 in production).
+      `img-src 'self' data: blob: https:${process.env.NODE_ENV === 'development' ? ' http://localhost:9000' : ''}`,
+      "media-src 'self' blob:",
+      "font-src 'self'",
+      "connect-src 'self'",
+      "frame-ancestors 'none'",
+      "form-action 'self'",
+      "base-uri 'self'",
+      "object-src 'none'",
+    ].join('; '),
+  },
 ];
 
 const config: NextConfig = {

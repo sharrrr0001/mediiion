@@ -96,9 +96,9 @@ function SiteHeader() {
 function SiteFooter() {
   const t = useTranslations('footer');
   const cols = [
-    { title: t('product'), links: [t('patients'), t('doctors'), t('pricing')] },
-    { title: t('company'), links: [t('about'), t('contact')] },
-    { title: t('legal'), links: [t('privacyPolicy'), t('terms')] },
+    { title: t('product'), links: [{ label: t('patients'), href: '/p/login' }, { label: t('doctors'), href: '/d/signup' }, { label: t('pricing'), href: '/#doctors' }] },
+    { title: t('company'), links: [{ label: t('about'), href: '/#main' }, { label: t('contact'), href: null }] },
+    { title: t('legal'), links: [{ label: t('privacyPolicy'), href: '/privacy' }, { label: t('terms'), href: '/terms' }] },
   ];
   return (
     <footer className="border-t border-line bg-surface-2">
@@ -116,8 +116,14 @@ function SiteFooter() {
             <p className="text-sm font-semibold text-ink">{c.title}</p>
             <ul className="mt-3 flex flex-col gap-2">
               {c.links.map((l) => (
-                <li key={l} className="text-[15px] text-muted">
-                  {l}
+                <li key={l.label} className="text-[15px] text-muted">
+                  {l.href ? (
+                    <Link href={l.href} className="hover:text-brand">
+                      {l.label}
+                    </Link>
+                  ) : (
+                    l.label
+                  )}
                 </li>
               ))}
             </ul>

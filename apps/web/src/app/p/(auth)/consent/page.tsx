@@ -2,6 +2,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Clock, Eye, FileText, ShieldCheck, Target } from 'lucide-react';
 import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 import { useState } from 'react';
 import { CONSENT_VERSION } from '@medicos/shared/client';
 import { Button, Card, Skeleton } from '@medicos/ui';
@@ -87,6 +88,9 @@ export default function ConsentPage() {
         <Button size="lg" block loading={grant.isPending} onClick={() => (agreed ? grant.mutate() : setShowError(true))}>
           {tx('agreeContinue')}
         </Button>
+        <Link href="/privacy" target="_blank" className="block text-center text-sm font-semibold text-brand hover:text-brand-hover">
+          {tc('privacyLink')}
+        </Link>
       </div>
     </div>
   );
