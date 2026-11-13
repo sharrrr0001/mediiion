@@ -4,12 +4,14 @@ import { useTranslations } from 'next-intl';
 import { useState } from 'react';
 import { Button, Card, QrCode, Skeleton, Toast } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
+import { useActiveProfile } from '@/lib/use-active-profile';
 import { usePatientGate } from '@/lib/use-me';
 
 export default function MedicosIdPage() {
   const t = useTranslations('medicosId');
   const tx = useTranslations('extra');
   const { me } = usePatientGate();
+  const { profile: active } = useActiveProfile();
   const [toast, setToast] = useState<string | null>(null);
 
   if (!me) {
@@ -20,7 +22,7 @@ export default function MedicosIdPage() {
       </div>
     );
   }
-  const profile = me.profiles[0]!;
+  const profile = active ?? me.profiles[0]!;
   const [left, right] = profile.medicosId.replace('MED-', '').split('-');
   const steps = tx.raw('howClinic') as string[];
   const shareText = encodeURIComponent(`My Medicos ID: ${profile.medicosId}`);

@@ -205,7 +205,8 @@
     "access": "Who can see my records",
     "doctors": "Doctors",
     "doctorLogin": "Doctor login",
-    "doctorSignup": "Create doctor account"
+    "doctorSignup": "Create doctor account",
+    "family": "Family members"
   },
   "footer": {
     "tagline": "Doctor ka time bachao. Patient ki baat poori suno.",
@@ -719,5 +720,24 @@
     "approved": "Approved",
     "rejected": "Rejected",
     "signIn": "Sign in as admin at /d/login to use this queue."
+  },
+  "family": {
+    "title": "Family members",
+    "subtitle": "Each person has their own Medicos ID and record book. Only you manage them from this account.",
+    "add": "Add family member",
+    "name": "Full name",
+    "age": "Age",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "city": "City",
+    "language": "Preferred language",
+    "save": "Add member",
+    "you": "You",
+    "actFor": "Use for {name}",
+    "active": "Selected",
+    "forWhom": "For: {name}",
+    "addShort": "Add family member"
   }
 }

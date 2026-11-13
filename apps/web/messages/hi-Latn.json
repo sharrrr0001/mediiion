@@ -205,7 +205,8 @@
     "access": "Records kaun dekh sakta hai",
     "doctors": "Doctors",
     "doctorLogin": "Doctor login",
-    "doctorSignup": "Doctor account banaiye"
+    "doctorSignup": "Doctor account banaiye",
+    "family": "Parivaar ke sadasya"
   },
   "footer": {
     "tagline": "Doctor ka time bachao. Patient ki baat poori suno.",
@@ -719,5 +720,24 @@
     "approved": "Approved",
     "rejected": "Rejected",
     "signIn": "Sign in as admin at /d/login to use this queue."
+  },
+  "family": {
+    "title": "Parivaar ke sadasya",
+    "subtitle": "Har vyakti ki apni Medicos ID aur record book hai. Inhe isi account se aap sambhalte hain.",
+    "add": "Parivaar ka sadasya jodein",
+    "name": "Poora naam",
+    "age": "Umar",
+    "gender": "Ling",
+    "male": "Purush",
+    "female": "Mahila",
+    "other": "Anya",
+    "city": "Shahar",
+    "language": "Pasandida bhasha",
+    "save": "Sadasya jodein",
+    "you": "Aap",
+    "actFor": "{name} ke liye chuniye",
+    "active": "Chuna gaya",
+    "forWhom": "Kiske liye: {name}",
+    "addShort": "Sadasya jodein"
   }
 }

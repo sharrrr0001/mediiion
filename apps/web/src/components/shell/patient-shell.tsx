@@ -1,6 +1,6 @@
 'use client';
 import { useQueryClient } from '@tanstack/react-query';
-import { Bell, ChevronDown, FolderHeart, Home, LogOut, QrCode, Settings, ShieldCheck, Sparkles, CalendarDays, User } from 'lucide-react';
+import { Bell, ChevronDown, FolderHeart, Home, LogOut, QrCode, Settings, ShieldCheck, Sparkles, CalendarDays, User, Users } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -9,6 +9,7 @@ import { Avatar, Button, Logo, Menu, cn, menuItemClass } from '@medicos/ui';
 import { AccessPrompt } from '@/components/access-prompt';
 import { OfflineBanner } from '@/components/offline-banner';
 import { post } from '@/lib/api';
+import { useActiveProfile } from '@/lib/use-active-profile';
 import { useMe } from '@/lib/use-me';
 import { container } from './layout';
 
@@ -27,7 +28,8 @@ export function PatientShell({ children }: { children: ReactNode }) {
   const t = useTranslations('nav');
   const pathname = usePathname();
   const { data: me } = useMe();
-  const firstName = me?.profiles[0]?.name.split(' ')[0];
+  const { profile: active } = useActiveProfile();
+  const firstName = active?.name.split(' ')[0];
   const hideTabBar = CHAT_ROUTE.test(pathname);
 
   // Offline app shell (production only, so it never interferes with development).
@@ -70,10 +72,13 @@ export function PatientShell({ children }: { children: ReactNode }) {
           </nav>
           <div className="ml-auto flex items-center gap-1 md:gap-2">
             {firstName ? (
-              <span className="hidden items-center gap-1 rounded-full border border-line bg-surface px-3 py-1.5 text-sm font-medium text-ink lg:inline-flex">
+              <Link
+                href="/p/family"
+                className="hidden min-h-10 items-center gap-1 rounded-full border border-line bg-surface px-3 text-sm font-medium text-ink hover:border-brand lg:inline-flex"
+              >
                 {t('forWhom', { name: firstName })}
                 <ChevronDown aria-hidden className="size-4 text-muted" />
-              </span>
+              </Link>
             ) : null}
             <Button variant="ghost" size="icon" aria-label={t('notifications')}>
               <Bell aria-hidden />
@@ -124,6 +129,10 @@ function AccountMenu({ name }: { name: string }) {
       <Link role="menuitem" href="/p/id" className={menuItemClass}>
         <User aria-hidden />
         {t('profile')}
+      </Link>
+      <Link role="menuitem" href="/p/family" className={menuItemClass}>
+        <Users aria-hidden />
+        {t('family')}
       </Link>
       <Link role="menuitem" href="/p/access" className={menuItemClass}>
         <ShieldCheck aria-hidden />

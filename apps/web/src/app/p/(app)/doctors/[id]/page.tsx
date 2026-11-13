@@ -10,6 +10,7 @@ import { Badge, Button, Card, Chip, Select, Skeleton, cn } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
 import { ApiError, post } from '@/lib/api';
 import { APPOINTMENTS_KEY, addDays, fmtDateTime, fmtTime, istToday, useDoctorProfile, useSlots } from '@/lib/use-booking';
+import { useActiveProfile } from '@/lib/use-active-profile';
 import { usePatientGate } from '@/lib/use-me';
 
 /** Doctor profile + slot picker + booking confirmation (spec §7.1 #8–9). */
@@ -29,7 +30,8 @@ export default function DoctorProfilePage() {
   const [date, setDate] = useState(today);
   const [slot, setSlot] = useState<string | null>(null);
   const [profileId, setProfileId] = useState<string>();
-  const forProfile = profileId ?? me?.profiles[0]?.id;
+  const { profile: active } = useActiveProfile();
+  const forProfile = profileId ?? active?.id ?? me?.profiles[0]?.id;
   const slots = useSlots(id, clinic?.id, date);
 
   const book = useMutation({

@@ -205,7 +205,8 @@
     "access": "रिकॉर्ड कौन देख सकता है",
     "doctors": "डॉक्टर",
     "doctorLogin": "डॉक्टर लॉगिन",
-    "doctorSignup": "डॉक्टर अकाउंट बनाएँ"
+    "doctorSignup": "डॉक्टर अकाउंट बनाएँ",
+    "family": "परिवार के सदस्य"
   },
   "footer": {
     "tagline": "डॉक्टर का समय बचाओ। मरीज़ की बात पूरी सुनो।",
@@ -719,5 +720,24 @@
     "approved": "Approved",
     "rejected": "Rejected",
     "signIn": "Sign in as admin at /d/login to use this queue."
+  },
+  "family": {
+    "title": "परिवार के सदस्य",
+    "subtitle": "हर व्यक्ति की अपनी Medicos ID और रिकॉर्ड बुक है। इन्हें इसी अकाउंट से आप संभालते हैं।",
+    "add": "परिवार का सदस्य जोड़ें",
+    "name": "पूरा नाम",
+    "age": "उम्र",
+    "gender": "लिंग",
+    "male": "पुरुष",
+    "female": "महिला",
+    "other": "अन्य",
+    "city": "शहर",
+    "language": "पसंदीदा भाषा",
+    "save": "सदस्य जोड़ें",
+    "you": "आप",
+    "actFor": "{name} के लिए चुनें",
+    "active": "चुना गया",
+    "forWhom": "किसके लिए: {name}",
+    "addShort": "सदस्य जोड़ें"
   }
 }

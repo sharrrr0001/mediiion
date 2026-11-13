@@ -10,6 +10,7 @@ import { Button, Field, Select, Skeleton, cn } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
 import { api, ApiError, post } from '@/lib/api';
 import { usePublicConfig } from '@/lib/use-config';
+import { useActiveProfile } from '@/lib/use-active-profile';
 import { usePatientGate } from '@/lib/use-me';
 
 type Kind = 'general-medicine' | 'dermatology' | 'paediatrics' | 'gynaecology';
@@ -20,6 +21,7 @@ export default function NewIntakePage() {
   const tc = useTranslations('common');
   const router = useRouter();
   const { me } = usePatientGate();
+  const { profile: active } = useActiveProfile();
   const td = useTranslations('chooseDoctor');
   const [kind, setKind] = useState<Kind>('general-medicine');
   const preset = useSearchParams().get('doctor') ?? '';
@@ -39,7 +41,7 @@ export default function NewIntakePage() {
   const start = useMutation({
     mutationFn: () =>
       post<IntakeView>('/intake/sessions', {
-        profileId: me!.profiles[0]!.id,
+        profileId: (active ?? me!.profiles[0]!).id,
         templateKey: kind,
         ...(doctorId ? { doctorId } : {}),
       }),
