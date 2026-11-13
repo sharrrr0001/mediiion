@@ -7,6 +7,7 @@ import type { AuthUser } from '../auth/decorators';
 import { can } from '../auth/policy';
 import { AppError } from '../common/errors';
 import { meterDeliveredSummary } from '../billing/usage';
+import { ReminderPlanner } from '../notify/reminders';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
 import { SummaryService } from '../intake/summary.service';
 import { addDays, isScheduledSlot, istDate, slotsFor, type ScheduleRow } from './slots';
@@ -28,6 +29,7 @@ export class BookingService {
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
     private readonly summaries: SummaryService,
+    private readonly reminders: ReminderPlanner,
     @Inject(CRYPTO) private readonly crypto: FieldCrypto,
   ) {}
 
@@ -162,10 +164,12 @@ export class BookingService {
       if (latest) {
         await this.prisma.preVisitSummary.update({ where: { id: latest.id }, data: { status: 'delivered', deliveredAt: new Date() } });
         await meterDeliveredSummary(this.prisma, d.id);
+        await this.reminders.onSummaryDelivered(d.id);
         await this.summaries.shareWithDoctor({ id: session.id, patientProfileId: profile.id, appointmentId: appt.id, patientProfile: { ownerUserId: profile.ownerUserId } }, d.id);
       }
     }
     await this.audit.record({ actor: user, action: 'appointment.book', entity: 'appointment', entityId: appt.id, patientProfileId: profile.id, req });
+    await this.reminders.onBooked(appt.id);
     return this.view(appt.id);
   }
 

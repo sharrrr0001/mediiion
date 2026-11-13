@@ -6,6 +6,7 @@ import { AuditService } from '../audit/audit.service';
 import type { AuthUser } from '../auth/decorators';
 import { can } from '../auth/policy';
 import { AppError } from '../common/errors';
+import { ReminderPlanner } from '../notify/reminders';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
 import { StorageService } from '../intake/storage.service';
 import { SummaryService, reidentify } from '../intake/summary.service';
@@ -27,6 +28,7 @@ export class DoctorService {
     private readonly audit: AuditService,
     private readonly summaries: SummaryService,
     private readonly storage: StorageService,
+    private readonly reminders: ReminderPlanner,
     @Inject(CRYPTO) private readonly crypto: FieldCrypto,
   ) {}
 
@@ -187,6 +189,7 @@ export class DoctorService {
       await tx.appointment.update({ where: { id: appt.id }, data: { status: 'completed' } });
     });
     await this.audit.record({ actor: user, action: 'doctor_note.finalise', entity: 'appointment', entityId: appt.id, patientProfileId: appt.patientProfileId, req });
+    await this.reminders.onFinalised(appt.id);
     return this.summary(user, appointmentId, req);
   }
 

@@ -18,6 +18,7 @@ const testEnv = {
   STT_PROVIDER: 'mock',
   // Fake secret so webhook signature checks can be tested; never a real key.
   RAZORPAY_WEBHOOK_SECRET: 'test-webhook-secret',
+  JOBS_ENABLED: 'false',
 };
 // Global setup runs in this process, workers inherit it.
 Object.assign(process.env, testEnv);

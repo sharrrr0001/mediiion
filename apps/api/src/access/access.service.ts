@@ -6,6 +6,7 @@ import { AuditService } from '../audit/audit.service';
 import type { AuthUser } from '../auth/decorators';
 import { AppError } from '../common/errors';
 import { meterDeliveredSummary } from '../billing/usage';
+import { ReminderPlanner } from '../notify/reminders';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
 import { istDayRange } from '../doctor/doctor.service';
 
@@ -22,6 +23,7 @@ export class AccessService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly audit: AuditService,
+    private readonly reminders: ReminderPlanner,
     @Inject(CRYPTO) private readonly crypto: FieldCrypto,
   ) {}
 
@@ -164,7 +166,10 @@ export class AccessService {
     if (session) {
       await this.prisma.intakeSession.update({ where: { id: session.id }, data: { doctorId, appointmentId: appt.id } });
       const { count } = await this.prisma.preVisitSummary.updateMany({ where: { sessionId: session.id, status: 'draft' }, data: { status: 'delivered', deliveredAt: new Date() } });
-      if (count) await meterDeliveredSummary(this.prisma, doctorId);
+      if (count) {
+        await meterDeliveredSummary(this.prisma, doctorId);
+        await this.reminders.onSummaryDelivered(doctorId);
+      }
     }
   }
 

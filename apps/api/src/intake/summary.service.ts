@@ -3,6 +3,7 @@ import { IntakeTemplate, deidentify, writeSummary, type SummaryItem } from '@med
 import { ENC } from '@medicos/db';
 import { CONSENT_VERSION, type Language, type PreVisitSummary } from '@medicos/shared';
 import { meterDeliveredSummary } from '../billing/usage';
+import { ReminderPlanner } from '../notify/reminders';
 import { CRYPTO, PrismaService, type FieldCrypto } from '../config/core.module';
 import { AiService } from './ai.service';
 import { buildReview, type DecryptedMessage } from './intake-views';
@@ -21,6 +22,7 @@ export class SummaryService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly ai: AiService,
+    private readonly reminders: ReminderPlanner,
     @Inject(CRYPTO) private readonly crypto: FieldCrypto,
   ) {}
 
@@ -87,6 +89,7 @@ export class SummaryService {
     if (session.doctorId) {
       await this.shareWithDoctor(session, session.doctorId);
       await meterDeliveredSummary(this.prisma, session.doctorId);
+      await this.reminders.onSummaryDelivered(session.doctorId);
     }
     this.logger.log({ sessionId, summaryId: summary.id, regenerations: out.regenerations, droppedUnsourced: out.droppedUnsourced }, 'summary_written');
     return summary.id;

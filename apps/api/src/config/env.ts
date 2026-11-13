@@ -54,6 +54,15 @@ const EnvSchema = z
     GROQ_API_KEY: z.string().optional(),
     STT_MODEL: z.string().default(''),
     STT_API_KEY: z.string().optional(),
+    // WhatsApp Cloud API (sandbox/live). Without these, notifications go by email (or SMS once available).
+    WHATSAPP_TOKEN: z.string().optional(),
+    WHATSAPP_PHONE_ID: z.string().optional(),
+    /** Approved template with one body parameter ({{1}} = the message text). */
+    WHATSAPP_TEMPLATE: z.string().default('medicos_update'),
+    /** Public web address used in notification links (defaults to the first WEB_ORIGINS entry). */
+    PUBLIC_WEB_URL: z.string().optional(),
+    /** Background jobs (reminders) run in this process every minute; off in tests. */
+    JOBS_ENABLED: z.enum(['true', 'false']).default('true').transform((v) => v === 'true'),
     // Billing (Razorpay test/live keys; without them online payment is switched off)
     RAZORPAY_KEY_ID: z.string().optional(),
     RAZORPAY_KEY_SECRET: z.string().optional(),

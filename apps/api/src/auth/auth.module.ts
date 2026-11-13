@@ -28,6 +28,6 @@ import { TwoFactorService } from './two-factor.service';
     { provide: APP_GUARD, useClass: OriginGuard },
     { provide: APP_GUARD, useClass: AuthGuard },
   ],
-  exports: [DevOutbox, SessionService],
+  exports: [DevOutbox, SessionService, EMAIL_SENDER, SMS_SENDER],
 })
 export class AuthModule {}

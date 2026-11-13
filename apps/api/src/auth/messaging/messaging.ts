@@ -6,6 +6,8 @@ import { ENV, type Env } from '../../config/env';
 /** Adapters so MSG91 / SES / Resend can be plugged in later without touching callers. */
 export interface OtpSender {
   sendOtp(to: string, code: string): Promise<void>;
+  /** Plain notification (no PHI: templates carry only links and visit logistics). */
+  sendText?(to: string, subject: string, text: string): Promise<void>;
 }
 export const SMS_SENDER = Symbol('SMS_SENDER');
 export const EMAIL_SENDER = Symbol('EMAIL_SENDER');
@@ -35,6 +37,19 @@ export class DevOutbox {
     if (this.items.length > 100) this.items.shift();
   }
 
+  private readonly texts: Array<{ to: string; text: string }> = [];
+
+  /** Dev/test only: last notification text per recipient. */
+  pushText(to: string, text: string) {
+    if (!this.enabled) return;
+    this.texts.push({ to, text });
+    if (this.texts.length > 100) this.texts.shift();
+  }
+
+  latestText(to: string): string | undefined {
+    return [...this.texts].reverse().find((i) => i.to === to)?.text;
+  }
+
   latest(to: string): string | undefined {
     return [...this.items].reverse().find((i) => i.to === to)?.code;
   }
@@ -62,6 +77,11 @@ export class ConsoleSmsSender implements OtpSender {
     this.outbox.push(to, code);
     // Dev convenience only: env validation forbids the console provider in production.
     if (this.env.NODE_ENV === 'development') this.logger.warn(`SMS to ${maskPhone(to)}: ${otpText(code)}`);
+  }
+
+  async sendText(to: string, _subject: string, text: string) {
+    this.outbox.pushText(to, text);
+    if (this.env.NODE_ENV === 'development') this.logger.warn(`SMS to ${maskPhone(to)}: ${text}`);
   }
 }
 
@@ -96,5 +116,11 @@ export class SmtpEmailSender implements OtpSender {
       text: otpText(code),
       html: otpHtml(code),
     });
+  }
+
+  async sendText(to: string, subject: string, text: string) {
+    this.outbox.pushText(to, text);
+    if (this.env.EMAIL_PROVIDER === 'console') return;
+    await this.transport.sendMail({ from: this.env.EMAIL_FROM, to, subject, text });
   }
 }
