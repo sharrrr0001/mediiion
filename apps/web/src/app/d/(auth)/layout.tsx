@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: 'Doctor login' };
 
 export default function DoctorAuthLayout({ children }: { children: ReactNode }) {
   return (
-    <IntlProvider namespaces={['common', 'nav', 'auth', 'login', 'doctorAuth', 'extra']}>
+    <IntlProvider namespaces={['common', 'nav', 'auth', 'login', 'doctorAuth', 'extra', 'onboarding']}>
       <AuthSplit>{children}</AuthSplit>
     </IntlProvider>
   );

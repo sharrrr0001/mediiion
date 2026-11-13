@@ -96,7 +96,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
   const tn = useTranslations('nav');
   const nav: NavItem[] = [
     { href: '/admin', label: t('nav.overview'), icon: <LayoutDashboard aria-hidden /> },
-    { label: t('nav.verification'), icon: <BadgeCheck aria-hidden /> },
+    { href: '/admin/verifications', label: t('nav.verification'), icon: <BadgeCheck aria-hidden /> },
     { label: t('nav.templates'), icon: <ClipboardList aria-hidden /> },
     { label: t('nav.quality'), icon: <BarChart3 aria-hidden /> },
     { label: t('nav.safety'), icon: <Bell aria-hidden /> },

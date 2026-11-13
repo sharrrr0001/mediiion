@@ -2,7 +2,7 @@
 import { ShieldCheck } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState, type FormEvent } from 'react';
 import { Email, IndianPhone } from '@medicos/shared';
 import type { TwoFactorChallengeResponse } from '@medicos/shared/client';
@@ -22,6 +22,8 @@ export default function DoctorLoginPage() {
   const tc = useTranslations('common');
   const tx = useTranslations('extra');
   const router = useRouter();
+  const to = useTranslations('onboarding');
+  const registered = useSearchParams().get('registered') === '1';
   const [step, setStep] = useState<Step>({ kind: 'phone' });
   const [phone, setPhone] = useState('');
   const [channel, setChannel] = useState<'sms' | 'email'>('sms');
@@ -85,8 +87,8 @@ export default function DoctorLoginPage() {
     e.preventDefault();
     if (step.kind !== 'twofa' || code.length !== 6) return;
     void run(async () => {
-      await post('/auth/2fa', { ticket: step.challenge.ticket, code });
-      router.replace('/d/today');
+      const r = await post<{ role: string }>('/auth/2fa', { ticket: step.challenge.ticket, code });
+      router.replace(r.role === 'admin' ? '/admin/verifications' : '/d/today');
     });
   };
 
@@ -97,6 +99,7 @@ export default function DoctorLoginPage() {
           <div>
             <h1 className="font-display text-3xl font-bold tracking-tight">{t('title')}</h1>
             <p className="mt-2 text-muted">{t('subtitle')}</p>
+            {registered ? <p role="status" className="mt-3 rounded-[var(--radius-control)] bg-brand-tint px-3 py-2 text-sm font-medium text-brand-deep">{to('registered')}</p> : null}
           </div>
           {phoneOn ? (
             <Tabs
@@ -153,6 +156,9 @@ export default function DoctorLoginPage() {
             className="text-center text-sm font-semibold text-brand hover:text-brand-hover"
           >
             {t('patientLink')}
+          </Link>
+          <Link href="/d/signup" className="text-center text-sm font-semibold text-brand hover:text-brand-hover">
+            {to('createLink')}
           </Link>
         </form>
       ) : step.kind === 'otp' ? (

@@ -23,6 +23,7 @@ export const metadata: Metadata = { title: { absolute: 'Medicos — Pre-visit in
 
 export default function LandingPage() {
   const t = useTranslations('landing');
+  const tn = useTranslations('nav');
   const how = t.raw('how') as Array<{ t: string; d: string }>;
   const trust = t.raw('trust') as string[];
   const trustIcons = [Sparkles, MapPin, Lock, CheckCircle2];
@@ -98,6 +99,14 @@ export default function LandingPage() {
               title={t('doctorsTitle')}
               items={t.raw('doctors') as string[]}
             />
+          </div>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <Button asChild size="lg">
+              <Link href="/d/signup">{tn('doctorSignup')}</Link>
+            </Button>
+            <Button asChild size="lg" variant="secondary">
+              <Link href="/d/login">{tn('doctorLogin')}</Link>
+            </Button>
           </div>
         </section>
 

@@ -6,5 +6,5 @@ import { DoctorShell } from '@/components/shell/doctor-shell';
 export const metadata: Metadata = { title: 'Doctor dashboard' };
 
 export default function DoctorLayout({ children }: { children: ReactNode }) {
-  return <IntlProvider namespaces={["common","nav","doctor","finalise","doctorAccess"]}><DoctorShell>{children}</DoctorShell></IntlProvider>;
+  return <IntlProvider namespaces={["common","nav","doctor","finalise","doctorAccess","onboarding"]}><DoctorShell>{children}</DoctorShell></IntlProvider>;
 }

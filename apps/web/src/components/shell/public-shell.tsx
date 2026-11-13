@@ -49,6 +49,9 @@ function SiteHeader() {
         </nav>
         <div className="hidden items-center gap-2 md:flex">
           <Button asChild variant="ghost">
+            <Link href="/d/login">{t('doctorLogin')}</Link>
+          </Button>
+          <Button asChild variant="ghost">
             <Link href="/p/login">{t('login')}</Link>
           </Button>
           <Button asChild>
@@ -75,6 +78,9 @@ function SiteHeader() {
         </nav>
         <div className="mt-auto flex flex-col gap-3 border-t border-line p-4">
           <LanguagePicker className="self-start" />
+          <Button asChild variant="ghost" block>
+            <Link href="/d/login">{t('doctorLogin')}</Link>
+          </Button>
           <Button asChild variant="secondary" block>
             <Link href="/p/login">{t('login')}</Link>
           </Button>
