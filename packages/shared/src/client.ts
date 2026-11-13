@@ -13,6 +13,6 @@ export type { DoctorListItem, DoctorMe, DoctorQueueRow, DoctorSummaryView, Final
 export type { PreVisitSummary, SummaryLine } from './pre-visit-summary';
 export type { TwoFactorChallengeResponse } from './auth';
 export type { AppointmentStatusView, AppointmentView, ClinicView, DoctorCard, DoctorProfileView, SlotsView } from './booking';
-export type { AccessGrantView, AccessRequestStatus, DoctorAccessRequestView, DoctorPatientView, PatientAccessRequestView } from './access';
+export type { AccessGrantView, AccessRequestStatus, DoctorAccessRequestView, DoctorPatientView, PatientAccessRequestView, ShareLinkView, SharedSummaryView } from './access';
 export type { DocKind, OnboardingView, VerificationQueueItem } from './onboarding';
 export { DOC_KINDS, SPECIALTIES } from './onboarding-consts';

@@ -51,3 +51,24 @@ export interface DoctorPatientView {
   grantExpiresAt: string;
   entries: Array<{ id: string; kind: string; title: string; date: string }>;
 }
+
+/** Share one pre-visit summary with a doctor not on Medicos (spec §7.1 #9): secret link, 72 h, revocable. */
+export const CreateShareLink = z.object({ recordId: z.uuid() }).strict();
+export type CreateShareLink = z.infer<typeof CreateShareLink>;
+
+export interface ShareLinkView {
+  id: string;
+  /** Only returned once, when the link is created (the token is never stored). */
+  path: string | null;
+  expiresAt: string;
+  revokedAt: string | null;
+  openCount: number;
+}
+
+export interface SharedSummaryView {
+  patient: { firstName: string; age: number | null; sex: string };
+  sharedAt: string;
+  expiresAt: string;
+  aiLabel: string;
+  summary: import('./pre-visit-summary').PreVisitSummary;
+}

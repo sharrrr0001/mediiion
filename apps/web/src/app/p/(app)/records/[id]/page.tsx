@@ -9,6 +9,7 @@ import type { RecordDetailView, SummaryLine } from '@medicos/shared/client';
 import { Badge, Button, Card, Skeleton } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
 import { api } from '@/lib/api';
+import { ShareSummary } from '@/components/share-summary';
 import { usePatientGate } from '@/lib/use-me';
 
 function Lines({ title, lines }: { title: string; lines: SummaryLine[] }) {
@@ -84,6 +85,9 @@ export default function RecordDetailPage() {
               <Lines title={tf('openings.allergies')} lines={r.summary.subjective.allergies} />
               <Lines title={tf('openings.questions')} lines={r.summary.subjective.patientQuestions} />
             </div>
+          ) : null}
+          {r.summary && r.kind === 'pre_visit_summary' ? (
+            <ShareSummary recordId={r.id} />
           ) : null}
 
           {r.note ? (
