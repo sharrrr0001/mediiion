@@ -13,6 +13,7 @@ import { IntakeModule } from './intake/intake.module';
 import { DoctorModule } from './doctor/records';
 import { BookingModule } from './booking/booking.controller';
 import { AccessModule } from './access/access.controller';
+import { OnboardingModule } from './onboarding/onboarding.controller';
 import { loadEnv } from './config/env';
 import { DevController, HealthController, PublicConfigController } from './health/health.controller';
 import { pinoRedact, serializers } from './logging/redaction';
@@ -52,6 +53,7 @@ export class AppModule {
         DoctorModule,
         BookingModule,
         AccessModule,
+        OnboardingModule,
       ],
       controllers: [HealthController, PublicConfigController, DevController, PatientsController],
       providers: [
