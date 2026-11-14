@@ -17,7 +17,7 @@
   },
   "login": {
     "title": "Welcome to Medicos",
-    "subtitle": "Log in with your mobile number. We will send a 6-digit code.",
+    "subtitle": "Log in with your email. We will send a 6-digit code.",
     "phoneLabel": "Mobile number",
     "phoneHint": "10 digits, without 0 or +91",
     "sendOtp": "Send code",

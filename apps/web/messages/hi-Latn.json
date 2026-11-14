@@ -17,7 +17,7 @@
   },
   "login": {
     "title": "Medicos mein aapka swagat hai",
-    "subtitle": "Apne mobile number se login karein. Hum 6 ank ka code bhejenge.",
+    "subtitle": "Apne email se login karein. Hum 6 ank ka code bhejenge.",
     "phoneLabel": "Mobile number",
     "phoneHint": "10 ank, 0 ya +91 ke bina",
     "sendOtp": "Code bhejein",
