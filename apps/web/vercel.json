@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://english-unlimited-jokes-settings.trycloudflare.com/:path*"
+      "destination": "https://mart-conclude-caps-thomson.trycloudflare.com/:path*"
     }
   ]
 }
