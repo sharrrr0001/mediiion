@@ -57,8 +57,8 @@ docs/           spec, plans/, decisions.md, ideas.md, safety.md, privacy.md, TAS
 - Commit after each green slice (`feat:`, `fix:`, `docs:`, `test:`, `chore:`).
 
 ## Current Status
-- Last session: 2026-11-15 — Phases 0–5 built; Phase 6 mostly done (CSP/HSTS, privacy + terms drafts, backup/restore drill, 200-interview load test, security review, runbooks, doctor quick-start). Product renamed **Mediaura.ai**; assistant avatar **Aura** ( in packages/ui).
-- Live: web on Vercel (medicos-zeta.vercel.app); API on this PC via Cloudflare tunnel (, ). Free always-on option ready:  (Oracle Always Free + , tested locally). AWS Terraform deferred (no paid hosting yet).
-- Email OTP works (Gmail App Password). AI = scripted until a key is set ( demo /  pilot). Admin:  (owner runs it).
-- Pilot blockers: doctor review of the safety keyword list; lawyer review of consent/privacy/terms; no-training AI provider; external security audit ().
-- Windows: run Playwright/scripts from  (capital D) to avoid Next case-path warnings; PS 5.1 mangles binary pipes and double quotes (see scripts).
+- Last session: 2026-11-15 — Phases 0–5 built; Phase 6 mostly done (CSP/HSTS, privacy + terms drafts, backup/restore drill, 200-interview load test, security review, runbooks, doctor quick-start). Product renamed **Mediaura.ai**; assistant avatar **Aura** (`AuraAvatar` in packages/ui).
+- Live: web on Vercel (medicos-zeta.vercel.app); API on this PC via Cloudflare tunnel (`scripts/start-all.ps1`, `.env.live`). Free always-on option ready: `docs/deploy-oracle.md` (Oracle Always Free + `deploy/server`, tested locally from empty volumes). AWS Terraform deferred (no paid hosting yet).
+- Email OTP works (Gmail App Password). AI = scripted until a key is set (`GEMINI_API_KEY` demo / `ANTHROPIC_API_KEY` pilot). Admin: `pnpm --filter @medicos/db live:make-admin -- --email <owner>` (the owner runs it).
+- Pilot blockers: doctor review of the safety keyword list; lawyer review of consent/privacy/terms; no-training AI provider; external security audit (`docs/release-checklist.md`).
+- Windows: run Playwright/scripts from `D:\` (capital D) to avoid Next case-path warnings; PowerShell 5.1 mangles binary pipes and double quotes (see scripts).
