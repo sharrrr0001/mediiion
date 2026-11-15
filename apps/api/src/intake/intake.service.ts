@@ -120,7 +120,7 @@ export class IntakeService {
     const language = (body.language ?? profile.language) as Language;
     if (body.doctorId) {
       const doc = await this.prisma.doctor.findUnique({ where: { id: body.doctorId }, select: { verificationStatus: true } });
-      if (doc?.verificationStatus !== 'verified') throw new AppError(HttpStatus.BAD_REQUEST, 'DOCTOR_NOT_AVAILABLE', 'This doctor is not available on Medicos.');
+      if (doc?.verificationStatus !== 'verified') throw new AppError(HttpStatus.BAD_REQUEST, 'DOCTOR_NOT_AVAILABLE', 'This doctor is not available on Mediaura.');
     }
     const session = await this.prisma.intakeSession.create({
       data: { patientProfileId: profile.id, templateId: tpl.key, templateVersion: tpl.version, language, doctorId: body.doctorId ?? null },

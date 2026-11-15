@@ -15,7 +15,10 @@ export function Logo({ className, mark = true, tone = 'brand' }: { className?: s
           <path fill={tone === 'white' ? 'var(--brand)' : '#fff'} d="M14.4 11h3.2v3.6h3.6v3.2h-3.6v3.6h-3.2v-3.6h-3.6v-3.2h3.6z" />
         </svg>
       ) : null}
-      <span>{APP_NAME}</span>
+      <span>
+        {APP_NAME.split('.')[0]}
+        {APP_NAME.includes('.') ? <span className={tone === 'white' ? 'font-semibold opacity-90' : 'font-semibold text-brand'}>.{APP_NAME.split('.').slice(1).join('.')}</span> : null}
+      </span>
     </span>
   );
 }

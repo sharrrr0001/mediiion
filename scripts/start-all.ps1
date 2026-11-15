@@ -1,4 +1,4 @@
-# Start the live Medicos backend on this PC, in the background:
+# Start the live Mediaura backend on this PC, in the background:
 # Docker (Postgres, Redis, S3), the production API on :4100 (reads .env.live) and the Cloudflare
 # tunnel that the Vercel site talks to.
 #

@@ -10,7 +10,7 @@ import { ApiError, post } from '@/lib/api';
 import { useActiveProfile } from '@/lib/use-active-profile';
 import { ME_KEY, usePatientGate } from '@/lib/use-me';
 
-/** Family profiles (spec §7.1 #14): each member has their own Medicos ID and record book. */
+/** Family profiles (spec §7.1 #14): each member has their own Mediaura ID and record book. */
 export default function FamilyPage() {
   const t = useTranslations('family');
   const tc = useTranslations('common');

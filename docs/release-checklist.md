@@ -1,6 +1,6 @@
 # Release checklist
 
-Tick every item before a release. **Pilot blockers** must all be done before any real patient uses Medicos.
+Tick every item before a release. **Pilot blockers** must all be done before any real patient uses Mediaura.
 
 ## Every release
 - [ ] CI green: lint, typecheck, tests, build, migration drift, seed, dependency audit, secret scan

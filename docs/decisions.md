@@ -51,3 +51,9 @@ One line each: date — decision — why.
 - **Clinic staff see visit metadata only** (time, initials, Medicos ID, doctor, status) — no complaint or summary text, no records. Least privilege; staff make no clinical decisions. Walk-ins still need the patient's Allow.
 - **Doctor signup** converts a fresh OTP account (no patient profiles) into a pending doctor and revokes its sessions so 2FA is enrolled at next login. Staff, doctor, admin and patient identities never share an account.
 - **Share links** to non-member doctors: 24-byte random token in the URL only (HMAC stored), 72 h, revocable, every open audited; shows first name + age/sex and the AI-draft label, never the surname.
+
+## 2026-11-15 — Rename to Mediaura.ai, Aura avatar, always-on server
+- **Product name is Mediaura.ai** (`APP_NAME` in `packages/shared/src/constants.ts`); patient ID is the "Mediaura ID" (format `MED-XXXX-XXXX` unchanged). Internal names (`@medicos/*` packages, DB names, cookies, `medicosId` fields) stay as they are to avoid a risky migration.
+- **Aura** is the assistant's avatar (`AuraAvatar` in `packages/ui`): original SVG, brand green with a saffron ring, no doctor props (she never diagnoses or advises). Shown on AI chat bubbles ("talking" while a reply loads), patient home, interview start, login panel and landing page. Motion respects reduced-motion.
+- **Free always-on hosting:** one Oracle Cloud Always Free VM (Mumbai/Hyderabad, data stays in India) running `deploy/server` (Postgres + SeaweedFS + API + Caddy with automatic HTTPS on an `sslip.io` host). Vercel keeps the web app. Replaces the PC tunnel; AWS (Terraform) stays the paid production path for later.
+- Self-hosted storage: the API now creates its bucket whenever an S3 endpoint is set (it was skipped in production, which broke uploads on the PC-hosted live site) and signs download links for `S3_PUBLIC_ENDPOINT`, served by Caddy.

@@ -15,3 +15,4 @@ next-env.d.ts
 *.log
 *.log
 backups/
+deploy/server/s3.json

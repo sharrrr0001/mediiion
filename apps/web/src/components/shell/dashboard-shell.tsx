@@ -71,7 +71,7 @@ export function DashboardShell({ nav, navLabel, identity, topBar, labels, childr
         )}
       >
         <div className={cn('flex h-16 items-center border-b border-line px-4', collapsed ? 'justify-center' : 'justify-center lg:justify-between')}>
-          <Link href="/" aria-label="Medicos home" className={cn(collapsed ? 'hidden' : 'hidden lg:block')}>
+          <Link href="/" aria-label="Mediaura home" className={cn(collapsed ? 'hidden' : 'hidden lg:block')}>
             <Logo />
           </Link>
           <Button variant="ghost" size="icon" className="hidden lg:inline-flex" aria-label={collapsed ? labels.expand : labels.collapse} onClick={() => setCollapsed((c) => !c)}>

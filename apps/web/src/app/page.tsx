@@ -14,16 +14,17 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { AI_DRAFT_LABEL } from '@medicos/shared/client';
-import { Badge, Button, Card, cn } from '@medicos/ui';
+import { AuraAvatar, Badge, Button, Card, cn } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
 import { IntlProvider } from '@/components/intl-provider';
 import { PublicShell } from '@/components/shell/public-shell';
 
-export const metadata: Metadata = { title: { absolute: 'Medicos — Pre-visit intake for Indian clinics' } };
+export const metadata: Metadata = { title: { absolute: 'Mediaura — Pre-visit intake for Indian clinics' } };
 
 export default function LandingPage() {
   const t = useTranslations('landing');
   const tn = useTranslations('nav');
+  const tc = useTranslations('common');
   const how = t.raw('how') as Array<{ t: string; d: string }>;
   const trust = t.raw('trust') as string[];
   const trustIcons = [Sparkles, MapPin, Lock, CheckCircle2];
@@ -59,6 +60,12 @@ export default function LandingPage() {
                 <Button asChild size="lg" variant="secondary">
                   <a href="#doctors">{t('ctaDoctor')}</a>
                 </Button>
+              </div>
+              <div className="mt-8 flex max-w-[52ch] items-center gap-3 rounded-card border border-line bg-surface/80 p-3 shadow-sm">
+                <AuraAvatar size={52} label={tc('auraName')} />
+                <p className="text-[15px] text-ink">
+                  <span className="font-semibold">{tc('auraHello')}</span> {tc('auraIntro')}
+                </p>
               </div>
             </div>
             <SummaryMock />

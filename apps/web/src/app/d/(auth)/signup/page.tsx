@@ -11,7 +11,7 @@ import { usePublicConfig } from '@/lib/use-config';
 
 type Step = { kind: 'contact' } | { kind: 'otp'; challengeId: string; destination: string } | { kind: 'details' };
 
-/** Spec §7.2 steps 1–2: OTP, then the doctor's details. Verification is done by Medicos staff. */
+/** Spec §7.2 steps 1–2: OTP, then the doctor's details. Verification is done by Mediaura staff. */
 export default function DoctorSignupPage() {
   const t = useTranslations('onboarding');
   const tl = useTranslations('login');

@@ -1,13 +1,13 @@
 /**
  * Golden rule 11 — strip identifiers before ANY AI call.
- * Known identifiers (patient + family names, Medicos IDs) are replaced exactly; generic patterns catch
- * phone numbers, emails, Medicos IDs, PIN codes and address-like phrases. Real names are re-inserted
+ * Known identifiers (patient + family names, Mediaura IDs) are replaced exactly; generic patterns catch
+ * phone numbers, emails, Mediaura IDs, PIN codes and address-like phrases. Real names are re-inserted
  * only at render time, never sent to a provider.
  */
 export interface DeidContext {
   /** Full names of the patient and family profiles on this account. */
   names: string[];
-  /** Any other exact strings to remove (e.g. Medicos IDs, the account phone). */
+  /** Any other exact strings to remove (e.g. Mediaura IDs, the account phone). */
   extra?: string[];
 }
 

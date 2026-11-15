@@ -7,7 +7,7 @@ const base64Key = z
 const EnvSchema = z
   .object({
     NODE_ENV: z.enum(['development', 'test', 'production']).default('development'),
-    APP_NAME: z.string().default('Medicos'),
+    APP_NAME: z.string().default('Mediaura'),
     API_PORT: z.coerce.number().int().default(4000),
     DATABASE_URL: z.string().min(1),
     FIELD_ENCRYPTION_KEY: base64Key,
@@ -69,13 +69,15 @@ const EnvSchema = z
     RAZORPAY_WEBHOOK_SECRET: z.string().optional(),
     /** JSON map, e.g. {"pro:monthly":"plan_ABC","pro:yearly":"plan_DEF"} (plans created in the Razorpay dashboard). */
     RAZORPAY_PLAN_IDS: z.string().default('{}'),
-    SELLER_NAME: z.string().default('Medicos'),
+    SELLER_NAME: z.string().default('Mediaura'),
     SELLER_GSTIN: z.string().optional(),
     SELLER_ADDRESS: z.string().default('India'),
     // Object storage
     S3_ENDPOINT: z.string().optional(),
     S3_REGION: z.string().default('ap-south-1'),
     S3_BUCKET: z.string().default('medicos-dev'),
+    /** Address browsers use for signed download links when S3 is self-hosted behind the site (e.g. https://host). */
+    S3_PUBLIC_ENDPOINT: z.string().optional(),
     S3_ACCESS_KEY: z.string().optional(),
     S3_SECRET_KEY: z.string().optional(),
   })

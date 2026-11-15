@@ -25,7 +25,7 @@ export default function MedicosIdPage() {
   const profile = active ?? me.profiles[0]!;
   const [left, right] = profile.medicosId.replace('MED-', '').split('-');
   const steps = tx.raw('howClinic') as string[];
-  const shareText = encodeURIComponent(`My Medicos ID: ${profile.medicosId}`);
+  const shareText = encodeURIComponent(`My Mediaura ID: ${profile.medicosId}`);
 
   return (
     <div className={`${container} animate-in py-6 md:py-10`}>
@@ -35,7 +35,7 @@ export default function MedicosIdPage() {
           <Card className="overflow-hidden p-0 shadow-md md:p-0 print:shadow-none">
             <div className="flex items-center justify-between gap-3 border-b border-line bg-brand-tint px-6 py-4">
               <p className="font-semibold text-brand-deep">{t('show')}</p>
-              <span className="rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-brand-deep shadow-sm">Medicos</span>
+              <span className="rounded-full bg-surface px-2.5 py-1 text-xs font-semibold text-brand-deep shadow-sm">Mediaura</span>
             </div>
             <div className="flex flex-col items-center px-6 pb-6 pt-6 text-center">
               <QrCode value={profile.medicosId} label={t('qrLabel', { id: profile.medicosId })} className="max-w-[280px] rounded-card border-2 border-brand/40 p-3" />

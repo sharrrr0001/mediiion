@@ -1,7 +1,7 @@
-# Medicos — Intended use and safety controls
+# Mediaura — Intended use and safety controls
 
 ## Intended use
-Medicos is a **pre-visit history intake and documentation tool**. It collects a patient's own account of their symptoms and history before an OPD visit and organises it for the treating doctor.
+Mediaura is a **pre-visit history intake and documentation tool**. It collects a patient's own account of their symptoms and history before an OPD visit and organises it for the treating doctor.
 
 It is **not** a diagnostic, triage, or treatment-recommendation tool. It does not:
 - name, suggest or hint at diseases or conditions;
@@ -11,7 +11,7 @@ It is **not** a diagnostic, triage, or treatment-recommendation tool. It does no
 
 All clinical decisions are made by a verified, treating doctor. The AI output is always a **draft** until the doctor reviews and finalises it.
 
-This positioning keeps Medicos outside the scope of a medical device under CDSCO / Medical Devices Rules 2017, consistent with the Telemedicine Practice Guidelines 2020 and ICMR's 2023 AI-in-health guidance (human oversight, transparency, source links). **To be confirmed by a healthcare + AI lawyer before the pilot.**
+This positioning keeps Mediaura outside the scope of a medical device under CDSCO / Medical Devices Rules 2017, consistent with the Telemedicine Practice Guidelines 2020 and ICMR's 2023 AI-in-health guidance (human oversight, transparency, source links). **To be confirmed by a healthcare + AI lawyer before the pilot.**
 
 ## Controls (spec §3) and where they live
 

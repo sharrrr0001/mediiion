@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState, type ReactNode } from 'react';
 import type { DoctorListItem, IntakeView } from '@medicos/shared/client';
-import { Button, Field, Select, Skeleton, cn } from '@medicos/ui';
+import { AuraAvatar, Button, Field, Select, Skeleton, cn } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
 import { api, ApiError, post } from '@/lib/api';
 import { usePublicConfig } from '@/lib/use-config';
@@ -62,8 +62,16 @@ export default function NewIntakePage() {
   return (
     <div className={`${container} animate-in py-6 md:py-10`}>
       <div className="mx-auto max-w-3xl">
-        <h1 className="text-page-title font-display font-bold tracking-tight">{t('chooseTitle')}</h1>
-        <p className="mt-2 max-w-[60ch] text-muted">{t('chooseSubtitle')}</p>
+        <div className="flex items-start gap-4">
+          <AuraAvatar size={56} label={tc('auraName')} />
+          <div>
+            <h1 className="text-page-title font-display font-bold tracking-tight">{t('chooseTitle')}</h1>
+            <p className="mt-2 max-w-[60ch] text-muted">{t('chooseSubtitle')}</p>
+            <p className="mt-2 max-w-[60ch] text-sm">
+              <span className="font-semibold">{tc('auraHello')}</span> {tc('auraIntro')}
+            </p>
+          </div>
+        </div>
 
         {resume ? (
           <Button asChild variant="secondary" size="lg" block className="mt-6">

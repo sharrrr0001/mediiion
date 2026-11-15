@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-/** Doctor scans or types the patient's Medicos ID; the patient then sees Allow / Deny (rule 10). */
+/** Doctor scans or types the patient's Mediaura ID; the patient then sees Allow / Deny (rule 10). */
 export const RequestAccess = z
   .object({ medicosId: z.string().trim().toUpperCase().max(20) })
   .strict();
@@ -52,7 +52,7 @@ export interface DoctorPatientView {
   entries: Array<{ id: string; kind: string; title: string; date: string }>;
 }
 
-/** Share one pre-visit summary with a doctor not on Medicos (spec §7.1 #9): secret link, 72 h, revocable. */
+/** Share one pre-visit summary with a doctor not on Mediaura (spec §7.1 #9): secret link, 72 h, revocable. */
 export const CreateShareLink = z.object({ recordId: z.uuid() }).strict();
 export type CreateShareLink = z.infer<typeof CreateShareLink>;
 

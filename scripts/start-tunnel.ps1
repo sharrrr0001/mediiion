@@ -1,4 +1,4 @@
-# Expose the live Medicos API (:4100) to the Vercel site through a free Cloudflare quick tunnel,
+# Expose the live Mediaura API (:4100) to the Vercel site through a free Cloudflare quick tunnel,
 # and point the site at it.
 #
 #   .\scripts\start-tunnel.ps1          start the tunnel and update apps/web/vercel.json
@@ -6,7 +6,7 @@
 #   .\scripts\start-tunnel.ps1 -Restart ...a new tunnel even if the current one still works
 #
 # A quick tunnel gets a new random address every time it starts, so run this with -Push after
-# each restart. Only Medicos's own tunnel is stopped (by PID), never other cloudflared tunnels.
+# each restart. Only Mediaura's own tunnel is stopped (by PID), never other cloudflared tunnels.
 param([switch]$Push, [switch]$Restart)
 
 # Continue, not Stop: Windows PowerShell 5.1 turns git's progress output (stderr) into an error.
@@ -39,7 +39,7 @@ if (-not $Restart -and $current -and (Get-TunnelProcess)) {
 }
 
 $old = Get-TunnelProcess
-if ($old) { Write-Host 'Stopping the previous Medicos tunnel...'; Stop-Process -Id $old.Id -Force }
+if ($old) { Write-Host 'Stopping the previous Mediaura tunnel...'; Stop-Process -Id $old.Id -Force }
 Get-ChildItem $state -Filter 'tunnel-*.log' -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -Skip 5 | Remove-Item -ErrorAction SilentlyContinue
 $p = Start-Process cloudflared -ArgumentList @('tunnel', '--no-autoupdate', '--url', 'http://localhost:4100', '--logfile', $log) -WindowStyle Hidden -PassThru
 Set-Content $pidFile $p.Id

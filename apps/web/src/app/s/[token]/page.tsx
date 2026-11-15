@@ -22,7 +22,7 @@ function Lines({ title, lines }: { title: string; lines: SummaryLine[] }) {
   );
 }
 
-/** What a doctor not on Medicos sees from a patient's share link (spec §7.1 #9). AI draft, S only. */
+/** What a doctor not on Mediaura sees from a patient's share link (spec §7.1 #9). AI draft, S only. */
 export default function SharedSummaryPage() {
   const tf = useTranslations('finalise');
   const tc = useTranslations('common');

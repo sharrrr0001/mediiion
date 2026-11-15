@@ -17,7 +17,7 @@ export interface DoctorQueueRow {
   appointmentId: string;
   time: string; // ISO
   medicosId: string;
-  /** Initials + age/sex when the doctor has access, otherwise null (show Medicos ID). */
+  /** Initials + age/sex when the doctor has access, otherwise null (show Mediaura ID). */
   label: string | null;
   complaint: string | null;
   status: QueueStatus;

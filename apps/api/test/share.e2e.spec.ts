@@ -17,7 +17,7 @@ afterAll(async () => {
   await t.app.close();
 });
 
-describe('share a summary with a doctor not on Medicos', () => {
+describe('share a summary with a doctor not on Mediaura', () => {
   it('creates a secret 72 h link, the link shows the AI-draft summary, the patient can stop it', async () => {
     const p = await patientWithProfile(t);
     await finishInterview(p.agent, p.profile.id);

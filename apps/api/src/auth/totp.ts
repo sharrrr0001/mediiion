@@ -73,6 +73,6 @@ export function verifyTotp(secretB32: string, code: string, timeMs = Date.now())
   return null;
 }
 
-export function otpauthUrl(secretB32: string, account: string, issuer = 'Medicos'): string {
+export function otpauthUrl(secretB32: string, account: string, issuer = 'Mediaura.ai'): string {
   return `otpauth://totp/${encodeURIComponent(`${issuer}:${account}`)}?secret=${secretB32}&issuer=${encodeURIComponent(issuer)}&algorithm=SHA1&digits=6&period=30`;
 }

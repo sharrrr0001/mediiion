@@ -1,7 +1,7 @@
-# Medicos
+# Mediaura
 
 ## Overview
-Medicos is a **Pre-Visit Intake Assistant** for Indian OPD clinics. Patients talk to an AI (chat/voice, Hindi/English/Hinglish) before a visit; the AI organises their answers into a **Pre-Visit Summary** (SOAP layout, only **S** and patient-reported **O** filled). The doctor reviews, writes Assessment/Plan, and finalises. Patients pay ₹0; doctors subscribe.
+Mediaura is a **Pre-Visit Intake Assistant** for Indian OPD clinics. Patients talk to an AI (chat/voice, Hindi/English/Hinglish) before a visit; the AI organises their answers into a **Pre-Visit Summary** (SOAP layout, only **S** and patient-reported **O** filled). The doctor reviews, writes Assessment/Plan, and finalises. Patients pay ₹0; doctors subscribe.
 The full spec is `docs/spec.md` (copy of the master build prompt). Read it before large changes.
 
 ## Golden rules (enforce in code, not only in prompts)
@@ -15,7 +15,7 @@ The full spec is `docs/spec.md` (copy of the master build prompt). Read it befor
 8. Every summary is labelled: **"AI-generated draft. Not a diagnosis or prescription. Treating doctor must review."**
 9. Summary stays `draft` until the doctor presses **Review & finalise**. Only finalised doctor notes enter the Medical Record Book as clinical records.
 10. Patient consent controls access (AccessGrant, default 24h, logged). Deny by default.
-11. No training on patient data; strip name/phone/email/address/Medicos ID before any AI call (`[PATIENT]` tokens).
+11. No training on patient data; strip name/phone/email/address/Mediaura ID before any AI call (`[PATIENT]` tokens).
 12. Health data stays in India (AWS ap-south-1) in production.
 
 Tests for rules 4, 5, 6, 7, 10, 11 must never be skipped. **Never use real patient data** — only the fictional seed people (spec §15).
@@ -27,7 +27,7 @@ TypeScript everywhere. pnpm workspaces + Turborepo. Next.js 15 App Router (`apps
 ```
 apps/web        Next.js app (patient PWA, doctor dashboard, internal panels)
 apps/api        NestJS API (+ job workers later)
-packages/shared zod schemas + types shared by web and api (PreVisitSummary, Medicos ID, auth DTOs)
+packages/shared zod schemas + types shared by web and api (PreVisitSummary, Mediaura ID, auth DTOs)
 packages/db     Prisma schema, migrations, seed
 packages/ui     design tokens (CSS vars) + shared React components
 packages/config tsconfig bases, eslint config

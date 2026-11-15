@@ -21,7 +21,7 @@ export async function readOtp(page: Page, phone: string): Promise<string> {
 
 export async function expectNoSeriousA11yViolations(page: Page) {
   // Next 15 streams metadata on dynamic pages; wait for <title> before auditing.
-  await expect(page).toHaveTitle(/Medicos/);
+  await expect(page).toHaveTitle(/Mediaura/);
   // Measure colours at rest, not mid fade-in (entrance animations blend text with the background).
   await expect
     .poll(() => page.evaluate(() => document.getAnimations().filter((a) => a.playState === 'running' && a.effect?.getTiming().iterations !== Infinity).length), { timeout: 5000 })

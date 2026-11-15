@@ -28,7 +28,7 @@ The API refuses to start in `production` with `mock`, `gemini` or a free-tier Gr
 - No data processing agreement or India data-residency promise.
 
 ## Privacy setup for production
-- Remove name, phone, email, address and Medicos ID before any AI call (`deidentify()` in `packages/ai`).
+- Remove name, phone, email, address and Mediaura ID before any AI call (`deidentify()` in `packages/ai`).
 - Use only API terms that do not train on our data.
 - Store data in India (AWS Mumbai); check India-region availability of each model.
 - Keep the AI layer behind one interface so the provider can be swapped.

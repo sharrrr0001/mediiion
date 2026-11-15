@@ -26,7 +26,7 @@ notepad .env.live            # add your keys (below). Never commit this file, ne
 | Start everything (after a reboot) | `.\scripts\start-all.ps1` (add `-NoBuild` if the code has not changed) |
 | Only the tunnel died | `.\scripts\start-tunnel.ps1 -Push` |
 | Force a new tunnel | `.\scripts\start-tunnel.ps1 -Restart -Push` |
-| Stop | `.\scripts\stop-all.ps1` (stops only Medicos's API and tunnel; Docker keeps running) |
+| Stop | `.\scripts\stop-all.ps1` (stops only Mediaura's API and tunnel; Docker keeps running) |
 | Logs | `%TEMP%\medicos-live\api.log`, `api.err.log`, `tunnel.log` |
 
 A quick tunnel gets a new address each time it starts. `-Push` commits `apps/web/vercel.json` on `main` and pushes it, and Vercel redeploys in 1–2 minutes. The site only works while this PC is on.
@@ -38,7 +38,7 @@ Live and dev run side by side: dev uses ports 3001/4000 and the `medicos` databa
 **Login codes (Gmail):**
 1. Turn on 2-Step Verification on the Google account.
 2. Create an App Password at Google Account → Security → App passwords.
-3. Set `SMTP_USER=you@gmail.com`, `SMTP_PASS=<16 characters, no spaces>`, `EMAIL_FROM=Medicos <you@gmail.com>`.
+3. Set `SMTP_USER=you@gmail.com`, `SMTP_PASS=<16 characters, no spaces>`, `EMAIL_FROM=Mediaura <you@gmail.com>`.
 
 Gmail allows about 500 emails a day. Phone login stays hidden until an SMS provider (MSG91 with DLT) is added.
 

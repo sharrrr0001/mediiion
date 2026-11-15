@@ -138,4 +138,49 @@
       transform: none;
     }
   }
+
+  /* Aura, the assistant avatar: a slow "breathing" halo, an occasional blink, a talking mouth. */
+  .aura-halo {
+    transform-origin: 50% 50%;
+    animation: aura-breathe 4.8s ease-in-out infinite;
+  }
+  .aura-eyes {
+    transform-box: fill-box;
+    transform-origin: 50% 50%;
+    animation: aura-blink 5.5s ease-in-out infinite;
+  }
+  .aura-talking .aura-mouth {
+    transform-box: fill-box;
+    transform-origin: 50% 0%;
+    animation: aura-talk 0.42s ease-in-out infinite alternate;
+  }
+  @keyframes aura-breathe {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.9;
+    }
+    50% {
+      transform: scale(1.045);
+      opacity: 1;
+    }
+  }
+  @keyframes aura-blink {
+    0%,
+    94%,
+    100% {
+      transform: scaleY(1);
+    }
+    97% {
+      transform: scaleY(0.1);
+    }
+  }
+  @keyframes aura-talk {
+    from {
+      transform: scaleY(0.6);
+    }
+    to {
+      transform: scaleY(1.5);
+    }
+  }
 }

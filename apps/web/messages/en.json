@@ -13,10 +13,13 @@
     "logout": "Log out",
     "demoBanner": "Demo version: use made-up details only. Do not enter real health information.",
     "phoneSoon": "Phone login is coming soon. Please use your email.",
-    "privacyLink": "Read the full privacy policy"
+    "privacyLink": "Read the full privacy policy",
+    "auraName": "Aura",
+    "auraHello": "Namaste! I am Aura.",
+    "auraIntro": "I ask simple questions so your doctor understands your problem before you meet. I do not diagnose or give medicines — your doctor does that."
   },
   "login": {
-    "title": "Welcome to Medicos",
+    "title": "Welcome to Mediaura",
     "subtitle": "Log in with your email. We will send a 6-digit code.",
     "phoneLabel": "Mobile number",
     "phoneHint": "10 digits, without 0 or +91",
@@ -39,7 +42,7 @@
   },
   "consent": {
     "title": "Before we start",
-    "intro": "Please read how Medicos uses your health information.",
+    "intro": "Please read how Mediaura uses your health information.",
     "collectTitle": "What we collect",
     "collectBody": "Your name, age, gender, city, mobile number, and what you tell our assistant about your health, plus photos and reports you choose to upload.",
     "whyTitle": "Why",
@@ -81,15 +84,15 @@
     "noUpcoming": "No appointment booked yet",
     "records": "My medical records",
     "recordsHint": "Doctor notes, prescriptions and reports",
-    "myId": "My Medicos ID",
+    "myId": "My Mediaura ID",
     "myIdHint": "Show this QR at the clinic",
     "forWhom": "For: {name}",
     "startPrevisitCta": "Start"
   },
   "medicosId": {
-    "title": "My Medicos ID",
+    "title": "My Mediaura ID",
     "show": "Show this to your doctor",
-    "qrLabel": "QR code for Medicos ID {id}",
+    "qrLabel": "QR code for Mediaura ID {id}",
     "explain": "The doctor scans this. You will be asked to allow access before they can see anything.",
     "brightness": "Turn your screen brightness up so the clinic can scan it easily.",
     "download": "Print card",
@@ -222,7 +225,7 @@
     "privacyPolicy": "Privacy policy",
     "terms": "Terms of use",
     "dataIndia": "Your data stays in India",
-    "rights": "© {year} Medicos. A pre-visit intake tool — not a diagnosis."
+    "rights": "© {year} Mediaura. A pre-visit intake tool — not a diagnosis."
   },
   "landing": {
     "eyebrow": "Pre-visit intake for Indian clinics",
@@ -325,7 +328,7 @@
     "preview": "Preview with sample data. Doctor features arrive in Phase 2.",
     "greeting": "Good morning, {name}",
     "clinic": "Clinic",
-    "search": "Search patient or Medicos ID (MED-XXXX-XXXX)",
+    "search": "Search patient or Mediaura ID (MED-XXXX-XXXX)",
     "scanQr": "Scan QR",
     "queue": "Today’s queue",
     "today": "Today ({n})",
@@ -444,7 +447,7 @@
     "setupBody": "Scan this QR code with an authenticator app (Google Authenticator, Microsoft Authenticator or Authy), then enter the 6-digit code it shows.",
     "manualKey": "Or type this key in the app",
     "verifyTitle": "Enter your authenticator code",
-    "verifyBody": "Open your authenticator app and enter the 6-digit code for Medicos.",
+    "verifyBody": "Open your authenticator app and enter the 6-digit code for Mediaura.",
     "codeLabel": "Authenticator code",
     "confirm": "Verify and sign in",
     "notDoctor": "This account is not a doctor account.",
@@ -583,7 +586,7 @@
       "paediatrics": "Children (paediatrics)",
       "gynaecology": "Women’s health (gynaecology)"
     },
-    "shareTitle": "Share with a doctor not on Medicos",
+    "shareTitle": "Share with a doctor not on Mediaura",
     "shareBody": "A private link to this summary that stops working after 72 hours.",
     "shareCreate": "Create link",
     "shareCopy": "Copy link",
@@ -617,8 +620,8 @@
   "doctorAccess": {
     "scan": "Scan QR",
     "title": "Open a patient’s records",
-    "body": "Scan the patient’s Medicos ID QR or type the ID. The patient must tap Allow on their phone.",
-    "idLabel": "Medicos ID",
+    "body": "Scan the patient’s Mediaura ID QR or type the ID. The patient must tap Allow on their phone.",
+    "idLabel": "Mediaura ID",
     "idPlaceholder": "MED-XXXX-XXXX",
     "send": "Send request",
     "camera": "Use camera",
@@ -638,7 +641,7 @@
     "signupTitle": "Create doctor account",
     "signupSubtitle": "Verified doctors receive AI pre-visit summaries before each visit.",
     "haveAccount": "Already have a doctor account? Log in",
-    "createLink": "New to Medicos? Create doctor account",
+    "createLink": "New to Mediaura? Create doctor account",
     "alreadyDoctor": "This account already has a doctor profile. Please log in.",
     "detailsTitle": "Your details",
     "detailsSubtitle": "Our team checks your registration before patients can book you (usually within 48 hours).",
@@ -726,7 +729,7 @@
   },
   "family": {
     "title": "Family members",
-    "subtitle": "Each person has their own Medicos ID and record book. Only you manage them from this account.",
+    "subtitle": "Each person has their own Mediaura ID and record book. Only you manage them from this account.",
     "add": "Add family member",
     "name": "Full name",
     "age": "Age",
@@ -751,9 +754,9 @@
     "summaryReady": "Summary ready",
     "noSummary": "No pre-visit yet",
     "walkIn": "Check in a walk-in",
-    "walkInBody": "Type or scan the patient's Medicos ID. The patient taps Allow on their phone.",
+    "walkInBody": "Type or scan the patient's Mediaura ID. The patient taps Allow on their phone.",
     "doctor": "Doctor",
-    "id": "Medicos ID",
+    "id": "Mediaura ID",
     "send": "Send to patient",
     "waiting": "Waiting for the patient to tap Allow…",
     "allowed": "Checked in. The visit is in the doctor's queue.",
@@ -929,14 +932,14 @@
     }
   },
   "legal": {
-    "draft": "Draft for legal review before the pilot. Plain-language summary of how Medicos works today.",
+    "draft": "Draft for legal review before the pilot. Plain-language summary of how Mediaura works today.",
     "updated": "Last updated: 14 November 2026",
     "privacy": {
       "title": "Privacy policy",
       "sections": [
         [
           "Who we are",
-          "Medicos is a pre-visit intake assistant for clinics in India. Before your visit, you tell our AI assistant about your health concern; it organises your own words into a summary for the doctor you choose. The AI does not diagnose, prescribe or advise."
+          "Mediaura is a pre-visit intake assistant for clinics in India. Before your visit, you tell our AI assistant about your health concern; it organises your own words into a summary for the doctor you choose. The AI does not diagnose, prescribe or advise."
         ],
         [
           "What we collect",
@@ -948,11 +951,11 @@
         ],
         [
           "Who can see it",
-          "Only you, and a doctor you choose: when you send a summary to them, book them, or tap Allow after they scan your Medicos ID. Access is time-limited (usually 24 to 72 hours), every view is logged, and you can stop access at any time from \"Who can see my records\". Clinic receptionists see only visit times and your Medicos ID, never your health information."
+          "Only you, and a doctor you choose: when you send a summary to them, book them, or tap Allow after they scan your Mediaura ID. Access is time-limited (usually 24 to 72 hours), every view is logged, and you can stop access at any time from \"Who can see my records\". Clinic receptionists see only visit times and your Mediaura ID, never your health information."
         ],
         [
           "AI processing",
-          "Before anything is sent to an AI model we remove your name, phone, email, address and Medicos ID. We only use AI providers whose terms forbid training on your data. Voice recordings are transcribed and you confirm the text before it is used."
+          "Before anything is sent to an AI model we remove your name, phone, email, address and Mediaura ID. We only use AI providers whose terms forbid training on your data. Voice recordings are transcribed and you confirm the text before it is used."
         ],
         [
           "Where it is stored",
@@ -981,7 +984,7 @@
       "sections": [
         [
           "Not medical advice",
-          "Medicos collects information for your doctor. It is not a diagnosis, prescription or medical advice, and it does not replace seeing a doctor. In an emergency call 112 or go to the nearest hospital."
+          "Mediaura collects information for your doctor. It is not a diagnosis, prescription or medical advice, and it does not replace seeing a doctor. In an emergency call 112 or go to the nearest hospital."
         ],
         [
           "Your account",
@@ -989,7 +992,7 @@
         ],
         [
           "Doctors",
-          "Doctors are verified by Medicos staff before patients can book them. The treating doctor alone is responsible for diagnosis and treatment. AI summaries are drafts that the doctor must review before finalising."
+          "Doctors are verified by Mediaura staff before patients can book them. The treating doctor alone is responsible for diagnosis and treatment. AI summaries are drafts that the doctor must review before finalising."
         ],
         [
           "Fees",
@@ -1001,7 +1004,7 @@
         ],
         [
           "Liability",
-          "We work hard to keep Medicos available and accurate, but the service is provided as is. To the extent the law allows, Medicos is not liable for clinical decisions made by doctors."
+          "We work hard to keep Mediaura available and accurate, but the service is provided as is. To the extent the law allows, Mediaura is not liable for clinical decisions made by doctors."
         ],
         [
           "Law",

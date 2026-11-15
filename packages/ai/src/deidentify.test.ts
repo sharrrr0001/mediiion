@@ -20,7 +20,7 @@ describe('deidentify (rule 11)', () => {
     }
   });
 
-  it('removes emails, Medicos IDs and PIN codes', () => {
+  it('removes emails, Mediaura IDs and PIN codes', () => {
     expect(deidentify('mail rahul.m@example.com', ctx)).toBe('mail [EMAIL]');
     expect(deidentify('my id MED-7K4P-29XQ and med 9n2b 4fqh', ctx)).not.toMatch(/7K4P|9n2b/i);
     expect(deidentify('Indore 452001', ctx)).toBe('Indore [PINCODE]');

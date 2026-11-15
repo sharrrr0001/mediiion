@@ -8,7 +8,7 @@ import { Button } from '@medicos/ui';
 import { api, post } from '@/lib/api';
 import { fmtDateTime } from '@/lib/use-booking';
 
-/** "Share summary with a doctor not on Medicos" (spec §7.1 #9): secret link, 72 h, can be stopped. */
+/** "Share summary with a doctor not on Mediaura" (spec §7.1 #9): secret link, 72 h, can be stopped. */
 export function ShareSummary({ recordId }: { recordId: string }) {
   const t = useTranslations('booking');
   const locale = useLocale();

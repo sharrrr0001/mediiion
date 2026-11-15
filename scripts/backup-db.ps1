@@ -1,4 +1,4 @@
-# Back up a Medicos database (default: medicos_live) to a compressed dump.
+# Back up a Mediaura database (default: medicos_live) to a compressed dump.
 #
 #   .\scripts\backup-db.ps1                      -> backups\medicos_live-YYYYMMDD-HHMMSS.dump
 #   .\scripts\backup-db.ps1 -Database medicos    (local dev data)

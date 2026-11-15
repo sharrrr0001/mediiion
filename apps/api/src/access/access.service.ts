@@ -15,7 +15,7 @@ const PROMPT_MINUTES = 10;
 const RECENT_INTERVIEW_DAYS = 7;
 
 /**
- * QR access (spec §7.1 #11, rule 10): the doctor scans the patient's Medicos ID, the patient sees
+ * QR access (spec §7.1 #11, rule 10): the doctor scans the patient's Mediaura ID, the patient sees
  * Allow / Deny, and only "Allow" creates a time-boxed AccessGrant (24 h). Every step is audited.
  */
 @Injectable()
@@ -52,9 +52,9 @@ export class AccessService {
   /** Shared by the doctor's Scan QR and the clinic staff's walk-in check-in. Returns the request id. */
   async createRequest(doctorId: string, medicosIdInput: string, actor: AuthUser, req: Request): Promise<string> {
     const medicosId = normalizeMedicosId(medicosIdInput);
-    if (!medicosId) throw new AppError(HttpStatus.BAD_REQUEST, 'BAD_MEDICOS_ID', 'That is not a valid Medicos ID (MED-XXXX-XXXX).');
+    if (!medicosId) throw new AppError(HttpStatus.BAD_REQUEST, 'BAD_MEDICOS_ID', 'That is not a valid Mediaura ID (MED-XXXX-XXXX).');
     const profile = await this.prisma.patientProfile.findFirst({ where: { medicosId, deletedAt: null } });
-    if (!profile) throw NOT_FOUND('No patient with this Medicos ID.');
+    if (!profile) throw NOT_FOUND('No patient with this Mediaura ID.');
     const r = await this.prisma.accessRequest.create({
       data: { patientProfileId: profile.id, doctorId, expiresAt: new Date(Date.now() + PROMPT_MINUTES * 60_000) },
     });

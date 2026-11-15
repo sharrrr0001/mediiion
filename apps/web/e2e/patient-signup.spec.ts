@@ -1,12 +1,12 @@
 import { expect, test } from '@playwright/test';
 import { expectNoSeriousA11yViolations, readOtp, testPhone } from './helpers';
 
-test('patient signs up with OTP, consents, creates a profile and sees their Medicos ID QR', async ({ page }) => {
+test('patient signs up with OTP, consents, creates a profile and sees their Mediaura ID QR', async ({ page }) => {
   const phone = testPhone();
 
   await page.goto('/p/home');
   await expect(page).toHaveURL(/\/p\/login$/);
-  await expect(page.getByRole('heading', { name: 'Welcome to Medicos' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Welcome to Mediaura' })).toBeVisible();
   await expectNoSeriousA11yViolations(page);
 
   await page.getByLabel('Mobile number').fill(phone);
@@ -45,7 +45,7 @@ test('patient signs up with OTP, consents, creates a profile and sees their Medi
 
   await page.getByRole('link', { name: 'Show QR' }).click();
   await expect(page).toHaveURL(/\/p\/id$/);
-  await expect(page.getByRole('img', { name: `QR code for Medicos ID ${idText}` })).toBeVisible();
+  await expect(page.getByRole('img', { name: `QR code for Mediaura ID ${idText}` })).toBeVisible();
   await expectNoSeriousA11yViolations(page);
 
   // Reload keeps the session (httpOnly cookies), and onboarding pages now bounce to home.
@@ -56,9 +56,9 @@ test('patient signs up with OTP, consents, creates a profile and sees their Medi
 test('switching to Hindi changes the UI language', async ({ page }) => {
   await page.goto('/p/login');
   await page.getByRole('radio', { name: 'हिंदी' }).click();
-  await expect(page.getByRole('heading', { name: 'Medicos में आपका स्वागत है' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Mediaura में आपका स्वागत है' })).toBeVisible();
   await page.getByRole('radio', { name: 'English' }).click();
-  await expect(page.getByRole('heading', { name: 'Welcome to Medicos' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Welcome to Mediaura' })).toBeVisible();
 });
 
 test('rejects an invalid phone number without calling the server', async ({ page }) => {

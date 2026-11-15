@@ -37,7 +37,7 @@ function SiteHeader() {
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-surface/90 backdrop-blur">
       <div className={`${container} flex h-16 items-center justify-between gap-4`}>
-        <Link href="/" aria-label="Medicos home">
+        <Link href="/" aria-label="Mediaura home">
           <Logo />
         </Link>
         <nav aria-label={t('main')} className="hidden items-center gap-1 md:flex">

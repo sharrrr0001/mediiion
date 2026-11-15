@@ -1,5 +1,5 @@
 /**
- * Give a Medicos staff member the admin role (verification queue, Template Studio, audit).
+ * Give a Mediaura staff member the admin role (verification queue, Template Studio, audit).
  *
  *   pnpm --filter @medicos/db make-admin -- --email you@example.com        (local dev database)
  *   pnpm --filter @medicos/db live:make-admin -- --email you@example.com   (live database)

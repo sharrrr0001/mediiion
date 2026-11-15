@@ -21,7 +21,7 @@ declare global {
 
 const ID_IN_TEXT = /MED-[0-9A-Z]{4}-[0-9A-Z]{4}/i;
 
-/** Scan QR / type Medicos ID → patient taps Allow on their phone → records open (rule 10). */
+/** Scan QR / type Mediaura ID → patient taps Allow on their phone → records open (rule 10). */
 export function ScanAccess({ className }: { className?: string }) {
   const t = useTranslations('doctorAccess');
   const [open, setOpen] = useState(false);

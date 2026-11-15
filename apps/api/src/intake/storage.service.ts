@@ -8,21 +8,31 @@ import { ENV, type Env } from '../config/env';
 export class StorageService implements OnModuleInit {
   private readonly logger = new Logger('Storage');
   private readonly s3: S3Client;
+  /** Signs download links for the address browsers can reach (self-hosted: https://<site>/<bucket>/...). */
+  private readonly signer: S3Client;
   static readonly URL_TTL_SECONDS = 300;
 
   constructor(@Inject(ENV) private readonly env: Env) {
-    this.s3 = new S3Client({
-      region: env.S3_REGION,
-      endpoint: env.S3_ENDPOINT,
-      forcePathStyle: !!env.S3_ENDPOINT,
-      credentials:
-        env.S3_ACCESS_KEY && env.S3_SECRET_KEY ? { accessKeyId: env.S3_ACCESS_KEY, secretAccessKey: env.S3_SECRET_KEY } : undefined,
-    });
+    const client = (endpoint: string | undefined) =>
+      new S3Client({
+        region: env.S3_REGION,
+        endpoint,
+        forcePathStyle: !!endpoint,
+        credentials:
+          env.S3_ACCESS_KEY && env.S3_SECRET_KEY ? { accessKeyId: env.S3_ACCESS_KEY, secretAccessKey: env.S3_SECRET_KEY } : undefined,
+      });
+    this.s3 = client(env.S3_ENDPOINT);
+    this.signer = env.S3_PUBLIC_ENDPOINT ? client(env.S3_PUBLIC_ENDPOINT) : this.s3;
   }
 
-  /** Dev convenience: create the bucket if missing. Production buckets come from Terraform. */
+  /** Self-hosted S3 (an endpoint is set) vs. AWS S3 (buckets + KMS come from Terraform). */
+  private get selfHosted() {
+    return !!this.env.S3_ENDPOINT;
+  }
+
+  /** Create the bucket if missing on self-hosted storage. AWS buckets come from Terraform. */
   async onModuleInit() {
-    if (this.env.NODE_ENV === 'production') return;
+    if (!this.selfHosted) return;
     try {
       await this.s3.send(new HeadBucketCommand({ Bucket: this.env.S3_BUCKET }));
     } catch {
@@ -41,14 +51,14 @@ export class StorageService implements OnModuleInit {
         Key: key,
         Body: body,
         ContentType: contentType,
-        // KMS in production; the local SeaweedFS store ignores it.
-        ServerSideEncryption: this.env.NODE_ENV === 'production' ? 'aws:kms' : undefined,
+        // AWS: KMS encryption at rest. Self-hosted: the disk volume is encrypted at the VM level instead.
+        ServerSideEncryption: this.env.NODE_ENV === 'production' && !this.selfHosted ? 'aws:kms' : undefined,
       }),
     );
   }
 
   signedGetUrl(key: string): Promise<string> {
-    return getSignedUrl(this.s3, new GetObjectCommand({ Bucket: this.env.S3_BUCKET, Key: key }), {
+    return getSignedUrl(this.signer, new GetObjectCommand({ Bucket: this.env.S3_BUCKET, Key: key }), {
       expiresIn: StorageService.URL_TTL_SECONDS,
     });
   }

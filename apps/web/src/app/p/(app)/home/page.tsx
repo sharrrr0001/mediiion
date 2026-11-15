@@ -1,10 +1,10 @@
 'use client';
 import { useQuery } from '@tanstack/react-query';
-import { ArrowRight, CalendarDays, ChevronRight, FolderHeart, Lock, Pill, QrCode, FileText, Sparkles, Stethoscope } from 'lucide-react';
+import { ArrowRight, CalendarDays, ChevronRight, FolderHeart, Lock, Pill, QrCode, FileText, Stethoscope } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
-import { Button, Card, EmptyState, SectionHeader, Skeleton } from '@medicos/ui';
+import { AuraAvatar, Button, Card, EmptyState, SectionHeader, Skeleton } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
 import { api } from '@/lib/api';
 import { usePatientGate } from '@/lib/use-me';
@@ -62,12 +62,13 @@ export default function HomePage() {
         <span aria-hidden className="absolute inset-y-0 left-0 w-1 bg-brand" />
         <div className="grid gap-6 p-6 md:p-8 lg:grid-cols-[1fr_auto] lg:items-center">
           <div className="flex gap-4">
-            <span className="grid size-12 shrink-0 place-items-center rounded-full bg-brand text-brand-ink shadow-sm">
-              <Sparkles aria-hidden className="size-6 stroke-[1.75]" />
-            </span>
+            <AuraAvatar size={64} label={tc('auraName')} />
             <div>
               <h2 className="font-display text-2xl font-semibold tracking-tight">{t('startPrevisit')}</h2>
               <p className="mt-1 max-w-[52ch] text-muted">{t('startPrevisitHint')}</p>
+              <p className="mt-2 max-w-[52ch] text-sm text-ink">
+                <span className="font-semibold">{tc('auraHello')}</span> {tc('auraIntro')}
+              </p>
               <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                 <Button asChild size="lg" block="phone">
                   <Link href={resume ? `/p/intake/${resume.id}` : '/p/intake/new'}>

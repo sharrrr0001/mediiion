@@ -7,7 +7,7 @@ const hhmm = z.string().regex(/^([01]\d|2[0-3]):[0-5]\d$/, 'Use HH:MM');
 export { DOC_KINDS, SPECIALTIES };
 export const COUNCILS_HINT = 'National Medical Commission or a State Medical Council';
 
-/** Spec §7.2 step 2: create the doctor account (after OTP). Verification is by Medicos staff, never automatic. */
+/** Spec §7.2 step 2: create the doctor account (after OTP). Verification is by Mediaura staff, never automatic. */
 export const DoctorSignup = z
   .object({
     name: text(80),

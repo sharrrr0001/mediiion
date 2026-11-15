@@ -1,5 +1,5 @@
 /*
- * Medicos service worker — offline app shell for the patient PWA (spec §8).
+ * Mediaura service worker — offline app shell for the patient PWA (spec §8).
  * - /_next/static/*: cache-first (immutable, hashed file names).
  * - Patient page navigations (/p/*): network-first, falling back to the cached shell when offline.
  * - NEVER caches /api/* — patient data is fetched live and never stored by the service worker.

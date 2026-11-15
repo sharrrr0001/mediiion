@@ -5,7 +5,7 @@
 ## Principles in the build
 - Explicit, granular, versioned consent (`Consent` table: type, version, grantedAt, revokedAt). Consent is collected **before** any profile data.
 - Purpose limitation: data used only to prepare the pre-visit summary for the doctor the patient chooses.
-- Minimisation: AI calls receive de-identified text only (no name, phone, email, address, Medicos ID).
+- Minimisation: AI calls receive de-identified text only (no name, phone, email, address, Mediaura ID).
 - Encryption: TLS in transit; at rest via RDS/S3 KMS (prod) **and** application-level AES-256-GCM for name, DOB, message text, summaries, notes. Phone/email as HMAC blind index.
 - Access: deny by default; doctor access only via patient share or QR-approved `AccessGrant` (24 h default). Every read of patient data is written to the append-only `AuditLog`.
 - Residency: production data only in AWS ap-south-1 (Mumbai).

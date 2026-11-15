@@ -2,7 +2,7 @@
 import { AlertTriangle, Phone } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import type { IntakeMessageView } from '@medicos/shared/client';
-import { Button, Chip, cn } from '@medicos/ui';
+import { Button, Chip, cn, AuraAvatar } from '@medicos/ui';
 
 /** 3-step progress: Symptoms & history → Medicines → Reports (spec §6.1). Real sequence → numbered. */
 export function ProgressSteps({ step }: { step: 1 | 2 | 3 }) {
@@ -34,7 +34,8 @@ export function ProgressSteps({ step }: { step: 1 | 2 | 3 }) {
 export function ChatBubble({ message }: { message: IntakeMessageView }) {
   const mine = message.role === 'patient';
   return (
-    <div className={cn('flex animate-in', mine ? 'justify-end' : 'justify-start')}>
+    <div className={cn('flex animate-in items-end gap-2', mine ? 'justify-end' : 'justify-start')}>
+      {mine ? null : <AuraAvatar size={32} className="mb-1" />}
       <p
         className={cn(
           'max-w-[85%] whitespace-pre-wrap rounded-2xl px-4 py-3 text-[17px] leading-relaxed md:max-w-[75%]',
@@ -95,7 +96,8 @@ export function QuickReplies({ options, onPick, disabled }: { options: string[];
 
 export function TypingDots({ label }: { label: string }) {
   return (
-    <div className="flex justify-start" role="status" aria-label={label}>
+    <div className="flex items-end justify-start gap-2" role="status" aria-label={label}>
+      <AuraAvatar size={32} talking className="mb-1" />
       <span className="inline-flex gap-1 rounded-2xl rounded-bl-md bg-surface-2 px-4 py-4">
         {[0, 1, 2].map((i) => (
           <span key={i} className="size-2 animate-bounce rounded-full bg-muted" style={{ animationDelay: `${i * 150}ms` }} />

@@ -47,7 +47,7 @@ export function PatientShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-30 border-b border-line bg-surface/90 backdrop-blur">
         <OfflineBanner />
         <div className={`${container} flex h-16 items-center gap-4`}>
-          <Link href="/p/home" aria-label="Medicos home" className="shrink-0">
+          <Link href="/p/home" aria-label="Mediaura home" className="shrink-0">
             <Logo />
           </Link>
           <nav aria-label={t('main')} className="ml-4 hidden items-center gap-1 md:flex">

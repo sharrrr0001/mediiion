@@ -18,7 +18,7 @@ afterAll(async () => {
 const PROFILE = { name: 'Rahul Testwala', age: 28, gender: 'male', city: 'Indore', language: 'hi-Latn' };
 const consent = { type: 'data_processing', version: CONSENT_VERSION, agreed: true };
 
-describe('patient onboarding: consent → profile → Medicos ID', () => {
+describe('patient onboarding: consent → profile → Mediaura ID', () => {
   it('requires consent before a profile can be created', async () => {
     const { agent } = await loginWithPhone(t);
     const res = await agent.post('/patients/profiles').send(PROFILE);
@@ -26,7 +26,7 @@ describe('patient onboarding: consent → profile → Medicos ID', () => {
     expect(res.body.error.code).toBe('CONSENT_REQUIRED');
   });
 
-  it('creates a consent record with version + timestamp, then a profile with a valid Medicos ID', async () => {
+  it('creates a consent record with version + timestamp, then a profile with a valid Mediaura ID', async () => {
     const { agent } = await loginWithPhone(t);
     expect((await agent.post('/consents').send({ ...consent, agreed: false })).status).toBe(400);
     expect((await agent.post('/consents').send(consent)).status).toBe(201);

@@ -1,5 +1,5 @@
 /**
- * Medicos ID: `MED-XXXX-XXXX`.
+ * Mediaura ID: `MED-XXXX-XXXX`.
  * 7 random Crockford base32 characters + 1 Luhn mod-32 check character.
  * Crockford base32 excludes I, L, O, U so IDs are easy to read aloud and type.
  */
@@ -11,7 +11,7 @@ export const MEDICOS_ID_PATTERN = /^MED-[0-9A-HJKMNP-TV-Z]{4}-[0-9A-HJKMNP-TV-Z]
 
 function codeOf(ch: string): number {
   const i = CROCKFORD_ALPHABET.indexOf(ch);
-  if (i < 0) throw new Error(`Invalid Medicos ID character: ${ch}`);
+  if (i < 0) throw new Error(`Invalid Mediaura ID character: ${ch}`);
   return i;
 }
 
@@ -37,13 +37,13 @@ function format(chars8: string): string {
   return `MED-${chars8.slice(0, 4)}-${chars8.slice(4, 8)}`;
 }
 
-/** Build a Medicos ID from 7 body characters (used by seeds/tests). */
+/** Build a Mediaura ID from 7 body characters (used by seeds/tests). */
 export function medicosIdFromBody(body: string): string {
-  if (body.length !== BODY_LENGTH) throw new Error('Medicos ID body must be 7 characters');
+  if (body.length !== BODY_LENGTH) throw new Error('Mediaura ID body must be 7 characters');
   return format(body + checkChar(body));
 }
 
-/** Generate a new random Medicos ID. `randomInt(max)` must be cryptographically secure. */
+/** Generate a new random Mediaura ID. `randomInt(max)` must be cryptographically secure. */
 export function generateMedicosId(randomInt: (max: number) => number): string {
   let body = '';
   for (let i = 0; i < BODY_LENGTH; i++) body += CROCKFORD_ALPHABET[randomInt(N)];

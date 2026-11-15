@@ -3,11 +3,11 @@
 ## Phase 0 — Foundation ✅ (2026-11-12)
 - [x] Monorepo (pnpm + Turborepo), shared tsconfig/eslint/prettier
 - [x] Docker Compose: Postgres 16, Redis 7, SeaweedFS (S3), Mailpit
-- [x] `packages/shared`: Medicos ID (Luhn mod 32), PreVisitSummary schema (no A/P, strict), safety-line config, auth/profile schemas
+- [x] `packages/shared`: Mediaura ID (Luhn mod 32), PreVisitSummary schema (no A/P, strict), safety-line config, auth/profile schemas
 - [x] `packages/db`: Prisma schema v1 (all §10 tables + Session, OtpChallenge), append-only AuditLog trigger, AES-GCM field crypto + blind index, fictional seed
-- [x] `apps/api`: env validation (fails closed in prod), phone/email OTP (rate limits, 5 attempts, 5-min expiry, 30s resend), rotating refresh sessions with reuse detection + device binding, origin/CSRF guard, deny-by-default auth guard, `can()` policy, audit service, consent → profile → Medicos ID, health, Swagger, PHI-redacted pino logs
+- [x] `apps/api`: env validation (fails closed in prod), phone/email OTP (rate limits, 5 attempts, 5-min expiry, 30s resend), rotating refresh sessions with reuse detection + device binding, origin/CSRF guard, deny-by-default auth guard, `can()` policy, audit service, consent → profile → Mediaura ID, health, Swagger, PHI-redacted pino logs
 - [x] `packages/ui`: tokens (light/dark), Button, Field/Input/Select, OtpInput, Logo, Card, StatusTag, Skeleton, EmptyState, QrCode
-- [x] `apps/web`: next-intl (en / hi / hi-Latn), patient login, consent, profile, home, Medicos ID card; `/d` and `/admin` shells; PWA manifest; offline banner
+- [x] `apps/web`: next-intl (en / hi / hi-Latn), patient login, consent, profile, home, Mediaura ID card; `/d` and `/admin` shells; PWA manifest; offline banner
 - [x] Tests: shared (28), db crypto (6), api unit + Supertest (36), Playwright E2E with axe (6 = 3 tests × 2 viewports)
 - [x] CI workflow (lint, typecheck, test, build, migration drift, seed, audit, gitleaks)
 
@@ -15,7 +15,7 @@
 - [x] `packages/ai`: provider interface + mock, Claude Haiku 5.5, Gemini (demo), OpenAI-compatible (Groq / self-hosted vLLM); INR cost per call
 - [x] Safety keyword rule (rule 4) — EN/Hinglish/Hindi, **draft: doctor review required before pilot** (release checklist)
 - [x] Output filter (rule 6) — max 2 regenerations, then the template's reviewed text; `FilterBlockEvent` stores rule ids only
-- [x] De-identifier (rule 11) — names, phones, emails, Medicos IDs, PIN codes, addresses; tested at the provider boundary
+- [x] De-identifier (rule 11) — names, phones, emails, Mediaura IDs, PIN codes, addresses; tested at the provider boundary
 - [x] Templates as data: General Medicine + Dermatology v1 (EN/HI/Hinglish), seeded into `Template`
 - [x] Engine: code plans questions (coverage + ≤20), model phrases/follows up; identity → consent → questions → closing; fixed medical-question redirect; language detection
 - [x] Intake API: start, view, message (safety first), continue-after-safety, retry, pause, language, review, edit answer (re-checked for safety), submit, uploads (magic-byte sniffing, 8 MB, private S3, 5-min signed URLs)

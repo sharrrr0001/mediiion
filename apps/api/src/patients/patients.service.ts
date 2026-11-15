@@ -84,7 +84,7 @@ export class PatientsService {
     const existing = await this.prisma.patientProfile.count({ where: { ownerUserId: user.id, deletedAt: null } });
     const birthYear = body.dob ? Number(body.dob.slice(0, 4)) : new Date().getFullYear() - (body.age ?? 0);
 
-    // Retry on the (astronomically unlikely) Medicos ID collision.
+    // Retry on the (astronomically unlikely) Mediaura ID collision.
     for (let attempt = 0; attempt < 5; attempt++) {
       try {
         const profile = await this.prisma.patientProfile.create({

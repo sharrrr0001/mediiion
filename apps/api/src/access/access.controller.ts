@@ -13,7 +13,7 @@ import { AccessService } from './access.service';
 export class DoctorAccessController {
   constructor(private readonly access: AccessService) {}
 
-  /** Scan QR / type Medicos ID → the patient gets an Allow / Deny prompt. */
+  /** Scan QR / type Mediaura ID → the patient gets an Allow / Deny prompt. */
   @Throttle({ default: { limit: 20, ttl: 60_000 } })
   @Post('access-requests')
   @ZodBody(RequestAccess)

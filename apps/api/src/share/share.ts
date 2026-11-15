@@ -17,7 +17,7 @@ const SHARE_HOURS = 72;
 const NOT_FOUND = () => new AppError(HttpStatus.NOT_FOUND, 'NOT_FOUND', 'This link has expired or was stopped by the patient.');
 
 /**
- * "Share summary with a doctor not on Medicos" (spec §7.1 #9). The secret token lives only in the link;
+ * "Share summary with a doctor not on Mediaura" (spec §7.1 #9). The secret token lives only in the link;
  * the database keeps an HMAC of it. Links expire after 72 h and the patient can stop them at any time.
  */
 @Injectable()

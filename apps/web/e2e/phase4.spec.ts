@@ -5,7 +5,7 @@ import { expectNoSeriousA11yViolations, readOtp, signUpPatient } from './helpers
 /**
  * Phase 4 done-when (spec §12): login → AI → summary → book → clinic QR → allow → finalise → record book.
  * AI-first order: the patient talks to the AI, then picks the doctor; the doctor scans the patient's
- * Medicos ID at the clinic and only sees records after the patient taps Allow.
+ * Mediaura ID at the clinic and only sees records after the patient taps Allow.
  */
 test.describe.configure({ timeout: 300_000 });
 
@@ -57,13 +57,13 @@ test('Phase 4 journey: AI first → book → clinic QR → allow → finalise �
   const me = (await (await patient.request.get('/api/me')).json()) as { profiles: Array<{ medicosId: string }> };
   const medicosId = me.profiles[0]!.medicosId;
 
-  // ── Doctor at the clinic: scan / type the Medicos ID → waits for the patient ──
+  // ── Doctor at the clinic: scan / type the Mediaura ID → waits for the patient ──
   const doctorCtx = await ctx();
   const dr = await doctorCtx.newPage();
   await doctorSignIn(dr, doctor.digits);
   await dr.getByRole('button', { name: 'Scan QR' }).click();
   const dialog = dr.getByRole('dialog', { name: 'Open a patient’s records' });
-  await dialog.getByLabel('Medicos ID').fill(medicosId);
+  await dialog.getByLabel('Mediaura ID').fill(medicosId);
   await dialog.getByRole('button', { name: 'Send request' }).click();
   await expect(dialog.getByText('Waiting for the patient to tap Allow…')).toBeVisible();
 

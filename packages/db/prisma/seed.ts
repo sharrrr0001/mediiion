@@ -22,7 +22,7 @@ async function upsertUser(phone: string, role: Role) {
 
 interface SeedPatient {
   phone: string;
-  body: string; // 7-char Medicos ID body; check char is computed
+  body: string; // 7-char Mediaura ID body; check char is computed
   name: string;
   birthYear: number;
   gender: string;

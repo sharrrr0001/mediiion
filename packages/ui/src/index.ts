@@ -6,3 +6,4 @@ export { Avatar, Badge, Card, Chip, Logo, SectionHeader, Skeleton, StatCard, Sta
 export { Dialog, Menu, Sheet, Tabs, Toast, menuItemClass } from './components/overlay';
 export { DoctorCard, EmptyState, SoapSection, TimelineItem } from './components/domain';
 export { QrCode } from './components/qr-code';
+export { AuraAvatar } from './components/aura';

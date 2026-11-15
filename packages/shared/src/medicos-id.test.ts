@@ -8,7 +8,7 @@ import {
   normalizeMedicosId,
 } from './medicos-id';
 
-describe('Medicos ID', () => {
+describe('Mediaura ID', () => {
   it('generates IDs in MED-XXXX-XXXX format that validate', () => {
     for (let i = 0; i < 500; i++) {
       const id = generateMedicosId(randomInt);

@@ -1,5 +1,7 @@
 /** Working brand name — rename in one place. */
-export const APP_NAME = 'Medicos';
+export const APP_NAME = 'Mediaura.ai';
+/** The assistant patients talk to (avatar in the chat). */
+export const ASSISTANT_NAME = 'Aura';
 
 /** Rule 8: label on every summary surface (screen, print, PDF, WhatsApp). */
 export const AI_DRAFT_LABEL =

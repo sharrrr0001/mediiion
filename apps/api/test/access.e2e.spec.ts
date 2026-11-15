@@ -23,7 +23,7 @@ describe('QR access (rule 10): scan → Allow / Deny → 24 h grant', () => {
     await finishInterview(p.agent, p.profile.id); // AI first, no doctor chosen yet
     const doc = await doctorLogin(t, phone);
 
-    // Doctor scans the Medicos ID: no patient data until the patient allows.
+    // Doctor scans the Mediaura ID: no patient data until the patient allows.
     const req = (await doc.post('/doctor/access-requests').send({ medicosId: p.profile.medicosId.toLowerCase() })).body as DoctorAccessRequestView;
     expect(req.status).toBe('pending');
     expect(req.patient).toBeNull();

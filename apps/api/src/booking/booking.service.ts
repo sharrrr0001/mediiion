@@ -91,7 +91,7 @@ export class BookingService {
 
   private async verifiedDoctor(id: string) {
     const d = await this.prisma.doctor.findUnique({ where: { id }, include: doctorInclude });
-    if (!d || d.verificationStatus !== 'verified') throw NOT_FOUND('This doctor is not available on Medicos.');
+    if (!d || d.verificationStatus !== 'verified') throw NOT_FOUND('This doctor is not available on Mediaura.');
     return d;
   }
 

@@ -110,9 +110,9 @@ export function AdminShell({ children }: { children: ReactNode }) {
       labels={{ open: tn('menu'), close: tn('closeMenu'), collapse: td('collapse'), expand: td('expand') }}
       identity={(collapsed) => (
         <div className={cn('flex items-center gap-3', collapsed && 'justify-center')}>
-          <Avatar name="Medicos Admin" className="size-10" />
+          <Avatar name="Mediaura Admin" className="size-10" />
           <div className={cn('min-w-0', collapsed ? 'sr-only' : 'max-lg:md:sr-only')}>
-            <p className="truncate font-semibold">Medicos team</p>
+            <p className="truncate font-semibold">Mediaura team</p>
             <p className="text-sm text-muted">Admin</p>
           </div>
         </div>
