@@ -19,7 +19,7 @@ import { container } from '@/components/shell/layout';
 import { IntlProvider } from '@/components/intl-provider';
 import { PublicShell } from '@/components/shell/public-shell';
 
-export const metadata: Metadata = { title: { absolute: 'Mediaura — Pre-visit intake for Indian clinics' } };
+export const metadata: Metadata = { title: { absolute: 'Mediaura.ai — Pre-visit intake for Indian clinics' } };
 
 export default function LandingPage() {
   const t = useTranslations('landing');
