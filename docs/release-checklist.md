@@ -17,6 +17,13 @@ Tick every item before a release. **Pilot blockers** must all be done before any
 - [ ] Healthcare + AI lawyer review: consent text, privacy policy, intended-use statement (`docs/safety.md`)
 - [ ] LLM provider with no-training terms + DPA; zero data retention in place with the provider; `LLM_DATA_TERMS=no-training`
 - [ ] Production in AWS ap-south-1; KMS field encryption replaces the env key
-- [ ] Doctor/staff 2FA live (Phase 4)
+- [x] Doctor/staff/admin 2FA live (Phase 4)
 - [ ] External security audit done; findings fixed
-- [ ] Backup restore drill documented
+- [x] Backup restore drill scripted and passing (`scripts/restore-drill.ps1`; server backups daily)
+
+## Done in Phase 6 (2026-11-15)
+- [x] Strict CSP + HSTS on the web app; security headers on the API (helmet) and Caddy
+- [x] Privacy policy and terms pages (drafts — lawyer review still a pilot blocker)
+- [x] Load test: 200 concurrent full interviews, 0 errors (worst-case burst; see `scripts/load-test.mjs`)
+- [x] Internal security review (`docs/security-review.md`), runbooks (`docs/runbooks`), doctor quick-start (`docs/pilot`)
+- [x] Always-on free hosting option (`docs/deploy-oracle.md`); AWS Terraform deferred until paid hosting is approved
