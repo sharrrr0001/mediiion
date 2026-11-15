@@ -30,21 +30,39 @@ export class StorageService implements OnModuleInit {
     return !!this.env.S3_ENDPOINT;
   }
 
+  private bucketReady = false;
+
   /** Create the bucket if missing on self-hosted storage. AWS buckets come from Terraform. */
   async onModuleInit() {
     if (!this.selfHosted) return;
+    // Storage may start after the API (Docker): keep trying in the background for ~2 minutes.
+    void (async () => {
+      for (let i = 0; i < 24 && !this.bucketReady; i++) {
+        if (await this.ensureBucket()) return;
+        await new Promise((r) => setTimeout(r, 5000));
+      }
+      if (!this.bucketReady) this.logger.warn('Could not create the storage bucket yet; will retry on the first upload.');
+    })();
+  }
+
+  private async ensureBucket(): Promise<boolean> {
+    if (this.bucketReady || !this.selfHosted) return true;
     try {
       await this.s3.send(new HeadBucketCommand({ Bucket: this.env.S3_BUCKET }));
+      this.bucketReady = true;
     } catch {
       try {
         await this.s3.send(new CreateBucketCommand({ Bucket: this.env.S3_BUCKET }));
-      } catch (e) {
-        this.logger.warn(`Could not create bucket (uploads will fail): ${(e as Error).name}`);
+        this.bucketReady = true;
+      } catch {
+        return false;
       }
     }
+    return true;
   }
 
   async put(key: string, body: Buffer, contentType: string) {
+    await this.ensureBucket();
     await this.s3.send(
       new PutObjectCommand({
         Bucket: this.env.S3_BUCKET,

@@ -1,0 +1,15 @@
+**/node_modules
+**/dist
+**/.next
+**/.next-build
+**/.turbo
+.git
+.env
+.env.*
+!.env.example
+backups
+apps/web
+**/test-results
+**/playwright-report
+docs/screenshots
+*.log

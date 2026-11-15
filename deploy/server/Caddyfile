@@ -1,0 +1,38 @@
+# Automatic HTTPS (Let's Encrypt) for the API. SITE_HOST is e.g. 152-67-10-20.sslip.io (free, no domain
+# needed) or your own domain later. Only Vercel calls this host; browsers fetch signed file links directly.
+{$SITE_HOST} {
+	encode gzip
+
+	# Signed, 5-minute download links for uploaded reports/photos/voice (path-style: /<bucket>/<key>).
+	# The Host header is passed through unchanged so the S3 signature still matches.
+	@files path /medicos-*
+	handle @files {
+		reverse_proxy s3:9000
+	}
+
+	handle {
+		reverse_proxy api:4000
+	}
+
+	header {
+		Strict-Transport-Security "max-age=63072000; includeSubDomains"
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+		-Server
+	}
+
+	log {
+		output stdout
+		# No query strings in logs: signed links and tokens stay out of them.
+		format filter {
+			wrap console
+			fields {
+				request>uri query {
+					delete *
+				}
+				request>headers>Cookie delete
+				request>headers>Authorization delete
+			}
+		}
+	}
+}

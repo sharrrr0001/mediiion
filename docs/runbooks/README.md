@@ -10,14 +10,14 @@ Short, do-this-now guides. Commands assume the always-on server (`docs/deploy-or
 
 ## 2. Login codes not arriving
 1. `docker compose logs api | grep "OTP delivery failed"`.
-2. `535 Username and Password not accepted`: create a new Gmail App Password (16 letters, no spaces) → `.env.server` → `bash setup.sh`.
+2. `535 Username and Password not accepted`: create a new Gmail App Password (16 letters, no spaces) → `.env` → `bash setup.sh`.
 3. Gmail daily limit (about 500): wait 24 h, or move to a transactional email provider (decision needed).
 
 ## 3. Restore from backup
 1. Pick a dump in `~/medicos-backups` (or a copy on your PC).
 2. Test it first on the PC: copy it to `backups/` and run `.\scripts\restore-drill.ps1`. It must say **DRILL PASSED**.
 3. On the server: `docker compose stop api` → `docker compose exec -T postgres pg_restore -U medicos -d medicos --clean --if-exists --no-owner < file.dump` → `docker compose start api`.
-4. Restoring needs the **same** `FIELD_ENCRYPTION_KEY` / `BLIND_INDEX_KEY` that wrote the data (in `.env.server`). Never lose them: keep an offline copy.
+4. Restoring needs the **same** `FIELD_ENCRYPTION_KEY` / `BLIND_INDEX_KEY` that wrote the data (in `.env`). Never lose them: keep an offline copy.
 
 ## 4. Suspected data breach (DPDP Act)
 Follow `docs/privacy.md` → *Breach-notification runbook*:
@@ -32,7 +32,7 @@ The fixed safety line already showed the patient "Call 112". The doctor sees a n
 ## 6. Rotate keys
 | Key | Effect of rotating | How |
 |---|---|---|
-| `JWT_SECRET` | everyone logs in again | edit `.env.server`, re-run setup |
+| `JWT_SECRET` | everyone logs in again | edit `.env`, re-run setup |
 | SMTP / AI / Razorpay keys | none | edit, re-run setup |
 | `FIELD_ENCRYPTION_KEY`, `BLIND_INDEX_KEY` | **existing data becomes unreadable** | only with a re-encryption migration (not built yet) — do not rotate casually |
 

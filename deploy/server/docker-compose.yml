@@ -1,0 +1,73 @@
+# Always-on Mediaura backend for ONE free Linux VM (e.g. Oracle Cloud Always Free, Mumbai/Hyderabad).
+# Postgres + S3 (SeaweedFS) + API, with Caddy in front for automatic HTTPS. Only ports 80/443 are public.
+# Settings and secrets live in ./.env (created by setup.sh, git-ignored, read automatically by compose).
+#   cd deploy/server && docker compose up -d --build
+name: mediaura-server
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: medicos
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set in deploy/server/.env}
+      POSTGRES_DB: medicos
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U medicos -d medicos']
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  s3:
+    image: chrislusf/seaweedfs:3.97
+    restart: unless-stopped
+    command: server -dir=/data -s3 -s3.port=9000 -s3.config=/etc/seaweedfs/s3.json -master.volumeSizeLimitMB=1024
+    volumes:
+      - s3data:/data
+      - ./s3.json:/etc/seaweedfs/s3.json:ro
+
+  api:
+    build:
+      context: ../..
+      dockerfile: apps/api/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      NODE_ENV: production
+      API_PORT: '4000'
+      DATABASE_URL: postgresql://medicos:${POSTGRES_PASSWORD}@postgres:5432/medicos?schema=public
+      S3_ENDPOINT: http://s3:9000
+      S3_PUBLIC_ENDPOINT: https://${SITE_HOST}
+      # Browser -> Vercel -> Caddy -> API
+      TRUST_PROXY_HOPS: '2'
+    depends_on:
+      postgres:
+        condition: service_healthy
+      s3:
+        condition: service_started
+    healthcheck:
+      test: ['CMD', 'node', '-e', "fetch('http://localhost:4000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+  caddy:
+    image: caddy:2.10
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '443:443'
+    environment:
+      SITE_HOST: ${SITE_HOST:?set in deploy/server/.env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddydata:/data
+    depends_on:
+      - api
+
+volumes:
+  pgdata:
+  s3data:
+  caddydata:
