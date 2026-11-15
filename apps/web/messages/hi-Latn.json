@@ -16,7 +16,13 @@
     "privacyLink": "Poori privacy policy padhein",
     "auraName": "Aura",
     "auraHello": "Namaste! Main Aura hoon.",
-    "auraIntro": "Main aasaan sawaal poochhti hoon taaki milne se pehle doctor aapki takleef samajh lein. Main bimari nahi batati aur dawa nahi deti — yeh aapke doctor karenge."
+    "auraIntro": "Main aasaan sawaal poochhti hoon taaki milne se pehle doctor aapki takleef samajh lein. Main bimari nahi batati aur dawa nahi deti — yeh aapke doctor karenge.",
+    "support": {
+      "title": "Madad chahiye?",
+      "label": "Bataiye kya dikkat hui (health jaankari na likhein)",
+      "send": "Support ko bhejein",
+      "sent": "Dhanyavaad. Hamari team aapse sampark karegi."
+    }
   },
   "login": {
     "title": "Mediaura mein aapka swagat hai",

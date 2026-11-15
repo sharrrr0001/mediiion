@@ -6,6 +6,7 @@ import { Badge, Button, Card, EmptyState, Skeleton } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
 import { api, post } from '@/lib/api';
 import { fmtDateTime } from '@/lib/use-booking';
+import { SupportForm } from '@/components/support-form';
 import { usePatientGate } from '@/lib/use-me';
 
 /** Settings → who has access (spec §7.1 #14): active and past grants, revoke any time (rule 10). */
@@ -57,6 +58,7 @@ export default function AccessPage() {
           ))}
         </ul>
       )}
+      <SupportForm />
     </div>
   );
 }

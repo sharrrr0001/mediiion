@@ -16,7 +16,13 @@
     "privacyLink": "Read the full privacy policy",
     "auraName": "Aura",
     "auraHello": "Namaste! I am Aura.",
-    "auraIntro": "I ask simple questions so your doctor understands your problem before you meet. I do not diagnose or give medicines — your doctor does that."
+    "auraIntro": "I ask simple questions so your doctor understands your problem before you meet. I do not diagnose or give medicines — your doctor does that.",
+    "support": {
+      "title": "Need help?",
+      "label": "Tell us what went wrong (no health details please)",
+      "send": "Send to support",
+      "sent": "Thanks. Our team will get back to you."
+    }
   },
   "login": {
     "title": "Welcome to Mediaura",
