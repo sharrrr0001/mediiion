@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://criticism-vegetation-pioneer-citizen.trycloudflare.com/:path*"
+      "destination": "https://panel-multimedia-looksmart-lovers.trycloudflare.com/:path*"
     }
   ]
 }
