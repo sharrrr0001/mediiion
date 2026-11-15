@@ -57,9 +57,8 @@ docs/           spec, plans/, decisions.md, ideas.md, safety.md, privacy.md, TAS
 - Commit after each green slice (`feat:`, `fix:`, `docs:`, `test:`, `chore:`).
 
 ## Current Status
-- Last session: 2026-11-12 — Phases 0–3 built (Phase 3: paeds/gynae templates, voice with confirm step, STT adapters, offline queue + service worker).
-- AI: `LLM_PROVIDER=mock` locally; model plan in `docs/ai-models.md` (demo Gemini/Groq on fake data, pilot Claude Haiku 5.5).
-- Safety keyword list is a **draft** until a doctor reviews it (Pranov's decision) — blocks the pilot via `docs/release-checklist.md`.
-- Known issues: see `docs/TASKS.md` → Known issues.
-- Next step: Phase 4 (doctors, verification, booking, QR access). Open safety question in TASKS (patient-word lines with blocked terms).
-- Try the doctor side: seed doctor Dr. A. Mehta = +91 9000000101 → /d/login → enrol any authenticator app (TOTP).
+- Last session: 2026-11-15 — Phases 0–5 built; Phase 6 mostly done (CSP/HSTS, privacy + terms drafts, backup/restore drill, 200-interview load test, security review, runbooks, doctor quick-start). Product renamed **Mediaura.ai**; assistant avatar **Aura** ( in packages/ui).
+- Live: web on Vercel (medicos-zeta.vercel.app); API on this PC via Cloudflare tunnel (, ). Free always-on option ready:  (Oracle Always Free + , tested locally). AWS Terraform deferred (no paid hosting yet).
+- Email OTP works (Gmail App Password). AI = scripted until a key is set ( demo /  pilot). Admin:  (owner runs it).
+- Pilot blockers: doctor review of the safety keyword list; lawyer review of consent/privacy/terms; no-training AI provider; external security audit ().
+- Windows: run Playwright/scripts from  (capital D) to avoid Next case-path warnings; PS 5.1 mangles binary pipes and double quotes (see scripts).
