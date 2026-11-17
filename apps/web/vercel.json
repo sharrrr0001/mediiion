@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/api/:path*",
-      "destination": "https://panel-multimedia-looksmart-lovers.trycloudflare.com/:path*"
+      "destination": "https://clinics-upon-riverside-causes.trycloudflare.com/:path*"
     }
   ]
 }
