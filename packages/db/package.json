@@ -25,7 +25,9 @@
     "live:seed": "dotenv -e ../../.env.live -- tsx prisma/seed.ts",
     "live:attach-email": "dotenv -e ../../.env.live -- tsx prisma/attach-email.ts",
     "make-admin": "dotenv -e ../../.env -- tsx prisma/make-admin.ts",
-    "live:make-admin": "dotenv -e ../../.env.live -- tsx prisma/make-admin.ts"
+    "live:make-admin": "dotenv -e ../../.env.live -- tsx prisma/make-admin.ts",
+    "demo-accounts": "dotenv -e ../../.env -- tsx prisma/demo-accounts.ts",
+    "live:demo-accounts": "dotenv -e ../../.env.live -- tsx prisma/demo-accounts.ts"
   },
   "dependencies": {
     "@prisma/client": "6.19.3"
