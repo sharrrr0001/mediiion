@@ -3,6 +3,7 @@ import { APP_GUARD } from '@nestjs/core';
 import { JwtModule } from '@nestjs/jwt';
 import { ENV, type Env } from '../config/env';
 import { AuthController } from './auth.controller';
+import { PasswordController } from './password.controller';
 import { AuthGuard, OriginGuard } from './guards';
 import { ConsoleSmsSender, DevOutbox, EMAIL_SENDER, SMS_SENDER, SmtpEmailSender } from './messaging/messaging';
 import { OtpService } from './otp.service';
@@ -16,7 +17,7 @@ import { TwoFactorService } from './two-factor.service';
       useFactory: (env: Env) => ({ secret: env.JWT_SECRET, signOptions: { algorithm: 'HS256' } }),
     }),
   ],
-  controllers: [AuthController],
+  controllers: [AuthController, PasswordController],
   providers: [
     OtpService,
     SessionService,

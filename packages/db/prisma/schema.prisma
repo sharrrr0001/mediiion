@@ -40,6 +40,12 @@ model User {
   totpSecretEnc String? // ENC — TOTP 2FA secret (doctor/staff/admin)
   /// Last accepted TOTP time step — rejects replay of a code within its window.
   totpLastStep Int?
+  /// scrypt$N$r$p$salt$hash (Node crypto.scrypt). Optional: OTP login always works.
+  passwordHash   String?
+  passwordSetAt  DateTime?
+  /// Password brute-force guard: 5 wrong tries lock password login for 15 minutes.
+  failedLogins   Int       @default(0)
+  lockedUntil    DateTime?
   createdAt    DateTime   @default(now())
   updatedAt    DateTime   @updatedAt
 
