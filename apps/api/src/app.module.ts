@@ -19,6 +19,7 @@ import { StaffModule } from './staff/staff';
 import { BillingModule } from './billing/billing.controller';
 import { NotifyModule } from './notify/reminders';
 import { OpsModule } from './ops/ops.controller';
+import { WaitingModule } from './waiting/waiting.controller';
 import { loadEnv } from './config/env';
 import { DevController, HealthController, PublicConfigController } from './health/health.controller';
 import { pinoRedact, serializers } from './logging/redaction';
@@ -64,6 +65,7 @@ export class AppModule {
         BillingModule,
         NotifyModule,
         OpsModule,
+        WaitingModule,
       ],
       controllers: [HealthController, PublicConfigController, DevController, PatientsController],
       providers: [

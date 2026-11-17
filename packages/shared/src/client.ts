@@ -18,3 +18,5 @@ export type { DocKind, OnboardingView, VerificationQueueItem } from './onboardin
 export { DOC_KINDS, SPECIALTIES } from './onboarding-consts';
 export type { ClinicContext, ClinicQueueRow, StaffMemberView } from './staff';
 export type { BillingOverview, InvoiceDetail, InvoiceView, PlanView } from './billing';
+export type { ClinicWaitingRow, PatientWaitingView, WaitingPingKind, WaitingReplyView } from './waiting';
+export { WAITING_PING_COOLDOWN_SECONDS, WAITING_REPLY_MAX } from './waiting-consts';

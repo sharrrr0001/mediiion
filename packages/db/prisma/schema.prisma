@@ -304,6 +304,7 @@ model Appointment {
 
   intakeSessions IntakeSession[]
   notes          DoctorNote[]
+  waitingPings   WaitingPing[]
 
   @@index([doctorId, startsAt])
   @@index([patientProfileId])
@@ -514,6 +515,23 @@ enum GrantVia {
 }
 
 /// Doctor scanned/typed a Medicos ID; the patient must Allow before any data is shown (rule 10).
+/// Waiting-room signal from a patient at the clinic ("I have arrived" / "May I come in?") and the
+/// clinic's reply. Patients can send one every 150 s per visit (server-enforced). No health text.
+model WaitingPing {
+  id               String      @id @default(uuid()) @db.Uuid
+  appointmentId    String      @db.Uuid
+  appointment      Appointment @relation(fields: [appointmentId], references: [id], onDelete: Cascade)
+  kind             String // arrived | may_i_come_in
+  createdAt        DateTime    @default(now())
+  respondedAt      DateTime?
+  response         String? // come_in | busy | wait | custom
+  waitMinutes      Int?
+  responseText     String? // short staff/doctor note, max 140 chars
+  respondedById    String?     @db.Uuid
+
+  @@index([appointmentId, createdAt])
+}
+
 model AccessRequest {
   id               String         @id @default(uuid()) @db.Uuid
   patientProfileId String         @db.Uuid
