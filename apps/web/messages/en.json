@@ -22,6 +22,32 @@
       "label": "Tell us what went wrong (no health details please)",
       "send": "Send to support",
       "sent": "Thanks. Our team will get back to you."
+    },
+    "password": {
+      "promptTitle": "Set a password",
+      "promptBody": "Next time you can log in with your email and password — no code needed. You can still use a code anytime.",
+      "new": "New password",
+      "confirm": "Confirm password",
+      "current": "Current password",
+      "rules": "At least 8 characters, with letters and a number.",
+      "save": "Save password",
+      "later": "Later",
+      "saved": "Password saved. Next time, choose \"I already have an account\".",
+      "changeTitle": "Change password",
+      "change": "Change password",
+      "tabHave": "I already have an account",
+      "tabNew": "New here / log in with a code",
+      "idLabel": "Email",
+      "idPhoneLabel": "Email or mobile number",
+      "password": "Password",
+      "login": "Log in",
+      "forgot": "Forgot password?",
+      "forgotTitle": "Reset your password",
+      "forgotBody": "We will send a code to your email. Then choose a new password.",
+      "resetSave": "Save new password and log in",
+      "show": "Show",
+      "hide": "Hide",
+      "mismatch": "Passwords do not match"
     }
   },
   "login": {

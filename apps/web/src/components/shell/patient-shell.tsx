@@ -7,6 +7,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, type ReactNode } from 'react';
 import { Avatar, Button, Logo, Menu, cn, menuItemClass } from '@medicos/ui';
 import { AccessPrompt } from '@/components/access-prompt';
+import { SetPasswordPrompt } from '@/components/password';
 import { OfflineBanner } from '@/components/offline-banner';
 import { post } from '@/lib/api';
 import { useActiveProfile } from '@/lib/use-active-profile';
@@ -91,6 +92,7 @@ export function PatientShell({ children }: { children: ReactNode }) {
       </header>
 
       {me ? <AccessPrompt /> : null}
+      {me ? <SetPasswordPrompt /> : null}
       <main id="main" className={cn('flex-1', hideTabBar ? '' : 'pb-safe-bar md:pb-12')}>
         {children}
       </main>

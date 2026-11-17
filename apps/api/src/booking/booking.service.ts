@@ -84,7 +84,8 @@ export class BookingService {
       },
       include: doctorInclude,
       orderBy: { name: 'asc' },
-      take: 50,
+      // Pilot scale: every verified doctor in a city fits; add paging when a city passes ~200 doctors.
+      take: 200,
     });
     return Promise.all(docs.map(async (d) => this.card(d, await this.nextSlot(d))));
   }

@@ -7,6 +7,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import { Email, IndianPhone } from '@medicos/shared';
 import type { TwoFactorChallengeResponse } from '@medicos/shared/client';
 import { Button, Card, Field, Input, OtpInput, QrCode, Tabs } from '@medicos/ui';
+import { PasswordInput } from '@/components/password';
 import { ApiError, post } from '@/lib/api';
 import { usePublicConfig } from '@/lib/use-config';
 
@@ -15,7 +16,9 @@ type Step =
   | { kind: 'otp'; challengeId: string; destination: string }
   | { kind: 'twofa'; challenge: TwoFactorChallengeResponse };
 
-/** Doctor sign-in: mobile or email OTP, then TOTP 2FA (enrol on first login). */
+const MODE_KEY = 'mc_login_mode_staff';
+
+/** Doctor/staff/admin sign-in: password or mobile/email OTP, then TOTP 2FA (enrol on first login). */
 export default function DoctorLoginPage() {
   const t = useTranslations('doctorAuth');
   const tl = useTranslations('login');
@@ -34,6 +37,18 @@ export default function DoctorLoginPage() {
   const [code, setCode] = useState('');
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const tp = useTranslations('common.password');
+  const [mode, setMode] = useState<'code' | 'password' | 'reset'>('code');
+  const [password, setPassword] = useState('');
+  const [newPw, setNewPw] = useState('');
+  const [confirmPw, setConfirmPw] = useState('');
+  useEffect(() => {
+    try {
+      if (localStorage.getItem(MODE_KEY) === 'password') setMode('password');
+    } catch {
+      /* private mode */
+    }
+  }, []);
 
   const run = async (fn: () => Promise<void>) => {
     setBusy(true);
@@ -64,14 +79,42 @@ export default function DoctorLoginPage() {
     });
   };
 
+  /** "I already have an account": email (or mobile) + password, then the authenticator code. */
+  const passwordLogin = (e: FormEvent) => {
+    e.preventDefault();
+    const asEmail = Email.safeParse(phone);
+    const asPhone = phoneOn ? IndianPhone.safeParse(phone) : null;
+    if (!asEmail.success && !asPhone?.success) return setError(tl('invalidEmail'));
+    void run(async () => {
+      const body = asEmail.success ? { email: asEmail.data, password } : { phone: asPhone!.data!, password };
+      const r = await post<TwoFactorChallengeResponse | { ok: true }>('/auth/password/login', body);
+      if (!('twoFactor' in r)) {
+        await post('/auth/logout').catch(() => undefined);
+        setError(t('notDoctor'));
+        return;
+      }
+      try {
+        localStorage.setItem(MODE_KEY, 'password');
+      } catch {
+        /* private mode */
+      }
+      setStep({ kind: 'twofa', challenge: r });
+      setCode('');
+    });
+  };
+
   const verifyOtp = (e: FormEvent) => {
     e.preventDefault();
     if (step.kind !== 'otp' || code.length !== 6) return;
+    if (mode === 'reset' && newPw !== confirmPw) return setError(tp('mismatch'));
     void run(async () => {
-      const r = await post<TwoFactorChallengeResponse | { ok: true }>('/auth/otp/verify', {
-        challengeId: step.challengeId,
-        code,
-      });
+      const r =
+        mode === 'reset'
+          ? await post<TwoFactorChallengeResponse | { ok: true }>('/auth/password/reset', { challengeId: step.challengeId, code, password: newPw, confirm: confirmPw })
+          : await post<TwoFactorChallengeResponse | { ok: true }>('/auth/otp/verify', {
+              challengeId: step.challengeId,
+              code,
+            });
       if (!('twoFactor' in r)) {
         await post('/auth/logout').catch(() => undefined);
         setError(t('notDoctor'));
@@ -94,13 +137,39 @@ export default function DoctorLoginPage() {
 
   return (
     <Card className="animate-in p-6 shadow-md md:p-8">
-      {step.kind === 'phone' ? (
-        <form onSubmit={sendOtp} noValidate className="flex flex-col gap-6">
+      {step.kind === 'phone' && mode === 'password' ? (
+        <form onSubmit={passwordLogin} noValidate className="flex flex-col gap-6">
           <div>
             <h1 className="font-display text-3xl font-bold tracking-tight">{t('title')}</h1>
             <p className="mt-2 text-muted">{t('subtitle')}</p>
+          </div>
+          <Tabs label={t('title')} value={mode} onChange={(v) => (setMode(v), setError(null))} items={[{ value: 'code', label: tp('tabNew') }, { value: 'password', label: tp('tabHave') }]} />
+          <Field label={phoneOn ? tp('idPhoneLabel') : tp('idLabel')} htmlFor="login-id">
+            <Input id="login-id" type={phoneOn ? 'text' : 'email'} inputMode="email" autoComplete="username" value={phone} onChange={(e) => setPhone(e.target.value)} autoFocus />
+          </Field>
+          <Field label={tp('password')} htmlFor="login-password" error={error ?? undefined}>
+            <PasswordInput id="login-password" value={password} onChange={setPassword} autoComplete="current-password" invalid={!!error} />
+          </Field>
+          <Button type="submit" size="lg" block loading={busy} disabled={!phone || !password}>
+            {tp('login')}
+          </Button>
+          <button type="button" className="min-h-11 self-center text-sm font-semibold text-brand hover:text-brand-hover" onClick={() => (setMode('reset'), setError(null))}>
+            {tp('forgot')}
+          </button>
+          <Link href="/d/signup" className="text-center text-sm font-semibold text-brand hover:text-brand-hover">
+            {to('createLink')}
+          </Link>
+        </form>
+      ) : step.kind === 'phone' ? (
+        <form onSubmit={sendOtp} noValidate className="flex flex-col gap-6">
+          <div>
+            <h1 className="font-display text-3xl font-bold tracking-tight">{mode === 'reset' ? tp('forgotTitle') : t('title')}</h1>
+            <p className="mt-2 text-muted">{mode === 'reset' ? tp('forgotBody') : t('subtitle')}</p>
             {registered ? <p role="status" className="mt-3 rounded-[var(--radius-control)] bg-brand-tint px-3 py-2 text-sm font-medium text-brand-deep">{to('registered')}</p> : null}
           </div>
+          {mode === 'code' ? (
+            <Tabs label={t('title')} value={mode} onChange={(v) => (setMode(v), setError(null))} items={[{ value: 'code', label: tp('tabNew') }, { value: 'password', label: tp('tabHave') }]} />
+          ) : null}
           {phoneOn ? (
             <Tabs
               label={t('title')}
@@ -168,6 +237,16 @@ export default function DoctorLoginPage() {
             <p className="mt-2 text-muted">{tl('otpSentTo', { destination: step.destination })}</p>
           </div>
           <OtpInput value={code} onChange={setCode} label={tl('otpLabel')} invalid={!!error} autoFocus />
+          {mode === 'reset' ? (
+            <>
+              <Field label={tp('new')} htmlFor="reset-new" hint={tp('rules')}>
+                <PasswordInput id="reset-new" value={newPw} onChange={setNewPw} autoComplete="new-password" />
+              </Field>
+              <Field label={tp('confirm')} htmlFor="reset-confirm">
+                <PasswordInput id="reset-confirm" value={confirmPw} onChange={setConfirmPw} autoComplete="new-password" />
+              </Field>
+            </>
+          ) : null}
           {error ? (
             <p role="alert" className="font-medium text-danger">
               {error}

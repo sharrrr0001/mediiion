@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, newContext, test } from './test';
 import { createVerifiedDoctor, totpNow } from './doctor-db';
 import { expectNoSeriousA11yViolations, readOtp, signUpPatient } from './helpers';
 
@@ -8,7 +8,7 @@ test('patient → chosen doctor → summary → finalise → patient record book
   const doctor = await createVerifiedDoctor();
 
   // ── Patient: pre-visit with the chosen doctor ──
-  const patientCtx = await browser.newContext(isMobile ? { viewport: { width: 412, height: 915 }, isMobile: true, hasTouch: true } : {});
+  const patientCtx = await newContext(browser, isMobile ? { viewport: { width: 412, height: 915 }, isMobile: true, hasTouch: true } : {});
   const patient = await patientCtx.newPage();
   await signUpPatient(patient, { name: 'Rahul Mehta' });
   await patient.getByRole('link', { name: /Start now/ }).click();
@@ -28,7 +28,7 @@ test('patient → chosen doctor → summary → finalise → patient record book
   await expect(patient.getByText('Sent. Your doctor will see this before your visit.')).toBeVisible();
 
   // ── Doctor: OTP + TOTP enrolment ──
-  const doctorCtx = await browser.newContext(isMobile ? { viewport: { width: 412, height: 915 }, isMobile: true, hasTouch: true } : {});
+  const doctorCtx = await newContext(browser, isMobile ? { viewport: { width: 412, height: 915 }, isMobile: true, hasTouch: true } : {});
   const dr = await doctorCtx.newPage();
   await dr.goto('/d/today');
   await expect(dr).toHaveURL(/\/d\/login/);

@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { ScanAccess } from '@/components/doctor/scan-access';
+import { SetPasswordPrompt } from '@/components/password';
 import type { ReactNode } from 'react';
 import { Avatar, Button, cn } from '@medicos/ui';
 import { DashboardShell, type NavItem } from './dashboard-shell';
@@ -85,6 +86,7 @@ export function DoctorShell({ children }: { children: ReactNode }) {
         </>
       }
     >
+      <SetPasswordPrompt />
       {children}
     </DashboardShell>
   );
@@ -124,6 +126,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
         </div>
       }
     >
+      <SetPasswordPrompt />
       {children}
     </DashboardShell>
   );

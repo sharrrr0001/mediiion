@@ -7,6 +7,7 @@ import { useEffect, useState, type FormEvent } from 'react';
 import type { ClinicContext, ClinicQueueRow } from '@medicos/shared/client';
 import { Badge, Button, Card, Field, Input, Logo, Select, Skeleton } from '@medicos/ui';
 import { WaitingPanel } from '@/components/clinic/waiting-panel';
+import { SetPasswordPrompt } from '@/components/password';
 import { Standee } from '@/components/clinic/standee';
 import { api, ApiError, post } from '@/lib/api';
 import { fmtTime } from '@/lib/use-booking';
@@ -69,6 +70,7 @@ export default function ClinicDeskPage() {
       </div>
 
       <div className="no-print">
+        <SetPasswordPrompt />
         <WaitingPanel />
       </div>
 

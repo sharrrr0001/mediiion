@@ -49,4 +49,5 @@ export async function signUpPatient(page: Page, opts: { name: string; language?:
   await page.getByLabel('Preferred language').selectOption(opts.language ?? 'en');
   await page.getByRole('button', { name: /Save/ }).click();
   await expect(page).toHaveURL(/\/p\/home$/);
+  return phone;
 }

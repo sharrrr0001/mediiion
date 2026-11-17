@@ -1,4 +1,5 @@
-import { expect, test, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { expect, newContext, test } from './test';
 import { createVerifiedDoctor, totpNow } from './doctor-db';
 import { expectNoSeriousA11yViolations, readOtp, signUpPatient } from './helpers';
 
@@ -24,7 +25,7 @@ async function doctorSignIn(dr: Page, digits: string) {
 
 test('Phase 4 journey: AI first → book → clinic QR → allow → finalise → record book', async ({ browser, isMobile }) => {
   const doctor = await createVerifiedDoctor();
-  const ctx = () => browser.newContext(isMobile ? { viewport: { width: 412, height: 915 }, isMobile: true, hasTouch: true } : {});
+  const ctx = () => newContext(browser, isMobile ? { viewport: { width: 412, height: 915 }, isMobile: true, hasTouch: true } : {});
 
   // ── Patient: AI interview without choosing a doctor ──
   const patientCtx = await ctx();

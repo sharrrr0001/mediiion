@@ -22,6 +22,32 @@
       "label": "Bataiye kya dikkat hui (health jaankari na likhein)",
       "send": "Support ko bhejein",
       "sent": "Dhanyavaad. Hamari team aapse sampark karegi."
+    },
+    "password": {
+      "promptTitle": "Password banaiye",
+      "promptBody": "Agli baar aap email aur password se login kar sakenge — code ki zaroorat nahi. Code se login hamesha chaalu rahega.",
+      "new": "Naya password",
+      "confirm": "Password dobara likhiye",
+      "current": "Abhi ka password",
+      "rules": "Kam se kam 8 akshar, jismein letters aur ek number ho.",
+      "save": "Password save karein",
+      "later": "Baad mein",
+      "saved": "Password save ho gaya. Agli baar \"Mera account pehle se hai\" chuniye.",
+      "changeTitle": "Password badliye",
+      "change": "Password badliye",
+      "tabHave": "Mera account pehle se hai",
+      "tabNew": "Naye hain / code se login",
+      "idLabel": "Email",
+      "idPhoneLabel": "Email ya mobile number",
+      "password": "Password",
+      "login": "Login karein",
+      "forgot": "Password bhool gaye?",
+      "forgotTitle": "Password reset karein",
+      "forgotBody": "Hum aapke email par code bhejenge. Phir naya password chuniye.",
+      "resetSave": "Naya password save karke login karein",
+      "show": "Dikhaiye",
+      "hide": "Chhupaiye",
+      "mismatch": "Dono password alag hain"
     }
   },
   "login": {

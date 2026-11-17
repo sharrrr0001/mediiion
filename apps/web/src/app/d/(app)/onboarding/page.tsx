@@ -7,6 +7,7 @@ import { useEffect, useState, type FormEvent, type ReactNode } from 'react';
 import { DOC_KINDS, type DocKind, type OnboardingView } from '@medicos/shared/client';
 import { Badge, Button, Card, Field, Input, Select, Skeleton, Textarea, cn } from '@medicos/ui';
 import { api, ApiError } from '@/lib/api';
+import { PasswordSettingsCard } from '@/components/password';
 import { SupportForm } from '@/components/support-form';
 import { useDoctor } from '@/lib/use-doctor';
 
@@ -38,6 +39,7 @@ export default function OnboardingPage() {
       <Documents data={data} />
       <ClinicForm data={data} />
       <About data={data} />
+      <PasswordSettingsCard />
       <SupportForm />
     </div>
   );

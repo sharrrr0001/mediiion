@@ -6,6 +6,7 @@ import { Badge, Button, Card, EmptyState, Skeleton } from '@medicos/ui';
 import { container } from '@/components/shell/layout';
 import { api, post } from '@/lib/api';
 import { fmtDateTime } from '@/lib/use-booking';
+import { PasswordSettingsCard } from '@/components/password';
 import { SupportForm } from '@/components/support-form';
 import { usePatientGate } from '@/lib/use-me';
 
@@ -58,6 +59,7 @@ export default function AccessPage() {
           ))}
         </ul>
       )}
+      <PasswordSettingsCard />
       <SupportForm />
     </div>
   );

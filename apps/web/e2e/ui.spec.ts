@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './test';
 import { expectNoSeriousA11yViolations } from './helpers';
 
 /** UI acceptance: light-only theme, no sideways scroll, accessible public/doctor/admin pages. */

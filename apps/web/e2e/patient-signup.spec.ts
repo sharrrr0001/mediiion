@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test';
+import { expect, test } from './test';
 import { expectNoSeriousA11yViolations, readOtp, testPhone } from './helpers';
 
 test('patient signs up with OTP, consents, creates a profile and sees their Mediaura ID QR', async ({ page }) => {

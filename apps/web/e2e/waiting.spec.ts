@@ -1,4 +1,5 @@
-import { expect, test, type Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
+import { expect, newContext, test } from './test';
 import { createVerifiedDoctor, createVisitNow, totpNow } from './doctor-db';
 import { expectNoSeriousA11yViolations, readOtp, signUpPatient } from './helpers';
 
@@ -19,7 +20,7 @@ async function doctorSignIn(dr: Page, digits: string) {
 
 test('patient says "I have arrived", the doctor replies "Please come in", the patient sees it', async ({ browser, isMobile }) => {
   const doctor = await createVerifiedDoctor();
-  const ctx = () => browser.newContext(isMobile ? { viewport: { width: 412, height: 915 }, isMobile: true, hasTouch: true } : {});
+  const ctx = () => newContext(browser, isMobile ? { viewport: { width: 412, height: 915 }, isMobile: true, hasTouch: true } : {});
 
   const patientCtx = await ctx();
   const patient = await patientCtx.newPage();
