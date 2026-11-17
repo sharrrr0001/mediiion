@@ -11,11 +11,24 @@
  */
 import { PrismaClient } from '@prisma/client';
 import { CONSENT_VERSION, generateMedicosId } from '@medicos/shared';
-import { randomInt } from 'node:crypto';
+import { randomBytes, randomInt, scryptSync } from 'node:crypto';
 import { BIDX, ENC, createFieldCrypto } from '../src/field-crypto';
 
 const DOCTOR_PHONE = '+919000000101'; // seed: Dr. A. Mehta (verified, CityCare Clinic)
 const IST_OFFSET_MS = 5.5 * 3600_000;
+
+/** Same format as the API (apps/api/src/auth/password.ts): scrypt$N$r$p$salt$hash. */
+function hashPassword(password: string): string {
+  const N = 2 ** 15;
+  const salt = randomBytes(16);
+  const key = scryptSync(password.normalize('NFKC'), salt, 64, { N, r: 8, p: 1, maxmem: 128 * N * 8 * 2 });
+  return ['scrypt', N, 8, 1, salt.toString('base64'), key.toString('base64')].join('$');
+}
+
+function optArg(name: string): string | undefined {
+  const i = process.argv.indexOf(`--${name}`);
+  return i >= 0 ? process.argv[i + 1] : undefined;
+}
 
 function arg(name: string): string {
   const i = process.argv.indexOf(`--${name}`);
@@ -79,6 +92,12 @@ async function main() {
       const startsAt = new Date(Math.min(Date.now() + 30 * 60_000, dayEnd.getTime() - 60_000));
       await prisma.appointment.create({ data: { patientProfileId: profile.id, doctorId: doctorUser.doctor.id, clinicId: clinic.id, startsAt, type: 'new', status: 'booked', source: 'patient_app' } });
     }
+
+    // Optional demo passwords (--patient-password / --doctor-password). The doctor still needs 2FA.
+    const pp = optArg('patient-password');
+    const dp = optArg('doctor-password');
+    if (pp) await prisma.user.update({ where: { id: patient.id }, data: { passwordHash: hashPassword(pp), passwordSetAt: new Date(), failedLogins: 0, lockedUntil: null } });
+    if (dp) await prisma.user.update({ where: { id: doctorUser.id }, data: { passwordHash: hashPassword(dp), passwordSetAt: new Date(), failedLogins: 0, lockedUntil: null } });
 
     console.log('Demo accounts ready (fictional data):');
     console.log(`  Patient login: the "+patient" address  -> profile "Demo Patient", Mediaura ID ${profile.medicosId}, visit with ${doctorUser.doctor.name} today`);
