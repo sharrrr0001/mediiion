@@ -5,6 +5,7 @@ import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import type { AppointmentView } from '@medicos/shared/client';
 import { Badge, Button, Card, EmptyState, Skeleton } from '@medicos/ui';
+import { WaitingRoomCard } from '@/components/waiting-room-card';
 import { container } from '@/components/shell/layout';
 import { post } from '@/lib/api';
 import { APPOINTMENTS_KEY, fmtDateTime, useAppointments } from '@/lib/use-booking';
@@ -35,6 +36,7 @@ export default function VisitsPage() {
         </Button>
       </div>
 
+      <WaitingRoomCard />
       {isLoading ? (
         <Skeleton className="mt-6 h-32" />
       ) : !data?.length ? (

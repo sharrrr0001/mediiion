@@ -25,7 +25,7 @@ export async function createVerifiedDoctor() {
     await prisma.fee.create({ data: { doctorId: doctor.id, clinicId: clinic.id, consult: 500, followUp: 250, modes: ['pay_at_clinic'] } });
     // Open every day, all day, so a bookable slot always exists whenever the test runs.
     await prisma.schedule.createMany({ data: [0, 1, 2, 3, 4, 5, 6].map((weekday) => ({ doctorId: doctor.id, clinicId: clinic.id, weekday, start: '00:00', end: '23:45', slotMinutes: 15 })) });
-    return { digits, name: doctor.name };
+    return { digits, name: doctor.name, id: doctor.id, clinicId: clinic.id };
   } finally {
     await prisma.$disconnect();
   }
@@ -51,4 +51,16 @@ export function totpNow(secretB32: string): string {
   const o = h[h.length - 1]! & 0xf;
   const bin = ((h[o]! & 0x7f) << 24) | (h[o + 1]! << 16) | (h[o + 2]! << 8) | h[o + 3]!;
   return String(bin % 1_000_000).padStart(6, '0');
+}
+
+/** A visit today (now) for the patient with this Mediaura ID — for waiting-room tests. */
+export async function createVisitNow(doctorId: string, clinicId: string, medicosId: string) {
+  const prisma = new PrismaClient();
+  try {
+    const profile = await prisma.patientProfile.findFirstOrThrow({ where: { medicosId } });
+    const a = await prisma.appointment.create({ data: { patientProfileId: profile.id, doctorId, clinicId, startsAt: new Date(), type: 'new', status: 'booked', source: 'patient_app' } });
+    return a.id;
+  } finally {
+    await prisma.$disconnect();
+  }
 }

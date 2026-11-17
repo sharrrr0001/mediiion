@@ -6,6 +6,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { Suspense, useState } from 'react';
 import type { DoctorQueueRow, DoctorSummaryView, QueueStatus } from '@medicos/shared/client';
 import { Badge, Button, Card, EmptyState, Skeleton, StatusTag, Tabs, cn } from '@medicos/ui';
+import { WaitingPanel } from '@/components/clinic/waiting-panel';
 import { SummaryPanel } from '@/components/doctor/summary-panel';
 import { api, ApiError } from '@/lib/api';
 import { useDoctor } from '@/lib/use-doctor';
@@ -55,6 +56,9 @@ function Today() {
 
   return (
     <div className="p-4 md:p-6">
+      <div className="mb-5 print:hidden">
+        <WaitingPanel />
+      </div>
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-[360px_minmax(0,1fr)]">
         <Card className={cn('h-fit min-w-0 p-0 md:p-0 lg:sticky lg:top-20 print:hidden', showDetailOnPhone && 'hidden lg:block')}>
           <div className="flex items-center justify-between gap-3 p-4 pb-0">

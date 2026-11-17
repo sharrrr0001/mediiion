@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState, type FormEvent } from 'react';
 import type { ClinicContext, ClinicQueueRow } from '@medicos/shared/client';
 import { Badge, Button, Card, Field, Input, Logo, Select, Skeleton } from '@medicos/ui';
+import { WaitingPanel } from '@/components/clinic/waiting-panel';
 import { Standee } from '@/components/clinic/standee';
 import { api, ApiError, post } from '@/lib/api';
 import { fmtTime } from '@/lib/use-booking';
@@ -65,6 +66,10 @@ export default function ClinicDeskPage() {
           <LogOut aria-hidden />
           {tc('logout')}
         </Button>
+      </div>
+
+      <div className="no-print">
+        <WaitingPanel />
       </div>
 
       <div className="no-print grid gap-6 lg:grid-cols-[1fr_380px]">

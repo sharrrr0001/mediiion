@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import { AuraAvatar, Button, Card, EmptyState, SectionHeader, Skeleton } from '@medicos/ui';
+import { WaitingRoomCard } from '@/components/waiting-room-card';
 import { container } from '@/components/shell/layout';
 import { api } from '@/lib/api';
 import { usePatientGate } from '@/lib/use-me';
@@ -56,6 +57,8 @@ export default function HomePage() {
           <span className="font-mono text-sm font-semibold tracking-wide">{idText ?? '—'}</span>
         </Link>
       </div>
+
+      <WaitingRoomCard />
 
       {/* Hero CTA */}
       <section className="relative mt-6 overflow-hidden rounded-[16px] border border-line bg-gradient-to-br from-surface via-surface to-brand-tint shadow-sm md:mt-8">

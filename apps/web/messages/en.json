@@ -763,7 +763,7 @@
     "walkInBody": "Type or scan the patient's Mediaura ID. The patient taps Allow on their phone.",
     "doctor": "Doctor",
     "id": "Mediaura ID",
-    "send": "Send to patient",
+    "send": "Send",
     "waiting": "Waiting for the patient to tap Allow…",
     "allowed": "Checked in. The visit is in the doctor's queue.",
     "denied": "The patient said no.",
@@ -784,6 +784,30 @@
       "new": "New",
       "follow_up": "Follow-up",
       "walk_in": "Walk-in"
+    },
+    "waitingTitle": "Waiting room",
+    "waitingBody": "Patients at the clinic tap \"I have arrived\" or \"May I come in?\". Reply in one tap. Patients can signal at most once every 2½ minutes.",
+    "waitingEmpty": "Nobody is waiting right now.",
+    "kinds": {
+      "arrived": "Arrived",
+      "may_i_come_in": "May I come in?"
+    },
+    "since": "{n} min ago",
+    "justNow": "just now",
+    "signals": "{n} signals today",
+    "slot": "Slot {time}",
+    "comeIn": "Please come in",
+    "busy": "Doctor is busy",
+    "wait": "Wait",
+    "minutes": "{n} min",
+    "custom": "Short message",
+    "customPlaceholder": "e.g. Please go to room 2",
+    "replied": "Replied: {what}",
+    "replyKinds": {
+      "come_in": "Come in",
+      "busy": "Busy",
+      "wait": "Wait {n} min",
+      "custom": "\"{text}\""
     }
   },
   "panels": {
@@ -1022,5 +1046,25 @@
       "privacy": "Privacy policy",
       "terms": "Terms of use"
     }
+  },
+  "waiting": {
+    "title": "At the clinic today",
+    "visit": "{time} with {doctor} · {clinic}",
+    "arrived": "I have arrived",
+    "mayI": "May I come in?",
+    "sent": "The clinic has your message.",
+    "again": "You can send again in {time}",
+    "arrivedDone": "Checked in. Please wait in the waiting room.",
+    "reply": {
+      "come_in": "Please come in now.",
+      "busy": "The doctor is busy. Please wait — we will call you.",
+      "wait": "Please wait about {n} minutes.",
+      "custom": "Message from the clinic: {text}"
+    },
+    "from": {
+      "doctor": "from the doctor",
+      "staff": "from the reception"
+    },
+    "forWhom": "For {name}"
   }
 }
